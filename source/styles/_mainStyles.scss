@@ -1,0 +1,204 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box !important;
+}
+
+/* Remove some default Roll20 Styles */
+.ui-dialog .charactersheet button[type=roll] {
+    padding: 5px;
+    margin: 0;
+    border: black 1px solid;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'Roboto Mono', monospace;
+}
+
+h1.sheetTitle {
+    font-size: 3.5em;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+}
+
+h3.sectionHeader,
+label.sectionHeader {
+    width: 100%;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+h3.subSectionHeader,
+label.subSectionHeader {
+    width: 100%;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.hideSection[value="0"]+div {
+    display: none !important;
+}
+
+.topButton {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    width: auto;
+    background-color: transparent;
+    border: black 2px solid;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.isCarried {
+    font-family: Pictos;
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+.isCarried:hover {
+    cursor: pointer;
+}
+
+input:checked+.isCarried::before {
+    content: '2';
+}
+
+input:not(:checked)+.isCarried::before {
+    content: 'D';
+}
+
+.charactersheet label.caps {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.charactersheet .textField {
+    width: 100%;
+    background: transparent;
+    text-align: center;
+    border: none;
+    border-bottom: black 2px solid;
+    line-height: unset
+}
+
+.charactersheet input.textField {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em;
+    border: none;
+    border-bottom: black 1px solid;
+    background: transparent;
+    padding: 0 0 2px 0;
+}
+
+.ui-dialog .charactersheet .fieldLabel {
+    width: auto;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: .85em;
+}
+
+.charsheet button.labelButton[type=roll]:before {
+    content: '';
+}
+
+.ui-dialog .charsheet button.labelButton,
+.ui-dialog .charsheet button[type='action'] {
+    display: inline-block;
+    width: auto;
+    background-color: transparent;
+    border: black 1px solid;
+    padding: 3px 9px;
+    margin: 0 10px 0 0;
+    box-sizing: border-box !important;
+    height: 2rem;
+    min-height: fit-content;
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.ui-dialog .charsheet button.labelButton:hover,
+.ui-dialog .charsheet button[type='action']:hover,
+.ui-dialog .charsheet label.buttonStyle:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+label.buttonStyle {
+    display: inline-block;
+    width: fit-content;
+    border: black 2px solid;
+    text-align: center;
+    padding: 5px;
+    height: fit-content;
+    border-radius: 8px;
+    align-self: center;
+}
+
+.mancer {
+    width: 100%;
+    text-align: right;
+    margin: 0 0 5px 0;
+
+    .mancerButton {
+        font-family: "Pictos" !important;
+        font-size: 1.5em;
+        border: 1px solid black !important;
+        background-color: black !important;
+        color: white !important;
+        padding: 5px 5px !important;
+        border-radius: 8px !important;
+        cursor: pointer;
+    }
+
+    .mancerButton::before {
+        content: 'U';
+    }
+}
+
+.maindiv {
+    max-width: 840px;
+
+    .character,
+    .characternotes,
+    .releaseNotes,
+    .sheetDocumentation,
+    .gm-screen {
+        display: none;
+    }
+
+    .selectedTab[value="1"]~.character,
+    .selectedTab[value="2"]~.character,
+    .selectedTab[value="3"]~.character,
+    .selectedTab[value="7"]~.character,
+    .selectedTab[value="8"]~.character,
+    .selectedTab[value="4"]~.characternotes,
+    .selectedTab[value="5"]~.releaseNotes,
+    .selectedTab[value="6"]~.sheetDocumentation,
+    .selectedTab[value="99"]~.gm-screen {
+        display: block;
+    }
+
+    .selectedTab[value="99"]~.names {
+        display: none;
+    }
+}
