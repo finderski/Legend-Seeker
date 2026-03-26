@@ -55,19 +55,19 @@
     },
     "\/source\/JSON\/sheet.json" : {
       "ft" : 524288,
-      "oA" : 2,
+      "oA" : 0,
       "oAP" : "\/build\/sheet.json",
-      "oF" : 3,
-      "oO" : 1,
-      "oS" : 1
+      "oF" : 1,
+      "oO" : 0,
+      "oS" : 0
     },
     "\/source\/JSON\/translation.json" : {
       "ft" : 524288,
-      "oA" : 1,
-      "oAP" : "\/build\/JSON\/translation-min.json",
-      "oF" : 0,
-      "oO" : 1,
-      "oS" : 1
+      "oA" : 0,
+      "oAP" : "\/build\/translation.json",
+      "oF" : 3,
+      "oO" : 0,
+      "oS" : 0
     },
     "\/source\/legend-seeker-sheet.pug" : {
       "cB" : 0,
@@ -169,6 +169,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/_buttonbar.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/_demographics.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_demographics.html",
       "oF" : 0,
       "oS" : 1
     },

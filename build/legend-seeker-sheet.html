@@ -1,17 +1,401 @@
-<!--include ./templates/_sheet.pug
+<!-- Necessary Mixins--><!-- Hidden inputs for character sheet functionality--><div class="maindiv"><h1 class="sheetTitle" data-i18n="character-score-sheet">Character Score Sheet</h1><input class="selectedTab" type="hidden" name="attr_sheetTab" value="1"/><div class="buttonbar"> <!-- Buttons to control the sheet display--><!--1 = Front Sheet
+2 = Back Sheet
+3 = Settings--><button class="topButton characterSheet" type="action" name="act_frontsheet_1" data-i18n-title="front-sheet">Front Sheet</button><button class="topButton noteSheet" type="action" name="act_backsheet_2" data-i18n-title="back-sheet">Back Sheet</button><button class="topButton settingsSheet" type="action" name="act_settings_3" data-i18n-title="settings">Settings</button></div><!-- input(type='hidden', class='selectedTab', name='attr_sheetTab', value="1")--><div class="frontPage"><div class="demographics"> <!-- Character Sheet (including NPC sheet)--><div class="characterName"><label class="smallCaps" data-i18n="name">Name</label><input class="text-field" type="text" name="attr_characterName" value="" data-i18n-placeholder="name"/></div><div class="playerName"> <label class="smallCaps" data-i18n="player">Player </label><input class="text-field" type="text" name="attr_playerName" value="" data-i18n-placeholder="player"/></div><div class="class"> <label class="smallCaps" data-i18n="class">Class</label><input class="text-field" type="text" name="attr_class" value="" data-i18n-placeholder="class"/></div><div class="race"> <label class="smallCaps" data-i18n="race">Race</label><input class="text-field" type="text" name="attr_race" value="" data-i18n-placeholder="race"/></div><div class="level"> <label class="smallCaps" data-i18n="level">Level</label><input class="text-field" type="text" name="attr_level" value="" data-i18n-placeholder="level"/></div><div class="age"> <label class="smallCaps" data-i18n="age">Age</label><input class="text-field" type="text" name="attr_age" value=""/></div><div class="gender"> <label class="smallCaps" data-i18n="gender">Gender</label><input class="text-field" type="text" name="attr_gender" value=""/></div><div class="height"> <label class="smallCaps" data-i18n="height">Height</label><input class="text-field" type="text" name="attr_height" value=""/></div><div class="weight"> <label class="smallCaps" data-i18n="weight">Weight</label><input class="text-field" type="text" name="attr_weight" value=""/></div><div class="deity"> <label class="smallCaps" data-i18n="deity">Deity</label><input class="text-field" type="text" name="attr_deity" value=""/></div></div><div class="logo"> <!-- Logo Section--><img src="https://github.com/finderski/Legend-Seeker/blob/main/build/images/lengend-seeker-logo.png?raw=true" alt="Legend Seeker Logo"/></div></div><div class="backPage"></div></div><!--Rolltemplates--><rolltemplate class="sheet-rolltemplate-roll">
+    <div class="sheet-rolltemplate-header">
+        <div class="sheet-rolltemplate-header">
+            <h1>{{name}}</h1>
+        </div>
+    </div>
+    <div class="sheet-rolltemplate-body">
+        {{#weapon}}
+        <div class="sheet-template-weapon">
+            <h2>
+                {{#mental-mutation}}
+                <div class="sheet-mutation-type">
+                    <img src="https://raw.githubusercontent.com/finderski/gamma-world-2e/master/img/brain.png" />
+                </div>
+                {{/mental-mutation}}
+                {{#physical-mutation}}
+                <div class="sheet-mutation-type">
+                    <img
+                        src="https://raw.githubusercontent.com/finderski/gamma-world-2e/master/img/muscular-torso.png" />
+                </div>
+                {{/physical-mutation}}
+                {{weapon}}
+            </h2>
+            {{#weapon_class}}<h3>Weapon Class: {{weapon_class}}</h3>{{/weapon_class}}
+        </div>
+        {{/weapon}}
+        {{#attacker-info}}
+        <div class="sheet-attacker-info">
+            {{#attacker_hd}}
+            <div class="sheet-left-column">Attacker's Hit Dice</div>
+            <div class="sheet-right-column">{{attacker_hd}}</div>
+            {{/attacker_hd}}
+            {{#mental-strength}}
+            <div class="sheeet-left-column">Attacker's Mental Strength</div>
+            <div class="" sheet-right-column">{{mental-strength}}</div>
+            {{/mental-strength}}
+        </div>
+        {{/attacker-info}}
+        <div class="sheet-defender-info">
+            {{#DaC}}
+            <div class="sheet-left-column">Defender's AC</div>
+            <div class="sheet-right-column">{{DaC}}</div>
+            {{/DaC}}
+            {{#DMS}}
+            <div class="sheet-left-column">Defender's Mental Strength</div>
+            <div class="sheet-right-column">{{DMS}}</div>
+            {{/DMS}}
+        </div>
+        {{#show-attack-info}}
+        <div class="sheet-attack-info">
+            {{#range}}
+            <div class="sheet-left-column">Range</div>
+            <div class="sheet-right-column">{{range}}</div>
+            {{/range}}
+            {{#activation}}
+            <div class="sheet-left-column">Activation</div>
+            <div class="sheet-right-column">{{activation}}</div>
+            {{/activation}}
+            {{#duration}}
+            <div class="sheet-left-column">Duration</div>
+            <div class="sheet-right-column">{{duration}}</div>
+            {{/duration}}
+            {{#use}}
+            <div class="sheet-left-column">Use</div>
+            <div class="sheet-right-column">{{use}}</div>
+            {{/use}}
+        </div>
+        {{/show-attack-info}}
+        <div class="sheet-attack-details">
+            <div class="sheet-left-column">Target Number to Hit</div>
+            <div class="sheet-right-column">{{computed::target_number}}</div>
+            <div class="sheet-left-column">Attack Roll</div>
+            <div class="sheet-right-column">{{attack}}</div>
+            <div class="sheet-left-column">Result</div>
+            <div class="sheet-right-column">{{computed::outcome}}</div>
+            {{#rollGreater() computed::showDmg 0}}
+            <div class="sheet-left-column">Damage Dealt</div>
+            <div class="sheet-right-column">{{damage}}</div>
+            {{/rollGreater() computed::showDmg 0}}
+            {{#notes}}
+            <div class="sheet-notes">Notes: {{notes}}</div>
+            {{/notes}}
+        </div>
+    </div>
+</rolltemplate><script type="text/worker">const conditions = ['sheet:opened', 'change:characterIsNpc', 'change:speed_hasLand', 'change:speed_hasWater', 'change:speed_hasAir', 'change:speed_hasBurrow'];
 
-script(type="text/worker")
-    include ./scripts/attackMatrices.js
-    include ./scripts/workers.js
-    include ./scripts/rollSanitizer.js
-    include ./scripts/buttonbar.js
-    include ./scripts/attributeScripts.js
-    include ./scripts/actionButtons.js
-    include ./scripts/combat.js
+conditions.forEach(condition => {
+    on(`${condition}`, (eventInfo) => {
+        console.log('onOpen.js triggered by condition:', condition);
+        getAttrs(['characterIsNpc', 'speed_hasLand', 'speed_hasWater', 'speed_hasAir', 'speed_hasBurrow'], v => {
+            const isNpc = parseInt(v.characterIsNpc, 10) || 0;
+            const land = parseInt(v.speed_hasLand, 10) || 0;
+            const water = parseInt(v.speed_hasWater, 10) || 0;
+            const air = parseInt(v.speed_hasAir, 10) || 0;
+            const burrow = parseInt(v.speed_hasBurrow, 10) || 0;
 
-    include ./scripts/onOpen.js
-    include ./scripts/weightScript.js
-    include ./scripts/equipmentCompendium.js
-    include ./scripts/mutationsCompendium.js
-    include ./scripts/hazardsCompendium.js
-    include ./scripts/characterCreator.js-->
+            let sumOfSpeeds = land + water + air + burrow;
+            console.log('Total number of speed types:', sumOfSpeeds);
+            let numOfRows = isNpc ? sumOfSpeeds : Math.ceil(sumOfSpeeds / 2);
+            console.log('Number of speed rows to display:', numOfRows);
+            setAttrs({
+                count_of_speeds: numOfRows
+            });
+        });
+    });
+});
+// Define colors for Logs
+const r20color = '#E948C9';
+const buttonClick = 'goldenrod';
+const sheetinit = 'lime';
+const deltaColor = 'darkgoldenrod';
+const derivedStatsColor = 'Salmon';
+
+// Better Logging Functionality
+const log = (
+    title,
+    text,
+    color = 'green',
+    headerstyle = 'font-size:14px; font-weight:bold;',
+    bodystyle = 'font-size:12px; font-weight:normal;'
+) => {
+    let titleStyle = `color:${color}; ${headerstyle} text-decoration:underline;`;
+    let textStyle = `color:${color}; ${bodystyle}`;
+    const output = `%c${title}:%c ${text}`;
+    console.log(output, titleStyle, textStyle);
+};
+
+/* Common Functions for Workers Goes Here */
+
+/* ensure created row ids are unique even if created in rapid succession */
+const createUniqueID = row_ids => {
+    row_ids = Array.ids ? row_ids : [];
+    let generated;
+    while (!generated || row_ids.includes(generated)) {
+        generated = generateRowID();
+    }
+    row_ids.push(generated);
+    return generated;
+}
+
+// Simple Sum function for repeating sections with check field
+function repeatingSimpleSumWCheck(
+    section,
+    field,
+    destination,
+    checkfield,
+    checkvalue
+) {
+    let repSection = 'repeating_' + section;
+    getSectionIDs(repSection, function (idArray) {
+        //Construct Array of fields to get attributes for...
+        let sumFields = [];
+        let checkFields = [];
+        for (let a = 0; a < idArray.length; a++) {
+            sumFields[sumFields.length] = repSection + '_' + idArray[a] + '_' + field;
+            checkFields[checkFields.length] =
+                repSection + '_' + idArray[a] + '_' + checkfield;
+        }
+
+        getAttrs(sumFields, function (v) {
+            getAttrs(checkFields, function (c) {
+
+                var sumTotal = 0;
+                for (a = 0; a < idArray.length; a++) {
+                    if (c[checkFields[a]] === checkvalue) {
+                        sumTotal += parseFloat(v[sumFields[a]]) || 0;
+                    }
+                }
+                var setSumValue = {};
+                setSumValue[destination] = sumTotal;
+                setAttrs(setSumValue);
+            });
+        });
+    });
+}
+
+const checkDiceExpression = (expression) => {
+    const dicePattern = /^\d+(d\d+)?([+-]\d+)?$/i;
+    return dicePattern.test(expression);
+}
+
+const getCharismaMod = function (charismaScore, checkType) {
+    //if checkType is empty, assume Reaction Check
+    if (!checkType) {
+        checkType = 'reaction';
+    }
+    //make sure charismaScore is a number
+    const score = parseInt(charismaScore, 10);
+    if (isNaN(score)) {
+        return 0;
+    }
+    switch (score) {
+        case 3:
+            return -3;
+        case 4:
+            if (checkType !== 'reaction') {
+                return -3;
+            } else {
+                return -2;
+            }
+            break;
+        case 5:
+            return -2;
+        case 6:
+            if (checkType !== 'reaction') {
+                return -2;
+            } else {
+                return -1;
+            }
+            break;
+        case 7:
+            return -1;
+        case 8:
+            if (checkType !== 'reaction') {
+                return -1;
+            } else {
+                return 0;
+            }
+            break;
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+            return 0;
+        case 13:
+            if (checkType !== 'reaction') {
+                return 0;
+            } else {
+                return +1;
+            }
+            break;
+        case 14:
+            return +1;
+        case 15:
+            if (checkType !== 'reaction') {
+                return +1;
+            } else {
+                return +2;
+            }
+            break;
+        case 16:
+            return +2;
+        case 17:
+            if (checkType !== 'reaction') {
+                return +2;
+            } else {
+                return +3;
+            }
+            break;
+        case 18:
+            return +3;
+        case 19:
+            if (checkType !== 'reaction') {
+                return +3;
+            } else {
+                return +4;
+            }
+            break;
+        case 20:
+            return +4;
+        default:
+            if (checkType !== 'reaction') {
+                return +4;
+            } else {
+                return +5;
+            }
+    }
+}
+
+on('change:base_armor change:armor_ac', function () {
+    log('Armor Change Detected', "AC was entered", "darkblue");
+    getAttrs(['base_armor', 'armor_ac'], function (values) {
+        const baseArmor = parseInt(values['base_armor']) || 0;
+        const armorAC = parseInt(values['armor_ac']) || 0;
+        // determine which is lower and use that as the AC
+        let useAC = baseArmor < armorAC ? baseArmor : armorAC;
+        if (useAC < 1 || useAC > 10) { useAC = useAC < 1 ? 1 : 10; }
+        setAttrs({ acMutant: useAC });
+    });
+});/* ---- Button Bar Clicks ---- */
+const buttonlist = [
+    'frontsheet_1',
+    'backsheet_2',
+    'settings_3'
+];
+
+buttonlist.forEach(button => {
+    on(`clicked:${button}`, function () {
+
+        let setattr = {};
+        log('Button Bar Button', `${button} button was clicked!!`, buttonClick);
+        let radioval = `${button}`;
+        //radioval = radioval.slice(-1);
+        radioval = radioval.split('_');
+        setattr['sheetTab'] = radioval[1];
+        setAttrs(setattr);
+    });
+});// Calculate Weapon Weight
+on('change:repeating_weapons:weapon_weight change:repeating_weapons:weapon_carried remove:repeating_weapons', function (eventInfo) {
+    repeatingSimpleSumWCheck(
+        'weapons',
+        'weapon_weight',
+        'total_weapon_weight',
+        'weapon_carried',
+        '1'
+    );
+});
+
+on("change:repeating_inventory:item_quantity change:repeating_inventory:item_weight", function () {
+    getAttrs(["repeating_inventory_item_quantity", "repeating_inventory_item_weight"], function (values) {
+        let itemQuantity = parseInt(values["repeating_inventory_item_quantity"]) || 0;
+        let itemWeight = parseFloat(values["repeating_inventory_item_weight"]) || 0;
+        let totalWeight = itemQuantity * itemWeight;
+
+        let attrsToSet = {};
+        attrsToSet["repeating_inventory_item_total_weight"] = totalWeight;
+        setAttrs(attrsToSet);
+    });
+});
+
+// Calculate Inventory Weight
+on('change:repeating_inventory:item_total_weight change:repeating_inventory:item_carried remove:repeating_inventory', function (eventInfo) {
+    repeatingSimpleSumWCheck(
+        'inventory',
+        'item_total_weight',
+        'total_inventory_weight',
+        'item_carried',
+        '1'
+    );
+});
+
+//Tally Total Weight Carried
+on('change:total_weapon_weight change:total_inventory_weight', function () {
+    getAttrs(['total_weapon_weight', 'total_inventory_weight'], function (values) {
+        let weaponWeight = parseFloat(values['total_weapon_weight']) || 0;
+        let inventoryWeight = parseFloat(values['total_inventory_weight']) || 0;
+        let totalCarriedWeight = weaponWeight + inventoryWeight;
+
+        let attrsToSet = {};
+        attrsToSet['total_weight'] = totalCarriedWeight;
+        setAttrs(attrsToSet);
+    });
+});
+
+// Calculate Encumbrance Level
+on('change:total_weight change:total_ps', function () {
+    getAttrs(['total_weight', 'total_ps'], function (values) {
+        let totalWeight = parseFloat(values['total_weight']) || 0;
+        let totalPS = parseFloat(values['total_ps']) || 0;
+
+        // Unburdened: >= total_ps
+        // Burdened: > total_ps and <= total_ps * 2
+        // Heavily Burdened: > total_ps * 2
+
+        let encumbranceLevel = 1; // Default to Unburdened
+
+        if (totalWeight > totalPS * 2) {
+            encumbranceLevel = 3; // Heavily Burdened
+        } else if (totalWeight > totalPS) {
+            encumbranceLevel = 2; // Burdened
+        }
+
+        let attrsToSet = {};
+        attrsToSet['encumbrance_level'] = encumbranceLevel;
+        setAttrs(attrsToSet);
+    });
+});
+
+// Update Modified Land Speed based on Encumbrance Level
+on('change:encumbrance_level change:speed_land', function () {
+    getAttrs(['encumbrance_level', 'speed_land'], function (values) {
+        let encumbranceLevel = parseInt(values['encumbrance_level']) || 1;
+        let baseLandSpeed = values['speed_land'] || '0 / 0 / 0';
+
+        let speedParts = baseLandSpeed.split('/').map(part => parseInt(part) || 0);
+        let modifiedSpeedParts = [...speedParts];
+        log("speedParts", modifiedSpeedParts, "darkblue");
+        switch (encumbranceLevel) {
+            case 2: // Burdened
+                modifiedSpeedParts[0] = Math.max(0, Math.ceil(modifiedSpeedParts[0] * .66));
+                modifiedSpeedParts[1] = Math.max(0, Math.ceil(modifiedSpeedParts[1] * .66));
+                modifiedSpeedParts[2] = Math.max(0, Math.ceil(modifiedSpeedParts[2] * .66));
+                break;
+            case 3: // Heavily Burdened
+                modifiedSpeedParts[0] = Math.max(0, Math.ceil(modifiedSpeedParts[0] * .33));
+                modifiedSpeedParts[1] = Math.max(0, Math.ceil(modifiedSpeedParts[1] * .33));
+                modifiedSpeedParts[2] = Math.max(0, Math.ceil(modifiedSpeedParts[2] * .33));
+                break;
+            // Unburdened (case 1) does not modify speed
+        }
+
+        let modifiedLandSpeed = modifiedSpeedParts.join(' / ');
+        log("Modified Land Speed: ", modifiedLandSpeed, "darkgreen");
+
+        let attrsToSet = {};
+        attrsToSet['modified_land_speed'] = modifiedLandSpeed;
+        setAttrs(attrsToSet);
+    });
+});</script>
