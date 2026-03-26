@@ -1,17 +1,18 @@
+
+@use './styles/googleFonts';
+
+@use './styles/mainStyles';
 /*
-@use 'googleFonts';
+@use './styles/demographicStyles';
+@use './styles/buttonbarStyles';
+@use './styles/npcStyles';
+@use './styles/coreStatsStyles';
+@use './styles/combatStyles';
+@use './styles/mutationStyles';
+@use './styles/equipmentStyles';
 
-@use 'mainStyles';
-@use 'demographicStyles';
-@use 'buttonbarStyles';
-@use 'npcStyles';
-@use 'coreStatsStyles';
-@use 'combatStyles';
-@use 'mutationStyles';
-@use 'equipmentStyles';
-
-@use 'characterNotesStyles';
-@use 'gmStyles';
-@use 'rollTemplateStyles';
+@use './styles/characterNotesStyles';
+@use './styles/gmStyles';
+@use './styles/rollTemplateStyles';
 
 */

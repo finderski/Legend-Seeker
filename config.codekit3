@@ -4,7 +4,6 @@
     {
       "itemsToProcess" : [
         "\/source\/JSON\/sheet.json",
-        "\/source\/JSON\/tranlsation.json",
         "\/source\/legend-seeker-sheet.pug"
       ],
       "name" : "New \"Process Certain Files\" Step",
@@ -62,11 +61,11 @@
       "oO" : 1,
       "oS" : 1
     },
-    "\/source\/JSON\/tranlsation.json" : {
+    "\/source\/JSON\/translation.json" : {
       "ft" : 524288,
-      "oA" : 2,
-      "oAP" : "\/build\/tranlsation.json",
-      "oF" : 3,
+      "oA" : 1,
+      "oAP" : "\/build\/JSON\/translation-min.json",
+      "oF" : 0,
       "oO" : 1,
       "oS" : 1
     },

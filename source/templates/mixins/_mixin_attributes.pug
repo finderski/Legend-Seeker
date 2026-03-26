@@ -1,22 +1,13 @@
 mixin attribute(attr)
     - const [shortName, labelKey] = attr;
-    - const fieldName = `attr_base_${shortName}`;
+    - const fieldName = `attr_${shortName}`;
     - const translationLabel = `${labelKey}-abbr`;
     - const divLabel = `${labelKey}`
     
       div(class=divLabel)
         .button
             button(class="labelButton", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${labelKey}}}} {{Target=[[ (@{total_${shortName}}+?{Misc. Modifier|0}) * ?{Multiplier?|x1,1 |x2,2|x3,3|x4,4|x5,5} ]] }} {{Roll=[[1d100]]}}`, data-i18n=translationLabel)
-        .base-field
+        .score-field
             input(class="attributeInput", type="text", name=fieldName, placeholder="3")
-        .permanent-modifier-field
-            input(class="attributeInput", type="text", name=`attr_perm_bonus_${shortName}`, placeholder="0")
-        .temporary-modifier-field
-            input(class="attributeInput", type="text", name=`attr_temp_bonus_${shortName}`, placeholder="0")
-        .defense-modifier-field
-            input(class="attributeInput", type="text", name=`attr_def_bonus_${shortName}`, placeholder="0") 
-        .current-total
-            input(class="attributeInput", type="text", name=`attr_total_${shortName}`, placeholder="3", readonly)
-        .total-defense 
-            input(class="attributeInput", type="text", name=`attr_defense_${shortName}`, placeholder="3", readonly)
-        
+        .modifier-field
+            input(class="attributeInput", type="text", name=`attr_${shortName}_modifier`, placeholder="0")

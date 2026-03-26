@@ -1,0 +1,16 @@
+{
+    "character-score-sheet": "Character Score Sheet",
+    "player": "Player",
+    "name": "Name",
+    "class": "Class",
+    "race": "Race",
+    "level": "Level",
+    "age": "Age",
+    "gender": "Gender",
+    "height": "Height",
+    "weight": "Weight",
+    "deity": "Deity",
+    "front-sheet": "Front Sheet",
+    "back-sheet": "Back Sheet",
+    "settings": "Settings"
+}
