@@ -1,6 +1,6 @@
-*,
-*::after,
-*::before {
+.ui-dialog .charactersheet *,
+.ui-dialog .charactersheet *::after,
+.ui-dialog .charactersheet *::before {
     box-sizing: border-box !important;
 }
 
@@ -16,50 +16,36 @@
     font-family: 'Roboto Mono', monospace;
 }
 
-h1.sheetTitle {
+.ui-dialog .charactersheet h1 {
+    font-family: 'Cinzel', serif;
     font-size: 3.5em;
     font-weight: bold;
     text-align: center;
     margin: 20px;
 }
 
-h3.sectionHeader,
-label.sectionHeader {
-    width: 100%;
-    text-align: center;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 2em;
-    font-weight: bold;
-    margin: 10px 0;
-    cursor: pointer;
+.ui-dialog .charactersheet label {
+    font-family: 'Cinzel', serif;
+    font-size: .85em;
+    color: black;
+    text-transform: lowercase;
+    padding: 0;
+    margin: 0 0 -7px 0;
 }
 
-h3.subSectionHeader,
-label.subSectionHeader {
-    width: 100%;
-    text-align: center;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1.5em;
-    font-weight: bold;
-    margin: 10px 0;
-    cursor: pointer;
+.ui-dialog .charactersheet input {
+    background-color: transparent;
+    border: none;
+    font-family: 'Cormorant Unicase', serif;
+    font-weight:600;
+    font-size: 1.4em;
+    color: black;
+    width: auto;
+    padding: 3px;
 }
 
 .hideSection[value="0"]+div {
     display: none !important;
-}
-
-.topButton {
-    display: inline-block;
-    font-family: 'Roboto Mono', monospace;
-    width: auto;
-    background-color: transparent;
-    border: black 2px solid;
-    border-radius: 8px;
-    padding: 5px 10px;
-    margin: 5px;
-    box-sizing: border-box;
-    cursor: pointer;
 }
 
 .isCarried {
@@ -78,29 +64,6 @@ input:checked+.isCarried::before {
 
 input:not(:checked)+.isCarried::before {
     content: 'D';
-}
-
-.charactersheet label.caps {
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.charactersheet .textField {
-    width: 100%;
-    background: transparent;
-    text-align: center;
-    border: none;
-    border-bottom: black 2px solid;
-    line-height: unset
-}
-
-.charactersheet input.textField {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1em;
-    border: none;
-    border-bottom: black 1px solid;
-    background: transparent;
-    padding: 0 0 2px 0;
 }
 
 .ui-dialog .charactersheet .fieldLabel {
@@ -154,51 +117,6 @@ label.buttonStyle {
     align-self: center;
 }
 
-.mancer {
-    width: 100%;
-    text-align: right;
-    margin: 0 0 5px 0;
-
-    .mancerButton {
-        font-family: "Pictos" !important;
-        font-size: 1.5em;
-        border: 1px solid black !important;
-        background-color: black !important;
-        color: white !important;
-        padding: 5px 5px !important;
-        border-radius: 8px !important;
-        cursor: pointer;
-    }
-
-    .mancerButton::before {
-        content: 'U';
-    }
-}
-
 .maindiv {
     max-width: 840px;
-
-    .character,
-    .characternotes,
-    .releaseNotes,
-    .sheetDocumentation,
-    .gm-screen {
-        display: none;
-    }
-
-    .selectedTab[value="1"]~.character,
-    .selectedTab[value="2"]~.character,
-    .selectedTab[value="3"]~.character,
-    .selectedTab[value="7"]~.character,
-    .selectedTab[value="8"]~.character,
-    .selectedTab[value="4"]~.characternotes,
-    .selectedTab[value="5"]~.releaseNotes,
-    .selectedTab[value="6"]~.sheetDocumentation,
-    .selectedTab[value="99"]~.gm-screen {
-        display: block;
-    }
-
-    .selectedTab[value="99"]~.names {
-        display: none;
-    }
 }
