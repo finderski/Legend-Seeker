@@ -1,23 +1,33 @@
 // Necessary Mixins
 include ./mixins/_mixin_attributes.pug 
 
-// Hidden inputs for character sheet functionality
-
 .maindiv
     h1(class='sheetTitle', data-i18n='character-score-sheet') Character Score Sheet
+    // Hidden inputs for character sheet functionality
     input(type='hidden', class='selectedTab', name='attr_sheetTab', value="1")
     .buttonbar 
         // Buttons to control the sheet display
         include _buttonbar.pug
     // input(type='hidden', class='selectedTab', name='attr_sheetTab', value="1")
     .frontPage
-        .demographics 
-            // Character Sheet (including NPC sheet)
-            include _demographics.pug
-        .logo 
-            // Logo Section
-            img(src='https://github.com/finderski/Legend-Seeker/blob/main/build/images/lengend-seeker-logo.png?raw=true', alt='Legend Seeker Logo')
+        .topSection
+            .demographics 
+                // Character Sheet (including NPC sheet)
+                include _demographics.pug
+            .logo 
+                // Logo Section
+                img(src='http://imgsrv.roll20.net/?src=github.com/finderski/Legend-Seeker/blob/main/images/lengend-seeker-logo.png%3Fraw%3Dtrue', alt='Legend Seeker Logo')
+        .middleSection 
+            .twoByOne 
+                .firstCol
+                    .threeBythree
+                        .attributesSection
+                            // Attributes Section
+                            include _attributes.pug
+                        .stamina 
+                        .hitPoints 
+                        .corruption
+                .secondCol
+        .bottomSection
     .backPage
 
-//Rolltemplates
-include ../html/rolltemplate.html

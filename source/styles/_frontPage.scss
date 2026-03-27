@@ -1,0 +1,32 @@
+.ui-dialog .charactersheet .frontPage {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 840px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    .topSection {
+        display: flex;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        .demographics {
+            display: flex;
+            flex-flow: row wrap;
+            gap: 5px;
+            font-size: 0.9em;
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

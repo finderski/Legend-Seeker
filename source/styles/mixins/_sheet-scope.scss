@@ -1,0 +1,5 @@
+@mixin sheet-scope {
+    .ui-dialog .charactersheet & {
+        @content;
+    }
+}

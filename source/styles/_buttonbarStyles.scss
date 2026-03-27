@@ -1,0 +1,8 @@
+@use './mixins/sheet-scope' as *;
+
+.buttonbar {
+    @include sheet-scope{
+        display: flex;
+        margin-bottom: 20px;
+    }
+}

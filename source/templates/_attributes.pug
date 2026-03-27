@@ -1,0 +1,11 @@
+.headerRow 
+    .attribute-field.headerCell
+        label(class="headerLabel", data-i18n='core-attributes') Core Attributes
+    .score-field.headerCell
+        label(class="headerLabel", data-i18n='score') Score
+    .modifier-field.headerCell
+        label(class="headerLabel", data-i18n='modifier') Modifier
+-
+    const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
+each attribute in attributeList
+    +attribute(attribute)

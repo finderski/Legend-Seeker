@@ -200,9 +200,46 @@ label.buttonStyle {
   display: none;
 }
 
+.ui-dialog .charactersheet .buttonbar {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.ui-dialog .charactersheet .frontPage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 840px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.ui-dialog .charactersheet .frontPage .topSection {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+  font-size: 0.9em;
+}
+.ui-dialog .charactersheet .frontPage .topSection .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .logo img {
+  max-width: 100%;
+  height: auto;
+}
+
 /*
 @use './styles/demographicStyles';
-@use './styles/buttonbarStyles';
 @use './styles/npcStyles';
 @use './styles/coreStatsStyles';
 @use './styles/combatStyles';
