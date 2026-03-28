@@ -1,0 +1,22 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .middleSection {
+    @include sheet-scope {
+        display: flex;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        .twoByOne {
+            display: grid;
+            .firstCol {
+                display: grid;
+                .threeBythree {
+                    display: grid;
+                }
+            }
+             .secondCol {
+                display: flex;
+            }
+        }
+    }
+}

@@ -22,11 +22,11 @@
         <!-- Character Sheet (including NPC sheet)-->
         <div class="characterName">
           <label class="smallCaps" data-i18n="name">Name</label>
-          <input class="text-field" type="text" name="attr_characterName" value="" data-i18n-placeholder="name"/>
+          <input class="text-field" type="text" name="attr_character_name" data-i18n-placeholder="name"/>
         </div>
         <div class="playerName"> 
           <label class="smallCaps" data-i18n="player">Player </label>
-          <input class="text-field" type="text" name="attr_playerName" value="" data-i18n-placeholder="player"/>
+          <input class="text-field" type="text" name="attr_player_name" value="" data-i18n-placeholder="player"/>
         </div>
         <div class="class"> 
           <label class="smallCaps" data-i18n="class">Class</label>
@@ -48,11 +48,11 @@
           <label class="smallCaps" data-i18n="gender">Gender</label>
           <input class="text-field" type="text" name="attr_gender" value=""/>
         </div>
-        <div class="height"> 
+        <div class="height">
           <label class="smallCaps" data-i18n="height">Height</label>
           <input class="text-field" type="text" name="attr_height" value=""/>
         </div>
-        <div class="weight"> 
+        <div class="weight">
           <label class="smallCaps" data-i18n="weight">Weight</label>
           <input class="text-field" type="text" name="attr_weight" value=""/>
         </div>
@@ -62,7 +62,7 @@
         </div>
       </div>
       <div class="logo"> 
-        <!-- Logo Section--><img src="http://imgsrv.roll20.net/?src=github.com/finderski/Legend-Seeker/blob/main/images/lengend-seeker-logo.png%3Fraw%3Dtrue" alt="Legend Seeker Logo"/>
+        <!-- Logo Section--><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/lengend-seeker-logo.png" alt="Legend Seeker Logo"/>
       </div>
     </div>
     <div class="middleSection"> 
@@ -90,7 +90,7 @@
                   <input class="attributeInput" type="text" name="attr_strength" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput" type="text" name="attr_STR_modifier" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_STR_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
               <div>
@@ -101,7 +101,7 @@
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput" type="text" name="attr_DEX_modifier" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_DEX_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
               <div>
@@ -112,7 +112,7 @@
                   <input class="attributeInput" type="text" name="attr_constitution" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput" type="text" name="attr_CON_modifier" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_CON_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
               <div>
@@ -123,7 +123,7 @@
                   <input class="attributeInput" type="text" name="attr_intelligence" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput" type="text" name="attr_INT_modifier" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_INT_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
               <div>
@@ -134,7 +134,7 @@
                   <input class="attributeInput" type="text" name="attr_wisdom" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput" type="text" name="attr_WIS_modifier" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_WIS_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
               <div>
@@ -145,13 +145,14 @@
                   <input class="attributeInput" type="text" name="attr_charisma" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput" type="text" name="attr_CHA_modifier" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_CHA_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
             </div>
             <div class="stamina"> </div>
             <div class="hitPoints"> </div>
             <div class="corruption"></div>
+            <div class="defensiveSaves"></div>
           </div>
         </div>
         <div class="secondCol"></div>

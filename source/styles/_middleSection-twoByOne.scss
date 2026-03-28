@@ -1,0 +1,7 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .middleSection .twoByOne {
+    @include sheet-scope {
+        grid-template-columns: [column-3x3] 75% [conditions-column] 25%;
+    }
+}

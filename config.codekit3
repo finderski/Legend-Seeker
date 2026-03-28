@@ -149,6 +149,19 @@
       "oS" : 1,
       "pg" : 0
     },
+    "\/source\/styles\/_demographics.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_demographics.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_frontPage.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -175,6 +188,19 @@
       "oS" : 1,
       "pg" : 0
     },
+    "\/source\/styles\/_logo.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_logo.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_mainStyles.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -184,6 +210,58 @@
       "ma" : 0,
       "oA" : 1,
       "oAP" : "\/build\/styles\/_mainStyles.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
+    "\/source\/styles\/_middleSection-attributes.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_middleSection-attributes.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
+    "\/source\/styles\/_middleSection-twoByOne.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_middleSection-twoByOne.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
+    "\/source\/styles\/_middleSection.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_middleSection.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
+    "\/source\/styles\/_topSection.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_topSection.css",
       "oF" : 0,
       "oS" : 1,
       "pg" : 0

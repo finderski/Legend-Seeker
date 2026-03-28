@@ -12,4 +12,4 @@ mixin attribute(attr)
         .score-field
             input(class="attributeInput", type="text", name=fieldName, placeholder="3")
         .modifier-field
-            input(class="attributeInput", type="text", name=`attr_${shortName}_modifier`, placeholder="0")
+            input(class="attributeInput readOnly", type="text", name=`attr_${shortName}_modifier`, placeholder="0", readonly)

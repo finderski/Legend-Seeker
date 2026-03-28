@@ -136,20 +136,60 @@ label.buttonStyle {
   max-width: 840px;
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
+
 .ui-dialog .charactersheet .frontPage .topSection {
   display: flex;
   width: 100%;
   margin: 0;
   padding: 0;
 }
+
 .ui-dialog .charactersheet .frontPage .topSection .demographics {
   display: flex;
   flex-flow: row wrap;
   gap: 5px;
   font-size: 0.9em;
+  flex-grow: 3;
+  flex-basis: auto;
 }
+.ui-dialog .charactersheet .frontPage .topSection .demographics .characterName .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .playerName .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .class .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .race .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .level .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .age .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .gender .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .height .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .weight .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .deity .text-field {
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .characterName {
+  width: 60%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .playerName {
+  width: 39%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .class {
+  width: 50%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .race {
+  width: 30%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .level {
+  width: 18%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .age,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .height,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .weight {
+  width: 15%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .gender,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .deity {
+  width: 25%;
+}
+
 .ui-dialog .charactersheet .frontPage .topSection .logo {
   display: flex;
   justify-content: center;
@@ -159,6 +199,68 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .topSection .logo img {
   max-width: 100%;
   height: auto;
+}
+
+.ui-dialog .charactersheet .frontPage .middleSection {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne {
+  display: grid;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol {
+  display: grid;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  display: grid;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol {
+  display: flex;
+}
+
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne {
+  grid-template-columns: [column-3x3] 75% [conditions-column] 25%;
+}
+
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  grid-template-columns: [attributes] 50% [stamina] 25% [hit-points] 25%;
+  grid-template-rows: [row-1 stamina hit-points] 45% [row-2 corruption] 22% [row-3 saves] 33%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection {
+  display: flex;
+  flex-flow: row wrap;
+  grid-column-start: attributes;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: row-3;
+  background-color: yellowgreen;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina {
+  grid-column-start: stamina;
+  grid-column-end: hit-points;
+  grid-row-start: row-1;
+  grid-row-end: row-2;
+  background-color: lightblue;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints {
+  grid-column-start: hit-points;
+  grid-row-start: row-1;
+  grid-row-end: row-2;
+  background-color: lightcoral;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption {
+  grid-column-start: stamina;
+  grid-column-end: 4;
+  grid-row-start: corruption;
+  background-color: darkgray;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+  grid-column-start: attributes;
+  grid-column-end: 4;
+  grid-row-start: saves;
+  background-color: yellow;
 }
 
 /*

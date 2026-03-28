@@ -1,13 +1,10 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage {
+.frontPage .topSection {
     @include sheet-scope {
         display: flex;
-        flex-direction: column;
-        height: 100%;
         width: 100%;
-        max-width: 840px;
-        padding: 0;
         margin: 0;
+        padding: 0;
     }
 }

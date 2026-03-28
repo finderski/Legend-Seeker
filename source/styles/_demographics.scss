@@ -1,0 +1,50 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .topSection .demographics {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 5px;
+        font-size: 0.9em;
+        flex-grow: 3;
+        flex-basis: auto;
+        .characterName,
+        .playerName,
+        .class,
+        .race,
+        .level,
+        .age,
+        .gender,
+        .height,
+        .weight,
+        .deity {
+            .text-field {
+                width: 100%;
+            }
+        }
+        .characterName {
+            width: 60%;
+        }
+        .playerName {
+            width: 39%;
+        }
+        .class {
+            width: 50%;
+        }
+        .race {
+            width: 30%;
+        }
+        .level {
+            width: 18%;
+        }
+        .age,
+        .height,
+        .weight {
+            width: 15%;
+        }
+        .gender,
+        .deity {
+            width: 25%;
+        }
+    }
+}
