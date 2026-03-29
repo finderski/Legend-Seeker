@@ -72,87 +72,116 @@
             <div class="attributesSection">
               <!-- Attributes Section-->
               <div class="headerRow"> 
-                <div class="attribute-field headerCell">
+                <div class="attribute-field">
                   <label class="headerLabel" data-i18n="core-attributes">Core Attributes</label>
                 </div>
-                <div class="score-field headerCell">
+                <div class="score-field">
                   <label class="headerLabel" data-i18n="score">Score</label>
                 </div>
-                <div class="modifier-field headerCell">
+                <div class="modifier-field">
                   <label class="headerLabel" data-i18n="modifier">Modifier</label>
                 </div>
               </div>
-              <div>
+              <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_strength_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{undefined}}} {{Roll=[[1d120]]}}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
+                  <button class="labelButton" type="roll" name="roll_strength_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{strength}}} {{Roll=[[1d20 + @{STR_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_strength" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput readOnly" type="text" name="attr_STR_modifier" placeholder="0" readonly="readonly"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_strength_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
-              <div>
+              <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_dexterity_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{undefined}}} {{Roll=[[1d120]]}}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
+                  <button class="labelButton" type="roll" name="roll_dexterity_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{dexterity}}} {{Roll=[[1d20 + @{DEX_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput readOnly" type="text" name="attr_DEX_modifier" placeholder="0" readonly="readonly"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_dexterity_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
-              <div>
+              <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_constitution_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{undefined}}} {{Roll=[[1d120]]}}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
+                  <button class="labelButton" type="roll" name="roll_constitution_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{constitution}}} {{Roll=[[1d20 + @{CON_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_constitution" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput readOnly" type="text" name="attr_CON_modifier" placeholder="0" readonly="readonly"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_constitution_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
-              <div>
+              <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_intelligence_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{undefined}}} {{Roll=[[1d120]]}}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
+                  <button class="labelButton" type="roll" name="roll_intelligence_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{intelligence}}} {{Roll=[[1d20 + @{INT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_intelligence" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput readOnly" type="text" name="attr_INT_modifier" placeholder="0" readonly="readonly"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_intelligence_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
-              <div>
+              <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_wisdom_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{undefined}}} {{Roll=[[1d120]]}}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
+                  <button class="labelButton" type="roll" name="roll_wisdom_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{wisdom}}} {{Roll=[[1d20 + @{WIS_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_wisdom" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput readOnly" type="text" name="attr_WIS_modifier" placeholder="0" readonly="readonly"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_wisdom_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
-              <div>
+              <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_charisma_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{undefined}}} {{Roll=[[1d120]]}}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
+                  <button class="labelButton" type="roll" name="roll_charisma_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{charisma}}} {{Roll=[[1d20 + @{CHA_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_charisma" placeholder="3"/>
                 </div>
                 <div class="modifier-field">
-                  <input class="attributeInput readOnly" type="text" name="attr_CHA_modifier" placeholder="0" readonly="readonly"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_charisma_modifier" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
             </div>
-            <div class="stamina"> </div>
-            <div class="hitPoints"> </div>
+            <div class="stamina"> 
+              <!-- Staminia Section-->
+              <h3 class="headerLabel" data-i18n="stamina-points">Stamina Points</h3>
+              <div class="fieldLabel"> 
+                <p data-i18n="temporarary-abbr">Temp</p>
+              </div>
+              <input type="text" name="attr_stamina_temp" placeholder="0"/>
+              <div class="fieldLabel">
+                <p data-i18n="total">Total </p>
+              </div>
+              <input type="text" name="attr_stamina_total" placeholder="0"/>
+              <div class="fieldLabel">
+                <p data-i18n="current">Current</p>
+              </div>
+              <input type="text" name="attr_stamina_current" placeholder="0"/>
+            </div>
+            <div class="hitPoints"> 
+              <!-- Hit Point Section-->
+              <h3 class="headerLabel" data-i18n="hit-points">Hit Points</h3>
+              <div class="fieldLabel">
+                <p data-i18n="total">Total </p>
+              </div>
+              <input type="text" name="attr_hitpoints_total" placeholder="0"/>
+              <div class="fieldLabel">
+                <p data-i18n="current">Current</p>
+              </div>
+              <input type="text" name="attr_hitpoints_current" placeholder="0"/>
+            </div>
             <div class="corruption"></div>
-            <div class="defensiveSaves"></div>
+            <div class="defensiveSaves">
+              <!--Placeholder-->
+              <p>Placeholder for Defensive Saves</p>
+            </div>
           </div>
         </div>
         <div class="secondCol"></div>
@@ -346,103 +375,56 @@ const checkDiceExpression = (expression) => {
     return dicePattern.test(expression);
 }
 
-const getCharismaMod = function (charismaScore, checkType) {
-    //if checkType is empty, assume Reaction Check
-    if (!checkType) {
-        checkType = 'reaction';
-    }
-    //make sure charismaScore is a number
-    const score = parseInt(charismaScore, 10);
-    if (isNaN(score)) {
-        return 0;
-    }
-    switch (score) {
-        case 3:
-            return -3;
-        case 4:
-            if (checkType !== 'reaction') {
-                return -3;
-            } else {
-                return -2;
-            }
-            break;
-        case 5:
-            return -2;
-        case 6:
-            if (checkType !== 'reaction') {
-                return -2;
-            } else {
-                return -1;
-            }
-            break;
-        case 7:
-            return -1;
-        case 8:
-            if (checkType !== 'reaction') {
-                return -1;
-            } else {
-                return 0;
-            }
-            break;
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-            return 0;
-        case 13:
-            if (checkType !== 'reaction') {
-                return 0;
-            } else {
-                return +1;
-            }
-            break;
-        case 14:
-            return +1;
-        case 15:
-            if (checkType !== 'reaction') {
-                return +1;
-            } else {
-                return +2;
-            }
-            break;
-        case 16:
-            return +2;
-        case 17:
-            if (checkType !== 'reaction') {
-                return +2;
-            } else {
-                return +3;
-            }
-            break;
-        case 18:
-            return +3;
-        case 19:
-            if (checkType !== 'reaction') {
-                return +3;
-            } else {
-                return +4;
-            }
-            break;
-        case 20:
-            return +4;
-        default:
-            if (checkType !== 'reaction') {
-                return +4;
-            } else {
-                return +5;
-            }
-    }
-}
+const coreAttributes = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
 
-on('change:base_armor change:armor_ac', function () {
-    log('Armor Change Detected', "AC was entered", "darkblue");
-    getAttrs(['base_armor', 'armor_ac'], function (values) {
-        const baseArmor = parseInt(values['base_armor']) || 0;
-        const armorAC = parseInt(values['armor_ac']) || 0;
-        // determine which is lower and use that as the AC
-        let useAC = baseArmor < armorAC ? baseArmor : armorAC;
-        if (useAC < 1 || useAC > 10) { useAC = useAC < 1 ? 1 : 10; }
-        setAttrs({ acMutant: useAC });
+coreAttributes.forEach(attribute => {
+    on(`change:${attribute}`, function (eventInfo) {
+        const attScore = Math.floor((parseInt(eventInfo.newValue) || 0));
+        let modScore;
+        switch(attScore) {
+            case 3:
+                modScore = -4;
+                break;
+            case 4:
+            case 5:
+                modScore = -3;
+                break;
+            case 6:
+            case 7:
+                modScore = -2;
+                break;
+            case 8:
+            case 9:
+                modScore = -1;
+                break;
+            case 10:
+            case 11:
+                modScore = 0;
+                break;
+            case 12:
+            case 13:
+                modScore = 1;
+                break;
+            case 14:
+            case 15:
+                modScore = 2;
+                break;
+            case 16:
+            case 17:
+                modScore = 3;
+                break;
+            case 18:
+            case 19:
+                modScore = 4;
+                break;
+            default:
+                modScore = 5;
+                break;
+        }
+        log("Modifier", modScore, derivedStatsColor)
+        const attrsToSet = {};
+        attrsToSet[`${attribute}_modifier`] = modScore;
+        setAttrs(attrsToSet);
     });
 });/* ---- Button Bar Clicks ---- */
 const buttonlist = [

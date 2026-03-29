@@ -33,5 +33,10 @@
   "constitution-minus-first-three" : "stitution",
   "intelligence-minus-first-three" : "elligence",
   "wisdom-minus-first-three" : "dom",
-  "charisma-minus-first-three" : "risma"
+  "charisma-minus-first-three" : "risma",
+  "stamina-points" : "Stamina Points",
+  "temporarary-abbr" : "Temp",
+  "total" : "Total",
+  "current" : "Current",
+  "hit-points" : "Hit Points"
 }

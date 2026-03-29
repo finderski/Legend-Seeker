@@ -148,10 +148,15 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .topSection .demographics {
   display: flex;
   flex-flow: row wrap;
-  gap: 5px;
+  column-gap: 5px;
+  row-gap: 15px;
   font-size: 0.9em;
   flex-grow: 3;
   flex-basis: auto;
+  padding: 0;
+  align-items: flex-end;
+  align-content: end;
+  margin: 0 0 15px 0;
 }
 .ui-dialog .charactersheet .frontPage .topSection .demographics .characterName .text-field,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .playerName .text-field,
@@ -222,11 +227,29 @@ label.buttonStyle {
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne {
   grid-template-columns: [column-3x3] 75% [conditions-column] 25%;
+  gap: 5px;
 }
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
-  grid-template-columns: [attributes] 50% [stamina] 25% [hit-points] 25%;
-  grid-template-rows: [row-1 stamina hit-points] 45% [row-2 corruption] 22% [row-3 saves] 33%;
+  grid-template-columns: [attributes] 49.5% [stamina] 24.5% [hit-points] 24.5%;
+  grid-template-rows: [row-1 stamina hit-points] auto [row-2 corruption] auto [row-3 saves] auto;
+  gap: 5px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow .headerLabel,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .headerLabel,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput {
+  text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree h3.headerLabel {
+  font-family: "Cinzel", serif;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow {
+  padding: 0 0 15px 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection {
   display: flex;
@@ -235,7 +258,50 @@ label.buttonStyle {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: row-3;
-  background-color: yellowgreen;
+  row-gap: 10px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton {
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .allcaps,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .allcaps {
+  font-family: "Eagle Lake";
+  text-transform: uppercase;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .smallcaps,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .smallcaps {
+  font-family: "Cinzel";
+  text-transform: lowercase;
+  font-size: 0.75em;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput {
+  text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .score-field {
+  width: 23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .modifier-field {
+  width: 23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina {
   grid-column-start: stamina;
@@ -243,12 +309,16 @@ label.buttonStyle {
   grid-row-start: row-1;
   grid-row-end: row-2;
   background-color: lightblue;
+  display: flex;
+  flex-flow: row wrap;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints {
   grid-column-start: hit-points;
   grid-row-start: row-1;
   grid-row-end: row-2;
   background-color: lightcoral;
+  display: flex;
+  flex-flow: row wrap;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption {
   grid-column-start: stamina;

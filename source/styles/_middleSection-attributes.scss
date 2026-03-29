@@ -2,8 +2,26 @@
 
 .frontPage .middleSection .twoByOne .firstCol .threeBythree {
     @include sheet-scope {
-        grid-template-columns: [attributes] 50% [stamina] 25% [hit-points] 25%;
-        grid-template-rows: [row-1 stamina hit-points] 45% [row-2 corruption] 22% [row-3 saves] 33%;
+        grid-template-columns: [attributes] 49.5% [stamina] 24.5% [hit-points] 24.5%;
+        // grid-template-rows: [row-1 stamina hit-points] 45% [row-2 corruption] 22% [row-3 saves] 33%;
+        grid-template-rows: [row-1 stamina hit-points] auto [row-2 corruption] auto [row-3 saves] auto;
+        gap: 5px;
+        .headerRow .headerLabel,
+            .attribute-row .headerLabel,
+            .attribute-row .attributeInput {
+                text-align: center;
+            }
+            h3.headerLabel {
+                font-family: 'Cinzel', serif;
+                font-size: 1em;
+                font-weight: bold;
+                text-align: center;
+                margin: 0;
+                width: 100%;
+            }
+            .headerRow {
+                padding: 0 0 15px 0;
+            }
         .attributesSection {
             display: flex;
             flex-flow: row wrap;
@@ -11,7 +29,48 @@
             grid-column-end: 2;
             grid-row-start: 1;
             grid-row-end: row-3;
-            background-color: yellowgreen;
+            row-gap: 10px;
+            .headerRow,
+            .attribute-row {
+                width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+                column-gap: 5px;
+            }
+            .attribute-row .attributeInput,
+            .attribute-row .labelButton {
+                width: 100%;
+                .allcaps {
+                    font-family: 'Eagle Lake';
+                    text-transform: uppercase;
+                }
+                .smallcaps {
+                    font-family: 'Cinzel';
+                    text-transform: lowercase;
+                    font-size: .75em;
+                }
+            }
+            .attribute-row .attributeInput {
+                text-align: center;
+            }
+            .attribute-field {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .score-field {
+                width: 23%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .modifier-field {
+                width: 23%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
         .stamina {
             grid-column-start: stamina;
@@ -19,12 +78,16 @@
             grid-row-start: row-1;
             grid-row-end: row-2;
             background-color: lightblue;
+            display: flex;
+            flex-flow: row wrap;
         }
         .hitPoints {
             grid-column-start: hit-points;
             grid-row-start: row-1;
             grid-row-end: row-2;
             background-color: lightcoral;
+            display: flex;
+            flex-flow: row wrap;
         }
         .corruption {
             grid-column-start: stamina;

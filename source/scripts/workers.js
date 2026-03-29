@@ -74,102 +74,55 @@ const checkDiceExpression = (expression) => {
     return dicePattern.test(expression);
 }
 
-const getCharismaMod = function (charismaScore, checkType) {
-    //if checkType is empty, assume Reaction Check
-    if (!checkType) {
-        checkType = 'reaction';
-    }
-    //make sure charismaScore is a number
-    const score = parseInt(charismaScore, 10);
-    if (isNaN(score)) {
-        return 0;
-    }
-    switch (score) {
-        case 3:
-            return -3;
-        case 4:
-            if (checkType !== 'reaction') {
-                return -3;
-            } else {
-                return -2;
-            }
-            break;
-        case 5:
-            return -2;
-        case 6:
-            if (checkType !== 'reaction') {
-                return -2;
-            } else {
-                return -1;
-            }
-            break;
-        case 7:
-            return -1;
-        case 8:
-            if (checkType !== 'reaction') {
-                return -1;
-            } else {
-                return 0;
-            }
-            break;
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-            return 0;
-        case 13:
-            if (checkType !== 'reaction') {
-                return 0;
-            } else {
-                return +1;
-            }
-            break;
-        case 14:
-            return +1;
-        case 15:
-            if (checkType !== 'reaction') {
-                return +1;
-            } else {
-                return +2;
-            }
-            break;
-        case 16:
-            return +2;
-        case 17:
-            if (checkType !== 'reaction') {
-                return +2;
-            } else {
-                return +3;
-            }
-            break;
-        case 18:
-            return +3;
-        case 19:
-            if (checkType !== 'reaction') {
-                return +3;
-            } else {
-                return +4;
-            }
-            break;
-        case 20:
-            return +4;
-        default:
-            if (checkType !== 'reaction') {
-                return +4;
-            } else {
-                return +5;
-            }
-    }
-}
+const coreAttributes = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
 
-on('change:base_armor change:armor_ac', function () {
-    log('Armor Change Detected', "AC was entered", "darkblue");
-    getAttrs(['base_armor', 'armor_ac'], function (values) {
-        const baseArmor = parseInt(values['base_armor']) || 0;
-        const armorAC = parseInt(values['armor_ac']) || 0;
-        // determine which is lower and use that as the AC
-        let useAC = baseArmor < armorAC ? baseArmor : armorAC;
-        if (useAC < 1 || useAC > 10) { useAC = useAC < 1 ? 1 : 10; }
-        setAttrs({ acMutant: useAC });
+coreAttributes.forEach(attribute => {
+    on(`change:${attribute}`, function (eventInfo) {
+        const attScore = Math.floor((parseInt(eventInfo.newValue) || 0));
+        let modScore;
+        switch(attScore) {
+            case 3:
+                modScore = -4;
+                break;
+            case 4:
+            case 5:
+                modScore = -3;
+                break;
+            case 6:
+            case 7:
+                modScore = -2;
+                break;
+            case 8:
+            case 9:
+                modScore = -1;
+                break;
+            case 10:
+            case 11:
+                modScore = 0;
+                break;
+            case 12:
+            case 13:
+                modScore = 1;
+                break;
+            case 14:
+            case 15:
+                modScore = 2;
+                break;
+            case 16:
+            case 17:
+                modScore = 3;
+                break;
+            case 18:
+            case 19:
+                modScore = 4;
+                break;
+            default:
+                modScore = 5;
+                break;
+        }
+        log("Modifier", modScore, derivedStatsColor)
+        const attrsToSet = {};
+        attrsToSet[`${attribute}_modifier`] = modScore;
+        setAttrs(attrsToSet);
     });
 });

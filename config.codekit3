@@ -309,6 +309,16 @@
       "oF" : 0,
       "oS" : 1
     },
+    "\/source\/templates\/_hitPoints.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_hitPoints.html",
+      "oF" : 0,
+      "oS" : 1
+    },
     "\/source\/templates\/_sheet.pug" : {
       "cB" : 0,
       "cOD" : 1,
@@ -316,6 +326,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/_sheet.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/_stamina.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_stamina.html",
       "oF" : 0,
       "oS" : 1
     },
