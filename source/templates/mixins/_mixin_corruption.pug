@@ -1,0 +1,12 @@
+mixin corruption(maxCorruption)
+    - for (let i = 1; i <= maxCorruption; i++)
+      if i <= 3
+        input(class="hideCorruption", type="hidden", name=`attr_corruption_lock_${i}`, value="show")
+        label(class="corruptionCell")
+            input(class="corruptionInput", type="checkbox", name=`attr_corruption_${i}`, value="0")
+            span #{i}
+      else 
+        input(class="hideCorruption", type="hidden", name=`attr_corruption_lock_${i}`, value="show")
+        label(class="corruptionCell")
+            input(class="corruptionInput", type="checkbox", name=`attr_corruption_${i}`, value="0")
+            span #{i}

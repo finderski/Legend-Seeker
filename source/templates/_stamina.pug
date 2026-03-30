@@ -1,10 +1,24 @@
 h3(class="headerLabel", data-i18n='stamina-points') Stamina Points
 .fieldLabel 
-    p(data-i18n='temporarary-abbr') Temp
-input(type='text', name='attr_stamina_temp', placeholder="0")
+    label(data-i18n='temporarary-abbr') Temp
+input(class="xPointInput", type='text', name='attr_stamina_temp', placeholder="0")
 .fieldLabel
-    p(data-i18n='total') Total 
-input(type='text', name='attr_stamina_total', placeholder="0")
+    label(data-i18n='total') Total 
+input(class="xPointInput", type='text', name='attr_stamina_total', placeholder="0")
 .fieldLabel
-    p(data-i18n='current') Current
-input(type='text', name='attr_stamina_current', placeholder="0")
+    label(data-i18n='current') Current
+input(class="xPointInput", type='text', name='attr_stamina_current', placeholder="0")
+.calculation
+    .fortDef 
+        label(class="fieldLabelAbove", data-i18n='fortitude-defense') Fort Def
+        input(class="xPointInput", type='text', name='attr_stamina_fortDef', placeholder="0")
+    .symbol 
+        p +
+    .MiscBonus 
+        label(class="fieldLabelAbove", data-i18n='misc-bonus') Misc Bonus
+        input(class="xPointInput", type='text', name='attr_stamina_miscBonus', placeholder="0")
+    .symbol 
+        p =
+    .damageThreshold 
+        label(class="fieldLabelAbove", data-i18n='damage-threshold') Damage Threshold
+        input(class="xPointInput", type='text', name='attr_stamina_damageThreshold', placeholder="0")

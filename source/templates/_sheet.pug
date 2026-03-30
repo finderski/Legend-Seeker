@@ -1,5 +1,6 @@
 // Necessary Mixins
 include ./mixins/_mixin_attributes.pug 
+include ./mixins/_mixin_corruption.pug
 
 .maindiv
     h1(class='sheetTitle', data-i18n='character-score-sheet') Character Score Sheet
@@ -17,6 +18,7 @@ include ./mixins/_mixin_attributes.pug
             .logo 
                 // Logo Section
                 img(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/lengend-seeker-logo.png', alt='Legend Seeker Logo')
+        hr.sectionDivider
         .middleSection 
             .twoByOne 
                 .firstCol
@@ -31,10 +33,13 @@ include ./mixins/_mixin_attributes.pug
                             // Hit Point Section
                             include _hitPoints.pug
                         .corruption
+                            // Corruption Section
+                            include _corruption.pug
                         .defensiveSaves
                             //Placeholder
                             p Placeholder for Defensive Saves
                 .secondCol
+                    h3.headerLabel CONDITIONS
         .bottomSection
     .backPage
 

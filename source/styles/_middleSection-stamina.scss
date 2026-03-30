@@ -1,0 +1,108 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .middleSection .twoByOne .firstCol .threeBythree {
+    @include sheet-scope {
+        .stamina {
+            grid-column-start: stamina;
+            grid-column-end: hit-points;
+            grid-row-start: row-1;
+            grid-row-end: row-2;
+            display: flex;
+            flex-flow: row wrap;
+            column-gap: 5px;
+            row-gap: 10px;
+            justify-content: space-evenly;
+            align-content: flex-start;
+            align-items: center;
+            .calculation {
+                width: 100%;
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                align-items: center;
+                column-gap: 5px;
+                .symbol {
+                    font-family: 'Smooch', cursive;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    width: 16%;
+                    align-self: center;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    position: relative;
+                    top: 10px;
+                }
+                .fortDef,
+                .MiscBonus,
+                .damageThreshold {
+                    display: flex;
+                    flex-flow: column nowrap;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .damageThreshold {
+                    width: 52%;
+                }
+                .fortDef,
+                .MiscBonus {
+                    width: 35%;
+                }
+                .fieldLabelAbove {
+                    font-family: 'Cinzel', serif;
+                    font-size: .6em;
+                    font-weight: bold;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+        .hitPoints {
+            grid-column-start: hit-points;
+            grid-row-start: row-1;
+            grid-row-end: row-2;
+            display: flex;
+            flex-flow: row wrap;
+            column-gap: 5px;
+            row-gap: 10px;
+            justify-content: space-evenly;
+            align-content: flex-start;
+            align-items: center;
+            .speed,
+            .initiative,
+            .hpb,
+            .legendaryPoints {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
+                width: 45%;
+            }
+        }
+        .stamina .fieldLabel,
+         .hitPoints .fieldLabel {
+            width: 35%;
+            display: inline;
+         }
+        .stamina .fieldLabel > label,
+        .hitPoints .fieldLabel > label {
+            width: 100%;
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .stamina .xPointInput,
+        .hitPoints .xPointInput {
+            width: 35%;
+            text-align: center;
+        }
+        .fieldLabelAbove {
+            font-family: 'Cinzel', serif;
+            font-size: .6em;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            line-height: 1.25;
+        }
+    }
+}

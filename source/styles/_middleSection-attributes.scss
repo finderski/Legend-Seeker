@@ -7,21 +7,23 @@
         grid-template-rows: [row-1 stamina hit-points] auto [row-2 corruption] auto [row-3 saves] auto;
         gap: 5px;
         .headerRow .headerLabel,
-            .attribute-row .headerLabel,
-            .attribute-row .attributeInput {
-                text-align: center;
-            }
-            h3.headerLabel {
-                font-family: 'Cinzel', serif;
-                font-size: 1em;
-                font-weight: bold;
-                text-align: center;
-                margin: 0;
-                width: 100%;
-            }
-            .headerRow {
-                padding: 0 0 15px 0;
-            }
+        .attribute-row .headerLabel,
+        .attribute-row .attributeInput {
+            text-align: center;
+        }
+        /* Moved to mainStyles.scss
+        h3.headerLabel {
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+            width: 100%;
+        }
+        */
+        .headerRow {
+            padding: 0 0 15px 0;
+        }
         .attributesSection {
             display: flex;
             flex-flow: row wrap;
@@ -71,29 +73,6 @@
                 align-items: center;
                 justify-content: center;
             }
-        }
-        .stamina {
-            grid-column-start: stamina;
-            grid-column-end: hit-points;
-            grid-row-start: row-1;
-            grid-row-end: row-2;
-            background-color: lightblue;
-            display: flex;
-            flex-flow: row wrap;
-        }
-        .hitPoints {
-            grid-column-start: hit-points;
-            grid-row-start: row-1;
-            grid-row-end: row-2;
-            background-color: lightcoral;
-            display: flex;
-            flex-flow: row wrap;
-        }
-        .corruption {
-            grid-column-start: stamina;
-            grid-column-end: 4;
-            grid-row-start: corruption;
-            background-color: darkgray;
         }
         .defensiveSaves {
             grid-column-start: attributes;

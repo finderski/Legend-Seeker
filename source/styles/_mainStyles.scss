@@ -4,6 +4,12 @@
     box-sizing: border-box !important;
 }
 
+.ui-dialog .charactersheet {
+    --parchment: #f2e7c9;
+    --ink: #2b2418;
+    --gold: #c9a44d;
+}
+
 /* Remove some default Roll20 Styles */
 .ui-dialog .charactersheet button[type=roll] {
     padding: 5px;
@@ -42,6 +48,22 @@
     color: black;
     width: auto;
     padding: 3px;
+}
+/* End changing defaults */
+
+.sectionDivider {
+    border: none;
+    border-top: 2px solid var(--ink);
+    margin: 20px 0;
+}
+
+.ui-dialog .charactersheet h3.headerLabel {
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    width: 100%;
 }
 
 .hideSection[value="0"]+div {

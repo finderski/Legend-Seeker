@@ -1,0 +1,36 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .middleSection .twoByOne .firstCol .threeBythree {
+    @include sheet-scope {
+        .corruption {
+            grid-column-start: stamina;
+            grid-column-end: 4;
+            grid-row-start: corruption;
+            background-color: darkgray;
+            display: flex;
+            flex-flow: row wrap;
+            padding: 0 5px 10px 5px;
+            row-gap: 15px;
+            .headerRow {
+                width: 100%;
+                padding: 10px 0 0 0;
+                .headerLabel {
+                    line-height: 1;
+                }
+            }
+            .corruptionCell {
+                display: none;
+            }
+            .hideCorruption[value="show"]+.corruptionCell {
+                display: inline-block;
+                width: 8%;
+            }
+        }
+        .defensiveSaves {
+            grid-column-start: attributes;
+            grid-column-end: 4;
+            grid-row-start: saves;
+            background-color: yellow;
+        }
+    }
+}

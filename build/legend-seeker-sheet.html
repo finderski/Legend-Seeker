@@ -65,6 +65,7 @@
         <!-- Logo Section--><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/lengend-seeker-logo.png" alt="Legend Seeker Logo"/>
       </div>
     </div>
+    <hr class="sectionDivider"/>
     <div class="middleSection"> 
       <div class="twoByOne"> 
         <div class="firstCol">
@@ -153,38 +154,177 @@
               <!-- Staminia Section-->
               <h3 class="headerLabel" data-i18n="stamina-points">Stamina Points</h3>
               <div class="fieldLabel"> 
-                <p data-i18n="temporarary-abbr">Temp</p>
+                <label data-i18n="temporarary-abbr">Temp</label>
               </div>
-              <input type="text" name="attr_stamina_temp" placeholder="0"/>
+              <input class="xPointInput" type="text" name="attr_stamina_temp" placeholder="0"/>
               <div class="fieldLabel">
-                <p data-i18n="total">Total </p>
+                <label data-i18n="total">Total </label>
               </div>
-              <input type="text" name="attr_stamina_total" placeholder="0"/>
+              <input class="xPointInput" type="text" name="attr_stamina_total" placeholder="0"/>
               <div class="fieldLabel">
-                <p data-i18n="current">Current</p>
+                <label data-i18n="current">Current</label>
               </div>
-              <input type="text" name="attr_stamina_current" placeholder="0"/>
+              <input class="xPointInput" type="text" name="attr_stamina_current" placeholder="0"/>
+              <div class="calculation">
+                <div class="fortDef"> 
+                  <label class="fieldLabelAbove" data-i18n="fortitude-defense">Fort Def</label>
+                  <input class="xPointInput" type="text" name="attr_stamina_fortDef" placeholder="0"/>
+                </div>
+                <div class="symbol"> 
+                  <p>+</p>
+                </div>
+                <div class="MiscBonus"> 
+                  <label class="fieldLabelAbove" data-i18n="misc-bonus">Misc Bonus</label>
+                  <input class="xPointInput" type="text" name="attr_stamina_miscBonus" placeholder="0"/>
+                </div>
+                <div class="symbol"> 
+                  <p>=</p>
+                </div>
+                <div class="damageThreshold"> 
+                  <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
+                  <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0"/>
+                </div>
+              </div>
             </div>
             <div class="hitPoints"> 
               <!-- Hit Point Section-->
               <h3 class="headerLabel" data-i18n="hit-points">Hit Points</h3>
               <div class="fieldLabel">
-                <p data-i18n="total">Total </p>
+                <label data-i18n="total">Total </label>
               </div>
-              <input type="text" name="attr_hitpoints_total" placeholder="0"/>
+              <input class="xPointInput" type="text" name="attr_hitpoints_total" placeholder="0"/>
               <div class="fieldLabel">
-                <p data-i18n="current">Current</p>
+                <label data-i18n="current">Current</label>
               </div>
-              <input type="text" name="attr_hitpoints_current" placeholder="0"/>
+              <input class="xPointInput" type="text" name="attr_hitpoints_current" placeholder="0"/>
+              <div class="speed">
+                <label class="fieldLabelAbove" data-i18n="speed">Speed</label>
+                <input class="xPointInput" type="text" name="attr_speed" placeholder="0"/>
+              </div>
+              <div class="initiative"> 
+                <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
+                <input class="xPointInput" type="text" name="attr_initiative" placeholder="0"/>
+              </div>
+              <div class="hpb"> 
+                <label class="fieldLabelAbove" data-i18n="heroic-proficiency-bonus">Heroic Proficiency Bonus</label>
+                <input class="xPointInput" type="text" name="attr_heroic_proficiency_bonus" placeholder="0"/>
+              </div>
+              <div class="legendaryPoints"> 
+                <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
+                <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
+              </div>
             </div>
-            <div class="corruption"></div>
+            <div class="corruption">
+              <!-- Corruption Section-->
+              <div class="headerRow"> 
+                <h3 class="headerLabel" data-i18n="corruption">Corruption</h3>
+              </div>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_1" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_1" value="0"/><span>1</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_2" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_2" value="0"/><span>2</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_3" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_3" value="0"/><span>3</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_4" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_4" value="0"/><span>4</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_5" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_5" value="0"/><span>5</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_6" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_6" value="0"/><span>6</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_7" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_7" value="0"/><span>7</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_8" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_8" value="0"/><span>8</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_9" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_9" value="0"/><span>9</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_10" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_10" value="0"/><span>10</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_11" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_11" value="0"/><span>11</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_12" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_12" value="0"/><span>12</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_13" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_13" value="0"/><span>13</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_14" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_14" value="0"/><span>14</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_15" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_15" value="0"/><span>15</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_16" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_16" value="0"/><span>16</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_17" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_17" value="0"/><span>17</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_18" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_18" value="0"/><span>18</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_19" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_19" value="0"/><span>19</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_20" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_20" value="0"/><span>20</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_21" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_21" value="0"/><span>21</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_22" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_22" value="0"/><span>22</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_23" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_23" value="0"/><span>23</span>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_24" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_24" value="0"/><span>24</span>
+              </label>
+            </div>
             <div class="defensiveSaves">
               <!--Placeholder-->
               <p>Placeholder for Defensive Saves</p>
             </div>
           </div>
         </div>
-        <div class="secondCol"></div>
+        <div class="secondCol">
+          <h3 class="headerLabel">CONDITIONS</h3>
+        </div>
       </div>
     </div>
     <div class="bottomSection"></div>

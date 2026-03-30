@@ -227,6 +227,32 @@
       "oS" : 1,
       "pg" : 0
     },
+    "\/source\/styles\/_middleSection-corruption.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_middleSection-corruption.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
+    "\/source\/styles\/_middleSection-stamina.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_middleSection-stamina.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_middleSection-twoByOne.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -299,6 +325,16 @@
       "oF" : 0,
       "oS" : 1
     },
+    "\/source\/templates\/_corruption.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_corruption.html",
+      "oF" : 0,
+      "oS" : 1
+    },
     "\/source\/templates\/_demographics.pug" : {
       "cB" : 0,
       "cOD" : 1,
@@ -346,6 +382,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/mixins\/_mixin_attributes.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/mixins\/_mixin_corruption.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/mixins\/_mixin_corruption.html",
       "oF" : 0,
       "oS" : 1
     }

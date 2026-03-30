@@ -1,7 +1,19 @@
 h3(class="headerLabel", data-i18n='hit-points') Hit Points
 .fieldLabel
-    p(data-i18n='total') Total 
-input(type='text', name='attr_hitpoints_total', placeholder="0")
+    label(data-i18n='total') Total 
+input(class="xPointInput", type='text', name='attr_hitpoints_total', placeholder="0")
 .fieldLabel
-    p(data-i18n='current') Current
-input(type='text', name='attr_hitpoints_current', placeholder="0")
+    label(data-i18n='current') Current
+input(class="xPointInput", type='text', name='attr_hitpoints_current', placeholder="0")
+.speed
+    label(class="fieldLabelAbove", data-i18n='speed') Speed
+    input(class="xPointInput", type='text', name='attr_speed', placeholder="0")
+.initiative 
+    label(class="fieldLabelAbove", data-i18n='initiative') Initiative
+    input(class="xPointInput", type='text', name='attr_initiative', placeholder="0")
+.hpb 
+    label(class="fieldLabelAbove", data-i18n='heroic-proficiency-bonus') Heroic Proficiency Bonus
+    input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', placeholder="0")
+.legendaryPoints 
+    label(class="fieldLabelAbove", data-i18n='legendary-points') Legendary Points
+    input(class="xPointInput", type='text', name='attr_legendary_points', placeholder="0")

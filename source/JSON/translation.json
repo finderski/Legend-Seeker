@@ -38,5 +38,13 @@
   "temporarary-abbr" : "Temp",
   "total" : "Total",
   "current" : "Current",
-  "hit-points" : "Hit Points"
+  "hit-points" : "Hit Points",
+  "fortitude-defense": "Fort Defense",
+  "misc-bonus": "Misc Bonus",
+  "damage-threshold": "Damage Threshold",
+  "speed": "Speed",
+  "initiative": "Initiative",
+  "heroic-proficiency-bonus": "Heroic Proficiency Bonus",
+  "legendary-points": "Legendary Points",
+  "corruption": "Corruption"
 }

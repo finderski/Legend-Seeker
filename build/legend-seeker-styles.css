@@ -1,9 +1,15 @@
 /* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Cinzel:wght@400..900|Cormorant+Unicase:wght@300;400;500;600;700|Metamorphous|Eagle+Lake|IM+Fell+English:ital@0;1|Lora:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cinzel:wght@400..900|Cormorant+Unicase:wght@300;400;500;600;700|Metamorphous|Eagle+Lake|IM+Fell+English:ital@0;1|Lora:ital,wght@0,400..700;1,400..700|Smooch&display=swap");
 .ui-dialog .charactersheet *,
 .ui-dialog .charactersheet *::after,
 .ui-dialog .charactersheet *::before {
   box-sizing: border-box !important;
+}
+
+.ui-dialog .charactersheet {
+  --parchment: #f2e7c9;
+  --ink: #2b2418;
+  --gold: #c9a44d;
 }
 
 /* Remove some default Roll20 Styles */
@@ -44,6 +50,22 @@
   color: black;
   width: auto;
   padding: 3px;
+}
+
+/* End changing defaults */
+.sectionDivider {
+  border: none;
+  border-top: 2px solid var(--ink);
+  margin: 20px 0;
+}
+
+.ui-dialog .charactersheet h3.headerLabel {
+  font-family: "Cinzel", serif;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  width: 100%;
 }
 
 .hideSection[value="0"] + div {
@@ -240,13 +262,17 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput {
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree h3.headerLabel {
-  font-family: "Cinzel", serif;
-  font-size: 1em;
-  font-weight: bold;
-  text-align: center;
-  margin: 0;
-  width: 100%;
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  /* Moved to mainStyles.scss
+  h3.headerLabel {
+      font-family: 'Cinzel', serif;
+      font-size: 1em;
+      font-weight: bold;
+      text-align: center;
+      margin: 0;
+      width: 100%;
+  }
+  */
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow {
   padding: 0 0 15px 0;
@@ -303,28 +329,139 @@ label.buttonStyle {
   align-items: center;
   justify-content: center;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+  grid-column-start: attributes;
+  grid-column-end: 4;
+  grid-row-start: saves;
+  background-color: yellow;
+}
+
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina {
   grid-column-start: stamina;
   grid-column-end: hit-points;
   grid-row-start: row-1;
   grid-row-end: row-2;
-  background-color: lightblue;
   display: flex;
   flex-flow: row wrap;
+  column-gap: 5px;
+  row-gap: 10px;
+  justify-content: space-evenly;
+  align-content: flex-start;
+  align-items: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol {
+  font-family: "Smooch", cursive;
+  font-size: 1.5em;
+  font-weight: bold;
+  width: 16%;
+  align-self: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
+  width: 52%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus {
+  width: 35%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fieldLabelAbove {
+  font-family: "Cinzel", serif;
+  font-size: 0.6em;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints {
   grid-column-start: hit-points;
   grid-row-start: row-1;
   grid-row-end: row-2;
-  background-color: lightcoral;
   display: flex;
   flex-flow: row wrap;
+  column-gap: 5px;
+  row-gap: 10px;
+  justify-content: space-evenly;
+  align-content: flex-start;
+  align-items: center;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel {
+  width: 35%;
+  display: inline;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel > label,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel > label {
+  width: 100%;
+  font-family: "Cinzel", serif;
+  font-size: 1em;
+  font-weight: bold;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .xPointInput,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .xPointInput {
+  width: 35%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .fieldLabelAbove {
+  font-family: "Cinzel", serif;
+  font-size: 0.6em;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  line-height: 1.25;
+}
+
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption {
   grid-column-start: stamina;
   grid-column-end: 4;
   grid-row-start: corruption;
   background-color: darkgray;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0 5px 10px 5px;
+  row-gap: 15px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow {
+  width: 100%;
+  padding: 10px 0 0 0;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow .headerLabel {
+  line-height: 1;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .corruptionCell {
+  display: none;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell {
+  display: inline-block;
+  width: 8%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
   grid-column-start: attributes;
