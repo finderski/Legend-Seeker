@@ -126,3 +126,18 @@ coreAttributes.forEach(attribute => {
         setAttrs(attrsToSet);
     });
 });
+
+// Update Corruption
+on('change:wisdom', function(eventInfo) {
+    const wisdomScore = Math.floor((parseInt(eventInfo.newValue) || 0));
+    const setattrs = {};
+    for(let i=1; i <= 24; i++) {
+        // while i is the less than 24, hide the lock inputs
+        if (i <= wisdomScore) {
+            setattrs[`corruption_lock_${i}`] = 'show';
+        } else {
+            setattrs[`corruption_lock_${i}`] = 'hide';
+        }
+    }
+    setAttrs(setattrs);
+});

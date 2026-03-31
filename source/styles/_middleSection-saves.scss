@@ -1,0 +1,15 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        .saveRow {
+            display: flex;
+            flex-flow: row nowrap;
+            width: 100%;
+        }
+    }
+}

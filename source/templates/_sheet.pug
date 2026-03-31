@@ -1,6 +1,7 @@
 // Necessary Mixins
 include ./mixins/_mixin_attributes.pug 
 include ./mixins/_mixin_corruption.pug
+include ./mixins/_mixin_buildSaves.pug
 
 .maindiv
     h1(class='sheetTitle', data-i18n='character-score-sheet') Character Score Sheet
@@ -36,10 +37,12 @@ include ./mixins/_mixin_corruption.pug
                             // Corruption Section
                             include _corruption.pug
                         .defensiveSaves
-                            //Placeholder
-                            p Placeholder for Defensive Saves
+                            //Defensive Saves Section
+                            include _saves.pug
                 .secondCol
                     h3.headerLabel CONDITIONS
+                    // Conditions Section
+                    include _conditions.pug
         .bottomSection
     .backPage
 

@@ -46,5 +46,9 @@
   "initiative": "Initiative",
   "heroic-proficiency-bonus": "Heroic Proficiency Bonus",
   "legendary-points": "Legendary Points",
-  "corruption": "Corruption"
+  "corruption": "Corruption",
+  "normal" : "Normal",
+  "condition-1-2" : "To all defenses, attacks, skill & ability checks.",
+  "condition-6-10" : "To all defenses, attacks, skill & ability checks. Move at half speed.",
+  "unconscious-or-deceased" : "Unconscious or Deceased"
 }

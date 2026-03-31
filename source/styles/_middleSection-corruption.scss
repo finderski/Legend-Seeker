@@ -6,11 +6,13 @@
             grid-column-start: stamina;
             grid-column-end: 4;
             grid-row-start: corruption;
-            background-color: darkgray;
+            background-color: silver;
             display: flex;
             flex-flow: row wrap;
-            padding: 0 5px 10px 5px;
+            padding: 0 5px 20px 5px;
             row-gap: 15px;
+            column-gap: 5px;
+            justify-content: center;
             .headerRow {
                 width: 100%;
                 padding: 10px 0 0 0;
@@ -23,7 +25,31 @@
             }
             .hideCorruption[value="show"]+.corruptionCell {
                 display: inline-block;
-                width: 8%;
+                width: 30px;
+                height: 30px;
+                border: 1px solid black;
+                .corruptionInput {
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+                .corruptionNumber {
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    position: relative;
+                    top: -30px;
+                    text-align: center;
+                    font-family: 'Eagle Lake';
+                    font-size: 1.2em;
+                    font-weight: bold;
+                }
+                .corruptionInput:checked+.corruptionNumber {
+                    background-color: black;
+                    color: silver;
+                }
             }
         }
         .defensiveSaves {

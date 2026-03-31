@@ -4,11 +4,41 @@
     box-sizing: border-box !important;
 }
 
-.ui-dialog .charactersheet {
+.ui-dialog {
     --parchment: #f2e7c9;
     --ink: #2b2418;
     --gold: #c9a44d;
 }
+
+.ui-dialog {
+    background-color: var(--parchment);
+    color: var(--ink);
+}
+
+.ui-dialog .nav-tabs {
+    font-family: 'Eagle Lake';
+}
+
+.ui-dialog .nav-tabs > li.active > a {
+    background-color: var(--ink);
+    color: var(--parchment);
+    text-decoration-color: var(--gold);
+}
+
+.ui-dialog .ui-dialog-title {
+    font-familiy: 'Merriweather';
+}
+
+.ui-dialog .characterlist {
+    font-family: 'Cinzel';
+}
+
+/*
+.ui-dialog .charactersheet {
+    background-color: var(--parchment);
+    color: var(--ink);
+}
+*/
 
 /* Remove some default Roll20 Styles */
 .ui-dialog .charactersheet button[type=roll] {

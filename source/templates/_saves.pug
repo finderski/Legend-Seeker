@@ -1,0 +1,19 @@
+.saveRow 
+    .saveButton
+        label(class="headerLabel", data-i18n='core-attributes') Core Attributes
+    .saveTotal
+        label(class="headerLabel", data-i18n='score') Score
+    .saveCalc
+        label(class="headerLabel", data-i18n='modifier') Modifier
+    .saveLvlOrArmor 
+        label(class="headerLabel", data-i18n='level-or-armor') Level/Armor
+    .saveClassBonus 
+        label(class="headerLabel", data-i18n='class-bonus') Class Bonus
+    .saveAbilityMod 
+        label(class="headerLabel", data-i18n='ability-mod') Ability Modifier
+    .saveMisc
+        label(class="headerLabel", data-i18n='misc') Misc
+-
+    const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], [' WILL', 'willpower', 'wisdom']];
+each save in saveList
+    +savingthrow(save)

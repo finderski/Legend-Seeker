@@ -1,0 +1,60 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .middleSection .twoByOne .secondCol {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: column nowrap;
+        row-gap: 10px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        .condition {
+            display: flex;
+            flex-flow: row nowrap;
+            font-family: 'Cinzel';
+            padding: 5px 0 5px 5px;
+            border: 1px solid var(--ink);
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            .normal,
+            .out {
+                width: 95%;
+                text-align: center;
+                font-size: 2em;
+            }
+            .penalty{
+                width: 35px;
+                height: 35px;
+                text-align: center;
+                border: 1px solid var(--ink);
+                margin: 0 5px 0 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .description {
+                width: 77%;
+                > p {
+                    font-size: .9em;
+                    font-family: 'Cinzel';
+                    margin: 0;
+                    padding: 0;
+                    line-height: 1.2em;
+                }
+            }
+        }
+        .momentum {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            background-color: var(--gold);
+            padding: 0 0 5px 0;
+            .momentumInput {
+                border-bottom: 1px solid var(--ink);
+                text-align: center;
+                width: 45%;
+            }
+        }
+    }
+}
