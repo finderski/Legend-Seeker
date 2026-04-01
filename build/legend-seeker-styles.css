@@ -127,7 +127,9 @@ input:not(:checked) + .isCarried::before {
   font-size: 0.85em;
 }
 
-.charsheet button.labelButton[type=roll]:before {
+.charsheet button.labelButton[type=roll]:before,
+.charsheet button.sendToChat[type=roll]:before,
+.charsheet button.whisperToChat[type=roll]:before {
   content: "";
 }
 
@@ -154,8 +156,8 @@ input:not(:checked) + .isCarried::before {
 .ui-dialog .charsheet button.labelButton:hover,
 .ui-dialog .charsheet button[type=action]:hover,
 .ui-dialog .charsheet label.buttonStyle:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--ink);
+  color: var(--parchment);
   cursor: pointer;
 }
 
@@ -705,6 +707,56 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .bottomSection .edges,
 .ui-dialog .charactersheet .frontPage .bottomSection .traits {
   width: 33%;
+  align-content: flex-start;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .iconButton {
+  font-family: "Pictos";
+  font-size: 1.75em;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent {
+  display: flex;
+  flex-flow: row wrap;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .chatButtons {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .sendToChat {
+  width: 30px;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .whisperButton {
+  display: none;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .chatButtons:hover .whisperButton {
+  display: inline-block;
+  position: absolute;
+  left: 30px;
+  background-color: var(--parchment);
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .talentName {
+  width: 238px;
+  margin: 0 0 3px 5px;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .fieldLabelAbove {
+  font-family: "Cinzel", serif;
+  font-size: 0.6em;
+  font-weight: bold;
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .textField {
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .detailsInput {
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: var(--mainBody);
+  font-size: 1.15em;
+  border: none;
+  resize: vertical;
+  max-height: 150px;
+  height: 6rem;
+  min-height: 3rem;
 }
 
 /*

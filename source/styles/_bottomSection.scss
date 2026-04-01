@@ -12,6 +12,57 @@
         .edges,
         .traits {
             width: 33%;
+            align-content: flex-start;
+        }
+        .iconButton {
+            font-family: 'Pictos';
+            font-size: 1.75em;
+        }
+        .talent {
+            display: flex;
+            flex-flow: row wrap;
+            .chatButtons {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+            }
+            .sendToChat {
+                width: 30px;
+            }
+            .whisperButton {
+                display: none;
+            }
+            .chatButtons:hover .whisperButton {
+                display: inline-block;
+                position: absolute;
+                left: 30px;
+                background-color: var(--parchment);
+
+            }
+            .talentName {
+                width: 238px;
+                margin: 0 0 3px 5px;
+            }
+            .fieldLabelAbove {
+                font-family: 'Cinzel', serif;
+                font-size: .6em;
+                font-weight: bold;
+                width: 100%;
+            }
+            .textField {
+                width: 100%;
+            }
+            .detailsInput {
+                background-color: var(--parchment);
+                color: var(--ink);
+                font-family: var(--mainBody);
+                font-size: 1.15em;
+                border: none;
+                resize: vertical;
+                max-height: 150px;
+                height: 6rem;
+                min-height: 3rem;
+            }
         }
     }
 }

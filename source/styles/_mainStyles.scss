@@ -126,7 +126,9 @@ input:not(:checked)+.isCarried::before {
     font-size: .85em;
 }
 
-.charsheet button.labelButton[type=roll]:before {
+.charsheet button.labelButton[type=roll]:before,
+.charsheet button.sendToChat[type=roll]:before,
+.charsheet button.whisperToChat[type=roll]:before {
     content: '';
 }
 
@@ -153,8 +155,8 @@ input:not(:checked)+.isCarried::before {
 .ui-dialog .charsheet button.labelButton:hover,
 .ui-dialog .charsheet button[type='action']:hover,
 .ui-dialog .charsheet label.buttonStyle:hover {
-    background-color: black;
-    color: white;
+    background-color: var(--ink);
+    color: var(--parchment);
     cursor: pointer;
 }
 

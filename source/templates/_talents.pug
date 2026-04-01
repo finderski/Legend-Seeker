@@ -1,1 +1,13 @@
 h3(class='headerLabel', data-i18n='talents') TALENTS
+fieldset(class="repeating_talents")
+    .talent
+        .chatButtons
+            button(class="sendToChat", type="roll" name="roll_talent_to_chat", value="", data-18n-title="send-to-chat")
+                span.iconButton q 
+            .whisperButton 
+                button(class="whisperToChat", type="roll" name="roll_whisper_talent", value="", data-i18n-title="whisper-to-chat")
+                    span.iconButton w
+        .talentName 
+            label(class="fieldLabelAbove", data-i18n='talent') Misc Bonus
+            input(class="textField", type="text", name="attr_talent_name", value="", data-i18n-placeholder="talent")
+        textarea(class="detailsInput", name="attr_talent_details", data-i18n-placeholder="talent-details")

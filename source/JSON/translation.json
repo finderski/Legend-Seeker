@@ -63,5 +63,7 @@
   "enter-known-languages-here": "Enter known languages here...",
   "special-traits": "Special Traits",
   "talents": "Talents",
+  "talent": "Talent",
+  "talent-details": "Talent Details...",
   "edges": "Edges"
 }
