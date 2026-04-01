@@ -8,6 +8,18 @@
         width: 100%;
         margin: 0;
         padding: 0;
+        .conditionToggle[value="0 [[Normal]]"] ~ .zero,
+        .conditionToggle[value="-1 [[Condition: -1]]"] ~ .minusOne,
+        .conditionToggle[value="-2 [[Condition: -2]]"] ~ .minusTwo,
+        .conditionToggle[value="-6 [[Condition: -6]]"] ~ .minusSix,
+        .conditionToggle[value="-10 [[Condition: -10]]"] ~ .minusTen,
+        .conditionToggle[value="0 [[Unconscious or Deceased]]"] ~ .uod {
+            background-color: var(--ink);
+            color: var(--parchment);
+            .penalty {
+                border-color: var(--parchment);
+            }
+        }
         .condition {
             display: flex;
             flex-flow: row nowrap;
@@ -42,6 +54,9 @@
                     padding: 0;
                     line-height: 1.2em;
                 }
+            }
+            .conditionRadio {
+                display: none;
             }
         }
         .momentum {

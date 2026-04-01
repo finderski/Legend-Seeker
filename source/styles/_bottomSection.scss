@@ -1,0 +1,17 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .bottomSection {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        column-gap: 5px;
+        .talents,
+        .edges,
+        .traits {
+            width: 33%;
+        }
+    }
+}

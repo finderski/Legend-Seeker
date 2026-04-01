@@ -22,7 +22,7 @@
 }
 
 .ui-dialog .nav-tabs {
-    font-family: 'Eagle Lake';
+    font-family: var(--decorative);
 }
 
 .ui-dialog .nav-tabs > li.active > a {
@@ -50,12 +50,10 @@
     background: transparent;
     cursor: pointer;
     font-size: 1em;
-    font-weight: bold;
-    font-family: 'Roboto Mono', monospace;
 }
 
 .ui-dialog .charactersheet h1 {
-    font-family: 'Cinzel', serif;
+    font-family: var(--title);
     font-size: 3.5em;
     font-weight: bold;
     text-align: center;
@@ -63,7 +61,7 @@
 }
 
 .ui-dialog .charactersheet label {
-    font-family: 'Cinzel', serif;
+    font-family: var(--title);
     font-size: .85em;
     color: black;
     text-transform: lowercase;
@@ -91,7 +89,7 @@
 }
 
 .ui-dialog .charactersheet h3.headerLabel {
-    font-family: 'Cinzel', serif;
+    font-family: var(--title);
     font-size: 1em;
     font-weight: bold;
     text-align: center;
@@ -124,12 +122,17 @@ input:not(:checked)+.isCarried::before {
 .ui-dialog .charactersheet .fieldLabel {
     width: auto;
     text-align: center;
-    font-family: 'Roboto Mono', monospace;
+    font-family: var(--title);
     font-size: .85em;
 }
 
 .charsheet button.labelButton[type=roll]:before {
     content: '';
+}
+
+.ui-dialog .charactersheet button {
+    font-family: var(--decorative);
+    font-weight: bold;
 }
 
 .ui-dialog .charsheet button.labelButton,
@@ -144,8 +147,6 @@ input:not(:checked)+.isCarried::before {
     height: 2rem;
     min-height: fit-content;
     cursor: pointer;
-    font-family: 'Roboto Mono', monospace;
-    font-weight: bold;
     border-radius: 8px;
 }
 

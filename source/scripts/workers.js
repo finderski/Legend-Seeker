@@ -141,3 +141,10 @@ on('change:wisdom', function(eventInfo) {
     }
     setAttrs(setattrs);
 });
+
+on('change:condition', function(eventInfo) {
+    const conditionValue = eventInfo.newValue;
+    const setattrs = {};
+    setattrs['condition_selected'] = conditionValue;
+    setAttrs(setattrs);
+});

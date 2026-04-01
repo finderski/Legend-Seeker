@@ -136,6 +136,19 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/source\/styles\/_bottomSection.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_bottomSection.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_buttonbarStyles.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -394,6 +407,16 @@
       "oF" : 0,
       "oS" : 1
     },
+    "\/source\/templates\/_edges.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_edges.html",
+      "oF" : 0,
+      "oS" : 1
+    },
     "\/source\/templates\/_hitPoints.pug" : {
       "cB" : 0,
       "cOD" : 1,
@@ -434,6 +457,16 @@
       "oF" : 0,
       "oS" : 1
     },
+    "\/source\/templates\/_specialTraits.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_specialTraits.html",
+      "oF" : 0,
+      "oS" : 1
+    },
     "\/source\/templates\/_stamina.pug" : {
       "cB" : 0,
       "cOD" : 1,
@@ -441,6 +474,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/_stamina.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/_talents.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_talents.html",
       "oF" : 0,
       "oS" : 1
     },

@@ -1,37 +1,38 @@
-label.condition 
+input(class="conditionToggle", type="hidden", name="attr_condition_selected", value="0 [[Normal]]")
+label.condition.zero 
     .normal(data-i18n="normal") Normal 
     .conditionSelector 
-        input(class="conditionRadio", type="radio", name="condition", value="0 [[Normal]]", checked)
-label.condition 
+        input(class="conditionRadio", type="radio", name="attr_condition", value="0 [[Normal]]", checked)
+label.condition.minusOne
     .penalty —1
     .description
         p(data-i18n="condition-1-2") To all defenses, attacks, skill & ability checks.
     .conditionSelector 
-        input(class="conditionRadio", type="radio", name="condition", value="-1 [[Condition: -1]]")
-label.condition 
+        input(class="conditionRadio", type="radio", name="attr_condition", value="-1 [[Condition: -1]]")
+label.condition.minusTwo 
     .penalty —2
     .description
         p(data-i18n="condition-1-2") To all defenses, attacks, skill & ability checks.
     .conditionSelector 
-        input(class="conditionRadio", type="radio", name="condition", value="-2 [[Condition: -2]]")
-label.condition 
+        input(class="conditionRadio", type="radio", name="attr_condition", value="-2 [[Condition: -2]]")
+label.condition.minusSix 
     .penalty —6
     .description
         p(data-i18n="condition-6-10") To all defenses, attacks, skill & ability checks. Move at half speed.
     .conditionSelector 
-        input(class="conditionRadio", type="radio", name="condition", value="-6 [[Condition: -6]]")
-label.condition 
+        input(class="conditionRadio", type="radio", name="attr_condition", value="-6 [[Condition: -6]]")
+label.condition.minusTen 
     .penalty —10
     .description
         p(data-i18n="condition-6-10") To all defenses, attacks, skill & ability checks. Move at half speed.
     .conditionSelector 
-        input(class="conditionRadio", type="radio", name="condition", value="-10 [[Condition: -10]]")
-label.condition
+        input(class="conditionRadio", type="radio", name="attr_condition", value="-10 [[Condition: -10]]")
+label.condition.uod
     .out(data-i18n="unconscious-or-deceased") Unconscious or Deceased 
     .conditionSelector 
-        input(class="conditionRadio", type="radio", name="condition", value="0 [[Unconscious or Deceased]]")
+        input(class="conditionRadio", type="radio", name="attr_condition", value="0 [[Unconscious or Deceased]]")
 .momentum 
     h3.headerLabel Momentum
-    input(class="momentumInput", type="number", name="momentum")
+    input(class="momentumInput", type="number", name="attr_momentum")
     span /
-    input(class="momentumInput", type="number", name="momentum_max")
+    input(class="momentumInput", type="number", name="attr_momentum_max")

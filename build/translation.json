@@ -14,6 +14,7 @@
   "modifier" : "Modifier",
   "condition-1-2" : "To all defenses, attacks, skill & ability checks.",
   "fortitude-defense" : "Fort Defense",
+  "edges" : "Edges",
   "constitution" : "Constitution",
   "legendary-points" : "Legendary Points",
   "heroic-proficiency-bonus" : "Heroic Proficiency Bonus",
@@ -32,6 +33,7 @@
   "wisdom" : "Wisdom",
   "speed" : "Speed",
   "core-attributes" : "Core Attributes",
+  "special-traits" : "Special Traits",
   "name" : "Name",
   "constitution-minus-first-three" : "stitution",
   "total" : "Total",
@@ -60,5 +62,6 @@
   "strength-minus-first-three" : "ength",
   "race" : "Race",
   "wisdom-abbr" : "WIS",
-  "current" : "Current"
+  "current" : "Current",
+  "talents" : "Talents"
 }
