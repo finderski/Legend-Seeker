@@ -1,23 +1,22 @@
 mixin savingthrow(save)
     - const [shortName, longName, attributeName] = save;
-    - const fieldName = `attr_${longName}`;
-    - const translationLabel = `${longName}-abbr`;
-    - const lastPart = longName.slice(3);
+    - const abilityShortName = attributeName.slice(0, 3).toUpperCase();
     
       .saveRow
         .saveButton
-            button(class="labelButton", type="roll", name=`roll_${longName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${longName}}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
-                span(class="allcaps", data-i18n=translationLabel) #{shortName}
-                span(class="smallcaps", data-i18n=`${longName}-minus-first-three`) #{lastPart}
+            button(class="labelButton", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
+                span(class="allcaps", data-i18n=`${longName}-abbr`) #{shortName}
         .saveTotal
-            input(class="attributeInput", type="text", name=fieldName, placeholder="3")
+            input(class="attributeInput", type="text", name=`${shortName}_total`)
         .saveCalc
-            input(class="attributeInput readOnly", type="text", name=`${fieldName}_modifier`, placeholder="0", readonly)
+            span(class="calcFormula")
+                | = 10 + 
         .saveLvlOrArmor
-            input(class="attributeInput", type="text", name=`${fieldName}_lvlOrArmor`, placeholder="0")
+            input(class="attributeInput", type="text", name="attr_lvlOrArmor", placeholder="0")
         .saveClassBonus
-            input(class="attributeInput", type="text", name=`${fieldName}_classBonus`, placeholder="0")
+            input(class="attributeInput", type="text", name="attr_classBonus", placeholder="0")
         .saveAbilityMod
-            input(class="attributeInput", type="text", name=`${fieldName}_abilityMod`, placeholder="0")
+            input(class="attributeInput", type="text", name=`attr_${attributeName}_modifier`, placeholder="0" readonly)
+            span(class="abilityWatermark", data-i18n=`${attributeName}-abbr`) #{abilityShortName}
         .saveMisc
-            input(class="attributeInput", type="text", name=`${fieldName}_misc`, placeholder="0")
+            input(class="attributeInput", type="text", name="attr_misc_save_mod", placeholder="0")

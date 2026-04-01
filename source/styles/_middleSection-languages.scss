@@ -1,0 +1,17 @@
+.languages{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-top: 5px;
+    .languagesInput {
+        width: 95%;
+        height: 105px;
+        padding: 5px;
+        border: .25px solid var(--ink);
+        resize: none;
+        background-color: transparent;
+        color: var(--ink);
+        font-family: var(--mainBody);
+    }
+}

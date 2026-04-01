@@ -1,10 +1,11 @@
+// hr.sectionDivider
 .saveRow 
     .saveButton
-        label(class="headerLabel", data-i18n='core-attributes') Core Attributes
+        label(class="headerLabel", data-i18n='defensive-saves') Defensive Saves
     .saveTotal
-        label(class="headerLabel", data-i18n='score') Score
+        label(class="headerLabel", data-i18n='total') Total
     .saveCalc
-        label(class="headerLabel", data-i18n='modifier') Modifier
+        | &nbsp;
     .saveLvlOrArmor 
         label(class="headerLabel", data-i18n='level-or-armor') Level/Armor
     .saveClassBonus 
@@ -12,7 +13,7 @@
     .saveAbilityMod 
         label(class="headerLabel", data-i18n='ability-mod') Ability Modifier
     .saveMisc
-        label(class="headerLabel", data-i18n='misc') Misc
+        label(class="headerLabel", data-i18n='miscellaneous-abbr') Misc
 -
     const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], [' WILL', 'willpower', 'wisdom']];
 each save in saveList

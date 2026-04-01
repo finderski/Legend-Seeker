@@ -342,16 +342,15 @@
             </div>
             <div class="defensiveSaves">
               <!--Defensive Saves Section-->
+              <!-- hr.sectionDivider-->
               <div class="saveRow"> 
                 <div class="saveButton">
-                  <label class="headerLabel" data-i18n="core-attributes">Core Attributes</label>
+                  <label class="headerLabel" data-i18n="defensive-saves">Defensive Saves</label>
                 </div>
                 <div class="saveTotal">
-                  <label class="headerLabel" data-i18n="score">Score</label>
+                  <label class="headerLabel" data-i18n="total">Total</label>
                 </div>
-                <div class="saveCalc">
-                  <label class="headerLabel" data-i18n="modifier">Modifier</label>
-                </div>
+                <div class="saveCalc">&nbsp;</div>
                 <div class="saveLvlOrArmor"> 
                   <label class="headerLabel" data-i18n="level-or-armor">Level/Armor</label>
                 </div>
@@ -362,76 +361,70 @@
                   <label class="headerLabel" data-i18n="ability-mod">Ability Modifier</label>
                 </div>
                 <div class="saveMisc">
-                  <label class="headerLabel" data-i18n="misc">Misc</label>
+                  <label class="headerLabel" data-i18n="miscellaneous-abbr">Misc</label>
                 </div>
               </div>
               <div class="saveRow">
                 <div class="saveButton">
-                  <button class="labelButton" type="roll" name="roll_fortitude_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{fortitude}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span><span class="smallcaps" data-i18n="fortitude-minus-first-three">titude</span></button>
+                  <button class="labelButton" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_fortitude" placeholder="3"/>
+                  <input class="attributeInput" type="text" name="FORT_total"/>
                 </div>
-                <div class="saveCalc">
-                  <input class="attributeInput readOnly" type="text" name="attr_fortitude_modifier" placeholder="0" readonly="readonly"/>
-                </div>
+                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_fortitude_lvlOrArmor" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_lvlOrArmor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_fortitude_classBonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_classBonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_fortitude_abilityMod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_constitution_modifier" placeholder="0" readonly="readonly"/><span class="abilityWatermark" data-i18n="constitution-abbr">CON</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_fortitude_misc" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
               <div class="saveRow">
                 <div class="saveButton">
-                  <button class="labelButton" type="roll" name="roll_reflex_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{reflex}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span><span class="smallcaps" data-i18n="reflex-minus-first-three">lex</span></button>
+                  <button class="labelButton" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_reflex" placeholder="3"/>
+                  <input class="attributeInput" type="text" name="REF_total"/>
                 </div>
-                <div class="saveCalc">
-                  <input class="attributeInput readOnly" type="text" name="attr_reflex_modifier" placeholder="0" readonly="readonly"/>
-                </div>
+                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_reflex_lvlOrArmor" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_lvlOrArmor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_reflex_classBonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_classBonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_reflex_abilityMod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_dexterity_modifier" placeholder="0" readonly="readonly"/><span class="abilityWatermark" data-i18n="dexterity-abbr">DEX</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_reflex_misc" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
               <div class="saveRow">
                 <div class="saveButton">
-                  <button class="labelButton" type="roll" name="roll_willpower_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{willpower}}} {{Roll=[[1d20 + @{ WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr"> WILL</span><span class="smallcaps" data-i18n="willpower-minus-first-three">lpower</span></button>
+                  <button class="labelButton" type="roll" name="roll_ WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{ WILL-check}}} {{Roll=[[1d20 + @{ WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr"> WILL</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_willpower" placeholder="3"/>
+                  <input class="attributeInput" type="text" name=" WILL_total"/>
                 </div>
-                <div class="saveCalc">
-                  <input class="attributeInput readOnly" type="text" name="attr_willpower_modifier" placeholder="0" readonly="readonly"/>
-                </div>
+                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_willpower_lvlOrArmor" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_lvlOrArmor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_willpower_classBonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_classBonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_willpower_abilityMod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_wisdom_modifier" placeholder="0" readonly="readonly"/><span class="abilityWatermark" data-i18n="wisdom-abbr">WIS</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_willpower_misc" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
             </div>
@@ -492,6 +485,10 @@
             <h3 class="headerLabel">Momentum</h3>
             <input class="momentumInput" type="number" name="momentum"/><span>/</span>
             <input class="momentumInput" type="number" name="momentum_max"/>
+          </div>
+          <div class="languages"> 
+            <h3 class="headerLabel" data-i18n="languages">LANGUAGES</h3>
+            <textarea class="languagesInput" name="attr_languages" data-i18n-placeholder="enter-known-languages-here" placeholder="Enter known languages here..."></textarea>
           </div>
         </div>
       </div>

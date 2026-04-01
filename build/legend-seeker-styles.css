@@ -1,5 +1,5 @@
 /* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Cinzel:wght@400..900|Cormorant+Unicase:wght@300;400;500;600;700|Metamorphous|Eagle+Lake|IM+Fell+English:ital@0;1|Lora:ital,wght@0,400..700;1,400..700|Smooch&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cinzel:wght@400..900|Cormorant+Garamond:ital,wght@0,300..700;1,300..700|Cormorant+Unicase:wght@300;400;500;600;700|Metamorphous|Eagle+Lake|IM+Fell+English:ital@0;1|Lora:ital,wght@0,400..700;1,400..700|Smooch&display=swap");
 .ui-dialog .charactersheet *,
 .ui-dialog .charactersheet *::after,
 .ui-dialog .charactersheet *::before {
@@ -10,6 +10,12 @@
   --parchment: #f2e7c9;
   --ink: #2b2418;
   --gold: #c9a44d;
+  --title: 'Cinzel';
+  --mainBody: 'Merriweather';
+  --mainBodyAlt: 'Cormorant Garamond';
+  --mainBodyAlt2: 'Lora';
+  --decorative: 'Eagle Lake';
+  --calculations: 'Smooch';
 }
 
 .ui-dialog {
@@ -28,11 +34,7 @@
 }
 
 .ui-dialog .ui-dialog-title {
-  font-familiy: "Merriweather";
-}
-
-.ui-dialog .characterlist {
-  font-family: "Cinzel";
+  font-family: var(--mainBody);
 }
 
 /*
@@ -79,6 +81,7 @@
   color: black;
   width: auto;
   padding: 3px;
+  border-bottom: 1px solid var(--ink);
 }
 
 /* End changing defaults */
@@ -359,7 +362,6 @@ label.buttonStyle {
   grid-column-start: attributes;
   grid-column-end: 4;
   grid-row-start: saves;
-  background-color: yellow;
 }
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina {
@@ -375,6 +377,7 @@ label.buttonStyle {
   align-content: flex-start;
   align-items: center;
   border: 0.25px solid var(--ink);
+  padding: 0 0 5px 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation {
   width: 100%;
@@ -385,10 +388,13 @@ label.buttonStyle {
   column-gap: 5px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol {
+  width: 16%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol > p {
   font-family: "Smooch", cursive;
   font-size: 1.5em;
   font-weight: bold;
-  width: 16%;
+  width: 100%;
   align-self: center;
   text-align: center;
   display: flex;
@@ -404,8 +410,15 @@ label.buttonStyle {
   justify-content: center;
   align-items: center;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef .xPointInput,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus .xPointInput,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold .xPointInput {
+  width: 100%;
+  text-align: center;
+}
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
   width: 52%;
+  margin: 5px 0 0 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus {
@@ -440,6 +453,13 @@ label.buttonStyle {
   justify-content: center;
   align-items: center;
   width: 45%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed .xPointInput,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .xPointInput,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb .xPointInput,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints .xPointInput {
+  width: 100%;
+  text-align: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel {
@@ -517,12 +537,6 @@ label.buttonStyle {
   background-color: black;
   color: silver;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
-  grid-column-start: attributes;
-  grid-column-end: 4;
-  grid-row-start: saves;
-  background-color: yellow;
-}
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol {
   display: flex;
@@ -578,7 +592,84 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum .momentumInput {
   border-bottom: 1px solid var(--ink);
   text-align: center;
-  width: 45%;
+  width: 43%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum > span {
+  font-family: var(--calculations);
+  font-size: 1.5em;
+}
+
+.languages {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 5px;
+}
+.languages .languagesInput {
+  width: 95%;
+  height: 105px;
+  padding: 5px;
+  border: 0.25px solid var(--ink);
+  resize: none;
+  background-color: transparent;
+  color: var(--ink);
+  font-family: var(--mainBody);
+}
+
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow {
+  display: inline-block;
+  width: 100%;
+  padding: 5px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveButton {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveTotal,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveCalc,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveLvlOrArmor,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveClassBonus,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveMisc {
+  display: inline-block;
+  width: 12.5%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .attributeInput {
+  width: 100%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .headerLabel {
+  width: 100%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .calcFormula {
+  font-size: 1.5em;
+  font-family: var(--calculations);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .labelButton {
+  font-family: var(--decorative);
+  text-transform: uppercase;
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
+  font-family: var(--decorative);
+  font-size: 1.2em;
+  color: var(--ink);
+  text-align: center;
+  opacity: 0.2;
+  position: absolute;
+  pointer-events: none;
+  left: 56%;
+  transform: translate(5px, 5px);
 }
 
 /*

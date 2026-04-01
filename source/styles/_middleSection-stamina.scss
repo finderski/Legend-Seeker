@@ -15,6 +15,7 @@
             align-content: flex-start;
             align-items: center;
             border: .25px solid var(--ink);
+            padding: 0 0 5px 0;
             .calculation {
                 width: 100%;
                 display: flex;
@@ -23,16 +24,19 @@
                 align-items: center;
                 column-gap: 5px;
                 .symbol {
-                    font-family: 'Smooch', cursive;
-                    font-size: 1.5em;
-                    font-weight: bold;
                     width: 16%;
-                    align-self: center;
-                    text-align: center;
-                    display: flex;
-                    justify-content: center;
-                    position: relative;
-                    top: 10px;
+                    > p {
+                        font-family: 'Smooch', cursive;
+                        font-size: 1.5em;
+                        font-weight: bold;
+                        width: 100%;
+                        align-self: center;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        position: relative;
+                        top: 10px;
+                    }
                 }
                 .fortDef,
                 .MiscBonus,
@@ -41,9 +45,14 @@
                     flex-flow: column nowrap;
                     justify-content: center;
                     align-items: center;
+                    .xPointInput {
+                        width: 100%;
+                        text-align: center;
+                    }
                 }
                 .damageThreshold {
                     width: 52%;
+                    margin: 5px 0 0 0;
                 }
                 .fortDef,
                 .MiscBonus {
@@ -79,6 +88,10 @@
                 justify-content: center;
                 align-items: center;
                 width: 45%;
+                .xPointInput {
+                    width: 100%;
+                    text-align: center;
+                }
             }
         }
         .stamina .fieldLabel,

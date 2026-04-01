@@ -50,5 +50,15 @@
   "normal" : "Normal",
   "condition-1-2" : "To all defenses, attacks, skill & ability checks.",
   "condition-6-10" : "To all defenses, attacks, skill & ability checks. Move at half speed.",
-  "unconscious-or-deceased" : "Unconscious or Deceased"
+  "unconscious-or-deceased" : "Unconscious or Deceased",
+  "defensive-saves" : "Defensive Saves",
+  "level-or-armor": "Level or Armor",
+  "class-bonus": "Class Bonus",
+  "ability-mod": "Ability Mod",
+  "miscellaneous-abbr": "Misc",
+  "fortitude-abbr": "FORT",
+  "reflex-abbr": "REF",
+  "willpower-abbr": "WILL",
+  "languages": "Languages",
+  "enter-known-languages-here": "Enter known languages here..."
 }
