@@ -126,6 +126,7 @@ input:not(:checked)+.isCarried::before {
     font-size: .85em;
 }
 
+/* Button Styling */
 .charsheet button.labelButton[type=roll]:before,
 .charsheet button.sendToChat[type=roll]:before,
 .charsheet button.whisperToChat[type=roll]:before {
@@ -159,6 +160,54 @@ input:not(:checked)+.isCarried::before {
     color: var(--parchment);
     cursor: pointer;
 }
+
+/* Chat Buttons */
+.chatButtons {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+.sendToChat {
+    width: 30px;
+}
+.whisperButton {
+    display: none;
+}
+.chatButtons:hover .whisperButton {
+    display: inline-block;
+    position: absolute;
+    left: 30px;
+    background-color: var(--parchment);
+
+}
+/* End Chat Buttons */
+
+.ui-dialog .charsheet .repcontrol .repcontrol_edit,
+.ui-dialog .charsheet .repcontrol .repcontrol_add {
+    background-image: none;
+    background-color: var(--ink);
+    color: var(--parchment);
+    border: .5px solid var(--gold);
+}
+
+.ui-dialog .charsheet .repcontainer .repitem .itemcontrol{
+    z-index: 99;
+}
+
+.ui-dialog .charsheet .repitem .itemcontrol .repcontrol_del {
+    font-family: 'Pictos';
+    background-color: var(--ink);
+    background-image: none;
+    color: var(--parchment);
+}
+
+.ui-dialog .charsheet .repitem .itemcontrol .repcontrol_move {
+    background-image: none;
+    background-color: var(--ink);
+    color: var(--parchment);
+}
+
+/* End Button Styling */
 
 .hidden {
     display: none;

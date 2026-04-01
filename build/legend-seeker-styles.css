@@ -127,6 +127,7 @@ input:not(:checked) + .isCarried::before {
   font-size: 0.85em;
 }
 
+/* Button Styling */
 .charsheet button.labelButton[type=roll]:before,
 .charsheet button.sendToChat[type=roll]:before,
 .charsheet button.whisperToChat[type=roll]:before {
@@ -161,6 +162,55 @@ input:not(:checked) + .isCarried::before {
   cursor: pointer;
 }
 
+/* Chat Buttons */
+.chatButtons {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sendToChat {
+  width: 30px;
+}
+
+.whisperButton {
+  display: none;
+}
+
+.chatButtons:hover .whisperButton {
+  display: inline-block;
+  position: absolute;
+  left: 30px;
+  background-color: var(--parchment);
+}
+
+/* End Chat Buttons */
+.ui-dialog .charsheet .repcontrol .repcontrol_edit,
+.ui-dialog .charsheet .repcontrol .repcontrol_add {
+  background-image: none;
+  background-color: var(--ink);
+  color: var(--parchment);
+  border: 0.5px solid var(--gold);
+}
+
+.ui-dialog .charsheet .repcontainer .repitem .itemcontrol {
+  z-index: 99;
+}
+
+.ui-dialog .charsheet .repitem .itemcontrol .repcontrol_del {
+  font-family: "Pictos";
+  background-color: var(--ink);
+  background-image: none;
+  color: var(--parchment);
+}
+
+.ui-dialog .charsheet .repitem .itemcontrol .repcontrol_move {
+  background-image: none;
+  background-color: var(--ink);
+  color: var(--parchment);
+}
+
+/* End Button Styling */
 .hidden {
   display: none;
 }
@@ -713,41 +763,31 @@ label.buttonStyle {
   font-family: "Pictos";
   font-size: 1.75em;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent {
+.ui-dialog .charactersheet .frontPage .bottomSection .talent,
+.ui-dialog .charactersheet .frontPage .bottomSection .edge {
   display: flex;
   flex-flow: row wrap;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .chatButtons {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .sendToChat {
-  width: 30px;
-}
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .whisperButton {
-  display: none;
-}
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .chatButtons:hover .whisperButton {
-  display: inline-block;
-  position: absolute;
-  left: 30px;
-  background-color: var(--parchment);
-}
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .talentName {
-  width: 238px;
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .talentName,
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .edgeName,
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .talentName,
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .edgeName {
+  width: 183px;
   margin: 0 0 3px 5px;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .fieldLabelAbove {
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .fieldLabelAbove,
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .fieldLabelAbove {
   font-family: "Cinzel", serif;
   font-size: 0.6em;
   font-weight: bold;
   width: 100%;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .textField {
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .textField,
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .textField {
   width: 100%;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .detailsInput {
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .detailsInput,
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .detailsInput {
   background-color: var(--parchment);
   color: var(--ink);
   font-family: var(--mainBody);
@@ -757,6 +797,15 @@ label.buttonStyle {
   max-height: 150px;
   height: 6rem;
   min-height: 3rem;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .edge {
+  border-left: 1px solid var(--ink);
+  border-right: 1px solid var(--ink);
+  padding: 0 3px;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .pageNumber {
+  width: 47px;
+  margin: 0 0 3px 5px;
 }
 
 /*

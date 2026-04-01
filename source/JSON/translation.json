@@ -65,5 +65,8 @@
   "talents": "Talents",
   "talent": "Talent",
   "talent-details": "Talent Details...",
-  "edges": "Edges"
+  "edges": "Edges",
+  "page-number-abbr": "Pg. #",
+  "edge": "Edge",
+  "edge-details": "Edge Details..."
 }

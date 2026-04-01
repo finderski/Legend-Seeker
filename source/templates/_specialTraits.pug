@@ -1,1 +1,16 @@
 h3(class='headerLabel', data-i18n='special-traits') SPECIAL TRAITS
+fieldset(class="repeating_edges")
+    .edge
+        .chatButtons
+            button(class="sendToChat", type="roll" name="roll_edge_to_chat", value="/em has the edge: @{edge_name} (@{edge_page}), which does @{edge_details}", data-18n-title="send-to-chat")
+                span.iconButton q 
+            .whisperButton 
+                button(class="whisperToChat", type="roll" name="roll_whisper_edge", value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}", data-i18n-title="whisper-to-chat")
+                    span.iconButton w
+        .edgeName 
+            label(class="fieldLabelAbove", data-i18n='edge') Misc Bonus
+            input(class="textField", type="text", name="attr_edge_name", value="", data-i18n-placeholder="edge")
+        .pageNumber 
+            label(class="fieldLabelAbove", data-i18n='page-number-abbr') Pg. #
+            input(class="textField", type="text", name="attr_edge_page", value="")
+        textarea(class="detailsInput", name="attr_edge_details", data-i18n-placeholder="edge-details")

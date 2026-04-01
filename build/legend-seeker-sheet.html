@@ -502,14 +502,18 @@
         <fieldset class="repeating_talents">
           <div class="talent">
             <div class="chatButtons">
-              <button class="sendToChat" type="roll" name="roll_talent_to_chat" value="" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
+              <button class="sendToChat" type="roll" name="roll_talent_to_chat" value="/em has the Talent: @{talent_name} (@{talent_page}), which does @{talent_details}" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_talent" value="" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_talent" value="/w gm @{character_name} has the Talent: @{talent_name}, which does @{talent_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
               </div>
             </div>
             <div class="talentName"> 
               <label class="fieldLabelAbove" data-i18n="talent">Misc Bonus</label>
               <input class="textField" type="text" name="attr_talent_name" value="" data-i18n-placeholder="talent"/>
+            </div>
+            <div class="pageNumber"> 
+              <label class="fieldLabelAbove" data-i18n="page-number-abbr">Pg. #</label>
+              <input class="textField" type="text" name="attr_talent_page" value=""/>
             </div>
             <textarea class="detailsInput" name="attr_talent_details" data-i18n-placeholder="talent-details"></textarea>
           </div>
@@ -518,10 +522,48 @@
       <div class="edges"> 
         <!-- Edges Section-->
         <h3 class="headerLabel" data-i18n="edges">EDGES</h3>
+        <fieldset class="repeating_edges">
+          <div class="edge">
+            <div class="chatButtons">
+              <button class="sendToChat" type="roll" name="roll_edge_to_chat" value="/em has the edge: @{edge_name} (@{edge_page}), which does @{edge_details}" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+              </div>
+            </div>
+            <div class="edgeName"> 
+              <label class="fieldLabelAbove" data-i18n="edge">Misc Bonus</label>
+              <input class="textField" type="text" name="attr_edge_name" value="" data-i18n-placeholder="edge"/>
+            </div>
+            <div class="pageNumber"> 
+              <label class="fieldLabelAbove" data-i18n="page-number-abbr">Pg. #</label>
+              <input class="textField" type="text" name="attr_edge_page" value=""/>
+            </div>
+            <textarea class="detailsInput" name="attr_edge_details" data-i18n-placeholder="edge-details"></textarea>
+          </div>
+        </fieldset>
       </div>
       <div class="traits"> 
         <!--Special Traits Section-->
         <h3 class="headerLabel" data-i18n="special-traits">SPECIAL TRAITS</h3>
+        <fieldset class="repeating_edges">
+          <div class="edge">
+            <div class="chatButtons">
+              <button class="sendToChat" type="roll" name="roll_edge_to_chat" value="/em has the edge: @{edge_name} (@{edge_page}), which does @{edge_details}" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+              </div>
+            </div>
+            <div class="edgeName"> 
+              <label class="fieldLabelAbove" data-i18n="edge">Misc Bonus</label>
+              <input class="textField" type="text" name="attr_edge_name" value="" data-i18n-placeholder="edge"/>
+            </div>
+            <div class="pageNumber"> 
+              <label class="fieldLabelAbove" data-i18n="page-number-abbr">Pg. #</label>
+              <input class="textField" type="text" name="attr_edge_page" value=""/>
+            </div>
+            <textarea class="detailsInput" name="attr_edge_details" data-i18n-placeholder="edge-details"></textarea>
+          </div>
+        </fieldset>
       </div>
     </div>
   </div>

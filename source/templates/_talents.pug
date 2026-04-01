@@ -2,12 +2,15 @@ h3(class='headerLabel', data-i18n='talents') TALENTS
 fieldset(class="repeating_talents")
     .talent
         .chatButtons
-            button(class="sendToChat", type="roll" name="roll_talent_to_chat", value="", data-18n-title="send-to-chat")
+            button(class="sendToChat", type="roll" name="roll_talent_to_chat", value="/em has the Talent: @{talent_name} (@{talent_page}), which does @{talent_details}", data-18n-title="send-to-chat")
                 span.iconButton q 
             .whisperButton 
-                button(class="whisperToChat", type="roll" name="roll_whisper_talent", value="", data-i18n-title="whisper-to-chat")
+                button(class="whisperToChat", type="roll" name="roll_whisper_talent", value="/w gm @{character_name} has the Talent: @{talent_name}, which does @{talent_details}", data-i18n-title="whisper-to-chat")
                     span.iconButton w
         .talentName 
             label(class="fieldLabelAbove", data-i18n='talent') Misc Bonus
             input(class="textField", type="text", name="attr_talent_name", value="", data-i18n-placeholder="talent")
+        .pageNumber 
+            label(class="fieldLabelAbove", data-i18n='page-number-abbr') Pg. #
+            input(class="textField", type="text", name="attr_talent_page", value="")
         textarea(class="detailsInput", name="attr_talent_details", data-i18n-placeholder="talent-details")
