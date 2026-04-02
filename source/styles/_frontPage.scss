@@ -1,6 +1,14 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage {
+.frontPage,
+.backPage,
+.settings {
+    display: none;
+}
+
+.selectedTab[value="1"] ~ .frontPage,
+.selectedTab[value="2"] ~ .backPage,
+.selectedTab[value="3"] ~ .settings {
     @include sheet-scope {
         display: flex;
         flex-direction: column;

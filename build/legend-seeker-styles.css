@@ -18,6 +18,14 @@
   --calculations: 'Smooch';
 }
 
+body.sheet-darkmode,
+body.sheet-darkmode .ui-dialog,
+body.sheet-darkmode .ui-dialog .charactersheet {
+  --parchment: #000;
+  --ink: #C0C0C0;
+  --gold: #A9A9A9;
+}
+
 .ui-dialog {
   background-color: var(--parchment);
   color: var(--ink);
@@ -31,6 +39,17 @@
   background-color: var(--ink);
   color: var(--parchment);
   text-decoration-color: var(--gold);
+}
+
+.ui-dialog .nav-tabs {
+  border-bottom: 1px solid var(--gold);
+}
+
+.ui-dialog .nav-tabs > li:not(:active) > a:hover,
+.ui-dialog .nav-tabs > li:not(:active) > a:focus {
+  background-color: var(--gold);
+  color: var(--ink);
+  text-decoration-color: var(--parchment);
 }
 
 .ui-dialog .ui-dialog-title {
@@ -230,12 +249,27 @@ label.buttonStyle {
   max-width: 840px;
 }
 
-.ui-dialog .charactersheet .buttonbar {
+.buttonbar {
   display: flex;
   margin-bottom: 20px;
 }
 
-.ui-dialog .charactersheet .frontPage {
+.maindiv .selectedTab[value="1"] + .buttonbar > button[type=action].characterSheet,
+.maindiv .selectedTab[value="2"] + .buttonbar > button[type=action].resourcesSheet,
+.maindiv .selectedTab[value="3"] + .buttonbar > button[type=action].settingsSheet {
+  background-color: var(--ink);
+  color: var(--parchment);
+}
+
+.frontPage,
+.backPage,
+.settings {
+  display: none;
+}
+
+.ui-dialog .charactersheet .selectedTab[value="1"] ~ .frontPage,
+.ui-dialog .charactersheet .selectedTab[value="2"] ~ .backPage,
+.ui-dialog .charactersheet .selectedTab[value="3"] ~ .settings {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -343,18 +377,6 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .headerLabel,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput {
   text-align: center;
-}
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
-  /* Moved to mainStyles.scss
-  h3.headerLabel {
-      font-family: 'Cinzel', serif;
-      font-size: 1em;
-      font-weight: bold;
-      text-align: center;
-      margin: 0;
-      width: 100%;
-  }
-  */
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow {
   padding: 0 0 15px 0;
@@ -599,21 +621,21 @@ label.buttonStyle {
   margin: 0;
   padding: 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [[Normal]]"] ~ .zero,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-1 [[Condition: -1]]"] ~ .minusOne,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [[Condition: -2]]"] ~ .minusTwo,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [[Condition: -6]]"] ~ .minusSix,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [[Condition: -10]]"] ~ .minusTen,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [[Unconscious or Deceased]]"] ~ .uod {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Normal]"] ~ .zero,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Unconscious or Deceased]"] ~ .uod {
   background-color: var(--ink);
   color: var(--parchment);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [[Normal]]"] ~ .zero .penalty,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-1 [[Condition: -1]]"] ~ .minusOne .penalty,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [[Condition: -2]]"] ~ .minusTwo .penalty,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [[Condition: -6]]"] ~ .minusSix .penalty,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [[Condition: -10]]"] ~ .minusTen .penalty,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [[Unconscious or Deceased]]"] ~ .uod .penalty {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Normal]"] ~ .zero .penalty,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne .penalty,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo .penalty,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Unconscious or Deceased]"] ~ .uod .penalty {
   border-color: var(--parchment);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition {
@@ -764,30 +786,39 @@ label.buttonStyle {
   font-size: 1.75em;
 }
 .ui-dialog .charactersheet .frontPage .bottomSection .talent,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge {
+.ui-dialog .charactersheet .frontPage .bottomSection .edge,
+.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait {
   display: flex;
   flex-flow: row wrap;
 }
 .ui-dialog .charactersheet .frontPage .bottomSection .talent .talentName,
 .ui-dialog .charactersheet .frontPage .bottomSection .talent .edgeName,
+.ui-dialog .charactersheet .frontPage .bottomSection .talent .specialTraitName,
 .ui-dialog .charactersheet .frontPage .bottomSection .edge .talentName,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .edgeName {
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .edgeName,
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .specialTraitName,
+.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .talentName,
+.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .edgeName,
+.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .specialTraitName {
   width: 183px;
   margin: 0 0 3px 5px;
 }
 .ui-dialog .charactersheet .frontPage .bottomSection .talent .fieldLabelAbove,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .fieldLabelAbove {
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .fieldLabelAbove,
+.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .fieldLabelAbove {
   font-family: "Cinzel", serif;
   font-size: 0.6em;
   font-weight: bold;
   width: 100%;
 }
 .ui-dialog .charactersheet .frontPage .bottomSection .talent .textField,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .textField {
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .textField,
+.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .textField {
   width: 100%;
 }
 .ui-dialog .charactersheet .frontPage .bottomSection .talent .detailsInput,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .detailsInput {
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .detailsInput,
+.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .detailsInput {
   background-color: var(--parchment);
   color: var(--ink);
   font-family: var(--mainBody);
@@ -802,6 +833,9 @@ label.buttonStyle {
   border-left: 1px solid var(--ink);
   border-right: 1px solid var(--ink);
   padding: 0 3px;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .edge .pageNumber {
+  width: 45px;
 }
 .ui-dialog .charactersheet .frontPage .bottomSection .pageNumber {
   width: 47px;

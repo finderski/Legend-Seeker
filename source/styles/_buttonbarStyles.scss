@@ -1,8 +1,13 @@
 @use './mixins/sheet-scope' as *;
 
 .buttonbar {
-    @include sheet-scope{
-        display: flex;
-        margin-bottom: 20px;
-    }
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.maindiv .selectedTab[value="1"] + .buttonbar > button[type="action"].characterSheet,
+.maindiv .selectedTab[value="2"] + .buttonbar > button[type="action"].resourcesSheet,
+.maindiv .selectedTab[value="3"] + .buttonbar > button[type="action"].settingsSheet {
+        background-color: var(--ink);
+        color: var(--parchment);
 }

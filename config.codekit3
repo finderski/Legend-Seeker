@@ -32,11 +32,50 @@
       "oAP" : "\/build\/build",
       "oF" : 0
     },
+    "\/images\/Armor_Check_Icon.png" : {
+      "ft" : 32768,
+      "iS" : 20656,
+      "oA" : 0,
+      "oAP" : "\/build\/images\/Armor_Check_Icon.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 1,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/images\/lengend-seeker-logo.png" : {
       "ft" : 32768,
       "iS" : 90329,
       "oA" : 0,
       "oAP" : "\/build\/images\/lengend-seeker-logo.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 1,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/images\/Some_Training_Required.png" : {
+      "ft" : 32768,
+      "iS" : 15018,
+      "oA" : 0,
+      "oAP" : "\/build\/images\/Some_Training_Required.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 1,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/images\/Training_Required.png" : {
+      "ft" : 32768,
+      "iS" : 11425,
+      "oA" : 0,
+      "oAP" : "\/build\/images\/Training_Required.png",
       "oF" : 0,
       "oIPL" : 0,
       "opt" : 1,
@@ -457,6 +496,16 @@
       "oF" : 0,
       "oS" : 1
     },
+    "\/source\/templates\/_skills.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_skills.html",
+      "oF" : 0,
+      "oS" : 1
+    },
     "\/source\/templates\/_specialTraits.pug" : {
       "cB" : 0,
       "cOD" : 1,
@@ -514,6 +563,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/mixins\/_mixin_corruption.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/mixins\/_mixin_skills.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/mixins\/_mixin_skills.html",
       "oF" : 0,
       "oS" : 1
     }

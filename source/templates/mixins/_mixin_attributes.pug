@@ -6,7 +6,7 @@ mixin attribute(attr)
     
       .attribute-row
         .attribute-field
-            button(class="labelButton", type="roll", name=`roll_${longName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${longName}}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
+            button(class="labelButton", type="roll", name=`roll_${longName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${longName}}}} {{Roll=[[1d20 + @{${longName}_modifier}[Attribute Modifier]+@{condition}]]}}`)
                 span(class="allcaps", data-i18n=translationLabel) #{shortName}
                 span(class="smallcaps", data-i18n=`${longName}-minus-first-three`) #{lastPart}
         .score-field

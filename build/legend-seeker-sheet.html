@@ -1,7 +1,7 @@
 
 <!-- Necessary Mixins-->
 <div class="maindiv">
-  <h1 class="sheetTitle" data-i18n="character-score-sheet">Character Score Sheet</h1>
+  <!--h1(class='sheetTitle', data-i18n='character-score-sheet') Character Score Sheet-->
   <!-- Hidden inputs for character sheet functionality-->
   <input class="selectedTab" type="hidden" name="attr_sheetTab" value="1"/>
   <div class="buttonbar"> 
@@ -12,11 +12,11 @@
     3 = Settings
     -->
     <button class="topButton characterSheet" type="action" name="act_frontsheet_1" data-i18n-title="character">Character</button>
-    <button class="topButton noteSheet" type="action" name="act_backsheet_2" data-i18n-title="resources">Resources</button>
+    <button class="topButton resourcesSheet" type="action" name="act_backsheet_2" data-i18n-title="resources">Resources</button>
     <button class="topButton settingsSheet" type="action" name="act_settings_3" data-i18n-title="settings">Settings</button>
   </div>
-  <!-- input(type='hidden', class='selectedTab', name='attr_sheetTab', value="1")-->
   <div class="frontPage">
+    <h1 class="sheetTitle" data-i18n="character-score-sheet">Character Score Sheet</h1>
     <div class="topSection">
       <div class="demographics"> 
         <!-- Character Sheet (including NPC sheet)-->
@@ -85,7 +85,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_strength_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{strength}}} {{Roll=[[1d20 + @{STR_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
+                  <button class="labelButton" type="roll" name="roll_strength_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{strength}}} {{Roll=[[1d20 + @{strength_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_strength" placeholder="3"/>
@@ -96,7 +96,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_dexterity_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{dexterity}}} {{Roll=[[1d20 + @{DEX_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
+                  <button class="labelButton" type="roll" name="roll_dexterity_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{dexterity}}} {{Roll=[[1d20 + @{dexterity_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
@@ -107,7 +107,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_constitution_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{constitution}}} {{Roll=[[1d20 + @{CON_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
+                  <button class="labelButton" type="roll" name="roll_constitution_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{constitution}}} {{Roll=[[1d20 + @{constitution_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_constitution" placeholder="3"/>
@@ -118,7 +118,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_intelligence_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{intelligence}}} {{Roll=[[1d20 + @{INT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
+                  <button class="labelButton" type="roll" name="roll_intelligence_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{intelligence}}} {{Roll=[[1d20 + @{intelligence_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_intelligence" placeholder="3"/>
@@ -129,7 +129,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_wisdom_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{wisdom}}} {{Roll=[[1d20 + @{WIS_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
+                  <button class="labelButton" type="roll" name="roll_wisdom_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{wisdom}}} {{Roll=[[1d20 + @{wisdom_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_wisdom" placeholder="3"/>
@@ -140,7 +140,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_charisma_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{charisma}}} {{Roll=[[1d20 + @{CHA_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
+                  <button class="labelButton" type="roll" name="roll_charisma_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{charisma}}} {{Roll=[[1d20 + @{charisma_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_charisma" placeholder="3"/>
@@ -433,11 +433,11 @@
         <div class="secondCol">
           <h3 class="headerLabel">CONDITIONS</h3>
           <!-- Conditions Section-->
-          <input class="conditionToggle" type="hidden" name="attr_condition_selected" value="0 [[Normal]]"/>
+          <input class="conditionToggle" type="hidden" name="attr_condition_selected" value="0 [Normal]"/>
           <label class="condition zero"> 
             <div class="normal" data-i18n="normal">Normal </div>
             <div class="conditionSelector"> 
-              <input class="conditionRadio" type="radio" name="attr_condition" value="0 [[Normal]]" checked="checked"/>
+              <input class="conditionRadio" type="radio" name="attr_condition" value="0 [Normal]" checked="checked"/>
             </div>
           </label>
           <label class="condition minusOne">
@@ -446,7 +446,7 @@
               <p data-i18n="condition-1-2">To all defenses, attacks, skill & ability checks.</p>
             </div>
             <div class="conditionSelector"> 
-              <input class="conditionRadio" type="radio" name="attr_condition" value="-1 [[Condition: -1]]"/>
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-1 [Condition: -1]"/>
             </div>
           </label>
           <label class="condition minusTwo"> 
@@ -455,7 +455,7 @@
               <p data-i18n="condition-1-2">To all defenses, attacks, skill & ability checks.</p>
             </div>
             <div class="conditionSelector"> 
-              <input class="conditionRadio" type="radio" name="attr_condition" value="-2 [[Condition: -2]]"/>
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-2 [Condition: -2]"/>
             </div>
           </label>
           <label class="condition minusSix"> 
@@ -464,7 +464,7 @@
               <p data-i18n="condition-6-10">To all defenses, attacks, skill & ability checks. Move at half speed.</p>
             </div>
             <div class="conditionSelector"> 
-              <input class="conditionRadio" type="radio" name="attr_condition" value="-6 [[Condition: -6]]"/>
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-6 [Condition: -6]"/>
             </div>
           </label>
           <label class="condition minusTen"> 
@@ -473,13 +473,13 @@
               <p data-i18n="condition-6-10">To all defenses, attacks, skill & ability checks. Move at half speed.</p>
             </div>
             <div class="conditionSelector"> 
-              <input class="conditionRadio" type="radio" name="attr_condition" value="-10 [[Condition: -10]]"/>
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-10 [Condition: -10]"/>
             </div>
           </label>
           <label class="condition uod">
             <div class="out" data-i18n="unconscious-or-deceased">Unconscious or Deceased </div>
             <div class="conditionSelector"> 
-              <input class="conditionRadio" type="radio" name="attr_condition" value="0 [[Unconscious or Deceased]]"/>
+              <input class="conditionRadio" type="radio" name="attr_condition" value="0 [Unconscious or Deceased]"/>
             </div>
           </label>
           <div class="momentum"> 
@@ -545,29 +545,34 @@
       <div class="traits"> 
         <!--Special Traits Section-->
         <h3 class="headerLabel" data-i18n="special-traits">SPECIAL TRAITS</h3>
-        <fieldset class="repeating_edges">
-          <div class="edge">
+        <fieldset class="repeating_special-traits">
+          <div class="specialTrait">
             <div class="chatButtons">
-              <button class="sendToChat" type="roll" name="roll_edge_to_chat" value="/em has the edge: @{edge_name} (@{edge_page}), which does @{edge_details}" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
+              <button class="sendToChat" type="roll" name="roll_special_trait_to_chat" value="/em has the : @{special_trait_name} (@{special_trait_page}), which does @{special_trait_details}" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_special_trait" value="/w gm @{character_name} has the special_trait: @{special_trait_name}, which does @{special_trait_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
               </div>
             </div>
-            <div class="edgeName"> 
-              <label class="fieldLabelAbove" data-i18n="edge">Misc Bonus</label>
-              <input class="textField" type="text" name="attr_edge_name" value="" data-i18n-placeholder="edge"/>
+            <div class="specialTraitName"> 
+              <label class="fieldLabelAbove" data-i18n="special-trait">Misc Bonus</label>
+              <input class="textField" type="text" name="attr_special_trait_name" value="" data-i18n-placeholder="special-trait"/>
             </div>
             <div class="pageNumber"> 
               <label class="fieldLabelAbove" data-i18n="page-number-abbr">Pg. #</label>
-              <input class="textField" type="text" name="attr_edge_page" value=""/>
+              <input class="textField" type="text" name="attr_special_trait_page" value=""/>
             </div>
-            <textarea class="detailsInput" name="attr_edge_details" data-i18n-placeholder="edge-details"></textarea>
+            <textarea class="detailsInput" name="attr_special_trait_details" data-i18n-placeholder="special-trait-details"></textarea>
           </div>
         </fieldset>
       </div>
     </div>
   </div>
-  <div class="backPage"></div>
+  <div class="backPage">
+    <h1 class="headerLabel">Resources Placeholder</h1>
+  </div>
+  <div class="settings">
+    <h1 class="headerLabel">Settings Placeholder</h1>
+  </div>
 </div>
 <!--Rolltemplates--><rolltemplate class="sheet-rolltemplate-roll">
     <div class="sheet-rolltemplate-header">
@@ -826,7 +831,9 @@ on('change:condition', function(eventInfo) {
     const setattrs = {};
     setattrs['condition_selected'] = conditionValue;
     setAttrs(setattrs);
-});/* ---- Button Bar Clicks ---- */
+});
+
+  /* ---- Button Bar Clicks ---- */
 const buttonlist = [
     'frontsheet_1',
     'backsheet_2',

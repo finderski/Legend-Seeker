@@ -68,5 +68,7 @@
   "edges": "Edges",
   "page-number-abbr": "Pg. #",
   "edge": "Edge",
-  "edge-details": "Edge Details..."
+  "edge-details": "Edge Details...",
+  "special-trait": "Special Trait",
+  "special-trait-details": "Special Trait Details..."
 }

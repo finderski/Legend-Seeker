@@ -148,3 +148,4 @@ on('change:condition', function(eventInfo) {
     setattrs['condition_selected'] = conditionValue;
     setAttrs(setattrs);
 });
+

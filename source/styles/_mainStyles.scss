@@ -16,6 +16,12 @@
     --calculations: 'Smooch';
 }
 
+body.sheet-darkmode {
+    --parchment: #000;
+    --ink: #C0C0C0;
+    --gold: #A9A9A9;
+}
+
 .ui-dialog {
     background-color: var(--parchment);
     color: var(--ink);
@@ -29,6 +35,17 @@
     background-color: var(--ink);
     color: var(--parchment);
     text-decoration-color: var(--gold);
+}
+
+.ui-dialog .nav-tabs {
+    border-bottom: 1px solid var(--gold);
+}
+
+.ui-dialog .nav-tabs > li:not(:active) > a:hover,
+.ui-dialog .nav-tabs > li:not(:active) > a:focus {
+    background-color: var(--gold);
+    color: var(--ink);
+    text-decoration-color: var(--parchment);
 }
 
 .ui-dialog .ui-dialog-title {
