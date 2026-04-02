@@ -3,7 +3,7 @@
 
 @use './styles/mainStyles';
 @use './styles/buttonbarStyles';
-@use './styles/frontPage';
+@use './styles/tabSetup';
 @use './styles/topSection';
 @use './styles/demographics';
 @use './styles/logo';
@@ -16,6 +16,7 @@
 @use './styles/middleSection-languages';
 @use './styles/middleSection-saves';
 @use './styles/bottomSection';
+@use './styles/equipmentAndSkills';
 
 /*
 @use './styles/demographicStyles';

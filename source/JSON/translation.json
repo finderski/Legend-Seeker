@@ -70,5 +70,13 @@
   "edge": "Edge",
   "edge-details": "Edge Details...",
   "special-trait": "Special Trait",
-  "special-trait-details": "Special Trait Details..."
+  "special-trait-details": "Special Trait Details...",
+  "skills": "Skills",
+  "skill-bonus": "Skill Bonus",
+  "half-level": "Half-Level",
+  "ability-modifier-abbr": "Ability Mod",
+  "trained": "Trained",
+  "skill-focus": "Skill Focus",
+  "miscellaneous-modifier-abbr": "Misc Mod",
+  "gather-information": "Gather Information"
 }

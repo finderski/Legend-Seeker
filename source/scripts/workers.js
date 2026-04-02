@@ -149,3 +149,9 @@ on('change:condition', function(eventInfo) {
     setAttrs(setattrs);
 });
 
+on('change:level', function(eventInfo) {
+    const halfLevelValue = Math.floor((parseInt(eventInfo.newValue)/2 || 0));
+    const setattrs = {};
+    setattrs['half-level'] = halfLevelValue;
+    setAttrs(setattrs);
+});

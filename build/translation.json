@@ -1,4 +1,5 @@
 {
+  "miscellaneous-modifier-abbr" : "Misc Mod",
   "score" : "Score",
   "initiative" : "Initiative",
   "class-bonus" : "Class Bonus",
@@ -6,6 +7,7 @@
   "misc-bonus" : "Misc Bonus",
   "fortitude-abbr" : "FORT",
   "deity" : "Deity",
+  "skills" : "Skills",
   "class" : "Class",
   "wisdom-minus-first-three" : "dom",
   "weight" : "Weight",
@@ -14,6 +16,7 @@
   "page-number-abbr" : "Pg. #",
   "modifier" : "Modifier",
   "condition-1-2" : "To all defenses, attacks, skill & ability checks.",
+  "ability-modifier-abbr" : "Ability Mod",
   "fortitude-defense" : "Fort Defense",
   "edges" : "Edges",
   "edge" : "Edge",
@@ -47,8 +50,10 @@
   "dexterity-minus-first-three" : "terity",
   "corruption" : "Corruption",
   "intelligence" : "Intelligence",
+  "skill-bonus" : "Skill Bonus",
   "talent" : "Talent",
   "age" : "Age",
+  "gather-information" : "Gather Information",
   "defensive-saves" : "Defensive Saves",
   "willpower-abbr" : "WILL",
   "condition-6-10" : "To all defenses, attacks, skill & ability checks. Move at half speed.",
@@ -57,6 +62,8 @@
   "dexterity" : "Dexterity",
   "unconscious-or-deceased" : "Unconscious or Deceased",
   "level-or-armor" : "Level or Armor",
+  "trained" : "Trained",
+  "skill-focus" : "Skill Focus",
   "level" : "Level",
   "front-sheet" : "Front Sheet",
   "gender" : "Gender",
@@ -70,5 +77,6 @@
   "edge-details" : "Edge Details...",
   "wisdom-abbr" : "WIS",
   "current" : "Current",
-  "talents" : "Talents"
+  "talents" : "Talents",
+  "half-level" : "Half-Level"
 }

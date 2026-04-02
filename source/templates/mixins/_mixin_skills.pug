@@ -1,14 +1,40 @@
 mixin skills(skill)
     // ['skill name', 'attribute', 'na|some|trained', 'yes|no']
     - const [skillName, attributeName, training, armorCheck] = skill;
-    - const fieldName = `attr_${skillName}_bonus`;
-    - const lastPart = longName.slice(3);
+    - const fieldName = `attr_${skillName}`;
+    - const capitalizeWords = str => str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    - const capitalizedSkillName = capitalizeWords(skillName);
     
-      .attribute-row
-        .attribute-field
-            button(class="labelButton", type="roll", name=`roll_${skillName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_modifier}[Attribute Modifier]+@{condition}]]}}`)
-                span(class="allcaps", data-i18n=skillName) #{skillName}
-        .skill-bonus
-            input(class="attributeInput", type="text", name=fieldName, placeholder="3")
-        .modifier-field
-            input(class="attributeInput readOnly", type="text", name=`${fieldName}_modifier`, placeholder="0", readonly)
+      .skill
+        .skillName
+            .chatButtons
+                button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}]]}}`)
+                    if training === 'trained'
+                        span
+                            img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png', data-i18n-alt="trained-skill")
+                    else if training === 'some'
+                        span
+                            img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png', data-i18n-alt="some-training-required")
+                    span(class="allcaps", data-i18n=skillName) 
+                        | #{capitalizedSkillName}
+                    if armorCheck === 'yes'
+                        span
+                            img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png', data-i18n-alt="armor-check-penalty-applies")
+                .whisperButton 
+                    button(class="whisperToChat", type="roll" name="roll_whisper_edge", value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}", data-i18n-title="whisper-to-chat")
+                    span.iconButton w
+        .equals
+        .halfLevel
+            span(class="attributeInput readOnly", type="text", name=`attr_half-level`)
+        .addition
+        .abilityMod
+            span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
+        .addition
+        .trained
+            input(class="attributeInput", type="text", name=`attr_${skillName}_trained`, value="0")
+        .addition
+        .skillFocus
+            input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")
+        .addition
+        .miscMod
+            input(class="attributeInput", type="text", name=`attr_${skillName}_misc`, value="0")

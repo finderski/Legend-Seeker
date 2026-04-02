@@ -1,11 +1,24 @@
 h2.headerLabel(data-i18n='skills') Skills
-.headerRow 
-    .attribute-field
-        label(class="headerLabel", data-i18n='core-attributes') Core Attributes
-    .score-field
-        label(class="headerLabel", data-i18n='score') Score
-    .modifier-field
-        label(class="headerLabel", data-i18n='modifier') Modifier
+.skill
+    .skillName &nbsp;
+    .skillBonus 
+        label(class="headerLabel", data-i18n='skill-bonus') Skill Bonus
+    .equals &nbsp;
+    .halfLevel 
+        label(class="headerLabel", data-i18n='half-level') Half Level
+    .addition 
+    .abilityMod 
+        label(class="headerLabel", data-i18n='ability-modifier-abbr') Ability Mod
+    .addition 
+    .trained 
+        label(class="headerLabel", data-i18n='trained') Trained
+    .addition 
+    .skillFocus 
+        label(class="headerLabel", data-i18n='skill-focus') Skill Focus
+    .addition 
+    .miscMod 
+        label(class="headerLabel", data-i18n='miscellaneous-modifier-abbr') Misc Mod
+
 -
     // list of skills with associated attribute ['skill name', 'attribute', 'training:na|some|trained', 'armorCheck:yes|no']
     const skillList = [['acrobatics','dexterity','some','yes'],['climb', 'strength','na','yes'],['craft', 'wisdom','na','no'],['deception', 'charisma','some','no'],  ['endurance', 'constitution','na','yes'],['gather-information','charisma','na','no'],['initiative','dexterity','na','yes'],['invoke-arcana','intelligence','trained','no'],['jump','strength','na','yes'],['lore','intelligence','na','no'],['notice','wisdom','na','yes'],['persuasion','charisma','na','no'],['ride','dexterity','na','yes'],['sense-motive','wisdom','na','no'],['stealth','dexterity','na','yes'],['survival','wisdom','na','no'],['swim','strength','na','yes'],['tinkering','intelligence','trained','yes'],['treat-wounds','wisdom','some','no'],['mana-tap','charisma','trained','no']];

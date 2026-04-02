@@ -18,9 +18,7 @@
   --calculations: 'Smooch';
 }
 
-body.sheet-darkmode,
-body.sheet-darkmode .ui-dialog,
-body.sheet-darkmode .ui-dialog .charactersheet {
+body.sheet-darkmode {
   --parchment: #000;
   --ink: #C0C0C0;
   --gold: #A9A9A9;
@@ -840,6 +838,56 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .bottomSection .pageNumber {
   width: 47px;
   margin: 0 0 3px 5px;
+}
+
+.ui-dialog .charactersheet .backPage .topContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 10px;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment {
+  width: 33%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills {
+  width: 67%;
+  display: flex;
+  flex-flow: column;
+  column-gap: 10px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName {
+  width: 40%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillBonus,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .miscMod {
+  width: 20%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals {
+  width: 20%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals:before {
+  content: "=";
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition {
+  width: 20%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition:before {
+  content: "+";
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition {
+  font-family: "Smooch";
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 /*

@@ -214,7 +214,7 @@
       "oS" : 1,
       "pg" : 0
     },
-    "\/source\/styles\/_frontPage.scss" : {
+    "\/source\/styles\/_equipmentAndSkills.scss" : {
       "aP" : 0,
       "bl" : 0,
       "co" : 0,
@@ -222,7 +222,7 @@
       "ft" : 4,
       "ma" : 0,
       "oA" : 1,
-      "oAP" : "\/build\/styles\/_frontPage.css",
+      "oAP" : "\/build\/styles\/_equipmentAndSkills.css",
       "oF" : 0,
       "oS" : 1,
       "pg" : 0
@@ -366,6 +366,19 @@
       "ma" : 0,
       "oA" : 1,
       "oAP" : "\/build\/styles\/_middleSection.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
+    "\/source\/styles\/_tabSetup.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_tabSetup.css",
       "oF" : 0,
       "oS" : 1,
       "pg" : 0

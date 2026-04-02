@@ -1,0 +1,53 @@
+@use './mixins/sheet-scope' as *;
+
+.backPage .topContainer {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: row nowrap;
+        column-gap: 10px;
+        width: 100%;
+        .equipment {
+            width: 33%;
+        }
+        .skills {
+            width: 67%;
+            display: flex;
+            flex-flow: column;
+            column-gap: 10px;
+            .skill {
+                display: flex;
+                flex-flow: row nowrap;
+                column-gap: 5px;
+                .skillName {
+                    width: 40%;
+                }
+                .skillBonus,
+                .halfLevel,
+                .abilityMod,
+                .trained,
+                .skillFocus,
+                .miscMod{
+                    width: 20%;
+                }
+                .equals {
+                    width: 20%;
+                    &:before {
+                        content: '=';
+                    }
+                }
+                .addition {
+                    width: 20%;
+                    &:before {
+                        content: '+';
+                    }
+                }
+                .equals,
+                .addition {
+                    font-family: 'Smooch';
+                    font-size: 1.5em;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
