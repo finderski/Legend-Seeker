@@ -16,6 +16,7 @@
   --mainBodyAlt2: 'Lora';
   --decorative: 'Eagle Lake';
   --calculations: 'Smooch';
+  --numbers: 'Cormorant Unicase';
 }
 
 body.sheet-darkmode {
@@ -199,6 +200,7 @@ input:not(:checked) + .isCarried::before {
   position: absolute;
   left: 30px;
   background-color: var(--parchment);
+  font-family: "Pictos";
 }
 
 /* End Chat Buttons */
@@ -853,15 +855,38 @@ label.buttonStyle {
   width: 67%;
   display: flex;
   flex-flow: column;
-  column-gap: 10px;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills h2.headerLabel {
+  font-family: var(--title);
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill {
   display: flex;
   flex-flow: row nowrap;
   column-gap: 5px;
+  width: 100%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName {
-  width: 40%;
+  width: 30%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName .chatButtons {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName .chatButtons:hover .whisperButton {
+  left: 93%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName .chatButtons .whisperToChat {
+  height: 27px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName .chatButtons .whisperToChat > span {
+  font-family: "Pictos";
+  position: relative;
+  top: -3px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName .trainedHidden[value="0"] + .chatButtons {
+  pointer-events: none;
+  opacity: 0.5;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillBonus,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel,
@@ -869,16 +894,16 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .miscMod {
-  width: 20%;
+  width: 8%;
 }
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals {
-  width: 20%;
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .emptyEquals,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .emptyAddition,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition {
+  width: 5%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals:before {
   content: "=";
-}
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition {
-  width: 20%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition:before {
   content: "+";
@@ -888,6 +913,41 @@ label.buttonStyle {
   font-family: "Smooch";
   font-size: 1.5em;
   font-weight: bold;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod {
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .attributeInput {
+  width: 100%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .icon {
+  width: 15px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .headerLabel {
+  font-size: 0.65em;
+  line-height: 1.2em;
+  text-align: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .labelButton {
+  font-size: 0.75em;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill span.attributeInput.readOnly {
+  display: flex;
+  width: 100%;
+  height: 29px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--numbers);
+  font-size: 1.4em;
+  font-weight: 600;
 }
 
 /*

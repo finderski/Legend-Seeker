@@ -13,13 +13,36 @@
             width: 67%;
             display: flex;
             flex-flow: column;
-            column-gap: 10px;
+            column-gap: 5px;
+            row-gap: 5px;
+            h2.headerLabel {
+                font-family: var(--title);
+            }
             .skill {
                 display: flex;
                 flex-flow: row nowrap;
                 column-gap: 5px;
+                width: 100%;
                 .skillName {
-                    width: 40%;
+                    width: 30%;
+                    .chatButtons {
+                        width: 100%;
+                        &:hover .whisperButton {
+                            left: 93%;
+                        }
+                        .whisperToChat {
+                            height: 27px;
+                        }
+                        .whisperToChat > span {
+                            font-family: 'Pictos';
+                            position: relative;
+                            top: -3px;
+                        }
+                    }
+                    .trainedHidden[value="0"] + .chatButtons{
+                        pointer-events: none;
+                        opacity: 0.5;
+                    }
                 }
                 .skillBonus,
                 .halfLevel,
@@ -27,25 +50,60 @@
                 .trained,
                 .skillFocus,
                 .miscMod{
-                    width: 20%;
+                    width: 8%;
                 }
-                .equals {
-                    width: 20%;
-                    &:before {
-                        content: '=';
-                    }
-                }
+                .emptyEquals,
+                .emptyAddition,
+                .equals,
                 .addition {
-                    width: 20%;
-                    &:before {
-                        content: '+';
-                    }
+                    width: 5%;
+                }
+                .equals:before {
+                    content: '=';
+                }
+                .addition:before {
+                    content: '+';
                 }
                 .equals,
                 .addition {
                     font-family: 'Smooch';
                     font-size: 1.5em;
                     font-weight: bold;
+                }
+                .halfLevel,
+                .abilityMod {
+                    align-content: center;
+                    align-items: center;
+                    align-self: center;
+                    text-align: center;
+                }
+                .attributeInput{
+                    width: 100%;
+                    text-align: center;
+                }
+                .icon {
+                    width: 15px;
+                }
+                .headerLabel {
+                    font-size: .65em;
+                    line-height: 1.2em;
+                    text-align: center;
+                }
+                .labelButton {
+                    font-size: .75em;
+                    width: 100%;
+                }
+                span.attributeInput.readOnly {
+                    display: flex;
+                    width: 100%;
+                    height: 29px;
+                    align-items: center;
+                    justify-content: center;
+                    align-self: center;
+                    border-bottom: 1px solid var(--ink);
+                    font-family: var(--numbers);
+                    font-size: 1.4em;
+                    font-weight: 600;
                 }
             }
         }

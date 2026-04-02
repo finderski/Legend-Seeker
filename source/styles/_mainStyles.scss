@@ -14,6 +14,7 @@
     --mainBodyAlt2: 'Lora';
     --decorative: 'Eagle Lake';
     --calculations: 'Smooch';
+    --numbers: 'Cormorant Unicase';
 }
 
 body.sheet-darkmode {
@@ -195,7 +196,7 @@ input:not(:checked)+.isCarried::before {
     position: absolute;
     left: 30px;
     background-color: var(--parchment);
-
+    font-family: 'Pictos';
 }
 /* End Chat Buttons */
 
