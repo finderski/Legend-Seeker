@@ -570,7 +570,46 @@
   </div>
   <div class="backPage">
     <div class="topContainer">
-      <div class="equipment"> </div>
+      <div class="equipment"> 
+        <h3 class="headerLabel" data-i18n="equipment">Equipment</h3>
+        <div class="headerRow"> 
+          <div class="item"> 
+            <label class="fieldLabel" data-i18n="item">Item</label>
+          </div>
+          <div class="quantity"> 
+            <label class="fieldLabel" data-i18n="quantity-abbr">Qty.</label>
+          </div>
+          <div class="weight"> 
+            <label class="fieldLabel" data-i18n="weight-abbr">Wt.</label>
+          </div>
+          <div class="carried"> 
+            <label class="fieldLabel" data-i18n="carried">Carried</label>
+          </div>
+        </div>
+        <fieldset class="repeating_equipment">
+          <div class="equipmentList">
+            <div class="item"> 
+              <input class="textField" type="text" name="attr_item" value="" data-i18n-placeholder="item-name"/>
+            </div>
+            <div class="quantity"> 
+              <input class="textField" type="number" name="attr_item_quantity" value=""/>
+            </div>
+            <div class="weight">
+              <input class="textField" type="number" name="attr_item_weight" value=""/>
+              <input type="hidden" name="attr_item_total_weight" value="0"/>
+            </div>
+            <div class="carried">
+              <label>
+                <input class="hidden" type="checkbox" name="attr_item_carried" value="1" checked="checked"/><span class="isCarried"></span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <input type="hidden" name="attr_total_equipment_weight" value="0"/>
+        <div class="weights"> 
+          <label class="fieldLabel" data-i18n="total-weight-carried">Total Weight Carried</label><span class="totalWeight" name="attr_total_weight_carried"></span>
+        </div>
+      </div>
       <div class="skills"> 
         <h2 class="headerLabel" data-i18n="skills">Skills</h2>
         <div class="skill">
@@ -603,11 +642,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_acrobatics_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{acrobatics}}} {{Roll=[[1d20 + @{acrobatics_bonus}[Acrobatics Bonus]+@{condition}]]}}"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="acrobatics"> Acrobatics</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_acrobatics_check" value="@{attr_acrobatics_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="acrobatics"> Acrobatics</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_acrobatics_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -616,7 +656,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
+            <input type="hidden" name="attr_acrobatics_ability" value="@{dexterity}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_acrobatics_trained" value="0"/>
@@ -634,11 +676,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_climb_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{climb}}} {{Roll=[[1d20 + @{climb_bonus}[Climb Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="climb"> Climb</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_climb_check" value="@{attr_climb_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="climb"> Climb</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_climb_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -647,7 +690,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
+            <input type="hidden" name="attr_climb_ability" value="@{strength}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_climb_trained" value="0"/>
@@ -665,11 +710,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_craft_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{craft}}} {{Roll=[[1d20 + @{craft_bonus}[Craft Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="craft"> Craft</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_craft_check" value="@{attr_craft_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft"> Craft</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_craft_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -678,7 +724,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
+            <input type="hidden" name="attr_craft_ability" value="@{wisdom}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_craft_trained" value="0"/>
@@ -696,11 +744,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_deception_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{deception}}} {{Roll=[[1d20 + @{deception_bonus}[Deception Bonus]+@{condition}]]}}"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="deception"> Deception</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_deception_check" value="@{attr_deception_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="deception"> Deception</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_deception_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -709,7 +758,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
+            <input type="hidden" name="attr_deception_ability" value="@{charisma}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_deception_trained" value="0"/>
@@ -727,11 +778,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_endurance_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{endurance}}} {{Roll=[[1d20 + @{endurance_bonus}[Endurance Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="endurance"> Endurance</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_endurance_check" value="@{attr_endurance_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="endurance"> Endurance</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_endurance_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -740,7 +792,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_constitution_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_constitution_modifier"></span>
+            <input type="hidden" name="attr_endurance_ability" value="@{constitution}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_endurance_trained" value="0"/>
@@ -758,11 +812,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_gather-information_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{gather-information}}} {{Roll=[[1d20 + @{gather-information_bonus}[Gather Information Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="gather-information"> Gather Information</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_gather-information_check" value="@{attr_gather-information_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="gather-information"> Gather Information</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_gather-information_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -771,7 +826,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
+            <input type="hidden" name="attr_gather-information_ability" value="@{charisma}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_gather-information_trained" value="0"/>
@@ -789,11 +846,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_initiative_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{initiative}}} {{Roll=[[1d20 + @{initiative_bonus}[Initiative Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="initiative"> Initiative</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_initiative_check" value="@{attr_initiative_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="initiative"> Initiative</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_initiative_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -802,7 +860,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
+            <input type="hidden" name="attr_initiative_ability" value="@{dexterity}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_initiative_trained" value="0"/>
@@ -821,11 +881,12 @@
           <div class="skillName">
             <input class="trainedHidden" type="hidden" name="attr_invoke-arcana_trained" value="0"/>
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_invoke-arcana_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{invoke-arcana}}} {{Roll=[[1d20 + @{invoke-arcana_bonus}[Invoke Arcana Bonus]+@{condition}]]}}"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="invoke-arcana"> Invoke Arcana</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_invoke-arcana_check" value="@{attr_invoke-arcana_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="invoke-arcana"> Invoke Arcana</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_invoke-arcana_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -834,7 +895,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
+            <input type="hidden" name="attr_invoke-arcana_ability" value="@{intelligence}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_invoke-arcana_trained" value="0"/>
@@ -852,11 +915,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_jump_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{jump}}} {{Roll=[[1d20 + @{jump_bonus}[Jump Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="jump"> Jump</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_jump_check" value="@{attr_jump_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="jump"> Jump</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_jump_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -865,7 +929,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
+            <input type="hidden" name="attr_jump_ability" value="@{strength}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_jump_trained" value="0"/>
@@ -883,11 +949,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_lore_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{lore}}} {{Roll=[[1d20 + @{lore_bonus}[Lore Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="lore"> Lore</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_lore_check" value="@{attr_lore_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore"> Lore</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_lore_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -896,7 +963,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
+            <input type="hidden" name="attr_lore_ability" value="@{intelligence}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_lore_trained" value="0"/>
@@ -914,11 +983,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_notice_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{notice}}} {{Roll=[[1d20 + @{notice_bonus}[Notice Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="notice"> Notice</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_notice_check" value="@{attr_notice_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="notice"> Notice</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_notice_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -927,7 +997,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
+            <input type="hidden" name="attr_notice_ability" value="@{wisdom}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_notice_trained" value="0"/>
@@ -945,11 +1017,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_persuasion_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{persuasion}}} {{Roll=[[1d20 + @{persuasion_bonus}[Persuasion Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="persuasion"> Persuasion</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_persuasion_check" value="@{attr_persuasion_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="persuasion"> Persuasion</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_persuasion_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -958,7 +1031,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
+            <input type="hidden" name="attr_persuasion_ability" value="@{charisma}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_persuasion_trained" value="0"/>
@@ -976,11 +1051,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_ride_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{ride}}} {{Roll=[[1d20 + @{ride_bonus}[Ride Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="ride"> Ride</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_ride_check" value="@{attr_ride_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="ride"> Ride</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_ride_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -989,7 +1065,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
+            <input type="hidden" name="attr_ride_ability" value="@{dexterity}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_ride_trained" value="0"/>
@@ -1007,11 +1085,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_sense-motive_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{sense-motive}}} {{Roll=[[1d20 + @{sense-motive_bonus}[Sense Motive Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="sense-motive"> Sense Motive</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_sense-motive_check" value="@{attr_sense-motive_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="sense-motive"> Sense Motive</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_sense-motive_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1020,7 +1099,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
+            <input type="hidden" name="attr_sense-motive_ability" value="@{wisdom}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_sense-motive_trained" value="0"/>
@@ -1038,11 +1119,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_stealth_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{stealth}}} {{Roll=[[1d20 + @{stealth_bonus}[Stealth Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="stealth"> Stealth</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_stealth_check" value="@{attr_stealth_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="stealth"> Stealth</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_stealth_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1051,7 +1133,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
+            <input type="hidden" name="attr_stealth_ability" value="@{dexterity}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_stealth_trained" value="0"/>
@@ -1069,11 +1153,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_survival_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{survival}}} {{Roll=[[1d20 + @{survival_bonus}[Survival Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="survival"> Survival</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_survival_check" value="@{attr_survival_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="survival"> Survival</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_survival_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1082,7 +1167,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
+            <input type="hidden" name="attr_survival_ability" value="@{wisdom}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_survival_trained" value="0"/>
@@ -1100,11 +1187,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_swim_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{swim}}} {{Roll=[[1d20 + @{swim_bonus}[Swim Bonus]+@{condition}]]}}"><span class="allcaps" data-i18n="swim"> Swim</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_swim_check" value="@{attr_swim_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="swim"> Swim</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_swim_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1113,7 +1201,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
+            <input type="hidden" name="attr_swim_ability" value="@{strength}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_swim_trained" value="0"/>
@@ -1132,11 +1222,12 @@
           <div class="skillName">
             <input class="trainedHidden" type="hidden" name="attr_tinkering_trained" value="0"/>
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_tinkering_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{tinkering}}} {{Roll=[[1d20 + @{tinkering_bonus}[Tinkering Bonus]+@{condition}]]}}"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="tinkering"> Tinkering</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_tinkering_check" value="@{attr_tinkering_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="tinkering"> Tinkering</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_tinkering_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1145,7 +1236,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
+            <input type="hidden" name="attr_tinkering_ability" value="@{intelligence}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_tinkering_trained" value="0"/>
@@ -1163,11 +1256,12 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_treat-wounds_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{treat-wounds}}} {{Roll=[[1d20 + @{treat-wounds_bonus}[Treat Wounds Bonus]+@{condition}]]}}"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="treat-wounds"> Treat Wounds</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_treat-wounds_check" value="@{attr_treat-wounds_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="treat-wounds"> Treat Wounds</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_treat-wounds_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1176,7 +1270,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
+            <input type="hidden" name="attr_treat-wounds_ability" value="@{wisdom}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_treat-wounds_trained" value="0"/>
@@ -1191,15 +1287,17 @@
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="hideSection" type="hidden" name="attr_mana-tap_hider" value="0"/>
         <div class="skill">
           <div class="skillName">
             <input class="trainedHidden" type="hidden" name="attr_mana-tap_trained" value="0"/>
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_mana-tap_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{mana-tap}}} {{Roll=[[1d20 + @{mana-tap_bonus}[Mana Tap Bonus]+@{condition}]]}}"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="mana-tap"> Mana Tap</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_mana-tap_check" value="@{attr_mana-tap_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="mana-tap"> Mana Tap</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_mana-tap_formula}"><span class="iconButton">w</span></button>
               </div>
+              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1208,7 +1306,9 @@
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
-          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span></div>
+          <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
+            <input type="hidden" name="attr_mana-tap_ability" value="@{charisma}"/>
+          </div>
           <div class="addition"></div>
           <div class="trained">
             <input class="attributeInput" type="text" name="attr_mana-tap_trained" value="0"/>
@@ -1487,13 +1587,6 @@ on('change:condition', function(eventInfo) {
     const setattrs = {};
     setattrs['condition_selected'] = conditionValue;
     setAttrs(setattrs);
-});
-
-on('change:level', function(eventInfo) {
-    const halfLevelValue = Math.floor((parseInt(eventInfo.newValue)/2 || 0));
-    const setattrs = {};
-    setattrs['half-level'] = halfLevelValue;
-    setAttrs(setattrs);
 });/* ---- Button Bar Clicks ---- */
 const buttonlist = [
     'frontsheet_1',
@@ -1523,44 +1616,48 @@ on('change:repeating_weapons:weapon_weight change:repeating_weapons:weapon_carri
     );
 });
 
-on("change:repeating_inventory:item_quantity change:repeating_inventory:item_weight", function () {
-    getAttrs(["repeating_inventory_item_quantity", "repeating_inventory_item_weight"], function (values) {
-        let itemQuantity = parseInt(values["repeating_inventory_item_quantity"]) || 0;
-        let itemWeight = parseFloat(values["repeating_inventory_item_weight"]) || 0;
+on("change:repeating_equipment:item_quantity change:repeating_equipment:item_weight", function () {
+    getAttrs(["repeating_equipment_item_quantity", "repeating_equipment_item_weight"], function (values) {
+        let itemQuantity = parseInt(values["repeating_equipment_item_quantity"]) || 0;
+        let itemWeight = parseFloat(values["repeating_equipment_item_weight"]) || 0;
         let totalWeight = itemQuantity * itemWeight;
 
         let attrsToSet = {};
-        attrsToSet["repeating_inventory_item_total_weight"] = totalWeight;
+        attrsToSet["repeating_equipment_item_total_weight"] = totalWeight;
         setAttrs(attrsToSet);
     });
 });
 
 // Calculate Inventory Weight
-on('change:repeating_inventory:item_total_weight change:repeating_inventory:item_carried remove:repeating_inventory', function (eventInfo) {
+on('change:repeating_equipment:item_total_weight change:repeating_equipment:item_carried remove:repeating_equipment', function (eventInfo) {
     repeatingSimpleSumWCheck(
-        'inventory',
+        'equipment',
         'item_total_weight',
-        'total_inventory_weight',
+        'total_equipment_weight',
         'item_carried',
         '1'
     );
 });
 
 //Tally Total Weight Carried
-on('change:total_weapon_weight change:total_inventory_weight', function () {
-    getAttrs(['total_weapon_weight', 'total_inventory_weight'], function (values) {
+on('change:total_weapon_weight change:total_equipment_weight', function () {
+    getAttrs(['total_weapon_weight', 'total_equipment_weight'], function (values) {
         let weaponWeight = parseFloat(values['total_weapon_weight']) || 0;
-        let inventoryWeight = parseFloat(values['total_inventory_weight']) || 0;
-        let totalCarriedWeight = weaponWeight + inventoryWeight;
+        let equipmentWeight = parseFloat(values['total_equipment_weight']) || 0;
+        log("total equipment weight", equipmentWeight, "orange");
+        log("total weapon weight", weaponWeight, "orange");
+
+        let totalCarriedWeight = weaponWeight + equipmentWeight;
 
         let attrsToSet = {};
-        attrsToSet['total_weight'] = totalCarriedWeight;
+        log('total weight carried', JSON.stringify(attrsToSet['total_weight_carried']),'pink');
+        attrsToSet['total_weight_carried'] = totalCarriedWeight;
         setAttrs(attrsToSet);
     });
 });
 
 // Calculate Encumbrance Level
-on('change:total_weight change:total_ps', function () {
+on('change:total_weight_carried change:total_ps', function () {
     getAttrs(['total_weight', 'total_ps'], function (values) {
         let totalWeight = parseFloat(values['total_weight']) || 0;
         let totalPS = parseFloat(values['total_ps']) || 0;
@@ -1583,35 +1680,4 @@ on('change:total_weight change:total_ps', function () {
     });
 });
 
-// Update Modified Land Speed based on Encumbrance Level
-on('change:encumbrance_level change:speed_land', function () {
-    getAttrs(['encumbrance_level', 'speed_land'], function (values) {
-        let encumbranceLevel = parseInt(values['encumbrance_level']) || 1;
-        let baseLandSpeed = values['speed_land'] || '0 / 0 / 0';
-
-        let speedParts = baseLandSpeed.split('/').map(part => parseInt(part) || 0);
-        let modifiedSpeedParts = [...speedParts];
-        log("speedParts", modifiedSpeedParts, "darkblue");
-        switch (encumbranceLevel) {
-            case 2: // Burdened
-                modifiedSpeedParts[0] = Math.max(0, Math.ceil(modifiedSpeedParts[0] * .66));
-                modifiedSpeedParts[1] = Math.max(0, Math.ceil(modifiedSpeedParts[1] * .66));
-                modifiedSpeedParts[2] = Math.max(0, Math.ceil(modifiedSpeedParts[2] * .66));
-                break;
-            case 3: // Heavily Burdened
-                modifiedSpeedParts[0] = Math.max(0, Math.ceil(modifiedSpeedParts[0] * .33));
-                modifiedSpeedParts[1] = Math.max(0, Math.ceil(modifiedSpeedParts[1] * .33));
-                modifiedSpeedParts[2] = Math.max(0, Math.ceil(modifiedSpeedParts[2] * .33));
-                break;
-            // Unburdened (case 1) does not modify speed
-        }
-
-        let modifiedLandSpeed = modifiedSpeedParts.join(' / ');
-        log("Modified Land Speed: ", modifiedLandSpeed, "darkgreen");
-
-        let attrsToSet = {};
-        attrsToSet['modified_land_speed'] = modifiedLandSpeed;
-        setAttrs(attrsToSet);
-    });
-});
 </script>

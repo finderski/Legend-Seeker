@@ -96,5 +96,12 @@
   "swim": "Swim",
   "tinkering": "Tinkering",
   "treat-wounds": "Treat Wounds",
-  "mana-tap": "Mana Tap"
+  "mana-tap": "Mana Tap",
+  "equipment": "Equipment",
+  "item": "Item",
+  "quantity-abbr": "Qty.",
+  "weight-abbr": "Wt.",
+  "carried": "Carried",
+  "item-name": "Item Name",
+  "total-weight-carried": "Total Weight Carried"
 }

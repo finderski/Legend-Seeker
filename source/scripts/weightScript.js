@@ -9,44 +9,48 @@ on('change:repeating_weapons:weapon_weight change:repeating_weapons:weapon_carri
     );
 });
 
-on("change:repeating_inventory:item_quantity change:repeating_inventory:item_weight", function () {
-    getAttrs(["repeating_inventory_item_quantity", "repeating_inventory_item_weight"], function (values) {
-        let itemQuantity = parseInt(values["repeating_inventory_item_quantity"]) || 0;
-        let itemWeight = parseFloat(values["repeating_inventory_item_weight"]) || 0;
+on("change:repeating_equipment:item_quantity change:repeating_equipment:item_weight", function () {
+    getAttrs(["repeating_equipment_item_quantity", "repeating_equipment_item_weight"], function (values) {
+        let itemQuantity = parseInt(values["repeating_equipment_item_quantity"]) || 0;
+        let itemWeight = parseFloat(values["repeating_equipment_item_weight"]) || 0;
         let totalWeight = itemQuantity * itemWeight;
 
         let attrsToSet = {};
-        attrsToSet["repeating_inventory_item_total_weight"] = totalWeight;
+        attrsToSet["repeating_equipment_item_total_weight"] = totalWeight;
         setAttrs(attrsToSet);
     });
 });
 
 // Calculate Inventory Weight
-on('change:repeating_inventory:item_total_weight change:repeating_inventory:item_carried remove:repeating_inventory', function (eventInfo) {
+on('change:repeating_equipment:item_total_weight change:repeating_equipment:item_carried remove:repeating_equipment', function (eventInfo) {
     repeatingSimpleSumWCheck(
-        'inventory',
+        'equipment',
         'item_total_weight',
-        'total_inventory_weight',
+        'total_equipment_weight',
         'item_carried',
         '1'
     );
 });
 
 //Tally Total Weight Carried
-on('change:total_weapon_weight change:total_inventory_weight', function () {
-    getAttrs(['total_weapon_weight', 'total_inventory_weight'], function (values) {
+on('change:total_weapon_weight change:total_equipment_weight', function () {
+    getAttrs(['total_weapon_weight', 'total_equipment_weight'], function (values) {
         let weaponWeight = parseFloat(values['total_weapon_weight']) || 0;
-        let inventoryWeight = parseFloat(values['total_inventory_weight']) || 0;
-        let totalCarriedWeight = weaponWeight + inventoryWeight;
+        let equipmentWeight = parseFloat(values['total_equipment_weight']) || 0;
+        log("total equipment weight", equipmentWeight, "orange");
+        log("total weapon weight", weaponWeight, "orange");
+
+        let totalCarriedWeight = weaponWeight + equipmentWeight;
 
         let attrsToSet = {};
-        attrsToSet['total_weight'] = totalCarriedWeight;
+        log('total weight carried', JSON.stringify(attrsToSet['total_weight_carried']),'pink');
+        attrsToSet['total_weight_carried'] = totalCarriedWeight;
         setAttrs(attrsToSet);
     });
 });
 
 // Calculate Encumbrance Level
-on('change:total_weight change:total_ps', function () {
+on('change:total_weight_carried change:total_ps', function () {
     getAttrs(['total_weight', 'total_ps'], function (values) {
         let totalWeight = parseFloat(values['total_weight']) || 0;
         let totalPS = parseFloat(values['total_ps']) || 0;
@@ -65,38 +69,6 @@ on('change:total_weight change:total_ps', function () {
 
         let attrsToSet = {};
         attrsToSet['encumbrance_level'] = encumbranceLevel;
-        setAttrs(attrsToSet);
-    });
-});
-
-// Update Modified Land Speed based on Encumbrance Level
-on('change:encumbrance_level change:speed_land', function () {
-    getAttrs(['encumbrance_level', 'speed_land'], function (values) {
-        let encumbranceLevel = parseInt(values['encumbrance_level']) || 1;
-        let baseLandSpeed = values['speed_land'] || '0 / 0 / 0';
-
-        let speedParts = baseLandSpeed.split('/').map(part => parseInt(part) || 0);
-        let modifiedSpeedParts = [...speedParts];
-        log("speedParts", modifiedSpeedParts, "darkblue");
-        switch (encumbranceLevel) {
-            case 2: // Burdened
-                modifiedSpeedParts[0] = Math.max(0, Math.ceil(modifiedSpeedParts[0] * .66));
-                modifiedSpeedParts[1] = Math.max(0, Math.ceil(modifiedSpeedParts[1] * .66));
-                modifiedSpeedParts[2] = Math.max(0, Math.ceil(modifiedSpeedParts[2] * .66));
-                break;
-            case 3: // Heavily Burdened
-                modifiedSpeedParts[0] = Math.max(0, Math.ceil(modifiedSpeedParts[0] * .33));
-                modifiedSpeedParts[1] = Math.max(0, Math.ceil(modifiedSpeedParts[1] * .33));
-                modifiedSpeedParts[2] = Math.max(0, Math.ceil(modifiedSpeedParts[2] * .33));
-                break;
-            // Unburdened (case 1) does not modify speed
-        }
-
-        let modifiedLandSpeed = modifiedSpeedParts.join(' / ');
-        log("Modified Land Speed: ", modifiedLandSpeed, "darkgreen");
-
-        let attrsToSet = {};
-        attrsToSet['modified_land_speed'] = modifiedLandSpeed;
         setAttrs(attrsToSet);
     });
 });

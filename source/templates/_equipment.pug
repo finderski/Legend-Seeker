@@ -1,0 +1,27 @@
+h3(class='headerLabel', data-i18n='equipment') Equipment
+.headerRow 
+    .item 
+        label(class="fieldLabel", data-i18n='item') Item
+    .quantity 
+        label(class="fieldLabel", data-i18n='quantity-abbr') Qty.
+    .weight 
+        label(class="fieldLabel", data-i18n='weight-abbr') Wt.
+    .carried 
+        label(class="fieldLabel", data-i18n='carried') Carried
+fieldset(class="repeating_equipment")
+    .equipmentList
+        .item 
+            input(class="textField", type="text", name="attr_item", value="", data-i18n-placeholder="item-name")
+        .quantity 
+            input(class="textField", type="number", name="attr_item_quantity", value="")
+        .weight
+            input(class="textField", type="number", name="attr_item_weight", value="")
+            input(type="hidden", name="attr_item_total_weight", value="0")
+        .carried
+            label
+                input(class="hidden", type='checkbox', name='attr_item_carried', value='1', checked)
+                span(class="isCarried")
+input(type="hidden", name="attr_total_equipment_weight", value="0")
+.weights 
+    label(class="fieldLabel", data-i18n='total-weight-carried') Total Weight Carried
+    span(class="totalWeight", name="attr_total_weight_carried")

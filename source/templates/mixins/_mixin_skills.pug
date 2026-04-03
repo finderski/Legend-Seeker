@@ -5,12 +5,14 @@ mixin skills(skill)
     - const capitalizeWords = str => str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     - const capitalizedSkillName = capitalizeWords(skillName);
 
+        if skillName === 'mana-tap'
+            input(class="hideSection", type="hidden", name=`attr_${skillName}_hider`, value="0")
         .skill
             .skillName
                 if training === 'trained' 
                     input(class="trainedHidden", type="hidden", name=`attr_${skillName}_trained`, value="0")
                 .chatButtons
-                    button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}]]}}`)
+                    button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${fieldName}_formula}`, data-i18n-title="roll-skill-check")
                         if training === 'trained'
                             span
                                 img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png', data-i18n-alt="trained-skill")
@@ -26,8 +28,9 @@ mixin skills(skill)
                                 | 
                                 img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png', data-i18n-alt="armor-check-penalty-applies")
                     .whisperButton 
-                        button(class="whisperToChat", type="roll" name="roll_whisper_edge", value="/w gm @{character_name} has the edge: @{edge_name}, which does @{edge_details}", data-i18n-title="whisper-to-chat")
+                        button(class="whisperToChat", type="roll" name="roll_whisper_edge", value=`/w @{${fieldName}_formula}`)
                             span.iconButton w
+                    input(type='hidden', name='attr_${skillName}_formula', value="&{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}")
             .skillBonus 
                 input(class="attributeInput readOnly", type="text", name=`attr_${skillName}_bonus`)
             .equals
@@ -36,6 +39,7 @@ mixin skills(skill)
             .addition
             .abilityMod
                 span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
+                input(type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
             .addition
             .trained
                 input(class="attributeInput", type="text", name=`attr_${skillName}_trained`, value="0")

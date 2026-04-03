@@ -10,6 +10,7 @@
   --parchment: #f2e7c9;
   --ink: #2b2418;
   --gold: #c9a44d;
+  --light-gold: #cead5f;
   --title: 'Cinzel';
   --mainBody: 'Merriweather';
   --mainBodyAlt: 'Cormorant Garamond';
@@ -850,6 +851,59 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment {
   width: 33%;
+  display: flex;
+  flex-flow: column;
+  row-gap: 5px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .item,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .item {
+  width: 50%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .quantity,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .weight,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .carried,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .quantity,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .weight,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .carried {
+  width: 16.66%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .textField {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .weights {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+  width: 100%;
+  margin: 10px 0 10px 0;
+  align-items: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .weights label.fieldLabel {
+  width: 65%;
+  display: inline-block;
+  text-align: left;
+  font-size: 1em;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .weights .totalWeight {
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  font-family: var(--numbers);
+  font-size: 1.4em;
+  font-weight: 600;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills {
   width: 67%;
@@ -902,11 +956,25 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition {
   width: 5%;
 }
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals:before {
-  content: "=";
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition {
+  position: relative;
 }
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition:before {
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals::before {
+  content: "=";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition::before {
   content: "+";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .equals,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .addition {

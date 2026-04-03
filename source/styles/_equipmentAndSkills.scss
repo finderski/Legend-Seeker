@@ -8,6 +8,54 @@
         width: 100%;
         .equipment {
             width: 33%;
+            display: flex;
+            flex-flow: column;
+            row-gap: 5px;
+            .headerRow,
+            .equipmentList {
+                display: flex;
+                flex-flow: row nowrap;
+                column-gap: 5px;
+                width: 100%;
+                .item {
+                    width: 50%;
+                }
+                .quantity,
+                .weight,
+                .carried {
+                    width: 16.66%;
+                    display: flex;
+                    flex-flow: column nowrap;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .textField {
+                    width: 100%;
+                }
+            }
+            .weights {
+                display: flex;
+                flex-flow: row nowrap;
+                column-gap: 5px;
+                width: 100%;
+                margin: 10px 0 10px 0;
+                align-items: center;
+                label.fieldLabel {
+                    width: 65%;
+                    display: inline-block;
+                    text-align: left;
+                    font-size: 1em;
+                }
+                .totalWeight {
+                    width: 35%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: left;
+                    font-family: var(--numbers);
+                    font-size: 1.4em;
+                    font-weight: 600;
+                }
+            }
         }
         .skills {
             width: 67%;
@@ -58,11 +106,25 @@
                 .addition {
                     width: 5%;
                 }
-                .equals:before {
-                    content: '=';
+                .equals,
+                .addition {
+                    position: relative;
                 }
-                .addition:before {
+                .equals::before {
+                    content: '=';
+                    position: absolute;
+                    inset: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .addition::before {
                     content: '+';
+                    position: absolute;
+                    inset: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
                 .equals,
                 .addition {
