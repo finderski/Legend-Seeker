@@ -63,7 +63,13 @@ include ./mixins/_mixin_skills.pug
                 include _classResources.pug
             .skills 
                 include _skills.pug
+        hr.sectionDivider
         .combat
+            input(class="hideSection", type="hidden", name="attr_mana-tap_hider", value="0")
+            .spells 
+                include _spells.pug
+            .weapons 
+                include _weapons.pug
     .settings
         h1.headerLabel Settings Placeholder
 

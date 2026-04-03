@@ -1,0 +1,33 @@
+// Styles are in _spellsAndWeapons.scss
+h2.headerLabel(data-i18n='weapons') Weapons
+fieldset(class="repeating_weapons")
+    .weaponContainer
+        .button 
+            .chatButtons
+                button(class="sendToChat", type="action" name="act_attack_to_chat", value="@{attack_formula}", data-18n-title="send-to-chat")
+                    span(class="allcaps" data-i18n='attack') Attack
+                .whisperButton 
+                    button(class="whisperToChat", type="action" name="act_whisper_attack", value="/w gm @{attack_formula}", data-i18n-title="whisper-to-chat")
+                        span.iconButton w
+            //button(class="labelButton", type='roll', value="@{attack_formula}", data-i18n='attack-roll') Attack
+            input(type='hidden', name='attr_attack_formula', value='&{template:default} {{name=@{character_name}}} {{title=^{Attack}}} {{Roll=[[1d20 + @{weapon-atk-bonus}[Attack Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}')
+        .weapon
+            label(class="fieldLabelAbove", data-i18n='weapon') Weapon
+            input(class="textField", type='text', name='attr_weapon', value='', data-i18n-placeholder='weapon')
+        .type
+            label(class="fieldLabelAbove", data-i18n='type') Type
+            select(class="weaponTypeDropdown", name='attr_weapon-type')
+                option(value='melee', data-i18n='melee') Melee
+                option(value='ranged', data-i18n='ranged') Ranged
+        .damage 
+            label(class="fieldLabelAbove", data-i18n='damage') Damage
+            input(class="textField", type='text', name='attr_weapon-damage', value='', data-i18n-placeholder='1d6')
+        .crit 
+            label(class="fieldLabelAbove", data-i18n='critical-abbr') Crit
+            input(class="textField", type='text', name='attr_weapon-crit', value='20', data-i18n-placeholder='20')
+        .atk
+            label(class="fieldLabelAbove", data-i18n='attack-abbr') Atk
+                input(class='hiddenInput',type='checkbox', name='attr_weapon-atk-selector')
+                span(class="inputValue")
+        .notes 
+            textarea(class="weaponNotes", name='attr_weapon-notes', data-i18n-placeholder='weapon-notes')

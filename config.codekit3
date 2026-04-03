@@ -381,6 +381,19 @@
       "oS" : 1,
       "pg" : 0
     },
+    "\/source\/styles\/_spellsAndWeapons.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_spellsAndWeapons.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_tabSetup.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -560,6 +573,16 @@
       "oF" : 0,
       "oS" : 1
     },
+    "\/source\/templates\/_spells.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_spells.html",
+      "oF" : 0,
+      "oS" : 1
+    },
     "\/source\/templates\/_stamina.pug" : {
       "cB" : 0,
       "cOD" : 1,
@@ -577,6 +600,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/_talents.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/_weapons.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_weapons.html",
       "oF" : 0,
       "oS" : 1
     },

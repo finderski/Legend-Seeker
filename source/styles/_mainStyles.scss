@@ -116,6 +116,13 @@ body.sheet-darkmode {
     width: 100%;
 }
 
+.ui-dialog .charactersheet h2.headerLabel {
+    font-family: var(--title);
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
 .ui-dialog .charactersheet h3.headerLabel.left {
     text-align: left;
     margin-left: 10px;

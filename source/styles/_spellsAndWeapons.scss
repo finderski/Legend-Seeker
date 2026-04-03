@@ -1,0 +1,120 @@
+@use './mixins/sheet-scope' as *;
+
+.backPage .combat {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: row nowrap;
+        column-gap: 10px;
+        width: 100%;
+        .spells {
+            width: 33%;
+            min-width: 33%;
+            max-width: 33%;
+            display: flex;
+            flex-flow: column;
+            row-gap: 5px;
+            margin: 10px 0 20px 0;
+            .spellRow {
+                display: flex;
+                margin: 5px 0;
+                font-size: .85em;
+                width: 100%;
+                .spellName {
+                    width: 100%;
+                }
+            }
+        }
+        .weapons {
+            display: flex;
+            flex-flow: row wrap;
+            column-gap: 5px;
+            row-gap: 5px;          
+            flex-grow: 2;
+            h2.headerLabel {
+                width: 100%;
+            }
+            .repcontainer[data-groupname="repeating_weapons"] {
+                width: 100%;
+                display: flex;
+                flex-flow: row wrap;
+                column-gap: 5px;
+                row-gap: 5px;          
+                flex-grow: 2;
+                .repitem {
+                    display: flex;
+                    flex-flow: row wrap;
+                    max-width: 45%;
+                    min-width: 32.75%;
+                    column-gap: 5px;
+                    row-gap: 5px;          
+                    flex-grow: 2;
+                    flex-shrink: 1;
+                    .weaponContainer {
+                        border: .5px dotted var(--ink);
+                        display: flex;
+                        flex-flow: row wrap;
+                        column-gap: 5px;
+                        row-gap: 5px;
+                        padding: 5px;
+                        width: 100%;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                        .button {
+                            width: 70px;
+                            flex: 0 0 auto;
+                        }
+                        .weapon {
+                            width: 65%;
+                            flex: 1 1 auto;
+                            min-width: 0;
+                        }
+                        .type {
+                            width: 33%;
+                        }
+                        .damage {
+                            width: 33%;
+                        }
+                        .crit {
+                            width: 29%;
+                        }
+
+                        .atk {
+                            width: 100%;
+                        }
+                        .notes {
+                            width: 100%;
+                        }
+                        .textField,
+                        .weaponTypeDropdown {
+                            width: 100%;
+                        }
+                        .weaponTypeDropdown,
+                        .weaponNotes {
+                            background-color: transparent;
+                            border: none;
+                            font-family: var(--mainBody);
+                            font-size: 1.15em;
+                        }
+                        .weaponNotes {
+                            resize: vertical;
+                            color: var(--ink);
+                            border: none;
+                            max-height: 150px;
+                            height: 6rem;
+                            min-height: 3rem;
+                        }
+                        .fieldLabelAbove {
+                            font-size: .75em;
+                            line-height: 1.2;
+                        }
+                        .damage .textField,
+                        .crit .textField {
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

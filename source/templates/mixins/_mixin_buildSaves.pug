@@ -1,22 +1,23 @@
 mixin savingthrow(save)
     - const [shortName, longName, attributeName] = save;
     - const abilityShortName = attributeName.slice(0, 3).toUpperCase();
+    - const fieldShortName = shortName.toLowerCase();
     
       .saveRow
         .saveButton
             button(class="labelButton", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
                 span(class="allcaps", data-i18n=`${longName}-abbr`) #{shortName}
         .saveTotal
-            input(class="attributeInput", type="text", name=`attr_${shortName}_total` readonly placeholder="10")
+            input(class="attributeInput", type="text", name=`attr_${fieldShortName}_total` readonly placeholder="10")
         .saveCalc
             span(class="calcFormula")
                 | = 10 + 
         .saveLvlOrArmor
             input(class="attributeInput", type="text", name="attr_level_or_armor", placeholder="0")
         .saveClassBonus
-            input(class="attributeInput", type="text", name="attr_class_bonus", placeholder="0")
+            input(class="attributeInput", type="text", name=`attr_${fieldShortName}_class_bonus`, placeholder="0")
         .saveAbilityMod
             input(class="attributeInput", type="text", name=`attr_${attributeName}_modifier`, readonly)
             span(class="abilityWatermark", data-i18n=`${attributeName}-abbr`) #{abilityShortName}
         .saveMisc
-            input(class="attributeInput", type="text", name=`attr_${shortName}_misc_save_mod`, placeholder="0")
+            input(class="attributeInput", type="text", name=`attr_${fieldShortName}_misc_save_mod`, placeholder="0")

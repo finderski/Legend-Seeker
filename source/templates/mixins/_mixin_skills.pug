@@ -43,12 +43,16 @@ mixin skills(skill)
             .addition
             .trained
                 label
-                    input(class="hiddenInput", type="checkbox", name=`attr_${skillName}_trained`, value="4")
-                    span.trained 4
+                    input(class="hiddenInput", type="checkbox", name=`attr_${skillName}_trained`, value="5")
+                    span.trained 5
                     span.untrained 0
             .addition
             .skillFocus
-                input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")
+                // input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")
+                label
+                    input(class="hiddenInput", type="checkbox", name=`attr_${skillName}_focus`, value="3")
+                    span.trained 3
+                    span.untrained 0
             .addition
             .miscMod
                 input(class="attributeInput", type="text", name=`attr_${skillName}_misc`, value="0")

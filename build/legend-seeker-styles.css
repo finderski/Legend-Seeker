@@ -117,6 +117,13 @@ body.sheet-darkmode {
   width: 100%;
 }
 
+.ui-dialog .charactersheet h2.headerLabel {
+  font-family: var(--title);
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
 .ui-dialog .charactersheet h3.headerLabel.left {
   text-align: left;
   margin-left: 10px;
@@ -310,10 +317,12 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .topSection .demographics .class .text-field,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .race .text-field,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .level .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .exp .text-field,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .age .text-field,
-.ui-dialog .charactersheet .frontPage .topSection .demographics .gender .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .sex .text-field,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .height .text-field,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .weight .text-field,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .alignment .text-field,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .deity .text-field {
   width: 100%;
 }
@@ -324,22 +333,30 @@ label.buttonStyle {
   width: 39%;
 }
 .ui-dialog .charactersheet .frontPage .topSection .demographics .class {
-  width: 50%;
+  width: 25%;
 }
 .ui-dialog .charactersheet .frontPage .topSection .demographics .race {
   width: 30%;
 }
 .ui-dialog .charactersheet .frontPage .topSection .demographics .level {
-  width: 18%;
+  width: 10%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .exp {
+  width: 32%;
 }
 .ui-dialog .charactersheet .frontPage .topSection .demographics .age,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .height,
 .ui-dialog .charactersheet .frontPage .topSection .demographics .weight {
+  width: 8%;
+}
+.ui-dialog .charactersheet .frontPage .topSection .demographics .sex {
   width: 15%;
 }
-.ui-dialog .charactersheet .frontPage .topSection .demographics .gender,
+.ui-dialog .charactersheet .frontPage .topSection .demographics .alignment {
+  width: 27%;
+}
 .ui-dialog .charactersheet .frontPage .topSection .demographics .deity {
-  width: 25%;
+  width: 29%;
 }
 
 .ui-dialog .charactersheet .frontPage .topSection .logo {
@@ -635,7 +652,7 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Unconscious or Deceased]"] ~ .uod {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod {
   background-color: var(--ink);
   color: var(--parchment);
 }
@@ -644,7 +661,7 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo .penalty,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Unconscious or Deceased]"] ~ .uod .penalty {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty {
   border-color: var(--parchment);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition {
@@ -1038,7 +1055,8 @@ label.buttonStyle {
   align-self: center;
   text-align: center;
 }
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained {
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -1050,7 +1068,8 @@ label.buttonStyle {
   margin: 0;
   position: relative;
 }
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label {
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus > label {
   display: flex;
   width: 100%;
   height: 100%;
@@ -1065,15 +1084,20 @@ label.buttonStyle {
   cursor: pointer;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .trained,
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .untrained {
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .untrained,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus > label .trained,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus > label .untrained {
   display: none;
 }
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput {
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus > label .hiddenInput {
   /*opacity: 0;*/
   display: none;
   width: 0;
 }
-.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput:checked + .trained, .ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput:not(:checked) ~ .untrained {
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput:checked + .trained, .ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput:not(:checked) ~ .untrained,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus > label .hiddenInput:checked + .trained,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus > label .hiddenInput:not(:checked) ~ .untrained {
   display: flex;
   width: 100%;
   height: 100%;
@@ -1111,6 +1135,122 @@ label.buttonStyle {
   font-family: var(--numbers);
   font-size: 1.4em;
   font-weight: 600;
+}
+
+.ui-dialog .charactersheet .backPage .combat {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 10px;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells {
+  width: 33%;
+  min-width: 33%;
+  max-width: 33%;
+  display: flex;
+  flex-flow: column;
+  row-gap: 5px;
+  margin: 10px 0 20px 0;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .spellRow {
+  display: flex;
+  margin: 5px 0;
+  font-size: 0.85em;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .spellRow .spellName {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  row-gap: 5px;
+  flex-grow: 2;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons h2.headerLabel {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  row-gap: 5px;
+  flex-grow: 2;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 45%;
+  min-width: 32.75%;
+  column-gap: 5px;
+  row-gap: 5px;
+  flex-grow: 2;
+  flex-shrink: 1;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer {
+  border: 0.5px dotted var(--ink);
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  row-gap: 5px;
+  padding: 5px;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button {
+  width: 70px;
+  flex: 0 0 auto;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weapon {
+  width: 65%;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .type {
+  width: 33%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage {
+  width: 33%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .crit {
+  width: 29%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .notes {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .textField,
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponTypeDropdown {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponTypeDropdown,
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponNotes {
+  background-color: transparent;
+  border: none;
+  font-family: var(--mainBody);
+  font-size: 1.15em;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponNotes {
+  resize: vertical;
+  color: var(--ink);
+  border: none;
+  max-height: 150px;
+  height: 6rem;
+  min-height: 3rem;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .fieldLabelAbove {
+  font-size: 0.75em;
+  line-height: 1.2;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage .textField,
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .crit .textField {
+  text-align: center;
 }
 
 /*

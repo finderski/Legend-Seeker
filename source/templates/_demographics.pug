@@ -1,3 +1,4 @@
+// Styles are in _demographics.scss
 .characterName
     label(class='smallCaps', data-i18n='name') Name
     input(class='text-field', type='text', name='attr_character_name', data-i18n-placeholder='name')
@@ -14,18 +15,24 @@
     label(class='smallCaps', data-i18n='level') Level
     input(class='text-field', type='text', name='attr_level', value="", data-i18n-placeholder='level')
     input(type='hidden', name='attr_half-level', value='0')
+.exp 
+    label(class='smallCaps', data-i18n='experience-points-abbr') xp
+    input(class='text-field', type='text', name='attr_experience_points', value="0")
 .age 
     label(class='smallCaps', data-i18n='age') Age
     input(class='text-field', type='text', name='attr_age', value="")
-.gender 
-    label(class='smallCaps', data-i18n='gender') Gender
-    input(class='text-field', type='text', name='attr_gender', value="")
+.sex 
+    label(class='smallCaps', data-i18n='sex') Sex
+    input(class='text-field', type='text', name='attr_sex', value="")
 .height
     label(class='smallCaps', data-i18n='height') Height
     input(class='text-field', type='text', name='attr_height', value="")
 .weight
     label(class='smallCaps', data-i18n='weight') Weight
     input(class='text-field', type='text', name='attr_weight', value="")
+.alignment 
+    label(class='smallCaps', data-i18n='alignment') Alignment
+    input(class='text-field', type='text', name='attr_alignment', value="")
 .deity 
     label(class='smallCaps', data-i18n='deity') Deity
     input(class='text-field', type='text', name='attr_deity', value="")

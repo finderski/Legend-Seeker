@@ -18,10 +18,12 @@
         .class,
         .race,
         .level,
+        .exp,
         .age,
-        .gender,
+        .sex,
         .height,
         .weight,
+        .alignment,
         .deity {
             .text-field {
                 width: 100%;
@@ -34,22 +36,30 @@
             width: 39%;
         }
         .class {
-            width: 50%;
+            width: 25%;
         }
         .race {
             width: 30%;
         }
         .level {
-            width: 18%;
+            width: 10%;
+        }
+        .exp {
+            width: 32%;
         }
         .age,
         .height,
         .weight {
+            width: 8%;
+        }
+        .sex {
             width: 15%;
         }
-        .gender,
+        .alignment {
+            width: 27%;
+        }
         .deity {
-            width: 25%;
+            width: 29%;
         }
     }
 }

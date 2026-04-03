@@ -105,5 +105,22 @@
   "item-name": "Item Name",
   "total-weight-carried": "Total Weight Carried",
   "class-resources": "Class Resources",
-  "class-resource": "Class Resource"
+  "class-resource": "Class Resource",
+  "spells": "Spells",
+  "spell-name": "Spell Name",
+  "weapons": "Weapons",
+  "weapon": "Weapon",
+  "type": "Type",
+  "damage": "Damage",
+  "attack-abbr": "Atk",
+  "critical-abbr": "Crit",
+  "sex": "Sex",
+  "experience-points-abbr": "XP",
+  "alignment": "Alignment",
+  "attack-roll": "Attack Roll",
+  "melee": "Melee",
+  "ranged": "Ranged",
+  "1d6": "1d6",
+  "weapon-notes": "Weapon Notes",
+  "attack": "Attack"
 }

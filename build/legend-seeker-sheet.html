@@ -20,6 +20,7 @@
     <div class="topSection">
       <div class="demographics"> 
         <!-- Character Sheet (including NPC sheet)-->
+        <!-- Styles are in _demographics.scss-->
         <div class="characterName">
           <label class="smallCaps" data-i18n="name">Name</label>
           <input class="text-field" type="text" name="attr_character_name" data-i18n-placeholder="name"/>
@@ -41,13 +42,17 @@
           <input class="text-field" type="text" name="attr_level" value="" data-i18n-placeholder="level"/>
           <input type="hidden" name="attr_half-level" value="0"/>
         </div>
+        <div class="exp"> 
+          <label class="smallCaps" data-i18n="experience-points-abbr">xp</label>
+          <input class="text-field" type="text" name="attr_experience_points" value="0"/>
+        </div>
         <div class="age"> 
           <label class="smallCaps" data-i18n="age">Age</label>
           <input class="text-field" type="text" name="attr_age" value=""/>
         </div>
-        <div class="gender"> 
-          <label class="smallCaps" data-i18n="gender">Gender</label>
-          <input class="text-field" type="text" name="attr_gender" value=""/>
+        <div class="sex"> 
+          <label class="smallCaps" data-i18n="sex">Sex</label>
+          <input class="text-field" type="text" name="attr_sex" value=""/>
         </div>
         <div class="height">
           <label class="smallCaps" data-i18n="height">Height</label>
@@ -56,6 +61,10 @@
         <div class="weight">
           <label class="smallCaps" data-i18n="weight">Weight</label>
           <input class="text-field" type="text" name="attr_weight" value=""/>
+        </div>
+        <div class="alignment"> 
+          <label class="smallCaps" data-i18n="alignment">Alignment</label>
+          <input class="text-field" type="text" name="attr_alignment" value=""/>
         </div>
         <div class="deity"> 
           <label class="smallCaps" data-i18n="deity">Deity</label>
@@ -205,11 +214,11 @@
               </div>
               <div class="initiative"> 
                 <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
-                <input class="xPointInput" type="text" name="attr_initiative" placeholder="0"/>
+                <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
               </div>
               <div class="hpb"> 
                 <label class="fieldLabelAbove" data-i18n="heroic-proficiency-bonus">Heroic Proficiency Bonus</label>
-                <input class="xPointInput" type="text" name="attr_heroic_proficiency_bonus" placeholder="0"/>
+                <input class="xPointInput" type="text" name="attr_heroic_proficiency_bonus" value="2" readonly="readonly"/>
               </div>
               <div class="legendaryPoints"> 
                 <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
@@ -371,20 +380,20 @@
                   <button class="labelButton" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_FORT_total" readonly="readonly" placeholder="10"/>
+                  <input class="attributeInput" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
                   <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_class_bonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
                   <input class="attributeInput" type="text" name="attr_constitution_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="constitution-abbr">CON</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_FORT_misc_save_mod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
               <div class="saveRow">
@@ -392,20 +401,20 @@
                   <button class="labelButton" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_REF_total" readonly="readonly" placeholder="10"/>
+                  <input class="attributeInput" type="text" name="attr_ref_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
                   <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_class_bonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_ref_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
                   <input class="attributeInput" type="text" name="attr_dexterity_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="dexterity-abbr">DEX</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_REF_misc_save_mod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_ref_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
               <div class="saveRow">
@@ -413,20 +422,20 @@
                   <button class="labelButton" type="roll" name="roll_WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{WILL-check}}} {{Roll=[[1d20 + @{WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr">WILL</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_WILL_total" readonly="readonly" placeholder="10"/>
+                  <input class="attributeInput" type="text" name="attr_will_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
                   <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_class_bonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_will_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
                   <input class="attributeInput" type="text" name="attr_wisdom_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="wisdom-abbr">WIS</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_WILL_misc_save_mod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_will_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
             </div>
@@ -481,7 +490,7 @@
           <label class="condition uod">
             <div class="out" data-i18n="unconscious-or-deceased">Unconscious or Deceased </div>
             <div class="conditionSelector"> 
-              <input class="conditionRadio" type="radio" name="attr_condition" value="0 [Unconscious or Deceased]"/>
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-10 [Unconscious or Deceased]"/>
             </div>
           </label>
           <div class="momentum"> 
@@ -680,12 +689,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_acrobatics_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_acrobatics_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_acrobatics_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_acrobatics_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -716,12 +728,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_climb_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_climb_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_climb_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_climb_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -752,12 +767,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_craft_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_craft_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_craft_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -788,12 +806,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_deception_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_deception_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_deception_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_deception_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -824,12 +845,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_endurance_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_endurance_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_endurance_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_endurance_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -860,12 +884,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_gather-information_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_gather-information_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_gather-information_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_gather-information_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -896,12 +923,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_initiative_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_initiative_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_initiative_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_initiative_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -933,12 +963,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_invoke-arcana_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_invoke-arcana_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_invoke-arcana_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_invoke-arcana_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -969,12 +1002,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_jump_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_jump_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_jump_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_jump_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1005,12 +1041,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_lore_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_lore_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_lore_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_lore_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1041,12 +1080,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_notice_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_notice_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_notice_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_notice_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1077,12 +1119,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_persuasion_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_persuasion_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_persuasion_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_persuasion_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1113,12 +1158,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_ride_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_ride_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_ride_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_ride_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1149,12 +1197,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_sense-motive_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_sense-motive_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_sense-motive_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_sense-motive_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1185,12 +1236,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_stealth_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_stealth_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_stealth_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_stealth_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1221,12 +1275,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_survival_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_survival_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_survival_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_survival_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1257,12 +1314,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_swim_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_swim_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_swim_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_swim_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1294,12 +1354,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_tinkering_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_tinkering_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_tinkering_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_tinkering_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1330,12 +1393,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_treat-wounds_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_treat-wounds_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_treat-wounds_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_treat-wounds_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1368,12 +1434,15 @@
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_mana-tap_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_mana-tap_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
-            <input class="attributeInput" type="text" name="attr_mana-tap_focus" value="0"/>
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_mana-tap_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
@@ -1382,7 +1451,64 @@
         </div>
       </div>
     </div>
-    <div class="combat"></div>
+    <hr class="sectionDivider"/>
+    <div class="combat">
+      <input class="hideSection" type="hidden" name="attr_mana-tap_hider" value="0"/>
+      <div class="spells"> 
+        <!-- Styles are in _spellsAndWeapons.scss-->
+        <h2 class="headerLabel" data-i18n="spells">Spells</h2>
+        <fieldset class="repeating_spells">
+          <div class="spellRow">
+            <input class="textField spellName" type="text" name="attr_spell_name" value="" data-i18n-placeholder="spell-name"/>
+          </div>
+        </fieldset>
+      </div>
+      <div class="weapons"> 
+        <!-- Styles are in _spellsAndWeapons.scss-->
+        <h2 class="headerLabel" data-i18n="weapons">Weapons</h2>
+        <fieldset class="repeating_weapons">
+          <div class="weaponContainer">
+            <div class="button"> 
+              <div class="chatButtons">
+                <button class="sendToChat" type="action" name="act_attack_to_chat" value="@{attack_formula}" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="attack">Attack</span></button>
+                <div class="whisperButton"> 
+                  <button class="whisperToChat" type="action" name="act_whisper_attack" value="/w gm @{attack_formula}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                </div>
+              </div>
+              <!--button(class="labelButton", type='roll', value="@{attack_formula}", data-i18n='attack-roll') Attack-->
+              <input type="hidden" name="attr_attack_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{Attack}}} {{Roll=[[1d20 + @{weapon-atk-bonus}[Attack Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+            </div>
+            <div class="weapon">
+              <label class="fieldLabelAbove" data-i18n="weapon">Weapon</label>
+              <input class="textField" type="text" name="attr_weapon" value="" data-i18n-placeholder="weapon"/>
+            </div>
+            <div class="type">
+              <label class="fieldLabelAbove" data-i18n="type">Type</label>
+              <select class="weaponTypeDropdown" name="attr_weapon-type">
+                <option value="melee" data-i18n="melee">Melee</option>
+                <option value="ranged" data-i18n="ranged">Ranged</option>
+              </select>
+            </div>
+            <div class="damage"> 
+              <label class="fieldLabelAbove" data-i18n="damage">Damage</label>
+              <input class="textField" type="text" name="attr_weapon-damage" value="" data-i18n-placeholder="1d6"/>
+            </div>
+            <div class="crit"> 
+              <label class="fieldLabelAbove" data-i18n="critical-abbr">Crit</label>
+              <input class="textField" type="text" name="attr_weapon-crit" value="20" data-i18n-placeholder="20"/>
+            </div>
+            <div class="atk">
+              <label class="fieldLabelAbove" data-i18n="attack-abbr">Atk
+                <input class="hiddenInput" type="checkbox" name="attr_weapon-atk-selector"/><span class="inputValue"></span>
+              </label>
+            </div>
+            <div class="notes"> 
+              <textarea class="weaponNotes" name="attr_weapon-notes" data-i18n-placeholder="weapon-notes"></textarea>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
   </div>
   <div class="settings">
     <h1 class="headerLabel">Settings Placeholder</h1>
@@ -1578,51 +1704,33 @@ coreAttributes.forEach(attribute => {
     on(`change:${attribute}`, function (eventInfo) {
         const attScore = Math.floor((parseInt(eventInfo.newValue) || 0));
         let modScore;
-        switch(attScore) {
-            case 3:
-                modScore = -4;
-                break;
-            case 4:
-            case 5:
-                modScore = -3;
-                break;
-            case 6:
-            case 7:
-                modScore = -2;
-                break;
-            case 8:
-            case 9:
-                modScore = -1;
-                break;
-            case 10:
-            case 11:
-                modScore = 0;
-                break;
-            case 12:
-            case 13:
-                modScore = 1;
-                break;
-            case 14:
-            case 15:
-                modScore = 2;
-                break;
-            case 16:
-            case 17:
-                modScore = 3;
-                break;
-            case 18:
-            case 19:
-                modScore = 4;
-                break;
-            default:
-                modScore = 5;
-                break;
-        }
+        modScore = attScore < 2 ? -5 :
+                   attScore < 4 ? -4 :
+                   attScore < 6 ? -3 :
+                   attScore < 8 ? -2 :
+                   attScore < 10 ? -1 :
+                   attScore < 12 ? 0 :
+                   attScore < 14 ? 1 :
+                   attScore < 16 ? 2 :
+                   attScore < 18 ? 3 :
+                   attScore < 20 ? 4 :
+                   attScore < 22 ? 5 :
+                   attScore < 24 ? 6 :
+                   attScore < 26 ? 7 :
+                   attScore < 28 ? 8 :
+                   attScore < 30 ? 9 : 10;
         log("Modifier", modScore, derivedStatsColor)
         const attrsToSet = {};
         attrsToSet[`${attribute}_modifier`] = modScore;
         setAttrs(attrsToSet);
     });
+});
+
+// Heroic Proficiency Bonus Calculation
+on('change:level', function(eventInfo) {
+    const level = parseInt(eventInfo.newValue) || 0;
+    let hpb = level < 5 ? 2 : level < 9 ? 3 : level < 13 ? 4 : level < 17 ? 5 : 6;
+    setAttrs({ "heroic_proficiency_bonus": hpb });
 });
 
 // Update Corruption
@@ -1660,45 +1768,48 @@ on('change:condition', function(eventInfo) {
 });
 
 // Watch for Fort Save Changes
-on('change:level_or_armor change:class_bonus change:constitution_modifier change:fort_misc_save_mod', function() {
-    getAttrs(['level_or_armor', 'class_bonus', 'constitution_modifier', 'FORT_misc_save_mod'], function(v) {
-        console.log("v ", v);
+on('change:level_or_armor change:fort_class_bonus change:constitution_modifier change:fort_misc_save_mod change:condition_selected', function() {
+    getAttrs(['level_or_armor', 'fort_class_bonus', 'constitution_modifier', 'fort_misc_save_mod', 'condition_selected'], function(v) {
+        console.log("v for Fort Save ", v);
+        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
         const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.class_bonus) || 0;
+        const classBonus = parseInt(v.fort_class_bonus) || 0;
         const constitutionModifier = parseInt(v.constitution_modifier) || 0;
-        const fortMiscSaveMod = parseInt(v.FORT_misc_save_mod) || 0;
-        log("Fort Save Calculation", `10 + ${levelOrArmor} (Level/Armor) + ${classBonus} (Class Bonus) + ${constitutionModifier} (Constitution Modifier) + ${fortMiscSaveMod} (Misc Mod)`, r20color);
-        const fortSaveTotal = 10+levelOrArmor + classBonus + constitutionModifier + fortMiscSaveMod;
+        const fortMiscSaveMod = parseInt(v.fort_misc_save_mod) || 0;
+        log("Fort Save Calculation", `10 + ${levelOrArmor} (Level/Armor) + ${classBonus} (Class Bonus) + ${constitutionModifier} (Constitution Modifier) + ${fortMiscSaveMod} (Misc Mod) + ${condition} (Condition)`, r20color);
+        const fortSaveTotal = 10+levelOrArmor + classBonus + constitutionModifier + fortMiscSaveMod + condition;
         const setattrs = {};
-        setattrs['FORT_total'] = fortSaveTotal;
+        setattrs['fort_total'] = fortSaveTotal;
         setattrs['stamina_fortDef'] = fortSaveTotal;
         setAttrs(setattrs);
     });
 });
 
 // Watch for Ref Save Changes
-on('change:level_or_armor change:class_bonus change:dexterity_modifier change:ref_misc_save_mod', function() {
-    getAttrs(['level_or_armor', 'class_bonus', 'dexterity_modifier', 'REF_misc_save_mod'], function(v) {
+on('change:level_or_armor change:ref_class_bonus change:dexterity_modifier change:ref_misc_save_mod change:condition_selected', function() {
+    getAttrs(['level_or_armor', 'ref_class_bonus', 'dexterity_modifier', 'ref_misc_save_mod', 'condition_selected'], function(v) {
+        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
         const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.class_bonus) || 0;
+        const classBonus = parseInt(v.ref_class_bonus) || 0;
         const dexterityModifier = parseInt(v.dexterity_modifier) || 0;
-        const refMiscSaveMod = parseInt(v.REF_misc_save_mod) || 0;
+        const refMiscSaveMod = parseInt(v.ref_misc_save_mod) || 0;
 
-        const refSaveTotal = 10+levelOrArmor + classBonus + dexterityModifier + refMiscSaveMod;
-        setAttrs({ REF_total: refSaveTotal });
+        const refSaveTotal = 10+levelOrArmor + classBonus + dexterityModifier + refMiscSaveMod + condition;
+        setAttrs({ ref_total: refSaveTotal });
     });
 });
 
 // Watch for Will Save Changes
-on('change:level_or_armor change:class_bonus change:wisdom_modifier change:will_misc_save_mod', function() {
-    getAttrs(['level_or_armor', 'class_bonus', 'wisdom_modifier', 'WILL_misc_save_mod'], function(v) {
+on('change:level_or_armor change:will_class_bonus change:wisdom_modifier change:will_misc_save_mod change:condition_selected', function() {
+    getAttrs(['level_or_armor', 'will_class_bonus', 'wisdom_modifier', 'will_misc_save_mod', 'condition_selected'], function(v) {
+        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
         const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.class_bonus) || 0;
+        const classBonus = parseInt(v.will_class_bonus) || 0;
         const wisdomModifier = parseInt(v.wisdom_modifier) || 0;
-        const willMiscSaveMod = parseInt(v.WILL_misc_save_mod) || 0;
+        const willMiscSaveMod = parseInt(v.will_misc_save_mod) || 0;
 
-        const willSaveTotal = 10+levelOrArmor + classBonus + wisdomModifier + willMiscSaveMod;
-        setAttrs({ WILL_total: willSaveTotal });
+        const willSaveTotal = 10+levelOrArmor + classBonus + wisdomModifier + willMiscSaveMod + condition;
+        setAttrs({ will_total: willSaveTotal });
     });
 });/* ---- Button Bar Clicks ---- */
 const buttonlist = [

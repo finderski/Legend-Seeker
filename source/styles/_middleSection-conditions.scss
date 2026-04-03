@@ -13,7 +13,7 @@
         .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
         .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
         .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
-        .conditionToggle[value="0 [Unconscious or Deceased]"] ~ .uod {
+        .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod {
             background-color: var(--ink);
             color: var(--parchment);
             .penalty {
