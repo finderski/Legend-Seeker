@@ -51,7 +51,7 @@
   "condition-1-2" : "To all defenses, attacks, skill & ability checks.",
   "condition-6-10" : "To all defenses, attacks, skill & ability checks. Move at half speed.",
   "unconscious-or-deceased" : "Unconscious or Deceased",
-  "defensive-saves" : "Defensive Saves",
+  "defensive-scores" : "Defensive Scores",
   "level-or-armor": "Level or Armor",
   "class-bonus": "Class Bonus",
   "ability-mod": "Ability Mod",
@@ -103,5 +103,7 @@
   "weight-abbr": "Wt.",
   "carried": "Carried",
   "item-name": "Item Name",
-  "total-weight-carried": "Total Weight Carried"
+  "total-weight-carried": "Total Weight Carried",
+  "class-resources": "Class Resources",
+  "class-resource": "Class Resource"
 }

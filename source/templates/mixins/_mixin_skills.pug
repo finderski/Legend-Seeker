@@ -12,7 +12,7 @@ mixin skills(skill)
                 if training === 'trained' 
                     input(class="trainedHidden", type="hidden", name=`attr_${skillName}_trained`, value="0")
                 .chatButtons
-                    button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${fieldName}_formula}`, data-i18n-title="roll-skill-check")
+                    button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")
                         if training === 'trained'
                             span
                                 img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png', data-i18n-alt="trained-skill")
@@ -28,11 +28,11 @@ mixin skills(skill)
                                 | 
                                 img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png', data-i18n-alt="armor-check-penalty-applies")
                     .whisperButton 
-                        button(class="whisperToChat", type="roll" name="roll_whisper_edge", value=`/w @{${fieldName}_formula}`)
+                        button(class="whisperToChat", type="roll" name="roll_whisper_edge", value=`/w gm @{${skillName}_formula}`)
                             span.iconButton w
-                    input(type='hidden', name='attr_${skillName}_formula', value="&{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}")
+                    input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}`)
             .skillBonus 
-                input(class="attributeInput readOnly", type="text", name=`attr_${skillName}_bonus`)
+                input(class="attributeInput readOnly", type="text", name=`attr_${skillName}_bonus` readonly)
             .equals
             .halfLevel
                 span(class="attributeInput readOnly", type="text", name=`attr_half-level`)
@@ -42,7 +42,10 @@ mixin skills(skill)
                 input(type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
             .addition
             .trained
-                input(class="attributeInput", type="text", name=`attr_${skillName}_trained`, value="0")
+                label
+                    input(class="hiddenInput", type="checkbox", name=`attr_${skillName}_trained`, value="4")
+                    span.trained 4
+                    span.untrained 0
             .addition
             .skillFocus
                 input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")

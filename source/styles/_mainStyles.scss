@@ -116,6 +116,11 @@ body.sheet-darkmode {
     width: 100%;
 }
 
+.ui-dialog .charactersheet h3.headerLabel.left {
+    text-align: left;
+    margin-left: 10px;
+}
+
 .hideSection[value="0"]+div {
     display: none !important;
 }

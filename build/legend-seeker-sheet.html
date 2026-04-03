@@ -189,6 +189,7 @@
             </div>
             <div class="hitPoints"> 
               <!-- Hit Point Section-->
+              <!-- Styling for hit points, speed, initiative, heroic proficiency bonus, and legendary points are in _middleSection-stamina.scss. -->
               <h3 class="headerLabel" data-i18n="hit-points">Hit Points</h3>
               <div class="fieldLabel">
                 <label data-i18n="total">Total </label>
@@ -343,10 +344,10 @@
             </div>
             <div class="defensiveSaves">
               <!--Defensive Saves Section-->
-              <!-- hr.sectionDivider-->
+              <!-- styling found in _middleSection-saves.scss-->
               <div class="saveRow"> 
                 <div class="saveButton">
-                  <label class="headerLabel" data-i18n="defensive-saves">Defensive Saves</label>
+                  <h3 class="headerLabel" data-i18n="defensive-scores">Defensive Scores</h3>
                 </div>
                 <div class="saveTotal">
                   <label class="headerLabel" data-i18n="total">Total</label>
@@ -370,20 +371,20 @@
                   <button class="labelButton" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="FORT_total"/>
+                  <input class="attributeInput" type="text" name="attr_FORT_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_lvlOrArmor" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_classBonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_constitution_modifier" placeholder="0" readonly="readonly"/><span class="abilityWatermark" data-i18n="constitution-abbr">CON</span>
+                  <input class="attributeInput" type="text" name="attr_constitution_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="constitution-abbr">CON</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_misc_save_mod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_FORT_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
               <div class="saveRow">
@@ -391,41 +392,41 @@
                   <button class="labelButton" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="REF_total"/>
+                  <input class="attributeInput" type="text" name="attr_REF_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_lvlOrArmor" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_classBonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_dexterity_modifier" placeholder="0" readonly="readonly"/><span class="abilityWatermark" data-i18n="dexterity-abbr">DEX</span>
+                  <input class="attributeInput" type="text" name="attr_dexterity_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="dexterity-abbr">DEX</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_misc_save_mod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_REF_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
               <div class="saveRow">
                 <div class="saveButton">
-                  <button class="labelButton" type="roll" name="roll_ WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{ WILL-check}}} {{Roll=[[1d20 + @{ WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr"> WILL</span></button>
+                  <button class="labelButton" type="roll" name="roll_WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{WILL-check}}} {{Roll=[[1d20 + @{WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr">WILL</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name=" WILL_total"/>
+                  <input class="attributeInput" type="text" name="attr_WILL_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_lvlOrArmor" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
                 </div>
                 <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_classBonus" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_wisdom_modifier" placeholder="0" readonly="readonly"/><span class="abilityWatermark" data-i18n="wisdom-abbr">WIS</span>
+                  <input class="attributeInput" type="text" name="attr_wisdom_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="wisdom-abbr">WIS</span>
                 </div>
                 <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_misc_save_mod" placeholder="0"/>
+                  <input class="attributeInput" type="text" name="attr_WILL_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
             </div>
@@ -571,7 +572,8 @@
   <div class="backPage">
     <div class="topContainer">
       <div class="equipment"> 
-        <h3 class="headerLabel" data-i18n="equipment">Equipment</h3>
+        <!-- stying found in _equipmentAndSkills.scss-->
+        <h3 class="headerLabel left" data-i18n="equipment">Equipment</h3>
         <div class="headerRow"> 
           <div class="item"> 
             <label class="fieldLabel" data-i18n="item">Item</label>
@@ -609,8 +611,24 @@
         <div class="weights"> 
           <label class="fieldLabel" data-i18n="total-weight-carried">Total Weight Carried</label><span class="totalWeight" name="attr_total_weight_carried"></span>
         </div>
+        <!-- stying found in _equipmentAndSkills.scss-->
+        <hr class="sectionDivider"/>
+        <div class="classResources">
+          <h3 class="headerLabel left" data-i18n="class-resources">Class Resources</h3>
+          <fieldset class="repeating_class-resources">
+            <div class="resourceGroup">
+              <div class="resourceLeft"> 
+                <input class="textField" type="text" name="attr_resource_left" value="" data-i18n-placeholder="class-resource"/>
+              </div><span>/ </span>
+              <div class="resourceRight">
+                <input class="textField" type="text" name="attr_resource_right" value="" data-i18n-placeholder="class-resource"/>
+              </div>
+            </div>
+          </fieldset>
+        </div>
       </div>
       <div class="skills"> 
+        <!-- stying found in _equipmentAndSkills.scss-->
         <h2 class="headerLabel" data-i18n="skills">Skills</h2>
         <div class="skill">
           <div class="skillName">&nbsp;</div>
@@ -642,16 +660,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_acrobatics_check" value="@{attr_acrobatics_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="acrobatics"> Acrobatics</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_acrobatics_check" value="@{acrobatics_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="acrobatics"> Acrobatics</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_acrobatics_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{acrobatics_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{acrobatics}}} {{Roll=[[1d20 + @{acrobatics_bonus}[Acrobatics Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_acrobatics_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_acrobatics_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -661,7 +679,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_acrobatics_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_acrobatics_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -676,16 +696,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_climb_check" value="@{attr_climb_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="climb"> Climb</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_climb_check" value="@{climb_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="climb"> Climb</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_climb_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{climb_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_climb_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{climb}}} {{Roll=[[1d20 + @{climb_bonus}[Climb Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_climb_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_climb_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -695,7 +715,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_climb_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_climb_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -710,16 +732,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_craft_check" value="@{attr_craft_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft"> Craft</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_craft_check" value="@{craft_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft"> Craft</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_craft_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_craft_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{craft}}} {{Roll=[[1d20 + @{craft_bonus}[Craft Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_craft_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_craft_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -729,7 +751,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_craft_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -744,16 +768,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_deception_check" value="@{attr_deception_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="deception"> Deception</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_deception_check" value="@{deception_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="deception"> Deception</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_deception_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{deception_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_deception_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{deception}}} {{Roll=[[1d20 + @{deception_bonus}[Deception Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_deception_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_deception_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -763,7 +787,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_deception_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_deception_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -778,16 +804,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_endurance_check" value="@{attr_endurance_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="endurance"> Endurance</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_endurance_check" value="@{endurance_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="endurance"> Endurance</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_endurance_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{endurance_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_endurance_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{endurance}}} {{Roll=[[1d20 + @{endurance_bonus}[Endurance Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_endurance_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_endurance_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -797,7 +823,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_endurance_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_endurance_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -812,16 +840,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_gather-information_check" value="@{attr_gather-information_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="gather-information"> Gather Information</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_gather-information_check" value="@{gather-information_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="gather-information"> Gather Information</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_gather-information_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{gather-information_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_gather-information_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{gather-information}}} {{Roll=[[1d20 + @{gather-information_bonus}[Gather Information Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_gather-information_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_gather-information_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -831,7 +859,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_gather-information_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_gather-information_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -846,16 +876,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_initiative_check" value="@{attr_initiative_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="initiative"> Initiative</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_initiative_check" value="@{initiative_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="initiative"> Initiative</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_initiative_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{initiative_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{initiative}}} {{Roll=[[1d20 + @{initiative_bonus}[Initiative Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_initiative_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_initiative_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -865,7 +895,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_initiative_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_initiative_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -881,16 +913,16 @@
           <div class="skillName">
             <input class="trainedHidden" type="hidden" name="attr_invoke-arcana_trained" value="0"/>
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_invoke-arcana_check" value="@{attr_invoke-arcana_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="invoke-arcana"> Invoke Arcana</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_invoke-arcana_check" value="@{invoke-arcana_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="invoke-arcana"> Invoke Arcana</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_invoke-arcana_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{invoke-arcana_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_invoke-arcana_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{invoke-arcana}}} {{Roll=[[1d20 + @{invoke-arcana_bonus}[Invoke Arcana Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_invoke-arcana_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_invoke-arcana_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -900,7 +932,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_invoke-arcana_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_invoke-arcana_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -915,16 +949,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_jump_check" value="@{attr_jump_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="jump"> Jump</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_jump_check" value="@{jump_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="jump"> Jump</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_jump_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{jump_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_jump_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{jump}}} {{Roll=[[1d20 + @{jump_bonus}[Jump Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_jump_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_jump_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -934,7 +968,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_jump_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_jump_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -949,16 +985,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_lore_check" value="@{attr_lore_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore"> Lore</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_lore_check" value="@{lore_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore"> Lore</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_lore_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_lore_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{lore}}} {{Roll=[[1d20 + @{lore_bonus}[Lore Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_lore_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_lore_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -968,7 +1004,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_lore_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_lore_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -983,16 +1021,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_notice_check" value="@{attr_notice_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="notice"> Notice</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_notice_check" value="@{notice_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="notice"> Notice</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_notice_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{notice_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_notice_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{notice}}} {{Roll=[[1d20 + @{notice_bonus}[Notice Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_notice_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_notice_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1002,7 +1040,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_notice_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_notice_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1017,16 +1057,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_persuasion_check" value="@{attr_persuasion_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="persuasion"> Persuasion</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_persuasion_check" value="@{persuasion_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="persuasion"> Persuasion</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_persuasion_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{persuasion_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_persuasion_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{persuasion}}} {{Roll=[[1d20 + @{persuasion_bonus}[Persuasion Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_persuasion_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_persuasion_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1036,7 +1076,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_persuasion_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_persuasion_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1051,16 +1093,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_ride_check" value="@{attr_ride_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="ride"> Ride</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_ride_check" value="@{ride_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="ride"> Ride</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_ride_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{ride_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_ride_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{ride}}} {{Roll=[[1d20 + @{ride_bonus}[Ride Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_ride_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_ride_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1070,7 +1112,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_ride_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_ride_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1085,16 +1129,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_sense-motive_check" value="@{attr_sense-motive_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="sense-motive"> Sense Motive</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_sense-motive_check" value="@{sense-motive_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="sense-motive"> Sense Motive</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_sense-motive_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{sense-motive_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_sense-motive_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{sense-motive}}} {{Roll=[[1d20 + @{sense-motive_bonus}[Sense Motive Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_sense-motive_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_sense-motive_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1104,7 +1148,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_sense-motive_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_sense-motive_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1119,16 +1165,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_stealth_check" value="@{attr_stealth_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="stealth"> Stealth</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_stealth_check" value="@{stealth_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="stealth"> Stealth</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_stealth_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{stealth_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{stealth}}} {{Roll=[[1d20 + @{stealth_bonus}[Stealth Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_stealth_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_stealth_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1138,7 +1184,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_stealth_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_stealth_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1153,16 +1201,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_survival_check" value="@{attr_survival_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="survival"> Survival</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_survival_check" value="@{survival_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="survival"> Survival</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_survival_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{survival_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_survival_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{survival}}} {{Roll=[[1d20 + @{survival_bonus}[Survival Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_survival_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_survival_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1172,7 +1220,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_survival_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_survival_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1187,16 +1237,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_swim_check" value="@{attr_swim_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="swim"> Swim</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_swim_check" value="@{swim_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="swim"> Swim</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_swim_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{swim_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_swim_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{swim}}} {{Roll=[[1d20 + @{swim_bonus}[Swim Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_swim_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_swim_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1206,7 +1256,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_swim_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_swim_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1222,16 +1274,16 @@
           <div class="skillName">
             <input class="trainedHidden" type="hidden" name="attr_tinkering_trained" value="0"/>
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_tinkering_check" value="@{attr_tinkering_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="tinkering"> Tinkering</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
+              <button class="sendToChat labelButton" type="roll" name="roll_tinkering_check" value="@{tinkering_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="tinkering"> Tinkering</span><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png" data-i18n-alt="armor-check-penalty-applies"/></span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_tinkering_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{tinkering_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_tinkering_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{tinkering}}} {{Roll=[[1d20 + @{tinkering_bonus}[Tinkering Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_tinkering_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_tinkering_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1241,7 +1293,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_tinkering_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_tinkering_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1256,16 +1310,16 @@
         <div class="skill">
           <div class="skillName">
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_treat-wounds_check" value="@{attr_treat-wounds_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="treat-wounds"> Treat Wounds</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_treat-wounds_check" value="@{treat-wounds_formula}" data-i18n-title="roll-skill-check"><span> <img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Some_Training_Required.png" data-i18n-alt="some-training-required"/></span><span class="allcaps" data-i18n="treat-wounds"> Treat Wounds</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_treat-wounds_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{treat-wounds_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_treat-wounds_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{treat-wounds}}} {{Roll=[[1d20 + @{treat-wounds_bonus}[Treat Wounds Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_treat-wounds_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_treat-wounds_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1275,7 +1329,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_treat-wounds_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_treat-wounds_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1292,16 +1348,16 @@
           <div class="skillName">
             <input class="trainedHidden" type="hidden" name="attr_mana-tap_trained" value="0"/>
             <div class="chatButtons">
-              <button class="sendToChat labelButton" type="roll" name="roll_mana-tap_check" value="@{attr_mana-tap_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="mana-tap"> Mana Tap</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_mana-tap_check" value="@{mana-tap_formula}" data-i18n-title="roll-skill-check"><span><img class="icon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png" data-i18n-alt="trained-skill"/> </span><span class="allcaps" data-i18n="mana-tap"> Mana Tap</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w @{attr_mana-tap_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{mana-tap_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_${skillName}_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{${skillName}}}} {{Roll=[[1d20 + @{${skillName}_bonus}[${capitalizedSkillName} Bonus]+@{condition}+?{Additional Modifiers|0}]]}}"/>
+              <input type="hidden" name="attr_mana-tap_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{mana-tap}}} {{Roll=[[1d20 + @{mana-tap_bonus}[Mana Tap Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_mana-tap_bonus"/>
+            <input class="attributeInput readOnly" type="text" name="attr_mana-tap_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
@@ -1311,7 +1367,9 @@
           </div>
           <div class="addition"></div>
           <div class="trained">
-            <input class="attributeInput" type="text" name="attr_mana-tap_trained" value="0"/>
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_mana-tap_trained" value="4"/><span class="trained">4</span><span class="untrained">0</span>
+            </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
@@ -1582,11 +1640,66 @@ on('change:wisdom', function(eventInfo) {
     setAttrs(setattrs);
 });
 
+// Watch for changes for Stamina Damage Threshold
+on('change:stamina_fortdef change:stamina_miscbonus', function(eventInfo) {
+    log("Threshold Watch Detected Change", eventInfo, r20color);
+    getAttrs(['stamina_fortDef', 'stamina_miscBonus'], function(v) {
+        const fortTotal = parseInt(v.stamina_fortDef) || 0;
+        const staminaMiscBonus = parseInt(v.stamina_miscBonus) || 0;
+        const staminaDamageThreshold = fortTotal + staminaMiscBonus;
+        setAttrs({ "stamina_damageThreshold": staminaDamageThreshold });
+    });
+});
+
+// Watch for Changes to Condition to update Styling.
 on('change:condition', function(eventInfo) {
     const conditionValue = eventInfo.newValue;
     const setattrs = {};
     setattrs['condition_selected'] = conditionValue;
     setAttrs(setattrs);
+});
+
+// Watch for Fort Save Changes
+on('change:level_or_armor change:class_bonus change:constitution_modifier change:fort_misc_save_mod', function() {
+    getAttrs(['level_or_armor', 'class_bonus', 'constitution_modifier', 'FORT_misc_save_mod'], function(v) {
+        console.log("v ", v);
+        const levelOrArmor = parseInt(v.level_or_armor) || 0;
+        const classBonus = parseInt(v.class_bonus) || 0;
+        const constitutionModifier = parseInt(v.constitution_modifier) || 0;
+        const fortMiscSaveMod = parseInt(v.FORT_misc_save_mod) || 0;
+        log("Fort Save Calculation", `10 + ${levelOrArmor} (Level/Armor) + ${classBonus} (Class Bonus) + ${constitutionModifier} (Constitution Modifier) + ${fortMiscSaveMod} (Misc Mod)`, r20color);
+        const fortSaveTotal = 10+levelOrArmor + classBonus + constitutionModifier + fortMiscSaveMod;
+        const setattrs = {};
+        setattrs['FORT_total'] = fortSaveTotal;
+        setattrs['stamina_fortDef'] = fortSaveTotal;
+        setAttrs(setattrs);
+    });
+});
+
+// Watch for Ref Save Changes
+on('change:level_or_armor change:class_bonus change:dexterity_modifier change:ref_misc_save_mod', function() {
+    getAttrs(['level_or_armor', 'class_bonus', 'dexterity_modifier', 'REF_misc_save_mod'], function(v) {
+        const levelOrArmor = parseInt(v.level_or_armor) || 0;
+        const classBonus = parseInt(v.class_bonus) || 0;
+        const dexterityModifier = parseInt(v.dexterity_modifier) || 0;
+        const refMiscSaveMod = parseInt(v.REF_misc_save_mod) || 0;
+
+        const refSaveTotal = 10+levelOrArmor + classBonus + dexterityModifier + refMiscSaveMod;
+        setAttrs({ REF_total: refSaveTotal });
+    });
+});
+
+// Watch for Will Save Changes
+on('change:level_or_armor change:class_bonus change:wisdom_modifier change:will_misc_save_mod', function() {
+    getAttrs(['level_or_armor', 'class_bonus', 'wisdom_modifier', 'WILL_misc_save_mod'], function(v) {
+        const levelOrArmor = parseInt(v.level_or_armor) || 0;
+        const classBonus = parseInt(v.class_bonus) || 0;
+        const wisdomModifier = parseInt(v.wisdom_modifier) || 0;
+        const willMiscSaveMod = parseInt(v.WILL_misc_save_mod) || 0;
+
+        const willSaveTotal = 10+levelOrArmor + classBonus + wisdomModifier + willMiscSaveMod;
+        setAttrs({ WILL_total: willSaveTotal });
+    });
 });/* ---- Button Bar Clicks ---- */
 const buttonlist = [
     'frontsheet_1',
@@ -1679,5 +1792,83 @@ on('change:total_weight_carried change:total_ps', function () {
         setAttrs(attrsToSet);
     });
 });
+  /*------------------Update Skill Bonuses------------------*/
+// Watch for updates to: Attribute Modifiers, Half-Level, Trained Status, Skill Focus and Misc. Modifiers
+const listOfSklls = ['acrobatics','climb','craft','deception','endurance','gather-information','initiative','invoke-arcana','jump','lore','notice','persuasion','ride','sense-motive','stealth','survival','swim','tinkering','treat-wounds','mana-tap'];
+const listOfAttributes = ['strength_modifier', 'dexterity_modifier', 'constitution_modifier', 'intelligence_modifier', 'wisdom_modifier', 'charisma_modifier'];
 
+/*------------------End Skill Bonsuses------------------*/
+
+function recalcSkill(skill) {
+    const fields = [
+        "half-level",
+        `${skill}_attribute`,
+        `${skill}_trained`,
+        `${skill}_focus`,
+        `${skill}_misc`,
+        `${skill}_ability`
+    ];
+
+    const allFields = [...fields, ...listOfAttributes];
+    // log(`list of fields to retrieve`, allFields, r20color);
+
+    getAttrs(allFields, function(values) {
+        //log(`Values retrieved for skill ${skill}`, values, r20color);
+        //console.log(`Values retrieved for skill ${skill}:`, values);
+        const attribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", ""); // Extract the attribute name from the skill's linked attribute field
+        //log(`Attribute for Skill ${skill}`, attribute, derivedStatsColor);
+        //log("value of attribute modifier", values[`${attribute}_modifier`], derivedStatsColor);
+        const halfLevel = parseInt(values["half-level"], 10) || 0;
+        const trained = parseInt(values[`${skill}_trained`], 10) || 0;
+        const focus = parseInt(values[`${skill}_focus`], 10) || 0;
+        const misc = parseInt(values[`${skill}_misc`], 10) || 0;
+        const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
+
+        setAttrs({
+            [`${skill}_bonus`]: halfLevel + trained + focus + misc + abilityMod
+        });
+    });
+}
+
+//Calculate Half-Level and Re-calculate Skills when Level changes
+on('change:level', function(eventInfo) {
+    const halfLevelValue = Math.floor((parseInt(eventInfo.newValue)/2 || 0));
+    const previousHalfLevelValue = Math.floor((parseInt(eventInfo.previousValue)/2 || 0));
+
+    if (halfLevelValue === previousHalfLevelValue) {
+        log("Level Updated", "No Change in Half-Level Value.", derivedStatsColor);
+    }
+    else {
+        
+        const setattrs = {};
+        setattrs['half-level'] = halfLevelValue;
+        setAttrs(setattrs,{silent:true});
+        //re-calculate all skills
+        listOfSklls.forEach(async (skill) => {
+            recalcSkill(skill);
+        });
+    }
+});
+
+// When a skill's Trained, Focus or Misc fields change, re-calculate the skill bonus
+listOfSklls.forEach(skill => {
+    on(`change:${skill}_trained change:${skill}_focus change:${skill}_misc change:${skill}_ability`, () => {
+        recalcSkill(skill);
+    });
+});
+
+// when an attribute modifier changes, re-calculate all skills that are linked to that attribute
+listOfAttributes.forEach(attribute => {
+    on(`change:${attribute}`, function() {
+        const attributeName = attribute.replace("_modifier", "");
+        listOfSklls.forEach(skill => {
+            getAttrs([`${skill}_ability`], function(values) {
+                const skillAttribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", "");
+                if (skillAttribute === attributeName) {
+                    recalcSkill(skill);
+                }
+            });
+        });
+    });
+});
 </script>

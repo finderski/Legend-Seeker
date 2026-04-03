@@ -142,9 +142,64 @@ on('change:wisdom', function(eventInfo) {
     setAttrs(setattrs);
 });
 
+// Watch for changes for Stamina Damage Threshold
+on('change:stamina_fortdef change:stamina_miscbonus', function(eventInfo) {
+    log("Threshold Watch Detected Change", eventInfo, r20color);
+    getAttrs(['stamina_fortDef', 'stamina_miscBonus'], function(v) {
+        const fortTotal = parseInt(v.stamina_fortDef) || 0;
+        const staminaMiscBonus = parseInt(v.stamina_miscBonus) || 0;
+        const staminaDamageThreshold = fortTotal + staminaMiscBonus;
+        setAttrs({ "stamina_damageThreshold": staminaDamageThreshold });
+    });
+});
+
+// Watch for Changes to Condition to update Styling.
 on('change:condition', function(eventInfo) {
     const conditionValue = eventInfo.newValue;
     const setattrs = {};
     setattrs['condition_selected'] = conditionValue;
     setAttrs(setattrs);
+});
+
+// Watch for Fort Save Changes
+on('change:level_or_armor change:class_bonus change:constitution_modifier change:fort_misc_save_mod', function() {
+    getAttrs(['level_or_armor', 'class_bonus', 'constitution_modifier', 'FORT_misc_save_mod'], function(v) {
+        console.log("v ", v);
+        const levelOrArmor = parseInt(v.level_or_armor) || 0;
+        const classBonus = parseInt(v.class_bonus) || 0;
+        const constitutionModifier = parseInt(v.constitution_modifier) || 0;
+        const fortMiscSaveMod = parseInt(v.FORT_misc_save_mod) || 0;
+        log("Fort Save Calculation", `10 + ${levelOrArmor} (Level/Armor) + ${classBonus} (Class Bonus) + ${constitutionModifier} (Constitution Modifier) + ${fortMiscSaveMod} (Misc Mod)`, r20color);
+        const fortSaveTotal = 10+levelOrArmor + classBonus + constitutionModifier + fortMiscSaveMod;
+        const setattrs = {};
+        setattrs['FORT_total'] = fortSaveTotal;
+        setattrs['stamina_fortDef'] = fortSaveTotal;
+        setAttrs(setattrs);
+    });
+});
+
+// Watch for Ref Save Changes
+on('change:level_or_armor change:class_bonus change:dexterity_modifier change:ref_misc_save_mod', function() {
+    getAttrs(['level_or_armor', 'class_bonus', 'dexterity_modifier', 'REF_misc_save_mod'], function(v) {
+        const levelOrArmor = parseInt(v.level_or_armor) || 0;
+        const classBonus = parseInt(v.class_bonus) || 0;
+        const dexterityModifier = parseInt(v.dexterity_modifier) || 0;
+        const refMiscSaveMod = parseInt(v.REF_misc_save_mod) || 0;
+
+        const refSaveTotal = 10+levelOrArmor + classBonus + dexterityModifier + refMiscSaveMod;
+        setAttrs({ REF_total: refSaveTotal });
+    });
+});
+
+// Watch for Will Save Changes
+on('change:level_or_armor change:class_bonus change:wisdom_modifier change:will_misc_save_mod', function() {
+    getAttrs(['level_or_armor', 'class_bonus', 'wisdom_modifier', 'WILL_misc_save_mod'], function(v) {
+        const levelOrArmor = parseInt(v.level_or_armor) || 0;
+        const classBonus = parseInt(v.class_bonus) || 0;
+        const wisdomModifier = parseInt(v.wisdom_modifier) || 0;
+        const willMiscSaveMod = parseInt(v.WILL_misc_save_mod) || 0;
+
+        const willSaveTotal = 10+levelOrArmor + classBonus + wisdomModifier + willMiscSaveMod;
+        setAttrs({ WILL_total: willSaveTotal });
+    });
 });

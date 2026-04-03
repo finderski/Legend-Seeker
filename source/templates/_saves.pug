@@ -1,7 +1,7 @@
-// hr.sectionDivider
+// styling found in _middleSection-saves.scss
 .saveRow 
     .saveButton
-        label(class="headerLabel", data-i18n='defensive-saves') Defensive Saves
+        h3(class="headerLabel", data-i18n='defensive-scores') Defensive Scores
     .saveTotal
         label(class="headerLabel", data-i18n='total') Total
     .saveCalc
@@ -15,6 +15,6 @@
     .saveMisc
         label(class="headerLabel", data-i18n='miscellaneous-abbr') Misc
 -
-    const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], [' WILL', 'willpower', 'wisdom']];
+    const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
 each save in saveList
     +savingthrow(save)

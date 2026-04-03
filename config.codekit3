@@ -138,7 +138,7 @@
       "mi" : 1,
       "oA" : 1,
       "oAP" : "\/build\/scripts\/buttonbar-min.js",
-      "oF" : 0,
+      "oF" : 1,
       "sC" : 3,
       "tS" : 0
     },
@@ -149,7 +149,7 @@
       "mi" : 1,
       "oA" : 1,
       "oAP" : "\/build\/scripts\/onOpen-min.js",
-      "oF" : 0,
+      "oF" : 1,
       "sC" : 3,
       "tS" : 0
     },
@@ -171,7 +171,7 @@
       "mi" : 1,
       "oA" : 1,
       "oAP" : "\/build\/scripts\/weightScript-min.js",
-      "oF" : 0,
+      "oF" : 1,
       "sC" : 3,
       "tS" : 0
     },
@@ -182,7 +182,7 @@
       "mi" : 1,
       "oA" : 1,
       "oAP" : "\/build\/scripts\/workers-min.js",
-      "oF" : 0,
+      "oF" : 1,
       "sC" : 3,
       "tS" : 0
     },
@@ -437,6 +437,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/_buttonbar.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/_classResources.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_classResources.html",
       "oF" : 0,
       "oS" : 1
     },

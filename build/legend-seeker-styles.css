@@ -117,6 +117,11 @@ body.sheet-darkmode {
   width: 100%;
 }
 
+.ui-dialog .charactersheet h3.headerLabel.left {
+  text-align: left;
+  margin-left: 10px;
+}
+
 .hideSection[value="0"] + div {
   display: none !important;
 }
@@ -537,6 +542,9 @@ label.buttonStyle {
   width: 100%;
   text-align: center;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
+  align-self: flex-end;
+}
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel {
   width: 35%;
@@ -746,6 +754,7 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .headerLabel {
   width: 100%;
   text-align: center;
+  line-height: 1.2;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .calcFormula {
   font-size: 1.5em;
@@ -861,6 +870,8 @@ label.buttonStyle {
   flex-flow: row nowrap;
   column-gap: 5px;
   width: 100%;
+  font-size: 0.85em;
+  padding: 3px 0;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .item,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .item {
@@ -881,6 +892,16 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .textField {
   width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .carried,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .carried {
+  font-size: 1.4em;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .quantity .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .weight .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .quantity .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .weight .textField {
+  text-align: center;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .weights {
   display: flex;
@@ -904,6 +925,34 @@ label.buttonStyle {
   font-family: var(--numbers);
   font-size: 1.4em;
   font-weight: 600;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .sectionDivider {
+  margin: 10px 0;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 5px;
+  background-color: var(--light-gold);
+  padding: 3px;
+  margin-top: auto;
+  border-radius: 0 8px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+  width: 100%;
+  margin: 3px 0;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceLeft,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceRight {
+  width: 50%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceLeft .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceRight .textField {
+  width: 100%;
+  font-size: 1em;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills {
   width: 67%;
@@ -988,6 +1037,52 @@ label.buttonStyle {
   align-items: center;
   align-self: center;
   text-align: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .trained,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .untrained {
+  display: none;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput {
+  /*opacity: 0;*/
+  display: none;
+  width: 0;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput:checked + .trained, .ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained > label .hiddenInput:not(:checked) ~ .untrained {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-size: 1.6em;
+  font-weight: 600;
+  font-family: var(--numbers);
+  border-bottom: 1px solid var(--ink);
+  align-items: center;
+  justify-content: center;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .attributeInput {
   width: 100%;
