@@ -123,5 +123,6 @@
   "1d6": "1d6",
   "weapon-notes": "Weapon Notes",
   "attack": "Attack",
-  "heroic-proficiency-bonus-abbr": "HPB"
+  "heroic-proficiency-bonus-abbr": "HPB",
+  "strength-x2-abbr": "STR x2"
 }

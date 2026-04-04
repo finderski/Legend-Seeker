@@ -262,6 +262,36 @@ label.buttonStyle {
   max-width: 840px;
 }
 
+.ui-dialog .charactersheet .equals,
+.ui-dialog .charactersheet .addition {
+  position: relative;
+}
+
+.ui-dialog .charactersheet .equals::before {
+  content: "=";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui-dialog .charactersheet .addition::before {
+  content: "+";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui-dialog .charactersheet .equals,
+.ui-dialog .charactersheet .addition {
+  font-family: "Smooch";
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 .buttonbar {
   display: flex;
   margin-bottom: 20px;
@@ -1226,7 +1256,23 @@ label.buttonStyle {
   column-gap: 5px;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkField {
-  width: 20%;
+  min-width: 21%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .equals,
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .addition,
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkFormula {
+  width: 15%;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkFormula {
+  font-family: var(--title);
+  font-size: 0.85em;
+  text-align: center;
+  align-self: center;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk select.weaponTypeDropdown {
+  min-width: 30%;
+  max-width: 35%;
+  font-size: 0.85em;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .notes {
   width: 100%;
@@ -1234,6 +1280,7 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .textField,
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponTypeDropdown {
   width: 100%;
+  text-align: center;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponTypeDropdown,
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponNotes {

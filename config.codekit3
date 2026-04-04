@@ -164,6 +164,17 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/source\/scripts\/weapons.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 1,
+      "oAP" : "\/build\/scripts\/weapons-min.js",
+      "oF" : 1,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/source\/scripts\/weightScript.js" : {
       "bF" : 0,
       "ft" : 64,

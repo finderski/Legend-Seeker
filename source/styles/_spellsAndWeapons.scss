@@ -85,7 +85,23 @@
                             flex-flow: row nowrap;
                             column-gap: 5px;
                             .atkField {
-                                width: 20%;
+                                min-width: 21%;
+                            }
+                            .equals,
+                            .addition,
+                            .atkFormula {
+                                width: 15%;
+                            }
+                            .atkFormula {
+                                font-family: var(--title);
+                                font-size: .85em;
+                                text-align: center;
+                                align-self: center;
+                            }
+                            select.weaponTypeDropdown {
+                                min-width: 30%;
+                                max-width: 35%;
+                                font-size: .85em;
                             }
                         }
                         .notes {
@@ -94,6 +110,7 @@
                         .textField,
                         .weaponTypeDropdown {
                             width: 100%;
+                            text-align: center;
                         }
                         .weaponTypeDropdown,
                         .weaponNotes {

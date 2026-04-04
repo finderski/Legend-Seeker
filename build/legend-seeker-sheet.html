@@ -1500,7 +1500,7 @@
             <div class="atk">
               <div class="atkField">
                 <label class="fieldLabelAbove" data-i18n="attack-abbr">Atk</label>
-                <input class="textField" type="text" name="attr_weapon-atk-selector" readonly="readonly"/>
+                <input class="textField" type="text" name="attr_weapon-atk" readonly="readonly"/>
               </div>
               <div class="equals"> </div><span class="atkFormula" data-i18n="heroic-proficiency-bonus-abbr">HPB </span>
               <div class="addition"> </div>
@@ -1509,9 +1509,11 @@
                 <option value="strx2" data-i18n="strength-x2-abbr">STR x2</option>
                 <option value="dex" data-i18n="dexterity-abbr">DEX</option>
               </select>
-              <div class="atkField"></div>
-              <label class="fieldLabelAbove" data-i18n="miscellaneous-modifier-abbr">Misc. Mod </label>
-              <input class="textField" type="text" name="attr_weapon-misc-mod" value="0"/>
+              <div class="addition"></div>
+              <div class="atkField">
+                <label class="fieldLabelAbove" data-i18n="miscellaneous-modifier-abbr">Misc. Mod </label>
+                <input class="textField" type="text" name="attr_weapon-misc-mod" value="0"/>
+              </div>
             </div>
             <div class="notes"> 
               <textarea class="weaponNotes" name="attr_weapon-notes" data-i18n-placeholder="weapon-notes"></textarea>

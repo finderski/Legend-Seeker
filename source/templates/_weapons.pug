@@ -28,7 +28,7 @@ fieldset(class="repeating_weapons")
         .atk
             .atkField
                 label(class="fieldLabelAbove", data-i18n='attack-abbr') Atk
-                input(class='textField',type='text', name='attr_weapon-atk-selector' readonly)
+                input(class='textField',type='text', name='attr_weapon-atk' readonly)
             .equals 
             span(class="atkFormula", data-i18n='heroic-proficiency-bonus-abbr') HPB 
             .addition 
@@ -36,8 +36,9 @@ fieldset(class="repeating_weapons")
                 option(value='str' data-i18n='strength-abbr') STR
                 option(value='strx2' data-i18n='strength-x2-abbr') STR x2
                 option(value='dex' data-i18n='dexterity-abbr') DEX
+            .addition
             .atkField
-            label(class="fieldLabelAbove", data-i18n='miscellaneous-modifier-abbr') Misc. Mod 
-            input(class='textField', type='text', name='attr_weapon-misc-mod', value='0')
+                label(class="fieldLabelAbove", data-i18n='miscellaneous-modifier-abbr') Misc. Mod 
+                input(class='textField', type='text', name='attr_weapon-misc-mod', value='0')
         .notes 
             textarea(class="weaponNotes", name='attr_weapon-notes', data-i18n-placeholder='weapon-notes')

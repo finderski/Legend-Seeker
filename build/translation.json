@@ -1,6 +1,7 @@
 {
   "class-resources" : "Class Resources",
   "constitution" : "Constitution",
+  "strength-x2-abbr" : "STR x2",
   "alignment" : "Alignment",
   "ride" : "Ride",
   "reflex-abbr" : "REF",
