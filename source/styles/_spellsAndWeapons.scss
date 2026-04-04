@@ -81,6 +81,12 @@
 
                         .atk {
                             width: 100%;
+                            display: flex;
+                            flex-flow: row nowrap;
+                            column-gap: 5px;
+                            .atkField {
+                                width: 20%;
+                            }
                         }
                         .notes {
                             width: 100%;

@@ -1221,6 +1221,12 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk {
   width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkField {
+  width: 20%;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .notes {
   width: 100%;
