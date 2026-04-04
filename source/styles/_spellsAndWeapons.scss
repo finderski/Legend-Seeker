@@ -60,6 +60,9 @@
                         justify-content: center;
                         align-content: center;
                         align-items: center;
+                        .hiddenInput {
+                            display: none;
+                        }
                         .button {
                             width: 70px;
                             flex: 0 0 auto;
@@ -73,7 +76,60 @@
                             width: 33%;
                         }
                         .damage {
-                            width: 33%;
+                            width: 28%;
+                        }
+                        .config {
+                            display: flex;
+                            width: 0;
+                            font-family: 'Pictos';
+                            font-size: .85em;
+                            color: var(--ink);
+                            align-self: flex-start;
+                            position: relative;
+                            left: -10%;
+                            cursor: pointer;
+                            opacity: 0.5;
+                            &:hover {
+                                opacity: 1;
+                            }
+                            > .cog > .hiddenInput:checked + .configIcon {
+                                opacity: 1;
+                            }
+                        }
+                        .damage-config {
+                            width: 100%;
+                            display: flex;
+                            flex-flow: row nowrap;
+                            column-gap: 5px;
+                            padding: 3px 0 5px 0;
+                            background-color: var(--light-gold);
+                            border-radius: 5px 0 5px 0;
+                            .dice {
+                                width: 50%;
+                                display: flex;
+                                flex-flow: row nowrap;
+                                column-gap: 5px;
+                                .fieldLabelAbove {
+                                    font-size: .75em;
+                                    line-height: 1.2;
+                                }
+                                .textField {
+                                    width: 100%;
+                                    text-align: center;
+                                }
+                            }
+                            .halfLevel {
+                                width: 29%;
+                            }
+                            .attributeMod {
+                                width: 29%;
+                            }
+                            .miscMod {
+                                width: 29%;
+                            }
+                            .addition {
+                                width: 15%;
+                            }
                         }
                         .crit {
                             width: 29%;

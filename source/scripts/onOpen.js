@@ -1,21 +1,13 @@
-const conditions = ['sheet:opened', 'change:characterIsNpc', 'change:speed_hasLand', 'change:speed_hasWater', 'change:speed_hasAir', 'change:speed_hasBurrow'];
-
-conditions.forEach(condition => {
-    on(`${condition}`, (eventInfo) => {
-        console.log('onOpen.js triggered by condition:', condition);
-        getAttrs(['characterIsNpc', 'speed_hasLand', 'speed_hasWater', 'speed_hasAir', 'speed_hasBurrow'], v => {
-            const isNpc = parseInt(v.characterIsNpc, 10) || 0;
-            const land = parseInt(v.speed_hasLand, 10) || 0;
-            const water = parseInt(v.speed_hasWater, 10) || 0;
-            const air = parseInt(v.speed_hasAir, 10) || 0;
-            const burrow = parseInt(v.speed_hasBurrow, 10) || 0;
-
-            let sumOfSpeeds = land + water + air + burrow;
-            console.log('Total number of speed types:', sumOfSpeeds);
-            let numOfRows = isNpc ? sumOfSpeeds : Math.ceil(sumOfSpeeds / 2);
-            console.log('Number of speed rows to display:', numOfRows);
-            setAttrs({
-                count_of_speeds: numOfRows
+// Need to make sure that every weapon has the half level and heroic proficiency attributes, even if they aren't used, so that the calculations for those attributes work properly.
+on('sheet:opened', function() {
+    log('Sheet Opened',"Updating weapon attributes to ensure calculations work", r20color);
+    getSectionIDs('repeating_weapons', function(ids) {
+        getAttrs(['heroic_proficiency_bonus','half-level'], function(values) {
+            ids.forEach(function(id) {
+                const attrsToSet = {};
+                attrsToSet[`repeating_weapons_${id}_weapon-half-level`] = values['half-level'] || 0;
+                attrsToSet[`repeating_weapons_${id}_weapon-heroic-proficiency`] = values['heroic_proficiency_bonus'] || 0;
+                setAttrs(attrsToSet);
             });
         });
     });

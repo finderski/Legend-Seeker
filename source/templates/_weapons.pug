@@ -1,6 +1,7 @@
 // Styles are in _spellsAndWeapons.scss
 h2.headerLabel(data-i18n='weapons') Weapons
 fieldset(class="repeating_weapons")
+    input(type='hidden', name='attr_weapon-heroic-proficiency', readonly)
     .weaponContainer
         .button 
             .chatButtons
@@ -20,11 +21,31 @@ fieldset(class="repeating_weapons")
                 option(value='melee', data-i18n='melee') Melee
                 option(value='ranged', data-i18n='ranged') Ranged
         .damage 
-            label(class="fieldLabelAbove", data-i18n='damage') Damage
-            input(class="textField", type='text', name='attr_weapon-damage', value='', data-i18n-placeholder='1d6')
+            label(class="fieldLabelAbove", data-i18n='damage') 
+            input(class="textField", type='text', name='attr_weapon_damage', value='', readonly)
+        .config 
+            label.cog
+                input(class='hiddenInput', type='checkbox', name='attr_weapon_damage_config_toggle')
+                span.configIcon y
         .crit 
             label(class="fieldLabelAbove", data-i18n='critical-abbr') Crit
             input(class="textField", type='text', name='attr_weapon-crit', value='20', data-i18n-placeholder='20')
+        input(class='hideSection', type='hidden', name='attr_weapon_damage_config_toggle', value='0')
+        .damage-config
+            .dice 
+                label(class="fieldLabelAbove", data-i18n='dice') Dice
+                input(class="textField", type='text', name='attr_weapon_damage_dice', value='', data-i18n-placeholder='1d6')
+            .addition
+            .halfLevel 
+                label(class="fieldLabelAbove", data-i18n='half-level-abbr') 1/2 Level
+                input(class="textField", type='text', name='attr_weapon-half-level', readonly)
+            .addition
+            .attributeMod 
+                label(class="fieldLabelAbove", data-i18n='attribute-abbr-modifier-abbr') Att Mod
+            .addition 
+            .miscMod 
+                label(class="fieldLabelAbove", data-i18n='miscellaneous-modifier-abbr') Misc. Mod
+                input(class="textField", type='text', name='attr_weapon-damage-misc-mod', value='0')
         .atk
             .atkField
                 label(class="fieldLabelAbove", data-i18n='attack-abbr') Atk

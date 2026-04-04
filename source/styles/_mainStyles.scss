@@ -259,6 +259,14 @@ label.buttonStyle {
     max-width: 840px;
 }
 
+.ui-dialog .charactersheet .configIcon {
+    font-family: 'Pictos';
+    font-size: 1.2em;
+    margin-left: 5px;
+    color: var(--ink);
+    cursor: pointer;
+}
+
 .ui-dialog .charactersheet .equals,
 .ui-dialog .charactersheet .addition {
     position: relative;

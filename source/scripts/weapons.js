@@ -44,3 +44,35 @@ on('change:repeating_weapons:weapon change:repeating_weapons:weapon-atk-bonus ch
         });
     }
 });
+
+// Function to update Half-Level and Heroic Proficiency when they change after the sheet has been opened.
+function updateWeapons(derivedStat) {
+    const fields = [
+        "half-level",
+        `${skill}_attribute`,
+        `${skill}_trained`,
+        `${skill}_focus`,
+        `${skill}_misc`,
+        `${skill}_ability`
+    ];
+
+    const allFields = [...fields, ...listOfAttributes];
+    // log(`list of fields to retrieve`, allFields, r20color);
+
+    getAttrs(allFields, function(values) {
+        //log(`Values retrieved for skill ${skill}`, values, r20color);
+        //console.log(`Values retrieved for skill ${skill}:`, values);
+        const attribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", ""); // Extract the attribute name from the skill's linked attribute field
+        //log(`Attribute for Skill ${skill}`, attribute, derivedStatsColor);
+        //log("value of attribute modifier", values[`${attribute}_modifier`], derivedStatsColor);
+        const halfLevel = parseInt(values["half-level"], 10) || 0;
+        const trained = parseInt(values[`${skill}_trained`], 10) || 0;
+        const focus = parseInt(values[`${skill}_focus`], 10) || 0;
+        const misc = parseInt(values[`${skill}_misc`], 10) || 0;
+        const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
+
+        setAttrs({
+            [`${skill}_bonus`]: halfLevel + trained + focus + misc + abilityMod
+        });
+    });
+}

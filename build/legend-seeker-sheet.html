@@ -1467,6 +1467,7 @@
         <!-- Styles are in _spellsAndWeapons.scss-->
         <h2 class="headerLabel" data-i18n="weapons">Weapons</h2>
         <fieldset class="repeating_weapons">
+          <input type="hidden" name="attr_weapon-heroic-proficiency" readonly="readonly"/>
           <div class="weaponContainer">
             <div class="button"> 
               <div class="chatButtons">
@@ -1490,12 +1491,38 @@
               </select>
             </div>
             <div class="damage"> 
-              <label class="fieldLabelAbove" data-i18n="damage">Damage</label>
-              <input class="textField" type="text" name="attr_weapon-damage" value="" data-i18n-placeholder="1d6"/>
+              <label class="fieldLabelAbove" data-i18n="damage"> </label>
+              <input class="textField" type="text" name="attr_weapon_damage" value="" readonly="readonly"/>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_weapon_damage_config_toggle"/><span class="configIcon">y</span>
+              </label>
             </div>
             <div class="crit"> 
               <label class="fieldLabelAbove" data-i18n="critical-abbr">Crit</label>
               <input class="textField" type="text" name="attr_weapon-crit" value="20" data-i18n-placeholder="20"/>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_weapon_damage_config_toggle" value="0"/>
+            <div class="damage-config">
+              <div class="dice"> 
+                <label class="fieldLabelAbove" data-i18n="dice">Dice</label>
+                <input class="textField" type="text" name="attr_weapon_damage_dice" value="" data-i18n-placeholder="1d6"/>
+              </div>
+              <div class="addition"></div>
+              <div class="halfLevel"> 
+                <label class="fieldLabelAbove" data-i18n="half-level-abbr">1/2 Level</label>
+                <input class="textField" type="text" name="attr_weapon-half-level" readonly="readonly"/>
+              </div>
+              <div class="addition"></div>
+              <div class="attributeMod"> 
+                <label class="fieldLabelAbove" data-i18n="attribute-abbr-modifier-abbr">Att Mod</label>
+              </div>
+              <div class="addition"> </div>
+              <div class="miscMod"> 
+                <label class="fieldLabelAbove" data-i18n="miscellaneous-modifier-abbr">Misc. Mod</label>
+                <input class="textField" type="text" name="attr_weapon-damage-misc-mod" value="0"/>
+              </div>
             </div>
             <div class="atk">
               <div class="atkField">
@@ -1614,24 +1641,16 @@
 </rolltemplate>
 <!-- Sheet Worker Scripts-->
 <script type="text/worker">
-  const conditions = ['sheet:opened', 'change:characterIsNpc', 'change:speed_hasLand', 'change:speed_hasWater', 'change:speed_hasAir', 'change:speed_hasBurrow'];
-
-conditions.forEach(condition => {
-    on(`${condition}`, (eventInfo) => {
-        console.log('onOpen.js triggered by condition:', condition);
-        getAttrs(['characterIsNpc', 'speed_hasLand', 'speed_hasWater', 'speed_hasAir', 'speed_hasBurrow'], v => {
-            const isNpc = parseInt(v.characterIsNpc, 10) || 0;
-            const land = parseInt(v.speed_hasLand, 10) || 0;
-            const water = parseInt(v.speed_hasWater, 10) || 0;
-            const air = parseInt(v.speed_hasAir, 10) || 0;
-            const burrow = parseInt(v.speed_hasBurrow, 10) || 0;
-
-            let sumOfSpeeds = land + water + air + burrow;
-            console.log('Total number of speed types:', sumOfSpeeds);
-            let numOfRows = isNpc ? sumOfSpeeds : Math.ceil(sumOfSpeeds / 2);
-            console.log('Number of speed rows to display:', numOfRows);
-            setAttrs({
-                count_of_speeds: numOfRows
+  // Need to make sure that every weapon has the half level and heroic proficiency attributes, even if they aren't used, so that the calculations for those attributes work properly.
+on('sheet:opened', function() {
+    log('Sheet Opened',"Updating weapon attributes to ensure calculations work", r20color);
+    getSectionIDs('repeating_weapons', function(ids) {
+        getAttrs(['heroic_proficiency_bonus','half-level'], function(values) {
+            ids.forEach(function(id) {
+                const attrsToSet = {};
+                attrsToSet[`repeating_weapons_${id}_weapon-half-level`] = values['half-level'] || 0;
+                attrsToSet[`repeating_weapons_${id}_weapon-heroic-proficiency`] = values['heroic_proficiency_bonus'] || 0;
+                setAttrs(attrsToSet);
             });
         });
     });
@@ -2040,4 +2059,36 @@ on('change:repeating_weapons:weapon change:repeating_weapons:weapon-atk-bonus ch
         });
     }
 });
+
+// Function to update Half-Level and Heroic Proficiency when they change after the sheet has been opened.
+function updateWeapons(derivedStat) {
+    const fields = [
+        "half-level",
+        `${skill}_attribute`,
+        `${skill}_trained`,
+        `${skill}_focus`,
+        `${skill}_misc`,
+        `${skill}_ability`
+    ];
+
+    const allFields = [...fields, ...listOfAttributes];
+    // log(`list of fields to retrieve`, allFields, r20color);
+
+    getAttrs(allFields, function(values) {
+        //log(`Values retrieved for skill ${skill}`, values, r20color);
+        //console.log(`Values retrieved for skill ${skill}:`, values);
+        const attribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", ""); // Extract the attribute name from the skill's linked attribute field
+        //log(`Attribute for Skill ${skill}`, attribute, derivedStatsColor);
+        //log("value of attribute modifier", values[`${attribute}_modifier`], derivedStatsColor);
+        const halfLevel = parseInt(values["half-level"], 10) || 0;
+        const trained = parseInt(values[`${skill}_trained`], 10) || 0;
+        const focus = parseInt(values[`${skill}_focus`], 10) || 0;
+        const misc = parseInt(values[`${skill}_misc`], 10) || 0;
+        const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
+
+        setAttrs({
+            [`${skill}_bonus`]: halfLevel + trained + focus + misc + abilityMod
+        });
+    });
+}
 </script>

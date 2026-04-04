@@ -124,5 +124,8 @@
   "weapon-notes": "Weapon Notes",
   "attack": "Attack",
   "heroic-proficiency-bonus-abbr": "HPB",
-  "strength-x2-abbr": "STR x2"
+  "strength-x2-abbr": "STR x2",
+  "dice": "Dice",
+  "half-level-abbr": "1/2 Lvl",
+  "attribute-abbr-modifier-abbr": "Attr Mod"
 }
