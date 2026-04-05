@@ -305,3 +305,7 @@ label.buttonStyle {
     color: var(--parchment);
     border-radius: 0 8px 0 8px;
 }
+
+.ui-dialog .charactersheet .checkboxInput {
+    display: none;
+}

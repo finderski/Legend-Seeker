@@ -312,6 +312,10 @@ label.buttonStyle {
   border-radius: 0 8px 0 8px;
 }
 
+.ui-dialog .charactersheet .checkboxInput {
+  display: none;
+}
+
 .buttonbar {
   display: flex;
   margin-bottom: 20px;
@@ -1407,6 +1411,36 @@ label.buttonStyle {
   line-height: 1.2;
   width: 100%;
   white-space: nowrap;
+}
+
+.ui-dialog .charactersheet .settings .settingRow {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+  align-items: center;
+}
+.ui-dialog .charactersheet .settings .settingRow .settingLabel {
+  display: inline;
+}
+.ui-dialog .charactersheet .settings .settingRow .settingLabel .styledCheckbox {
+  display: inline-block;
+  font-family: "Pictos";
+  font-size: 1.5em;
+}
+.ui-dialog .charactersheet .settings .settingRow .settingLabel .checkboxInput:not(:checked) + .styledCheckbox::before {
+  content: "D";
+}
+.ui-dialog .charactersheet .settings .settingRow .settingLabel .checkboxInput:checked + .styledCheckbox::before {
+  content: "2";
+}
+.ui-dialog .charactersheet .settings .settingRow .settingLabel .styledCheckboxText {
+  display: inline-block;
+  background-color: transparent;
+  margin: 5px;
+  cursor: pointer;
+  text-transform: none;
+  font-family: var(--mainBodyAlt2);
+  font-size: 1.5em;
 }
 
 /*

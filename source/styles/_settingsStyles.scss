@@ -1,0 +1,35 @@
+@use './mixins/sheet-scope' as *;
+
+.settings {
+    @include sheet-scope {
+        .settingRow {
+            display: flex;
+            flex-flow: row nowrap;
+            column-gap: 5px;
+            align-items: center;
+            .settingLabel {
+                display: inline;
+                .styledCheckbox {
+                    display: inline-block;
+                    font-family: 'Pictos';
+                    font-size: 1.5em;
+                }
+                .checkboxInput:not(:checked) + .styledCheckbox::before {
+                content: 'D';
+                }
+                .checkboxInput:checked + .styledCheckbox::before {
+                    content: '2';
+                }
+                .styledCheckboxText {
+                    display: inline-block;
+                    background-color: transparent;
+                    margin: 5px;
+                    cursor: pointer;
+                    text-transform: none;
+                    font-family: var(--mainBodyAlt2);
+                    font-size: 1.5em;
+                }
+            }
+        }
+    }
+}

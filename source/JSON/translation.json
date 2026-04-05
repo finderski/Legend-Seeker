@@ -128,5 +128,6 @@
   "dice": "Dice",
   "half-level-abbr": "1/2 Lvl",
   "attribute-abbr-modifier-abbr": "Attr Mod",
-  "not-applicable-abbr": "N/A"
+  "not-applicable-abbr": "N/A",
+  "show-spells-on-sheet": "Show Spell Slots on Sheet"
 }

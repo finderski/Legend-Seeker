@@ -50,14 +50,53 @@ function updateWeapons(derivedStat) {
 }
 
 // Watch for a new weapon to be added and set the half-level and heroic proficiency bonus for that weapon.
-on('change:repeating_weapons:weapon change:repeating_weapons:weapon-type', function(eventInfo) {
+on('change:repeating_weapons:weapon', function(eventInfo) {
     log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
-    getAttrs(['half-level', 'heroic_proficiency_bonus'], function(values) {
-        const halfLevel = values['half-level'] || 0;
-        const heroicProficiencyBonus = values['heroic_proficiency_bonus'] || 0;
+    const fields = ['half-level', 'heroic_proficiency_bonus'];
+    //assume new weapon, so need to set up the damage and atk sections
+    fields.push(...damageFields, ...atkFields, ...listOfAttributes);
+    getAttrs(fields, function(values) {
+        const halfLevel = parseInt(values['half-level']) || 0;
+        const heroicProficiencyBonus = parseInt(values['heroic_proficiency_bonus']) || 0;
+        // Damage Fields to Set Up
+        const damageDice = values['repeating_weapons_weapon_damage_dice'] || '';
+        const damageAttributeMod = values['repeating_weapons_weapon-damage-attribute-mod'] || 0;
+        const damageMiscMod = parseInt(values['repeating_weapons_weapon-damage-misc-mod']) || 0;
+        // ATK Fields to Set Up
+        const atkBonus = parseInt(values['repeating_weapons_weapon-atk-bonus']) || 0;
+        const atkMiscMod = parseInt(values['repeating_weapons_weapon-misc-mod']) || 0;
+        //set up Attribute Modifiers
+        const strengthMod = parseInt(values['strength_modifier']) || 0;
+        const dexterityMod = parseInt(values['dexterity_modifier']) || 0;
+        const constitutionMod = parseInt(values['constitution_modifier']) || 0;
+        const intelligenceMod = parseInt(values['intelligence_modifier']) || 0;
+        const wisdomMod = parseInt(values['wisdom_modifier']) || 0;
+        const charismaMod = parseInt(values['charisma_modifier']) || 0;
         const setattrs = {};
-        setattrs[`repeating_weapons_${eventInfo.sourceAttribute.split('_')[2]}_weapon-half-level`] = halfLevel;
-        setattrs[`repeating_weapons_${eventInfo.sourceAttribute.split('_')[2]}_weapon-heroic-proficiency`] = heroicProficiencyBonus;
+        setattrs[`repeating_weapons_weapon-half-level`] = halfLevel;
+        setattrs[`repeating_weapons_weapon-heroic-proficiency`] = heroicProficiencyBonus;
+        // calculate Damage
+        let damageTotal = damageDice;
+        let damageSum = damageAttributeMod === 'strength_modifier' ? strengthMod :
+                        damageAttributeMod === 'dexterity_modifier' ? dexterityMod :
+                        damageAttributeMod === 'constitution_modifier' ? constitutionMod :
+                        damageAttributeMod === 'intelligence_modifier' ? intelligenceMod :
+                        damageAttributeMod === 'wisdom_modifier' ? wisdomMod :
+                        damageAttributeMod === 'charisma_modifier' ? charismaMod : 0;
+        damageSum += damageMiscMod + halfLevel;
+        damageTotal += damageSum > 0 ? " + " + damageSum : '';
+        log('Showing Work for Damage Calculation', `Damage Dice: ${damageDice}, Attribute Mod: ${damageAttributeMod} (${damageSum - damageMiscMod - halfLevel}), Misc Mod: ${damageMiscMod}, Half-Level: ${halfLevel}, Total Damage: ${damageTotal}`, r20color);
+        setattrs[`repeating_weapons_weapon_damage`] = damageTotal;
+        // calculate ATK
+        let atkTotal = heroicProficiencyBonus + atkMiscMod;
+        atkTotal += atkBonus === 'strength_modifier' ? strengthMod :
+                    atkBonus === 'dexterity_modifier' ? dexterityMod :
+                    atkBonus === 'constitution_modifier' ? constitutionMod :
+                    atkBonus === 'intelligence_modifier' ? intelligenceMod :
+                    atkBonus === 'wisdom_modifier' ? wisdomMod :
+                    atkBonus === 'charisma_modifier' ? charismaMod : 0;
+        log('Showing Work for ATK Calculation', `HPB: ${heroicProficiencyBonus}, Atk Bonus: ${atkBonus}, Atk Misc Mod: ${atkMiscMod}, Total ATK: ${atkTotal}`, r20color);
+        setattrs[`repeating_weapons_weapon-atk`] = atkTotal;
         setAttrs(setattrs);
     });
 });
