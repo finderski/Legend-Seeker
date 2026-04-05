@@ -9,6 +9,7 @@
     --ink: #2b2418;
     --gold: #c9a44d;
     --light-gold: #cead5f;
+    --read-only: #D9BF87;
     --title: 'Cinzel';
     --mainBody: 'Merriweather';
     --mainBodyAlt: 'Cormorant Garamond';
@@ -292,4 +293,15 @@ label.buttonStyle {
     font-family: 'Smooch';
     font-size: 1.5em;
     font-weight: bold;
+}
+
+.ui-dialog .charactersheet .readOnly {
+    background-color: var(--read-only);
+}
+
+.ui-dialog .charactersheet .nonClickable {
+    pointer-events: none;
+    background-color: var(--ink);
+    color: var(--parchment);
+    border-radius: 0 8px 0 8px;
 }

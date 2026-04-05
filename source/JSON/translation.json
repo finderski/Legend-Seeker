@@ -127,5 +127,6 @@
   "strength-x2-abbr": "STR x2",
   "dice": "Dice",
   "half-level-abbr": "1/2 Lvl",
-  "attribute-abbr-modifier-abbr": "Attr Mod"
+  "attribute-abbr-modifier-abbr": "Attr Mod",
+  "not-applicable-abbr": "N/A"
 }

@@ -5,10 +5,10 @@ mixin savingthrow(save)
     
       .saveRow
         .saveButton
-            button(class="labelButton", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
+            button(class="labelButton nonClickable", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
                 span(class="allcaps", data-i18n=`${longName}-abbr`) #{shortName}
         .saveTotal
-            input(class="attributeInput", type="text", name=`attr_${fieldShortName}_total` readonly placeholder="10")
+            input(class="attributeInput readOnly", type="text", name=`attr_${fieldShortName}_total` readonly placeholder="10")
         .saveCalc
             span(class="calcFormula")
                 | = 10 + 

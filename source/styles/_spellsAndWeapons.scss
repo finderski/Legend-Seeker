@@ -96,6 +96,15 @@
                                 opacity: 1;
                             }
                         }
+                        .attributeMod {
+                            min-width: 25%;
+                            max-width: 30%;
+                            flex: 1 1 30%;
+                            .weaponTypeDropdown {
+                                font-size: .9em;
+                                width: 100%;
+                            }
+                        }
                         .damage-config {
                             width: 100%;
                             display: flex;
@@ -105,30 +114,27 @@
                             background-color: var(--light-gold);
                             border-radius: 5px 0 5px 0;
                             .dice {
-                                width: 50%;
-                                display: flex;
-                                flex-flow: row nowrap;
-                                column-gap: 5px;
-                                .fieldLabelAbove {
-                                    font-size: .75em;
-                                    line-height: 1.2;
-                                }
-                                .textField {
-                                    width: 100%;
-                                    text-align: center;
-                                }
+                                min-width: 20%;
+                                max-width: 25%;
+                                flex: 1 1 20%;
                             }
                             .halfLevel {
-                                width: 29%;
-                            }
-                            .attributeMod {
-                                width: 29%;
+                                max-width: 20%;
+                                min-width: 15%;
+                                flex: 1 1 20%;
                             }
                             .miscMod {
-                                width: 29%;
+                                min-width: 20%;
+                                max-width: 25%;
+                                flex: 1 1 20%;
+                                .fieldLabelAbove {
+                                    white-space: nowrap;
+                                    overflow: visible;
+                                    margin-left: -3px;
+                                }
                             }
                             .addition {
-                                width: 15%;
+                                max-width: 8%;
                             }
                         }
                         .crit {
@@ -141,12 +147,25 @@
                             flex-flow: row nowrap;
                             column-gap: 5px;
                             .atkField {
-                                min-width: 21%;
+                                min-width: 15%;
+                                max-width: 20%;
+                                flex: 1 1 20%;
                             }
                             .equals,
-                            .addition,
-                            .atkFormula {
+                            .addition {
+                                max-width: 8%;
+                                flex: 0 0 auto;
+                            }
+                            .atkFormula{
+                                min-width: 8%;
+                                max-width: 8%;
+                                flex: 0 0 auto;
+                            }
+                            .hpb {
                                 width: 15%;
+                                min-width: 15%;
+                                max-width: 20%;
+                                flex: 1 1 auto;
                             }
                             .atkFormula {
                                 font-family: var(--title);
@@ -154,11 +173,11 @@
                                 text-align: center;
                                 align-self: center;
                             }
-                            select.weaponTypeDropdown {
+                            /*select.weaponTypeDropdown {
                                 min-width: 30%;
                                 max-width: 35%;
                                 font-size: .85em;
-                            }
+                            }*/
                         }
                         .notes {
                             width: 100%;
@@ -167,6 +186,8 @@
                         .weaponTypeDropdown {
                             width: 100%;
                             text-align: center;
+                            font-size: 1.2em;
+                            line-height: 1.2em;
                         }
                         .weaponTypeDropdown,
                         .weaponNotes {
@@ -183,13 +204,15 @@
                             height: 6rem;
                             min-height: 3rem;
                         }
-                        .fieldLabelAbove {
-                            font-size: .75em;
-                            line-height: 1.2;
-                        }
                         .damage .textField,
                         .crit .textField {
                             text-align: center;
+                        }
+                        .fieldLabelAbove {
+                            font-size: .75em;
+                            line-height: 1.2;
+                            width: 100%;
+                            white-space: nowrap;
                         }
                     }
                 }

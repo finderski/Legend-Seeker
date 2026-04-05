@@ -9,10 +9,10 @@ input(class="xPointInput", type='text', name='attr_hitpoints', placeholder="0")
 .speed
     label(class="fieldLabelAbove", data-i18n='speed') Speed
     input(class="xPointInput", type='text', name='attr_speed', placeholder="0")
-.initiative 
+.initiative.readOnly
     label(class="fieldLabelAbove", data-i18n='initiative') Initiative
-    input(class="xPointInput", type='text', name='attr_initiative_bonus', placeholder="0")
-.hpb 
+    input(class="xPointInput", type='text', name='attr_initiative_bonus', placeholder="0" readonly)
+.hpb.readOnly
     label(class="fieldLabelAbove", data-i18n='heroic-proficiency-bonus') Heroic Proficiency Bonus
     input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)
 .legendaryPoints 

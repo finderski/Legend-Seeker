@@ -1,7 +1,6 @@
 // Styles are in _spellsAndWeapons.scss
 h2.headerLabel(data-i18n='weapons') Weapons
 fieldset(class="repeating_weapons")
-    input(type='hidden', name='attr_weapon-heroic-proficiency', readonly)
     .weaponContainer
         .button 
             .chatButtons
@@ -42,6 +41,14 @@ fieldset(class="repeating_weapons")
             .addition
             .attributeMod 
                 label(class="fieldLabelAbove", data-i18n='attribute-abbr-modifier-abbr') Att Mod
+                select(class="weaponTypeDropdown", name='attr_weapon-damage-attribute-mod')
+                    option(value='strength_modifier' data-i18n='strength-abbr') STR
+                    option(value='dexterity_modifier' data-i18n='dexterity-abbr') DEX
+                    option(value='constitution_modifier' data-i18n='constitution-abbr') CON
+                    option(value='intelligence_modifier' data-i18n='intelligence-abbr') INT
+                    option(value='wisdom_modifier' data-i18n='wisdom-abbr') WIS
+                    option(value='charisma_modifier' data-i18n='charisma-abbr') CHA
+                    option(value='none' data-i18n='not-applicable-abbr') N/A
             .addition 
             .miscMod 
                 label(class="fieldLabelAbove", data-i18n='miscellaneous-modifier-abbr') Misc. Mod
@@ -51,12 +58,20 @@ fieldset(class="repeating_weapons")
                 label(class="fieldLabelAbove", data-i18n='attack-abbr') Atk
                 input(class='textField',type='text', name='attr_weapon-atk' readonly)
             .equals 
-            span(class="atkFormula", data-i18n='heroic-proficiency-bonus-abbr') HPB 
+            .hpb 
+                label(class="fieldLabelAbove", data-i18n='heroic-proficiency-bonus-abbr', data-i18n-title='heroic-proficiency') HPB
+                input(class='textField', type='text', name='attr_weapon-heroic-proficiency', readonly)
             .addition 
-            select(class="weaponTypeDropdown", name='attr_weapon-atk-bonus')
-                option(value='str' data-i18n='strength-abbr') STR
-                option(value='strx2' data-i18n='strength-x2-abbr') STR x2
-                option(value='dex' data-i18n='dexterity-abbr') DEX
+            .attributeMod 
+                label(class="fieldLabelAbove", data-i18n='attribute-abbr-modifier-abbr') Att Mod
+                select(class="weaponTypeDropdown", name='attr_weapon-atk-bonus')
+                    option(value='strength_modifier' data-i18n='strength-abbr') STR
+                    option(value='dexterity_modifier' data-i18n='dexterity-abbr') DEX
+                    option(value='constitution_modifier' data-i18n='constitution-abbr') CON
+                    option(value='intelligence_modifier' data-i18n='intelligence-abbr') INT
+                    option(value='wisdom_modifier' data-i18n='wisdom-abbr') WIS
+                    option(value='charisma_modifier' data-i18n='charisma-abbr') CHA
+                    option(value='none' data-i18n='not-applicable-abbr') N/A
             .addition
             .atkField
                 label(class="fieldLabelAbove", data-i18n='miscellaneous-modifier-abbr') Misc. Mod 

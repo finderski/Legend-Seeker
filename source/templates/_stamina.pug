@@ -19,6 +19,6 @@ input(class="xPointInput", type='text', name='attr_stamina', placeholder="0")
         input(class="xPointInput", type='text', name='attr_stamina_miscBonus', placeholder="0")
     .symbol 
         p =
-    .damageThreshold 
+    .damageThreshold.readOnly
         label(class="fieldLabelAbove", data-i18n='damage-threshold') Damage Threshold
-        input(class="xPointInput", type='text', name='attr_stamina_damageThreshold', placeholder="0")
+        input(class="xPointInput", type='text', name='attr_stamina_damageThreshold', placeholder="0" readonly)

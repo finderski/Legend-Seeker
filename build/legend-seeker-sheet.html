@@ -190,9 +190,9 @@
                 <div class="symbol"> 
                   <p>=</p>
                 </div>
-                <div class="damageThreshold"> 
+                <div class="damageThreshold readOnly">
                   <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
-                  <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0"/>
+                  <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
             </div>
@@ -212,11 +212,11 @@
                 <label class="fieldLabelAbove" data-i18n="speed">Speed</label>
                 <input class="xPointInput" type="text" name="attr_speed" placeholder="0"/>
               </div>
-              <div class="initiative"> 
+              <div class="initiative readOnly">
                 <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
-                <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
+                <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0" readonly="readonly"/>
               </div>
-              <div class="hpb"> 
+              <div class="hpb readOnly">
                 <label class="fieldLabelAbove" data-i18n="heroic-proficiency-bonus">Heroic Proficiency Bonus</label>
                 <input class="xPointInput" type="text" name="attr_heroic_proficiency_bonus" value="2" readonly="readonly"/>
               </div>
@@ -377,10 +377,10 @@
               </div>
               <div class="saveRow">
                 <div class="saveButton">
-                  <button class="labelButton" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
+                  <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
@@ -398,10 +398,10 @@
               </div>
               <div class="saveRow">
                 <div class="saveButton">
-                  <button class="labelButton" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
+                  <button class="labelButton nonClickable" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_ref_total" readonly="readonly" placeholder="10"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_ref_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
@@ -419,10 +419,10 @@
               </div>
               <div class="saveRow">
                 <div class="saveButton">
-                  <button class="labelButton" type="roll" name="roll_WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{WILL-check}}} {{Roll=[[1d20 + @{WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr">WILL</span></button>
+                  <button class="labelButton nonClickable" type="roll" name="roll_WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{WILL-check}}} {{Roll=[[1d20 + @{WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr">WILL</span></button>
                 </div>
                 <div class="saveTotal">
-                  <input class="attributeInput" type="text" name="attr_will_total" readonly="readonly" placeholder="10"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_will_total" readonly="readonly" placeholder="10"/>
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
@@ -1467,7 +1467,6 @@
         <!-- Styles are in _spellsAndWeapons.scss-->
         <h2 class="headerLabel" data-i18n="weapons">Weapons</h2>
         <fieldset class="repeating_weapons">
-          <input type="hidden" name="attr_weapon-heroic-proficiency" readonly="readonly"/>
           <div class="weaponContainer">
             <div class="button"> 
               <div class="chatButtons">
@@ -1517,6 +1516,15 @@
               <div class="addition"></div>
               <div class="attributeMod"> 
                 <label class="fieldLabelAbove" data-i18n="attribute-abbr-modifier-abbr">Att Mod</label>
+                <select class="weaponTypeDropdown" name="attr_weapon-damage-attribute-mod">
+                  <option value="strength_modifier" data-i18n="strength-abbr">STR</option>
+                  <option value="dexterity_modifier" data-i18n="dexterity-abbr">DEX</option>
+                  <option value="constitution_modifier" data-i18n="constitution-abbr">CON</option>
+                  <option value="intelligence_modifier" data-i18n="intelligence-abbr">INT</option>
+                  <option value="wisdom_modifier" data-i18n="wisdom-abbr">WIS</option>
+                  <option value="charisma_modifier" data-i18n="charisma-abbr">CHA</option>
+                  <option value="none" data-i18n="not-applicable-abbr">N/A</option>
+                </select>
               </div>
               <div class="addition"> </div>
               <div class="miscMod"> 
@@ -1529,13 +1537,24 @@
                 <label class="fieldLabelAbove" data-i18n="attack-abbr">Atk</label>
                 <input class="textField" type="text" name="attr_weapon-atk" readonly="readonly"/>
               </div>
-              <div class="equals"> </div><span class="atkFormula" data-i18n="heroic-proficiency-bonus-abbr">HPB </span>
+              <div class="equals"> </div>
+              <div class="hpb"> 
+                <label class="fieldLabelAbove" data-i18n="heroic-proficiency-bonus-abbr" data-i18n-title="heroic-proficiency">HPB</label>
+                <input class="textField" type="text" name="attr_weapon-heroic-proficiency" readonly="readonly"/>
+              </div>
               <div class="addition"> </div>
-              <select class="weaponTypeDropdown" name="attr_weapon-atk-bonus">
-                <option value="str" data-i18n="strength-abbr">STR</option>
-                <option value="strx2" data-i18n="strength-x2-abbr">STR x2</option>
-                <option value="dex" data-i18n="dexterity-abbr">DEX</option>
-              </select>
+              <div class="attributeMod"> 
+                <label class="fieldLabelAbove" data-i18n="attribute-abbr-modifier-abbr">Att Mod</label>
+                <select class="weaponTypeDropdown" name="attr_weapon-atk-bonus">
+                  <option value="strength_modifier" data-i18n="strength-abbr">STR</option>
+                  <option value="dexterity_modifier" data-i18n="dexterity-abbr">DEX</option>
+                  <option value="constitution_modifier" data-i18n="constitution-abbr">CON</option>
+                  <option value="intelligence_modifier" data-i18n="intelligence-abbr">INT</option>
+                  <option value="wisdom_modifier" data-i18n="wisdom-abbr">WIS</option>
+                  <option value="charisma_modifier" data-i18n="charisma-abbr">CHA</option>
+                  <option value="none" data-i18n="not-applicable-abbr">N/A</option>
+                </select>
+              </div>
               <div class="addition"></div>
               <div class="atkField">
                 <label class="fieldLabelAbove" data-i18n="miscellaneous-modifier-abbr">Misc. Mod </label>
@@ -2027,40 +2046,12 @@ listOfAttributes.forEach(attribute => {
 //repeating_weapons_weapon-crit = Weapon Critical (e.g. 20 or lowest natural roll on a d20 for a critical hit)
 //repeating_weapons_attack_formula = Formula for calculating attack (e.g. "HPB + STR/DEX + Misc Mod")
 
-on('change:repeating_weapons:weapon change:repeating_weapons:weapon-atk-bonus change:repeating_weapons:weapon-misc-mod change:heroic-proficiency-bonus', function(eventInfo) {
-    log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
-    console.log(eventInfo);
-    const fields = [];
-    if (eventInfo.sourceAttribute === 'heroic-proficiency-bonus') {
-        // Heroic Proficiency Trigger - must update ALL weapons
-        getSectionIDs('repeating_weapons', function(ids) {
-            ids.forEach(function(id) {
-                calculateWeaponAttack(id);
-            });
-        });
-    }
-    else {
-        // Grab only the values for the current weapon
-        fields.push("heroic_proficiency_bonus","repeating_weapons_weapon-atk-bonus","repeating_weapons_weapon-misc-mod", "strength_modifier", "dexterity_modifier", "repeating_weapons_weapon-type");
-        console.log('Fields to get: ', fields);
-        getAttrs(fields, function(values) {
-            console.log(values);
-            const setattrs = {};
-            const hpb = parseInt(values['heroic_proficiency_bonus']) || 0;
-            const miscMod = parseInt(values['repeating_weapons_weapon-misc-mod']) || 0;
-            const attributeBonus = values['repeating_weapons_weapon-atk-bonus'];
-            const atkBonus = attributeBonus === 'str' ? parseInt(values['strength_modifier']) || 0 :
-                            attributeBonus === 'strx2' ? 2 * (parseInt(values['strength_modifier']) || 0) :
-                            attributeBonus === 'dex' ? parseInt(values['dexterity_modifier']) || 0 : 0;
-
-            const totalAtk = hpb + atkBonus + miscMod;
-            setattrs['repeating_weapons_weapon-atk'] = totalAtk;
-            setAttrs(setattrs);
-        });
-    }
-});
-
 // Function to update Half-Level and Heroic Proficiency when they change after the sheet has been opened.
+
+// listOfAttributes - contains all Attribute Modifier Fields (e.g. strength_modifier, dexterity_modifier, etc.)
+const damageFields = ["repeating_weapons_weapon-half-level", "repeating_weapons_weapon_damage_dice", "repeating_weapons_weapon-damage-attribute-mod", "repeating_weapons_weapon-damage-misc-mod"];
+const atkFields = ["repeating_weapons_weapon-heroic-proficiency", "repeating_weapons_weapon-atk-bonus", "repeating_weapons_weapon-misc-mod"];
+
 function updateWeapons(derivedStat) {
     const fields = [
         "half-level",
@@ -2091,4 +2082,70 @@ function updateWeapons(derivedStat) {
         });
     });
 }
+
+// Watch for a new weapon to be added and set the half-level and heroic proficiency bonus for that weapon.
+on('change:repeating_weapons:weapon change:repeating_weapons:weapon-type', function(eventInfo) {
+    log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
+    getAttrs(['half-level', 'heroic_proficiency_bonus'], function(values) {
+        const halfLevel = values['half-level'] || 0;
+        const heroicProficiencyBonus = values['heroic_proficiency_bonus'] || 0;
+        const setattrs = {};
+        setattrs[`repeating_weapons_${eventInfo.sourceAttribute.split('_')[2]}_weapon-half-level`] = halfLevel;
+        setattrs[`repeating_weapons_${eventInfo.sourceAttribute.split('_')[2]}_weapon-heroic-proficiency`] = heroicProficiencyBonus;
+        setAttrs(setattrs);
+    });
+});
+
+// Watch for changes to Damage Fields to Update Total Damage
+on('change:repeating_weapons:weapon change:repeating_weapons:weapon-type change:repeating_weapons_weapon-damage change:repeating_weapons_weapon-misc-mod change:heroic-proficiency-bonus', function(eventInfo) {
+    log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
+    console.log(eventInfo);
+    const fields = [];
+});
+
+// Watch for Changes to ATK Fields to Update Total ATK
+on('change:repeating_weapons:weapon change:repeating_weapons:weapon-atk-bonus change:repeating_weapons:weapon-misc-mod change:heroic-proficiency-bonus', function(eventInfo) {
+    log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
+    console.log(eventInfo);
+    const fields = [];
+    if (eventInfo.sourceAttribute === 'heroic-proficiency-bonus') {
+        // Heroic Proficiency Trigger - must update ALL weapons
+        getSectionIDs('repeating_weapons', function(ids) {
+            ids.forEach(function(id) {
+                calculateWeaponAttack(id);
+            });
+        });
+    }
+    else {
+        // Grab only the values for the current weapon
+        fields.push(
+            // Damage Formula Fields
+            "weapon-half-level",
+            // ATK Formula Fields
+            "repeating_weapons_weapon-atk-bonus",
+            "repeating_weapons_weapon-misc-mod",
+            //Both Formula Fields
+            "strength_modifier",
+            "dexterity_modifier",
+            "repeating_weapons_weapon-type"
+        );
+        console.log('Fields to get: ', fields);
+        getAttrs(fields, function(values) {
+            console.log(values);
+            const setattrs = {};
+            const hpb = parseInt(values['heroic_proficiency_bonus']) || 0;
+            const miscMod = parseInt(values['repeating_weapons_weapon-misc-mod']) || 0;
+            const attributeBonus = values['repeating_weapons_weapon-atk-bonus'];
+            const atkBonus = attributeBonus === 'str' ? parseInt(values['strength_modifier']) || 0 :
+                            attributeBonus === 'strx2' ? 2 * (parseInt(values['strength_modifier']) || 0) :
+                            attributeBonus === 'dex' ? parseInt(values['dexterity_modifier']) || 0 : 0;
+
+            const totalAtk = hpb + atkBonus + miscMod;
+            setattrs['repeating_weapons_weapon-atk'] = totalAtk;
+            setAttrs(setattrs);
+        });
+    }
+});
+
+
 </script>
