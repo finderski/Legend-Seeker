@@ -1,11 +1,3 @@
-
-// Define colors for Logs
-const r20color = '#E948C9';
-const buttonClick = 'goldenrod';
-const sheetinit = 'lime';
-const deltaColor = 'darkgoldenrod';
-const derivedStatsColor = 'Salmon';
-
 // Better Logging Functionality
 const log = (
     title,
@@ -71,10 +63,9 @@ function repeatingSimpleSumWCheck(
 
 const checkDiceExpression = (expression) => {
     const dicePattern = /^\d+(d\d+)?([+-]\d+)?$/i;
+    log("Dice Expression Check", dicePattern.test(expression), deltaColor);
     return dicePattern.test(expression);
 }
-
-const coreAttributes = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
 
 coreAttributes.forEach(attribute => {
     on(`change:${attribute}`, function (eventInfo) {

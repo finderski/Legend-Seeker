@@ -2,10 +2,7 @@
 //--------------------------
 //rereating_weapons_weapon = Weapon Name
 //repeating_weapons_weapon-atk = Total ATK (Heroic Proficiency Bonus + Attack Bonus from Str/Dex + Misc Modifiers)
-//repeating_weapons_weapon-atk-bonus = ATK Attack Bonus (e.g. STR/STRx2/DEX)
-//  - str
-//  - strx2
-//  - dex
+//repeating_weapons_weapon-atk-bonus = ATK Attack Bonus from Attribute Modifiers (e.g. Str, Dex, etc.)
 //repeating_weapons_weapon-misc-mod = ATK Miscellaneous Attack Modifier (from magic items, etc.)
 //repeating_weapons_weapon-type = Weapon Type (Melee, Ranged)
 //repeating_weapons_weapon-damage = Weapon Damage (e.g. 1d6)
@@ -15,37 +12,117 @@
 // Function to update Half-Level and Heroic Proficiency when they change after the sheet has been opened.
 
 // listOfAttributes - contains all Attribute Modifier Fields (e.g. strength_modifier, dexterity_modifier, etc.)
-const damageFields = ["repeating_weapons_weapon-half-level", "repeating_weapons_weapon_damage_dice", "repeating_weapons_weapon-damage-attribute-mod", "repeating_weapons_weapon-damage-misc-mod"];
-const atkFields = ["repeating_weapons_weapon-heroic-proficiency", "repeating_weapons_weapon-atk-bonus", "repeating_weapons_weapon-misc-mod"];
+// damageFields - contains all fields that are part of the damage calculation for a weapon
+// atkFields - contains all fields that are part of the attack calculation for a weapon
 
-function updateWeapons(derivedStat) {
-    const fields = [
-        "half-level",
-        `${skill}_attribute`,
-        `${skill}_trained`,
-        `${skill}_focus`,
-        `${skill}_misc`,
-        `${skill}_ability`
-    ];
+function updateWeapons(fields, section, id) {
+    // NOTE: fields should be passed in with repeating_weapons prefixed (e.g. repeating_weapons_weapon-damage-dice) and without the 
+    // row ID (e.g. -abc123).
+    // Before doing any updates or getAttrs, may need to .replace('repeating_weapons', `repeating_weapons_${id}`) to ensure getting 
+    // the correct fields for the correct weapon row.
+    // And doing the replace should avoid adding repeating_weapons to a field we may need to get from outside of the repeating section 
+    // (e.g. half-level, heroic_proficiency_bonus, strength_modifier, etc.)
 
-    const allFields = [...fields, ...listOfAttributes];
-    // log(`list of fields to retrieve`, allFields, r20color);
+    // NOTE: section should be atk, dmg, or all to determine which fields to update and which calculations to do. If section is all, 
+    // then update all fields and do all calculations. If section is atk, then only update atk fields and do atk calculation. If 
+    // section is dmg, then only update dmg fields and do dmg calculation.
 
-    getAttrs(allFields, function(values) {
-        //log(`Values retrieved for skill ${skill}`, values, r20color);
-        //console.log(`Values retrieved for skill ${skill}:`, values);
-        const attribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", ""); // Extract the attribute name from the skill's linked attribute field
-        //log(`Attribute for Skill ${skill}`, attribute, derivedStatsColor);
-        //log("value of attribute modifier", values[`${attribute}_modifier`], derivedStatsColor);
-        const halfLevel = parseInt(values["half-level"], 10) || 0;
-        const trained = parseInt(values[`${skill}_trained`], 10) || 0;
-        const focus = parseInt(values[`${skill}_focus`], 10) || 0;
-        const misc = parseInt(values[`${skill}_misc`], 10) || 0;
-        const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
+    // Make sure fields and sction aren't empty or null before proceeding.
 
-        setAttrs({
-            [`${skill}_bonus`]: halfLevel + trained + focus + misc + abilityMod
+    log("updateWeapons function called with variables: ", `fields: ${fields}, section: ${section}, id: ${id}`, r20color);
+
+    if (!fields || fields.length === 0) {
+        log("No fields provided for updateWeapons function. Exiting function.", '', r20color);
+        return;
+    }
+    if (!section || section === '') {
+        log("No section provided for updateWeapons function. Exiting function.", '', r20color);
+        return;
+    }    
+    //row id must be passed to the function as only one row will be processed at a time.
+    // Update only the row with the specified id
+    //fields = fields.map(field => field.replace('repeating_weapons', `repeating_weapons_${id}`));
+    // Updated ID Append Logic:
+    fields = fields.map(field => {
+        if (
+            field.startsWith('repeating_weapons') &&
+            !field.startsWith(`repeating_weapons_${id}_`)
+        ) {
+            return field.replace('repeating_weapons', `repeating_weapons_${id}`);
+        }
+        return field;
         });
+    // Now get the attributes and do the calculations for the specified weapon row
+    getAttrs(fields, function(values) {
+        log("Half Level and HPB", `Half Level: ${values['half-level']}, Heroic Proficiency Bonus: ${values['heroic_proficiency_bonus']}`, r20color);
+        const updateHalfLevel = values['half-level'] || values['half-level'] === '0' || values['half-level'] === 0 ? parseInt(values['half-level']) || 0 : 'skip';
+        const halfLevel = values['half-level'] || values['half-level'] === '0' || values['half-level'] === 0 ? parseInt(values['half-level']) || 0 : parseInt(values[`repeating_weapons_${id}_weapon-half-level`]) || 0;
+        const updateHeroicProficiencyBonus = values['heroic_proficiency_bonus'] || values['heroic_proficiency_bonus'] === '0' || values['heroic_proficiency_bonus'] === 0 ? parseInt(values['heroic_proficiency_bonus']) || 0 : 'skip';
+        const heroicProficiencyBonus = values['heroic_proficiency_bonus'] || values['heroic_proficiency_bonus'] === '0' || values['heroic_proficiency_bonus'] === 0 ? parseInt(values['heroic_proficiency_bonus']) || 0 : parseInt(values[`repeating_weapons_${id}_weapon-heroic-proficiency`]) || 0;
+        log("Heroic Proficiency Bonus Value After process", `Heroic Proficiency Bonus: ${heroicProficiencyBonus}, type: ${typeof(heroicProficiencyBonus)}`, r20color);
+        const setattrs = {};
+        switch(updateHalfLevel) {
+            case 'skip':
+                break;
+            default:
+                setattrs[`repeating_weapons_${id}_weapon-half-level`] = updateHalfLevel;
+        }
+        switch(updateHeroicProficiencyBonus) {
+            case 'skip':
+                break;
+            default:
+                setattrs[`repeating_weapons_${id}_weapon-heroic-proficiency`] = updateHeroicProficiencyBonus;
+        }
+        //set up Attribute Modifiers
+        const strengthMod = parseInt(values['strength_modifier']) || 0;
+        const dexterityMod = parseInt(values['dexterity_modifier']) || 0;
+        const constitutionMod = parseInt(values['constitution_modifier']) || 0;
+        const intelligenceMod = parseInt(values['intelligence_modifier']) || 0;
+        const wisdomMod = parseInt(values['wisdom_modifier']) || 0;
+        const charismaMod = parseInt(values['charisma_modifier']) || 0;
+        log("damage attr mod",values[`repeating_weapons_${id}_weapon-damage-attribute-mod`], deltaColor);
+        const damageAttributeMod = values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'none' ? 0 :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'strength_modifier' ? strengthMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'dexterity_modifier' ? dexterityMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'constitution_modifier' ? constitutionMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'intelligence_modifier' ? intelligenceMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'wisdom_modifier' ? wisdomMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'charisma_modifier' ? charismaMod : 0;
+        log("Damage Attribute Modier Value", `${damageAttributeMod}, type: ` + typeof(damageAttributeMod), deltaColor);
+        const atkBonus = values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'none' ? 0 :
+                                    values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'strength_modifier' ? strengthMod :
+                                    values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'dexterity_modifier' ? dexterityMod :
+                                    values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'constitution_modifier' ? constitutionMod :
+                                    values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'intelligence_modifier' ? intelligenceMod :
+                                    values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'wisdom_modifier' ? wisdomMod :
+                                    values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'charisma_modifier' ? charismaMod : 0;
+
+        log("ATK and Damage Attribute Modifiers Retrieved", `ATK Attribute Mod: ${atkBonus}, Damage Attribute Mod: ${damageAttributeMod}`, r20color);
+        // Damage Fields to Set Up
+        if (section === 'dmg' || section === 'all') {
+            const damageDice = values[`repeating_weapons_${id}_weapon-damage-dice`] || '';
+            const damageMiscMod = parseInt(values[`repeating_weapons_${id}_weapon-damage-misc-mod`]) || 0;
+            const validDice = checkDiceExpression(damageDice);
+            log("Damage Fields Retrieved", `Damage Dice: ${damageDice} (Valid: ${validDice}), Damage Attribute Mod: ${damageAttributeMod}, Damage Misc Mod: ${damageMiscMod}`, r20color);
+            // calculate Damage
+            let damageTotal = validDice ? damageDice : '';
+            const damageSum = damageMiscMod + halfLevel + damageAttributeMod;
+            damageTotal += damageSum > 0 ? " + " + damageSum : '';
+            log('Showing Work for Damage Calculation', `Damage Dice: ${damageDice}, Attribute Mod: ${damageAttributeMod}, Misc Mod: ${damageAttributeMod}, Half-Level: ${halfLevel}, Total Damage: ${damageTotal}`, r20color);
+            setattrs[`repeating_weapons_${id}_weapon-damage`] = damageTotal;
+        }
+
+        // ATK Fields to Set Up
+        if (section === 'atk' || section === 'all') {
+            const atkMiscMod = parseInt(values[`repeating_weapons_${id}_weapon-misc-mod`]) || 0;
+
+            // calculate ATK
+            let atkTotal = heroicProficiencyBonus + atkMiscMod + atkBonus;
+            log('Showing Work for ATK Calculation', `HPB: ${heroicProficiencyBonus}, Atk Bonus: ${atkBonus}, Atk Misc Mod: ${atkMiscMod}, Total ATK: ${atkTotal}`, r20color);
+            setattrs[`repeating_weapons_${id}_weapon-atk`] = atkTotal;
+            log("Values to be set", JSON.stringify(setattrs), r20color);
+        }
+        setAttrs(setattrs);
     });
 }
 
@@ -55,100 +132,68 @@ on('change:repeating_weapons:weapon', function(eventInfo) {
     const fields = ['half-level', 'heroic_proficiency_bonus'];
     //assume new weapon, so need to set up the damage and atk sections
     fields.push(...damageFields, ...atkFields, ...listOfAttributes);
-    getAttrs(fields, function(values) {
-        const halfLevel = parseInt(values['half-level']) || 0;
-        const heroicProficiencyBonus = parseInt(values['heroic_proficiency_bonus']) || 0;
-        // Damage Fields to Set Up
-        const damageDice = values['repeating_weapons_weapon_damage_dice'] || '';
-        const damageAttributeMod = values['repeating_weapons_weapon-damage-attribute-mod'] || 0;
-        const damageMiscMod = parseInt(values['repeating_weapons_weapon-damage-misc-mod']) || 0;
-        // ATK Fields to Set Up
-        const atkBonus = parseInt(values['repeating_weapons_weapon-atk-bonus']) || 0;
-        const atkMiscMod = parseInt(values['repeating_weapons_weapon-misc-mod']) || 0;
-        //set up Attribute Modifiers
-        const strengthMod = parseInt(values['strength_modifier']) || 0;
-        const dexterityMod = parseInt(values['dexterity_modifier']) || 0;
-        const constitutionMod = parseInt(values['constitution_modifier']) || 0;
-        const intelligenceMod = parseInt(values['intelligence_modifier']) || 0;
-        const wisdomMod = parseInt(values['wisdom_modifier']) || 0;
-        const charismaMod = parseInt(values['charisma_modifier']) || 0;
-        const setattrs = {};
-        setattrs[`repeating_weapons_weapon-half-level`] = halfLevel;
-        setattrs[`repeating_weapons_weapon-heroic-proficiency`] = heroicProficiencyBonus;
-        // calculate Damage
-        let damageTotal = damageDice;
-        let damageSum = damageAttributeMod === 'strength_modifier' ? strengthMod :
-                        damageAttributeMod === 'dexterity_modifier' ? dexterityMod :
-                        damageAttributeMod === 'constitution_modifier' ? constitutionMod :
-                        damageAttributeMod === 'intelligence_modifier' ? intelligenceMod :
-                        damageAttributeMod === 'wisdom_modifier' ? wisdomMod :
-                        damageAttributeMod === 'charisma_modifier' ? charismaMod : 0;
-        damageSum += damageMiscMod + halfLevel;
-        damageTotal += damageSum > 0 ? " + " + damageSum : '';
-        log('Showing Work for Damage Calculation', `Damage Dice: ${damageDice}, Attribute Mod: ${damageAttributeMod} (${damageSum - damageMiscMod - halfLevel}), Misc Mod: ${damageMiscMod}, Half-Level: ${halfLevel}, Total Damage: ${damageTotal}`, r20color);
-        setattrs[`repeating_weapons_weapon_damage`] = damageTotal;
-        // calculate ATK
-        let atkTotal = heroicProficiencyBonus + atkMiscMod;
-        atkTotal += atkBonus === 'strength_modifier' ? strengthMod :
-                    atkBonus === 'dexterity_modifier' ? dexterityMod :
-                    atkBonus === 'constitution_modifier' ? constitutionMod :
-                    atkBonus === 'intelligence_modifier' ? intelligenceMod :
-                    atkBonus === 'wisdom_modifier' ? wisdomMod :
-                    atkBonus === 'charisma_modifier' ? charismaMod : 0;
-        log('Showing Work for ATK Calculation', `HPB: ${heroicProficiencyBonus}, Atk Bonus: ${atkBonus}, Atk Misc Mod: ${atkMiscMod}, Total ATK: ${atkTotal}`, r20color);
-        setattrs[`repeating_weapons_weapon-atk`] = atkTotal;
-        setAttrs(setattrs);
-    });
+    const id = eventInfo.sourceAttribute.split('_')[2];
+    const section = 'all';
+    log("New Weapon Added. Updating all fields for new weapon with id: " + id, r20color);
+    updateWeapons(fields, section, id)
+    log('Processed','Used updateWeapons,r20color');
 });
 
 // Watch for changes to Damage Fields to Update Total Damage
-on('change:repeating_weapons:weapon change:repeating_weapons:weapon-type change:repeating_weapons_weapon-damage change:repeating_weapons_weapon-misc-mod change:heroic-proficiency-bonus', function(eventInfo) {
+on('change:repeating_weapons:weapon-damage-dice change:half-level change:repeating_weapons:weapon-damage-attribute-mod change:repeating_weapons:weapon-damage-misc-mod', function(eventInfo) {
     log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
-    console.log(eventInfo);
-    const fields = [];
-});
-
-// Watch for Changes to ATK Fields to Update Total ATK
-on('change:repeating_weapons:weapon change:repeating_weapons:weapon-atk-bonus change:repeating_weapons:weapon-misc-mod change:heroic-proficiency-bonus', function(eventInfo) {
-    log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
-    console.log(eventInfo);
-    const fields = [];
-    if (eventInfo.sourceAttribute === 'heroic-proficiency-bonus') {
+    // if half-level, then all weapons need to be updated, otherwise just the current weapon needs to be updated
+    if (eventInfo.sourceAttribute === 'half-level') {
         // Heroic Proficiency Trigger - must update ALL weapons
+        const fields = ['half-level', ...damageFields, ...listOfAttributes];
+        const section = 'dmg';
+        //const id = 'all';
+        log("half-level Changed. Updating damage for all weapons.", r20color);
         getSectionIDs('repeating_weapons', function(ids) {
             ids.forEach(function(id) {
-                calculateWeaponAttack(id);
+                updateWeapons(fields, section, id);
             });
         });
+        log('Processed','Used updateWeapons,r20color');
     }
     else {
         // Grab only the values for the current weapon
-        fields.push(
-            // Damage Formula Fields
-            "weapon-half-level",
-            // ATK Formula Fields
-            "repeating_weapons_weapon-atk-bonus",
-            "repeating_weapons_weapon-misc-mod",
-            //Both Formula Fields
-            "strength_modifier",
-            "dexterity_modifier",
-            "repeating_weapons_weapon-type"
-        );
-        console.log('Fields to get: ', fields);
-        getAttrs(fields, function(values) {
-            console.log(values);
-            const setattrs = {};
-            const hpb = parseInt(values['heroic_proficiency_bonus']) || 0;
-            const miscMod = parseInt(values['repeating_weapons_weapon-misc-mod']) || 0;
-            const attributeBonus = values['repeating_weapons_weapon-atk-bonus'];
-            const atkBonus = attributeBonus === 'str' ? parseInt(values['strength_modifier']) || 0 :
-                            attributeBonus === 'strx2' ? 2 * (parseInt(values['strength_modifier']) || 0) :
-                            attributeBonus === 'dex' ? parseInt(values['dexterity_modifier']) || 0 : 0;
-
-            const totalAtk = hpb + atkBonus + miscMod;
-            setattrs['repeating_weapons_weapon-atk'] = totalAtk;
-            setAttrs(setattrs);
-        });
+        const fields = damageFields.map(field => field.replace('repeating_weapons', `repeating_weapons_${eventInfo.sourceAttribute.split('_')[2]}`));
+        fields.push(...listOfAttributes);
+        const section = 'dmg';
+        const id = eventInfo.sourceAttribute.split('_')[2];
+        log("Damage Field Changed. Updating damage for weapon with id: " + id, r20color);
+        updateWeapons(fields, section, id);
+        log('Processed','Used updateWeapons,r20color');
     }
 });
 
+
+// Watch for Changes to ATK Fields to Update Total ATK
+on('change:heroic_proficiency_bonus change:repeating_weapons:weapon-atk-bonus change:repeating_weapons:weapon-misc-mod change:heroic-proficiency-bonus', function(eventInfo) {
+    log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
+    // if hpb, then all weapons need to be updated, otherwise just the current weapon needs to be updated
+    if (eventInfo.sourceAttribute === 'heroic_proficiency_bonus') {
+        // Heroic Proficiency Trigger - must update ALL weapons
+        const fields = ['heroic_proficiency_bonus', ...atkFields, ...listOfAttributes];
+        const section = 'atk';
+        //const id = 'all';
+        log("Heroic Proficiency Bonus Changed. Updating attack for all weapons.", r20color);
+        getSectionIDs('repeating_weapons', function(ids) {
+            ids.forEach(function(id) {
+                updateWeapons(fields, section, id);
+            });
+        });
+        log('Processed','Used updateWeapons,r20color');
+    }
+    else {
+        // Grab only the values for the current weapon
+        const fields = atkFields.map(field => field.replace('repeating_weapons', `repeating_weapons_${eventInfo.sourceAttribute.split('_')[2]}`));
+        fields.push(...listOfAttributes);
+        const section = 'atk';
+        const id = eventInfo.sourceAttribute.split('_')[2];
+        log("Attack Field Changed. Updating attack for weapon with id: " + id, r20color);
+        updateWeapons(fields, section, id);
+        log('Processed','Used updateWeapons,r20color');
+    }
+});

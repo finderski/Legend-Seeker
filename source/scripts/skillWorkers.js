@@ -1,10 +1,8 @@
+
 /*------------------Update Skill Bonuses------------------*/
 // Watch for updates to: Attribute Modifiers, Half-Level, Trained Status, Skill Focus and Misc. Modifiers
-const listOfSklls = ['acrobatics','climb','craft','deception','endurance','gather-information','initiative','invoke-arcana','jump','lore','notice','persuasion','ride','sense-motive','stealth','survival','swim','tinkering','treat-wounds','mana-tap'];
-const listOfAttributes = ['strength_modifier', 'dexterity_modifier', 'constitution_modifier', 'intelligence_modifier', 'wisdom_modifier', 'charisma_modifier'];
-
+// Use the variables: listOfSklls, and listOfAttributes
 /*------------------End Skill Bonsuses------------------*/
-
 function recalcSkill(skill) {
     const fields = [
         "half-level",

@@ -142,6 +142,17 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/source\/scripts\/globalVariables.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 1,
+      "oAP" : "\/build\/scripts\/globalVariables-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/source\/scripts\/onOpen.js" : {
       "bF" : 0,
       "ft" : 64,
