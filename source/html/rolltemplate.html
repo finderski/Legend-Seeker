@@ -1,50 +1,23 @@
 <rolltemplate class="sheet-rolltemplate-roll">
     <div class="sheet-rolltemplate-header">
-        <div class="sheet-rolltemplate-header">
-            <h1>{{name}}</h1>
-        </div>
+        <h1>{{name}}</h1>
+            <!-- title would something like the skill name, weapon, attribute, etc. -->
+        {{#title}}
+            <h2>
+                {{title}}
+            </h2>
+        {{/title}}
     </div>
     <div class="sheet-rolltemplate-body">
-        {{#weapon}}
-        <div class="sheet-template-weapon">
-            <h2>
-                {{#mental-mutation}}
-                <div class="sheet-mutation-type">
-                    <img src="https://raw.githubusercontent.com/finderski/gamma-world-2e/master/img/brain.png" />
-                </div>
-                {{/mental-mutation}}
-                {{#physical-mutation}}
-                <div class="sheet-mutation-type">
-                    <img
-                        src="https://raw.githubusercontent.com/finderski/gamma-world-2e/master/img/muscular-torso.png" />
-                </div>
-                {{/physical-mutation}}
-                {{weapon}}
-            </h2>
-            {{#weapon_class}}<h3>Weapon Class: {{weapon_class}}</h3>{{/weapon_class}}
-        </div>
-        {{/weapon}}
-        {{#attacker-info}}
-        <div class="sheet-attacker-info">
-            {{#attacker_hd}}
-            <div class="sheet-left-column">Attacker's Hit Dice</div>
-            <div class="sheet-right-column">{{attacker_hd}}</div>
-            {{/attacker_hd}}
-            {{#mental-strength}}
-            <div class="sheeet-left-column">Attacker's Mental Strength</div>
-            <div class="" sheet-right-column">{{mental-strength}}</div>
-            {{/mental-strength}}
-        </div>
-        {{/attacker-info}}
-        <div class="sheet-defender-info">
-            {{#DaC}}
-            <div class="sheet-left-column">Defender's AC</div>
-            <div class="sheet-right-column">{{DaC}}</div>
-            {{/DaC}}
-            {{#DMS}}
-            <div class="sheet-left-column">Defender's Mental Strength</div>
-            <div class="sheet-right-column">{{DMS}}</div>
-            {{/DMS}}
+        <div class="sheet-roll-info">
+            {{#target}}
+            <div class="sheet-left-column">Target Number</div>
+            <div class="sheet-right-column">{{target}}</div>
+            {{/target}}
+            {{#roll}}
+            <div class="sheet-left-column">Roll</div>
+            <div class="sheet-right-column">{{roll}}</div>
+            {{/roll}}
         </div>
         {{#show-attack-info}}
         <div class="sheet-attack-info">

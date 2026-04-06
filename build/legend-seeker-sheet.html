@@ -1593,51 +1593,24 @@
 </div>
 <!--Rolltemplates--><rolltemplate class="sheet-rolltemplate-roll">
     <div class="sheet-rolltemplate-header">
-        <div class="sheet-rolltemplate-header">
-            <h1>{{name}}</h1>
-        </div>
+        <h1>{{name}}</h1>
+            <!-- title would something like the skill name, weapon, attribute, etc. -->
+        {{#title}}
+            <h2>
+                {{title}}
+            </h2>
+        {{/title}}
     </div>
     <div class="sheet-rolltemplate-body">
-        {{#weapon}}
-        <div class="sheet-template-weapon">
-            <h2>
-                {{#mental-mutation}}
-                <div class="sheet-mutation-type">
-                    <img src="https://raw.githubusercontent.com/finderski/gamma-world-2e/master/img/brain.png" />
-                </div>
-                {{/mental-mutation}}
-                {{#physical-mutation}}
-                <div class="sheet-mutation-type">
-                    <img
-                        src="https://raw.githubusercontent.com/finderski/gamma-world-2e/master/img/muscular-torso.png" />
-                </div>
-                {{/physical-mutation}}
-                {{weapon}}
-            </h2>
-            {{#weapon_class}}<h3>Weapon Class: {{weapon_class}}</h3>{{/weapon_class}}
-        </div>
-        {{/weapon}}
-        {{#attacker-info}}
-        <div class="sheet-attacker-info">
-            {{#attacker_hd}}
-            <div class="sheet-left-column">Attacker's Hit Dice</div>
-            <div class="sheet-right-column">{{attacker_hd}}</div>
-            {{/attacker_hd}}
-            {{#mental-strength}}
-            <div class="sheeet-left-column">Attacker's Mental Strength</div>
-            <div class="" sheet-right-column">{{mental-strength}}</div>
-            {{/mental-strength}}
-        </div>
-        {{/attacker-info}}
-        <div class="sheet-defender-info">
-            {{#DaC}}
-            <div class="sheet-left-column">Defender's AC</div>
-            <div class="sheet-right-column">{{DaC}}</div>
-            {{/DaC}}
-            {{#DMS}}
-            <div class="sheet-left-column">Defender's Mental Strength</div>
-            <div class="sheet-right-column">{{DMS}}</div>
-            {{/DMS}}
+        <div class="sheet-roll-info">
+            {{#target}}
+            <div class="sheet-left-column">Target Number</div>
+            <div class="sheet-right-column">{{target}}</div>
+            {{/target}}
+            {{#roll}}
+            <div class="sheet-left-column">Roll</div>
+            <div class="sheet-right-column">{{roll}}</div>
+            {{/roll}}
         </div>
         {{#show-attack-info}}
         <div class="sheet-attack-info">
@@ -1812,19 +1785,39 @@ on('change:level', function(eventInfo) {
     setAttrs({ "heroic_proficiency_bonus": hpb });
 });
 
+
 // Update Corruption
-on('change:wisdom', function(eventInfo) {
-    const wisdomScore = Math.floor((parseInt(eventInfo.newValue) || 0));
-    const setattrs = {};
-    for(let i=1; i <= 24; i++) {
-        // while i is the less than 24, hide the lock inputs
-        if (i <= wisdomScore) {
-            setattrs[`corruption_lock_${i}`] = 'show';
-        } else {
-            setattrs[`corruption_lock_${i}`] = 'hide';
+on('change:wisdom change:corruption_1 change:corruption_2 change:corruption_3 change:corruption_4 change:corruption_5 change:corruption_6 change:corruption_7 change:corruption_8 change:corruption_9 change:corruption_10 change:corruption_11 change:corruption_12 change:corruption_13 change:corruption_14 change:corruption_15 change:corruption_16 change:corruption_17 change:corruption_18 change:corruption_19 change:corruption_20 change:corruption_21 change:corruption_22 change:corruption_23 change:corruption_24', function(eventInfo) {
+    //log('Corruption Watch Detected Change', JSON.stringify(eventInfo), r20color);
+    if (eventInfo.sourceAttribute === 'wisdom') {
+        // update the number of corruption slots
+        const wisdomScore = Math.floor((parseInt(eventInfo.newValue) || 0));
+        const setattrs = {};
+        for(let i=1; i <= 24; i++) {
+            // while i is the less than 24, hide the lock inputs
+            if (i <= wisdomScore) {
+                setattrs[`corruption_lock_${i}`] = 'show';
+            } else {
+                setattrs[`corruption_lock_${i}`] = 'hide';
+            }
         }
+        setAttrs(setattrs);
     }
-    setAttrs(setattrs);
+    else {
+        // update the shading of the corruption slots        const corruptionValue = parseInt(eventInfo.newValue) || 0;
+        const setattrs = {};
+        const corruptionValue = parseInt(eventInfo.sourceAttribute.split('_')[1]) || 0; // get the number from corruption_1, corruption_2, etc.
+        //log("Corruption Value", corruptionValue, r20color);
+        for(let i=1; i <= 24; i++) {
+            if (i <= corruptionValue) {
+                setattrs[`corruption_${i}`] = 'on';
+            } else {
+                setattrs[`corruption_${i}`] = 0;
+            }
+        }
+        setAttrs(setattrs,{silent:true});
+    }
+    
 });
 
 // Watch for changes for Stamina Damage Threshold
