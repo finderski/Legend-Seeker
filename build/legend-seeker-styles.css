@@ -1381,13 +1381,6 @@ label.buttonStyle {
   text-align: center;
   align-self: center;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk {
-  /*select.weaponTypeDropdown {
-      min-width: 30%;
-      max-width: 35%;
-      font-size: .85em;
-  }*/
-}
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .notes {
   width: 100%;
 }
