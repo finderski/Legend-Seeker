@@ -4,13 +4,17 @@ fieldset(class="repeating_weapons")
     .weaponContainer
         .button 
             .chatButtons
-                button(class="sendToChat", type="action" name="act_attack_to_chat", value="@{attack_formula}", data-18n-title="send-to-chat")
+                button(class="sendToChat", type="roll" name="roll_attack_to_chat", value="@{attack_formula}", data-18n-title="send-to-chat")
                     span(class="allcaps" data-i18n='attack') Attack
                 .whisperButton 
-                    button(class="whisperToChat", type="action" name="act_whisper_attack", value="/w gm @{attack_formula}", data-i18n-title="whisper-to-chat")
+                    button(class="whisperToChat", type="roll" name="roll_whisper_attack", value="/w gm @{attack_formula}", data-i18n-title="whisper-to-chat")
                         span.iconButton w
             //button(class="labelButton", type='roll', value="@{attack_formula}", data-i18n='attack-roll') Attack
-            input(type='hidden', name='attr_attack_formula', value='&{template:default} {{name=@{character_name}}} {{title=^{Attack}}} {{Roll=[[1d20 + @{weapon-atk-bonus}[Attack Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}')
+            button(class="hidden" type='roll' name='roll_damage-to-chat' value="@{weapon-damage-formula}")
+            button(class="hidden" type='roll' name='roll_crit-damage-to-chat' value="@{weapon-crit-damage-formula}")
+            input(type='hidden', name='attr_attack_formula', value='&{template:default} {{name=@{character_name}}} {{title=^{attack} with @{weapon}}} {{Roll=[[1d20cs>@{weapon-crit}cf1 + @{weapon-atk-bonus}[Attack Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{Target Defense Score=?{Target Defense Score|10}}} {{Roll Normal Damage=[Normal Damage](~repeating_weapons_damage-to-chat)}} {{Roll Critical Damage=[Critical Damage](~repeating_weapons_crit-damage-to-chat)}}')
+            input(type='hidden', name='attr_weapon-damage-formula', value='&{template:default} {{name=@{character_name}}} {{title=^{damage} with @{weapon}}} {{Roll=[[ @{weapon-damage} + [[?{Additional # of damage dice|0}]]d6 ]]}}')
+            input(type='hidden', name='attr_weapon-crit-damage-formula', value='&{template:default} {{name=@{character_name}}} {{title=^{critical-damage} with @{weapon}}} {{Roll=[[ @{weapon-damage-dice}! + @{half-level} + @{damage-attribute-mod-value} + @{weapon-damage-misc-mod} + [[?{Additional # of damage dice|0}]]d6! ]]}}')
         .weapon
             label(class="fieldLabelAbove", data-i18n='weapon') Weapon
             input(class="textField", type='text', name='attr_weapon', value='', data-i18n-placeholder='weapon')
@@ -48,7 +52,8 @@ fieldset(class="repeating_weapons")
                     option(value='intelligence_modifier' data-i18n='intelligence-abbr') INT
                     option(value='wisdom_modifier' data-i18n='wisdom-abbr') WIS
                     option(value='charisma_modifier' data-i18n='charisma-abbr') CHA
-                    option(value='none' data-i18n='not-applicable-abbr') N/A
+                    option(value='0' data-i18n='not-applicable-abbr') N/A
+                input(type='hidden', name='attr_damage-attribute-mod-value')
             .addition 
             .miscMod 
                 label(class="fieldLabelAbove", data-i18n='miscellaneous-modifier-abbr') Misc. Mod

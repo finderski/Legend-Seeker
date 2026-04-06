@@ -110,6 +110,7 @@ function updateWeapons(fields, section, id) {
             damageTotal += damageSum > 0 ? " + " + damageSum : '';
             log('Showing Work for Damage Calculation', `Damage Dice: ${damageDice}, Attribute Mod: ${damageAttributeMod}, Misc Mod: ${damageAttributeMod}, Half-Level: ${halfLevel}, Total Damage: ${damageTotal}`, r20color);
             setattrs[`repeating_weapons_${id}_weapon-damage`] = damageTotal;
+            setattrs[`repeating_weapons_${id}_damage-attribute-mod-value`] = damageAttributeMod;
         }
 
         // ATK Fields to Set Up
