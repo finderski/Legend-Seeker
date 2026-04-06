@@ -67,6 +67,17 @@
                         .button {
                             width: 70px;
                             flex: 0 0 auto;
+                            .chatButtons .whisperButton {
+                                left: 70px;
+                                :hover {
+                                    background-color: var(--ink);
+                                    color: var(--parchment);
+                                }
+                                .iconButton {
+                                    font-family: Pictos;
+                                    font-size: 1.2em;
+                                }
+                            }
                         }
                         .weapon {
                             width: 65%;

@@ -1264,6 +1264,17 @@ label.buttonStyle {
   width: 70px;
   flex: 0 0 auto;
 }
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton {
+  left: 70px;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton :hover {
+  background-color: var(--ink);
+  color: var(--parchment);
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton .iconButton {
+  font-family: Pictos;
+  font-size: 1.2em;
+}
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weapon {
   width: 65%;
   flex: 1 1 auto;
