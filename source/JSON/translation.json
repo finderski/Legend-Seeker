@@ -130,5 +130,12 @@
   "attribute-abbr-modifier-abbr": "Attr Mod",
   "not-applicable-abbr": "N/A",
   "show-spells-on-sheet": "Show Spell Slots on Sheet",
-  "critical-damage": "Critical Damage"
+  "critical-damage": "Critical Damage",
+  "target-number": "Target Number",
+  "roll": "Roll",
+  "critical-success": "Critical Success!",
+  "critical-failure": "Critical Failure!",
+  "success": "Success",
+  "notes": "Notes",
+  "failure": "Failure"
 }

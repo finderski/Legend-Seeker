@@ -1,0 +1,109 @@
+.sheet-rolltemplate-roll {
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 10px;
+    padding: 0;
+    margin: 0;
+    border-radius: 16px 0 16px 0;
+    border: 1px solid #2B2418;
+    background-color: #F3E6C9;
+    font-synthesis: unset !important;
+    .sheet-rolltemplate-header {
+        display: inline;
+        padding: 10px;
+        background-color: #2B2418;
+        border-radius: 16px 0 0 0;
+        h1 {
+            font-family: 'Cinzel';
+            font-size: 1.5em;
+            color: #F3E6C9;
+        }
+        h2 {
+            font-family: 'Eagle Lake';
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #F3E6C9;
+        }
+    }   
+    .sheet-rolltemplate-body {
+        display: flex;
+        flex-flow: column nowrap;
+        padding: 10px;
+        gap: 15px;
+        box-sizing: border-box;
+        font-family: 'Merriweather';
+        .sheet-roll-info {
+            display: flex;
+            flex-flow: row wrap;
+            gap: 10px;
+            justify-content: space-evenly;
+        }
+        .sheet-left-column {
+            width: 45%;
+            min-width: 45%;
+            max-width: 45%;
+            text-align: left;
+        }
+        .sheet-right-column {
+            width: 45%;
+            min-width: 45%;
+            max-width: 45%;
+            text-align: right;
+            .sheet-extremeRoll {
+                font-family: 'Noto Emoji';
+                font-size: 1.2em;
+            }
+            .sheet-extremeRoll.sheet-crit {
+                color: #005700;
+            }
+            .sheet-extremeRoll.sheet-fumble {
+                color: #7F1216;
+            }
+        }
+        .sheet-one-column {
+            width: 100%;
+            text-align: center;
+            .sheet-crit {
+                color: #005700;
+            }
+            .sheet-fumble {
+                color: #7F1216;
+            }
+            .sheet-result {
+                font-family: 'Eagle Lake';
+                font-size: 1.2em;
+                font-weight: 700;
+            }
+            > a[href^="~"] {
+                background-color: #2b2418;
+                color: #f3e6c9;
+                padding: 10px 15px;
+                border-radius: 8px;
+            }
+        }
+        .sheet-button {
+            margin: 15px 0 0 0;
+            padding: 5px 10px;
+            font-size: 1.5em;
+            font-family: 'Merriweather';
+            font-weight: 900;
+        }
+    }
+    .inlinerollresult,
+    .inlinerollresult.fullcrit,
+    .inlinerollresult.fullfail {
+        background-color: transparent;
+        border: none !important;
+        font-size: 1.6em;
+        font-weight: bold;
+        padding: 0;
+        font-family: 'Cormorant Garamond';
+        font-synthesis: unset !important;
+    }
+    .inlinerollresult.fullcrit {
+        color: #005700;
+    }
+    .inlinerollresult.fullfail {
+        color: #7F1216;
+    }
+}

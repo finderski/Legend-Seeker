@@ -1,3 +1,4 @@
+<!-- Styles are in _rolltemplateStyles.scss -->
 <rolltemplate class="sheet-rolltemplate-roll">
     <div class="sheet-rolltemplate-header">
         <h1>{{name}}</h1>
@@ -11,48 +12,46 @@
     <div class="sheet-rolltemplate-body">
         <div class="sheet-roll-info">
             {{#target}}
-            <div class="sheet-left-column">Target Number</div>
+            <div class="sheet-left-column" data-i18n="target-number">Target Number</div>
             <div class="sheet-right-column">{{target}}</div>
             {{/target}}
             {{#roll}}
-            <div class="sheet-left-column">Roll</div>
-            <div class="sheet-right-column">{{roll}}</div>
+            <div class="sheet-left-column" data-i18n="roll">Roll</div>
+            <div class="sheet-right-column">
+                {{#rollWasCrit() roll}}<span class="sheet-extremeRoll sheet-crit">&#x1f4a5;</span>{{/rollWasCrit() roll}}
+                {{#rollWasFumble() roll}}<span class="sheet-extremeRoll sheet-fumble">&#x1f480;</span>{{/rollWasFumble() roll}}
+                {{roll}}
+            </div>
             {{/roll}}
         </div>
-        {{#show-attack-info}}
-        <div class="sheet-attack-info">
-            {{#range}}
-            <div class="sheet-left-column">Range</div>
-            <div class="sheet-right-column">{{range}}</div>
-            {{/range}}
-            {{#activation}}
-            <div class="sheet-left-column">Activation</div>
-            <div class="sheet-right-column">{{activation}}</div>
-            {{/activation}}
-            {{#duration}}
-            <div class="sheet-left-column">Duration</div>
-            <div class="sheet-right-column">{{duration}}</div>
-            {{/duration}}
-            {{#use}}
-            <div class="sheet-left-column">Use</div>
-            <div class="sheet-right-column">{{use}}</div>
-            {{/use}}
+        <div class="sheet-roll-results">
+            {{#rollWasCrit() roll}}
+                <div class="sheet-one-column sheet-crit sheet-result" data-i18n="critical-success">Critical Success!</div>
+                {{#buttons}}
+                <div class="sheet-one-column sheet-button">{{critical damage}}</div>
+                {{/buttons}}
+            {{/rollWasCrit() roll}}
+            {{#^rollWasCrit() roll}}
+                {{#^rollLess() roll target}}
+                    <div class="sheet-one-column sheet-result" data-i18n="success">Success</div>
+                    {{#buttons}}
+                    <div class="sheet-one-column sheet-button">{{damage}}</div>
+                    {{/buttons}}
+                {{/^rollLess() roll target}}
+            {{/^rollWasCrit() roll}}
+            {{#rollWasFumble() roll}}
+                <div class="sheet-one-column sheet-fumble sheet-result" data-i18n="critical-failure">Critical Failure!</div>
+            {{/rollWasFumble() roll}}
+            {{#^rollWasFumble() roll}}
+                {{#rollLess() roll target}}
+                <div class="sheet-one-column sheet-result" data-i18n="failure">Failure</div>
+                {{/rollLess() roll target}}
+            {{/^rollWasFumble() roll}}
         </div>
-        {{/show-attack-info}}
-        <div class="sheet-attack-details">
-            <div class="sheet-left-column">Target Number to Hit</div>
-            <div class="sheet-right-column">{{computed::target_number}}</div>
-            <div class="sheet-left-column">Attack Roll</div>
-            <div class="sheet-right-column">{{attack}}</div>
-            <div class="sheet-left-column">Result</div>
-            <div class="sheet-right-column">{{computed::outcome}}</div>
-            {{#rollGreater() computed::showDmg 0}}
-            <div class="sheet-left-column">Damage Dealt</div>
-            <div class="sheet-right-column">{{damage}}</div>
-            {{/rollGreater() computed::showDmg 0}}
-            {{#notes}}
-            <div class="sheet-notes">Notes: {{notes}}</div>
-            {{/notes}}
-        </div>
+    </div>
+    <div class="sheet-rolltemplate-footer">
+        {{#notes}}
+        <div class="sheet-one-column">Notes: {{notes}}</div>
+        {{/notes}}
     </div>
 </rolltemplate>

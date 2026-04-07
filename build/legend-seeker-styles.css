@@ -1,5 +1,5 @@
 /* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Cinzel:wght@400..900|Cormorant+Garamond:ital,wght@0,300..700;1,300..700|Cormorant+Unicase:wght@300;400;500;600;700|Metamorphous|Eagle+Lake|IM+Fell+English:ital@0;1|Lora:ital,wght@0,400..700;1,400..700|Smooch&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cinzel:wght@400..900|Cormorant+Garamond:ital,wght@0,300..700;1,300..700|Cormorant+Unicase:wght@300;400;500;600;700|Metamorphous|Eagle+Lake|IM+Fell+English:ital@0;1|Lora:ital,wght@0,400..700;1,400..700|Noto+Emoji:wght@300..700|Smooch&display=swap");
 .ui-dialog .charactersheet *,
 .ui-dialog .charactersheet *::after,
 .ui-dialog .charactersheet *::before {
@@ -12,6 +12,7 @@
   --gold: #c9a44d;
   --light-gold: #cead5f;
   --read-only: #D9BF87;
+  --dragon-wing: #7F1216;
   --title: 'Cinzel';
   --mainBody: 'Merriweather';
   --mainBodyAlt: 'Cormorant Garamond';
@@ -64,6 +65,10 @@ body.sheet-darkmode {
 }
 */
 /* Remove some default Roll20 Styles */
+.ui-dialog .charactersheet {
+  font-synthesis: unset !important;
+}
+
 .ui-dialog .charactersheet button[type=roll] {
   padding: 5px;
   margin: 0;
@@ -260,6 +265,7 @@ label.buttonStyle {
 }
 
 .maindiv {
+  min-width: 840px;
   max-width: 840px;
 }
 
@@ -344,6 +350,7 @@ label.buttonStyle {
   max-width: 840px;
   padding: 0;
   margin: 0;
+  font-synthesis: unset !important;
 }
 
 .ui-dialog .charactersheet .frontPage .topSection {
@@ -351,6 +358,7 @@ label.buttonStyle {
   width: 100%;
   margin: 0;
   padding: 0;
+  font-synthesis: unset !important;
 }
 
 .ui-dialog .charactersheet .frontPage .topSection .demographics {
@@ -412,6 +420,9 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .topSection .demographics .deity {
   width: 29%;
 }
+.ui-dialog .charactersheet .frontPage .topSection .demographics {
+  font-synthesis: unset !important;
+}
 
 .ui-dialog .charactersheet .frontPage .topSection .logo {
   display: flex;
@@ -422,6 +433,9 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .topSection .logo img {
   max-width: 100%;
   height: auto;
+}
+.ui-dialog .charactersheet .frontPage .topSection .logo {
+  font-synthesis: unset !important;
 }
 
 .ui-dialog .charactersheet .frontPage .middleSection {
@@ -439,10 +453,14 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
   display: grid;
 }
+.ui-dialog .charactersheet .frontPage .middleSection {
+  font-synthesis: unset !important;
+}
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne {
   grid-template-columns: [column-3x3] 75% [conditions-column] 25%;
   gap: 5px;
+  font-synthesis: unset !important;
 }
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
@@ -514,6 +532,9 @@ label.buttonStyle {
   grid-column-start: attributes;
   grid-column-end: 4;
   grid-row-start: saves;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  font-synthesis: unset !important;
 }
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina {
@@ -641,6 +662,9 @@ label.buttonStyle {
   text-align: center;
   line-height: 1.25;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  font-synthesis: unset !important;
+}
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption {
   grid-column-start: stamina;
@@ -691,6 +715,9 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput:checked + .corruptionNumber {
   background-color: black;
   color: silver;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  font-synthesis: unset !important;
 }
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol {
@@ -773,6 +800,9 @@ label.buttonStyle {
   font-family: var(--calculations);
   font-size: 1.5em;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol {
+  font-synthesis: unset !important;
+}
 
 .languages {
   width: 100%;
@@ -838,6 +868,9 @@ label.buttonStyle {
   background-color: var(--ink);
   border-radius: 0 8px 0 8px;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod {
+  position: relative;
+}
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
   font-family: var(--decorative);
   font-size: 1.2em;
@@ -846,8 +879,12 @@ label.buttonStyle {
   opacity: 0.2;
   position: absolute;
   pointer-events: none;
-  left: 56%;
-  transform: translate(5px, 5px);
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+  font-synthesis: unset !important;
 }
 
 .ui-dialog .charactersheet .frontPage .bottomSection {
@@ -923,6 +960,9 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .bottomSection .pageNumber {
   width: 47px;
   margin: 0 0 3px 5px;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection {
+  font-synthesis: unset !important;
 }
 
 .ui-dialog .charactersheet .backPage .topContainer {
@@ -1192,6 +1232,9 @@ label.buttonStyle {
   font-size: 1.4em;
   font-weight: 600;
 }
+.ui-dialog .charactersheet .backPage .topContainer {
+  font-synthesis: unset !important;
+}
 
 .ui-dialog .charactersheet .backPage .combat {
   display: flex;
@@ -1416,6 +1459,9 @@ label.buttonStyle {
   width: 100%;
   white-space: nowrap;
 }
+.ui-dialog .charactersheet .backPage .combat {
+  font-synthesis: unset !important;
+}
 
 .ui-dialog .charactersheet .settings .settingRow {
   display: flex;
@@ -1445,6 +1491,119 @@ label.buttonStyle {
   text-transform: none;
   font-family: var(--mainBodyAlt2);
   font-size: 1.5em;
+}
+.ui-dialog .charactersheet .settings {
+  font-synthesis: unset !important;
+}
+
+.sheet-rolltemplate-roll {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 10px;
+  padding: 0;
+  margin: 0;
+  border-radius: 16px 0 16px 0;
+  border: 1px solid #2B2418;
+  background-color: #F3E6C9;
+  font-synthesis: unset !important;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-header {
+  display: inline;
+  padding: 10px;
+  background-color: #2B2418;
+  border-radius: 16px 0 0 0;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-header h1 {
+  font-family: "Cinzel";
+  font-size: 1.5em;
+  color: #F3E6C9;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-header h2 {
+  font-family: "Eagle Lake";
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #F3E6C9;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 10px;
+  gap: 15px;
+  box-sizing: border-box;
+  font-family: "Merriweather";
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-roll-info {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-left-column {
+  width: 45%;
+  min-width: 45%;
+  max-width: 45%;
+  text-align: left;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-right-column {
+  width: 45%;
+  min-width: 45%;
+  max-width: 45%;
+  text-align: right;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-right-column .sheet-extremeRoll {
+  font-family: "Noto Emoji";
+  font-size: 1.2em;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-right-column .sheet-extremeRoll.sheet-crit {
+  color: #005700;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-right-column .sheet-extremeRoll.sheet-fumble {
+  color: #7F1216;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column {
+  width: 100%;
+  text-align: center;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column .sheet-crit {
+  color: #005700;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column .sheet-fumble {
+  color: #7F1216;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column .sheet-result {
+  font-family: "Eagle Lake";
+  font-size: 1.2em;
+  font-weight: 700;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column > a[href^="~"] {
+  background-color: #2b2418;
+  color: #f3e6c9;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-button {
+  margin: 15px 0 0 0;
+  padding: 5px 10px;
+  font-size: 1.5em;
+  font-family: "Merriweather";
+  font-weight: 900;
+}
+.sheet-rolltemplate-roll .inlinerollresult,
+.sheet-rolltemplate-roll .inlinerollresult.fullcrit,
+.sheet-rolltemplate-roll .inlinerollresult.fullfail {
+  background-color: transparent;
+  border: none !important;
+  font-size: 1.6em;
+  font-weight: bold;
+  padding: 0;
+  font-family: "Cormorant Garamond";
+  font-synthesis: unset !important;
+}
+.sheet-rolltemplate-roll .inlinerollresult.fullcrit {
+  color: #005700;
+}
+.sheet-rolltemplate-roll .inlinerollresult.fullfail {
+  color: #7F1216;
 }
 
 /*

@@ -1,5 +1,6 @@
 @mixin sheet-scope {
     .ui-dialog .charactersheet & {
         @content;
+        font-synthesis: unset !important;
     }
 }

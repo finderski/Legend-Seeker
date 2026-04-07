@@ -10,6 +10,7 @@
     --gold: #c9a44d;
     --light-gold: #cead5f;
     --read-only: #D9BF87;
+    --dragon-wing: #7F1216;
     --title: 'Cinzel';
     --mainBody: 'Merriweather';
     --mainBodyAlt: 'Cormorant Garamond';
@@ -63,6 +64,10 @@ body.sheet-darkmode {
 */
 
 /* Remove some default Roll20 Styles */
+.ui-dialog .charactersheet {
+    font-synthesis: unset !important;
+}
+
 .ui-dialog .charactersheet button[type=roll] {
     padding: 5px;
     margin: 0;
@@ -257,6 +262,7 @@ label.buttonStyle {
 }
 
 .maindiv {
+    min-width: 840px;
     max-width: 840px;
 }
 

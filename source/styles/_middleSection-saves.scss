@@ -46,6 +46,7 @@
                 border-radius: 0 8px 0 8px;
             }
             .saveAbilityMod {
+                position: relative;
                 .abilityWatermark {
                     font-family: var(--decorative);
                     font-size: 1.2em;
@@ -54,8 +55,9 @@
                     opacity: 0.2;
                     position: absolute;
                     pointer-events: none;
-                    left: 56%;
-                    transform: translate(5px, 5px);
+                    top: 53%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
                 }
             }
         }
