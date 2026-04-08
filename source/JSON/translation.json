@@ -131,11 +131,18 @@
   "not-applicable-abbr": "N/A",
   "show-spells-on-sheet": "Show Spell Slots on Sheet",
   "critical-damage": "Critical Damage",
+  "damage-total": "Damage Total",
+  "critical-damage-total": "Critical Damage Total",
   "target-number": "Target Number",
   "roll": "Roll",
   "critical-success": "Critical Success!",
   "critical-failure": "Critical Failure!",
   "success": "Success",
   "notes": "Notes",
-  "failure": "Failure"
+  "failure": "Failure",
+  "attribute-modifier": "Attribute Modifier",
+  "additional-modifiers": "Additional Modifiers",
+  "modifier-pop-up": "Modifier Pop-up",
+  "second-wind": "Second Wind",
+  "second-wind-result": "Regains {{0}} stamina points."
 }

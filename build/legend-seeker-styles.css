@@ -181,7 +181,7 @@ input:not(:checked) + .isCarried::before {
   display: inline-block;
   width: auto;
   background-color: transparent;
-  border: black 1px solid;
+  border: var(--ink) 1px solid;
   padding: 3px 9px;
   margin: 0 10px 0 0;
   box-sizing: border-box !important;
@@ -545,7 +545,7 @@ label.buttonStyle {
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
-  row-gap: 10px;
+  row-gap: 5px;
   justify-content: space-evenly;
   align-content: flex-start;
   align-items: center;
@@ -603,6 +603,9 @@ label.buttonStyle {
   font-weight: bold;
   width: 100%;
   text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .secondWind {
+  margin: 5px 0 -20px 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints {
   grid-column-start: hit-points;
@@ -1243,13 +1246,11 @@ label.buttonStyle {
   width: 100%;
 }
 .ui-dialog .charactersheet .backPage .combat .spells {
-  width: 33%;
-  min-width: 33%;
-  max-width: 33%;
   display: flex;
   flex-flow: column;
   row-gap: 5px;
   margin: 10px 0 20px 0;
+  flex: 1 1 25%;
 }
 .ui-dialog .charactersheet .backPage .combat .spells .spellRow {
   display: flex;
@@ -1265,7 +1266,8 @@ label.buttonStyle {
   flex-flow: row wrap;
   column-gap: 5px;
   row-gap: 5px;
-  flex-grow: 2;
+  flex-grow: 1;
+  flex-basis: 50%;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons h2.headerLabel {
   width: 100%;
@@ -1281,12 +1283,10 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem {
   display: flex;
   flex-flow: row wrap;
-  max-width: 45%;
-  min-width: 32.75%;
   column-gap: 5px;
   row-gap: 5px;
-  flex-grow: 2;
-  flex-shrink: 1;
+  flex: 1 1 30%;
+  max-width: 50%;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer {
   border: 0.5px dotted var(--ink);
@@ -1524,6 +1524,13 @@ label.buttonStyle {
   font-weight: bold;
   color: #F3E6C9;
 }
+.sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-damage-header {
+  background-color: #7F1216;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-damage-header h1,
+.sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-damage-header h2 {
+  color: #E3D2A6;
+}
 .sheet-rolltemplate-roll .sheet-rolltemplate-body {
   display: flex;
   flex-flow: column nowrap;
@@ -1539,16 +1546,22 @@ label.buttonStyle {
   justify-content: space-evenly;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-left-column {
-  width: 45%;
-  min-width: 45%;
-  max-width: 45%;
+  width: 55%;
+  min-width: 55%;
+  max-width: 55%;
   text-align: left;
+  font-size: 1.15em;
+  font-weight: 900;
+  font-synthesis: unset !important;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-right-column {
-  width: 45%;
-  min-width: 45%;
-  max-width: 45%;
+  width: 30%;
+  min-width: 30%;
+  max-width: 30%;
   text-align: right;
+  font-size: 1.15em;
+  font-weight: 900;
+  font-synthesis: unset !important;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-right-column .sheet-extremeRoll {
   font-family: "Noto Emoji";
@@ -1570,23 +1583,34 @@ label.buttonStyle {
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column .sheet-fumble {
   color: #7F1216;
 }
-.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column .sheet-result {
-  font-family: "Eagle Lake";
-  font-size: 1.2em;
-  font-weight: 700;
-}
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column > a[href^="~"] {
   background-color: #2b2418;
   color: #f3e6c9;
   padding: 10px 15px;
   border-radius: 8px;
+  border: none;
 }
-.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-button {
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column > a[href^="~"]:focus, .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column > a[href^="~"]:hover {
+  text-decoration: unset;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-result {
+  font-family: "Eagle Lake";
+  font-size: 1.2em;
+  font-weight: 700;
+  font-size: 2em;
+  margin: 0 0 15px 0;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-result.sheet-raises {
+  font-family: "Merriweather";
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-button,
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-secondwind {
   margin: 15px 0 0 0;
   padding: 5px 10px;
   font-size: 1.5em;
   font-family: "Merriweather";
   font-weight: 900;
+  line-height: 1.2;
 }
 .sheet-rolltemplate-roll .inlinerollresult,
 .sheet-rolltemplate-roll .inlinerollresult.fullcrit,

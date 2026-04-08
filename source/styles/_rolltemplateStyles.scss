@@ -24,7 +24,14 @@
             font-weight: bold;
             color: #F3E6C9;
         }
-    }   
+    }
+    .sheet-rolltemplate-header.sheet-damage-header {
+        background-color: #7F1216;
+        h1,
+        h2 {
+            color: #E3D2A6;
+        }
+    }
     .sheet-rolltemplate-body {
         display: flex;
         flex-flow: column nowrap;
@@ -39,16 +46,22 @@
             justify-content: space-evenly;
         }
         .sheet-left-column {
-            width: 45%;
-            min-width: 45%;
-            max-width: 45%;
+            width: 55%;
+            min-width: 55%;
+            max-width: 55%;
             text-align: left;
+            font-size: 1.15em;
+            font-weight: 900;
+            font-synthesis: unset !important;
         }
         .sheet-right-column {
-            width: 45%;
-            min-width: 45%;
-            max-width: 45%;
+            width: 30%;
+            min-width: 30%;
+            max-width: 30%;
             text-align: right;
+            font-size: 1.15em;
+            font-weight: 900;
+            font-synthesis: unset !important;
             .sheet-extremeRoll {
                 font-family: 'Noto Emoji';
                 font-size: 1.2em;
@@ -69,24 +82,35 @@
             .sheet-fumble {
                 color: #7F1216;
             }
-            .sheet-result {
-                font-family: 'Eagle Lake';
-                font-size: 1.2em;
-                font-weight: 700;
-            }
             > a[href^="~"] {
                 background-color: #2b2418;
                 color: #f3e6c9;
                 padding: 10px 15px;
                 border-radius: 8px;
+                border: none;
+                &:focus, &:hover {
+                    text-decoration: unset;
+                }
             }
         }
-        .sheet-button {
+        .sheet-result {
+            font-family: 'Eagle Lake';
+            font-size: 1.2em;
+            font-weight: 700;
+            font-size: 2em;
+            margin: 0 0 15px 0;
+            &.sheet-raises {
+                font-family: 'Merriweather';
+            }
+        }
+        .sheet-button,
+        .sheet-secondwind {
             margin: 15px 0 0 0;
             padding: 5px 10px;
             font-size: 1.5em;
             font-family: 'Merriweather';
             font-weight: 900;
+            line-height: 1.2;
         }
     }
     .inlinerollresult,

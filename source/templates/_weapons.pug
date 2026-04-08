@@ -4,26 +4,38 @@ fieldset(class="repeating_weapons")
     .weaponContainer
         .button 
             .chatButtons
-                button(class="labelButton sendToChat", type="roll" name="roll_attack_to_chat", value="@{attack_formula} @{damage_button}", data-18n-title="send-to-chat")
+                button(class="labelButton sendToChat", type="roll" name="roll_attack_to_chat", value="@{weapon-attack-action-call}", data-18n-title="send-to-chat")
                     span(class="allcaps" data-i18n='attack') Attack
                 .whisperButton 
-                    button(class="whisperToChat", type="roll" name="roll_whisper_attack", value="/w gm @{attack_formula} @{whisper_damage_button}", data-i18n-title="whisper-to-chat")
+                    button(class="whisperToChat", type="roll" name="roll_whisper_attack", value="@{weapon-whisper-attack-action-call}", data-i18n-title="whisper-to-chat")
                         span.iconButton w
             //button(class="labelButton", type='roll', value="@{attack_formula}", data-i18n='attack-roll') Attack
-            // Damage Buttons (displayed in Chat)
-            button(class="hidden" type='roll' name='roll_damage-to-chat' value="@{weapon-damage-formula}")
-            button(class="hidden" type='roll' name='roll_crit-damage-to-chat' value="@{weapon-crit-damage-formula}")
-            button(class="hidden" type='roll' name='roll_whisper-damage-to-chat' value="/w gm @{weapon-damage-formula}")
-            button(class="hidden" type='roll' name='roll_whisper-crit-damage-to-chat' value="/w gm @{weapon-crit-damage-formula}")
+            // Action Buttons for Custom Roll Parsing
+            button(class="hidden" type='action' name='act_weaponattack')
+            button(class="hidden" type='action' name='act_weaponwhisperattack')
+            button(class="hidden" type='action' name='act_weapondamage')
+            button(class="hidden" type='action' name='act_weaponcriticaldamage')
+            button(class="hidden" type='action' name='act_weaponwhisperdamage')
+            button(class="hidden" type='action' name='act_weaponwhispercriticaldamage')
+            input(type='hidden', name='attr_weapon-attack-action-call', value='')
+            input(type='hidden', name='attr_weapon-whisper-attack-action-call', value='')
             // Attack Formulae
             input(type='hidden', name='attr_attack_formula', value='&{template:roll} {{name=@{character_name}}} {{title=@{weapon}}} {{roll=[[1d20cs>@{weapon-crit}cf1 + @{weapon-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} ')
             
             // Damage Button Template Includes
-            input(type='hidden', name='attr_damage_button', value='{{buttons=1}} {{damage=[Normal Damage](~repeating_weapons_damage-to-chat)}} {{critical damage=[Critical Damage](~repeating_weapons_crit-damage-to-chat)}}')
-            input(type='hidden', name='attr_whisper_damage_button', value='{{buttons=1}} {{damage=[Normal Damage](~repeating_weapons_whisper-damage-to-chat)}} {{critical damage=[Critical Damage](~repeating_weapons_whisper-crit-damage-to-chat)}}')
+            input(type='hidden', name='attr_damage_button', value='')
+            input(type='hidden', name='attr_whisper_damage_button', value='')
             // Damage
             input(type='hidden', name='attr_weapon-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{weapon}}} {{Roll=[[ @{weapon-damage} + [[?{Additional # of damage dice|0}]]d6 ]]}}')
             input(type='hidden', name='attr_weapon-crit-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{weapon}}} {{Roll=[[ @{weapon-damage-dice}! + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{weapon-damage-attribute-mod} Mod] + @{weapon-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}')
+            input(type='hidden', name='attr_weapon-attack-history', value='[]')
+            input(type='hidden', name='attr_weapon-last-attack-rollid', value='')
+            input(type='hidden', name='attr_weapon-last-attack-success', value='0')
+            input(type='hidden', name='attr_weapon-last-attack-crit', value='0')
+            input(type='hidden', name='attr_weapon-last-attack-raises', value='0')
+            input(type='hidden', name='attr_weapon-last-attack-total', value='0')
+            input(type='hidden', name='attr_weapon-last-attack-natural', value='0')
+            input(type='hidden', name='attr_weapon-last-attack-target', value='0')
         .weapon
             label(class="fieldLabelAbove", data-i18n='weapon') Weapon
             input(class="textField", type='text', name='attr_weapon', value='', data-i18n-placeholder='weapon')

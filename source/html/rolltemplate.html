@@ -1,11 +1,14 @@
 <!-- Styles are in _rolltemplateStyles.scss -->
 <rolltemplate class="sheet-rolltemplate-roll">
-    <div class="sheet-rolltemplate-header">
+    <div class="sheet-rolltemplate-header{{#damageroll}} sheet-damage-header{{/damageroll}}">
         <h1>{{name}}</h1>
             <!-- title would something like the skill name, weapon, attribute, etc. -->
         {{#title}}
             <h2>
                 {{title}}
+                {{#damageroll}}
+                <span data-i18n="damage">Damage</span>
+                {{/damageroll}}
             </h2>
         {{/title}}
     </div>
@@ -23,19 +26,40 @@
                 {{roll}}
             </div>
             {{/roll}}
+            {{#dmg}}
+            <div class="sheet-left-column">
+                {{#critdamage}}
+                <span data-i18n="critical-damage-total">Critical Damage Total</span>
+                {{/critdamage}}
+                {{#normaldamage}}
+                <span data-i18n="damage-total">Damage Total</span>
+                {{/normaldamage}}
+            </div>
+            <div class="sheet-right-column">{{dmg}}</div>
+            {{/dmg}}
+            {{#secondwind}}
+            <div class="sheet-one-column sheet-secondwind" data-i18n="second-wind-result" data-i18n-vars="{{secondwind}}"></div>
+            {{/secondwind}}
         </div>
         <div class="sheet-roll-results">
+            {{#roll}}
             {{#rollWasCrit() roll}}
                 <div class="sheet-one-column sheet-crit sheet-result" data-i18n="critical-success">Critical Success!</div>
+                {{#rollGreater() computed::raises 0}}
+                <div class="sheet-one-column sheet-result">Raises: {{computed::raises}}</div>
+                {{/rollGreater() computed::raises 0}}
                 {{#buttons}}
-                <div class="sheet-one-column sheet-button">{{critical damage}}</div>
+                <div class="sheet-one-column sheet-button">{{criticaldamagebutton}}</div>
                 {{/buttons}}
             {{/rollWasCrit() roll}}
             {{#^rollWasCrit() roll}}
                 {{#^rollLess() roll target}}
                     <div class="sheet-one-column sheet-result" data-i18n="success">Success</div>
+                    {{#rollGreater() computed::raises 0}}
+                    <div class="sheet-one-column sheet-result sheet-raises">Raises: {{computed::raises}}</div>
+                    {{/rollGreater() computed::raises 0}}
                     {{#buttons}}
-                    <div class="sheet-one-column sheet-button">{{damage}}</div>
+                    <div class="sheet-one-column sheet-button">{{damagebutton}}</div>
                     {{/buttons}}
                 {{/^rollLess() roll target}}
             {{/^rollWasCrit() roll}}
@@ -47,6 +71,7 @@
                 <div class="sheet-one-column sheet-result" data-i18n="failure">Failure</div>
                 {{/rollLess() roll target}}
             {{/^rollWasFumble() roll}}
+            {{/roll}}
         </div>
     </div>
     <div class="sheet-rolltemplate-footer">

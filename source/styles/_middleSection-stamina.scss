@@ -10,7 +10,7 @@
             display: flex;
             flex-flow: row wrap;
             column-gap: 5px;
-            row-gap: 10px;
+            row-gap: 5px;
             justify-content: space-evenly;
             align-content: flex-start;
             align-items: center;
@@ -65,6 +65,9 @@
                     width: 100%;
                     text-align: center;
                 }
+            }
+            .secondWind {
+                margin: 5px 0 -20px 0;
             }
         }
         .hitPoints {

@@ -95,7 +95,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_strength_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{strength}}} {{Roll=[[1d20 + @{strength_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
+                  <button class="labelButton" type="roll" name="roll_strength_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{strength}}} {{roll=[[1d20 + @{strength_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_strength" placeholder="3"/>
@@ -106,7 +106,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_dexterity_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{dexterity}}} {{Roll=[[1d20 + @{dexterity_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
+                  <button class="labelButton" type="roll" name="roll_dexterity_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{dexterity_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
@@ -117,7 +117,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_constitution_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{constitution}}} {{Roll=[[1d20 + @{constitution_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
+                  <button class="labelButton" type="roll" name="roll_constitution_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{constitution}}} {{roll=[[1d20 + @{constitution_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_constitution" placeholder="3"/>
@@ -128,7 +128,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_intelligence_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{intelligence}}} {{Roll=[[1d20 + @{intelligence_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
+                  <button class="labelButton" type="roll" name="roll_intelligence_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{intelligence}}} {{roll=[[1d20 + @{intelligence_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_intelligence" placeholder="3"/>
@@ -139,7 +139,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_wisdom_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{wisdom}}} {{Roll=[[1d20 + @{wisdom_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
+                  <button class="labelButton" type="roll" name="roll_wisdom_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{wisdom}}} {{roll=[[1d20 + @{wisdom_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_wisdom" placeholder="3"/>
@@ -150,7 +150,7 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_charisma_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{charisma}}} {{Roll=[[1d20 + @{charisma_modifier}[Attribute Modifier]+@{condition}]]}}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
+                  <button class="labelButton" type="roll" name="roll_charisma_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{charisma}}} {{roll=[[1d20 + @{charisma_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_charisma" placeholder="3"/>
@@ -162,6 +162,7 @@
             </div>
             <div class="stamina"> 
               <!-- Staminia Section-->
+              <!-- Styles found _middleSection-stamina.scss-->
               <h3 class="headerLabel" data-i18n="stamina-points">Stamina Points</h3>
               <div class="fieldLabel"> 
                 <label data-i18n="temporarary-abbr">Temp</label>
@@ -195,6 +196,7 @@
                   <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
                 </div>
               </div>
+              <button class="labelButton secondWind" type="action" name="act_secondwind" data-i18n="second-wind">Second Wind</button>
             </div>
             <div class="hitPoints"> 
               <!-- Hit Point Section-->
@@ -674,7 +676,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{acrobatics_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{acrobatics}}} {{Roll=[[1d20 + @{acrobatics_bonus}[Acrobatics Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{acrobatics}}} {{roll=[[1d20 + @{acrobatics_bonus}[^{Acrobatics} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -713,7 +715,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{climb_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_climb_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{climb}}} {{Roll=[[1d20 + @{climb_bonus}[Climb Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_climb_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{climb}}} {{roll=[[1d20 + @{climb_bonus}[^{Climb} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -752,7 +754,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{craft}}} {{Roll=[[1d20 + @{craft_bonus}[Craft Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft}}} {{roll=[[1d20 + @{craft_bonus}[^{Craft} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -791,7 +793,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{deception_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_deception_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{deception}}} {{Roll=[[1d20 + @{deception_bonus}[Deception Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_deception_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{deception}}} {{roll=[[1d20 + @{deception_bonus}[^{Deception} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -830,7 +832,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{endurance_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_endurance_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{endurance}}} {{Roll=[[1d20 + @{endurance_bonus}[Endurance Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_endurance_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{endurance}}} {{roll=[[1d20 + @{endurance_bonus}[^{Endurance} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -869,7 +871,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{gather-information_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_gather-information_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{gather-information}}} {{Roll=[[1d20 + @{gather-information_bonus}[Gather Information Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_gather-information_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{gather-information}}} {{roll=[[1d20 + @{gather-information_bonus}[^{Gather Information} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -908,7 +910,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{initiative_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{initiative}}} {{Roll=[[1d20 + @{initiative_bonus}[Initiative Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{initiative_bonus}[^{Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -948,7 +950,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{invoke-arcana_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_invoke-arcana_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{invoke-arcana}}} {{Roll=[[1d20 + @{invoke-arcana_bonus}[Invoke Arcana Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_invoke-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{invoke-arcana}}} {{roll=[[1d20 + @{invoke-arcana_bonus}[^{Invoke Arcana} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -987,7 +989,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{jump_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_jump_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{jump}}} {{Roll=[[1d20 + @{jump_bonus}[Jump Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_jump_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{jump}}} {{roll=[[1d20 + @{jump_bonus}[^{Jump} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1026,7 +1028,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{lore}}} {{Roll=[[1d20 + @{lore_bonus}[Lore Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore}}} {{roll=[[1d20 + @{lore_bonus}[^{Lore} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1065,7 +1067,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{notice_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_notice_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{notice}}} {{Roll=[[1d20 + @{notice_bonus}[Notice Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_notice_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{notice}}} {{roll=[[1d20 + @{notice_bonus}[^{Notice} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1104,7 +1106,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{persuasion_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_persuasion_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{persuasion}}} {{Roll=[[1d20 + @{persuasion_bonus}[Persuasion Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_persuasion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{persuasion}}} {{roll=[[1d20 + @{persuasion_bonus}[^{Persuasion} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1143,7 +1145,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{ride_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_ride_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{ride}}} {{Roll=[[1d20 + @{ride_bonus}[Ride Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_ride_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{ride}}} {{roll=[[1d20 + @{ride_bonus}[^{Ride} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1182,7 +1184,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{sense-motive_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_sense-motive_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{sense-motive}}} {{Roll=[[1d20 + @{sense-motive_bonus}[Sense Motive Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_sense-motive_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{sense-motive}}} {{roll=[[1d20 + @{sense-motive_bonus}[^{Sense Motive} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1221,7 +1223,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{stealth_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{stealth}}} {{Roll=[[1d20 + @{stealth_bonus}[Stealth Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{stealth_bonus}[^{Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1260,7 +1262,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{survival_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_survival_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{survival}}} {{Roll=[[1d20 + @{survival_bonus}[Survival Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_survival_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{survival}}} {{roll=[[1d20 + @{survival_bonus}[^{Survival} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1299,7 +1301,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{swim_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_swim_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{swim}}} {{Roll=[[1d20 + @{swim_bonus}[Swim Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_swim_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{swim}}} {{roll=[[1d20 + @{swim_bonus}[^{Swim} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1339,7 +1341,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{tinkering_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_tinkering_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{tinkering}}} {{Roll=[[1d20 + @{tinkering_bonus}[Tinkering Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_tinkering_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{tinkering}}} {{roll=[[1d20 + @{tinkering_bonus}[^{Tinkering} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1378,7 +1380,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{treat-wounds_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_treat-wounds_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{treat-wounds}}} {{Roll=[[1d20 + @{treat-wounds_bonus}[Treat Wounds Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_treat-wounds_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{treat-wounds}}} {{roll=[[1d20 + @{treat-wounds_bonus}[^{Treat Wounds} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1419,7 +1421,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{mana-tap_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_mana-tap_formula" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{mana-tap}}} {{Roll=[[1d20 + @{mana-tap_bonus}[Mana Tap Bonus]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}}"/>
+              <input type="hidden" name="attr_mana-tap_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{mana-tap}}} {{roll=[[1d20 + @{mana-tap_bonus}[^{Mana Tap} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
           <div class="skillBonus"> 
@@ -1470,25 +1472,37 @@
           <div class="weaponContainer">
             <div class="button"> 
               <div class="chatButtons">
-                <button class="labelButton sendToChat" type="roll" name="roll_attack_to_chat" value="@{attack_formula} @{damage_button}" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="attack">Attack</span></button>
+                <button class="labelButton sendToChat" type="roll" name="roll_attack_to_chat" value="@{weapon-attack-action-call}" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="attack">Attack</span></button>
                 <div class="whisperButton"> 
-                  <button class="whisperToChat" type="roll" name="roll_whisper_attack" value="/w gm @{attack_formula} @{whisper_damage_button}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                  <button class="whisperToChat" type="roll" name="roll_whisper_attack" value="@{weapon-whisper-attack-action-call}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
                 </div>
               </div>
               <!--button(class="labelButton", type='roll', value="@{attack_formula}", data-i18n='attack-roll') Attack-->
-              <!-- Damage Buttons (displayed in Chat)-->
-              <button class="hidden" type="roll" name="roll_damage-to-chat" value="@{weapon-damage-formula}"></button>
-              <button class="hidden" type="roll" name="roll_crit-damage-to-chat" value="@{weapon-crit-damage-formula}"></button>
-              <button class="hidden" type="roll" name="roll_whisper-damage-to-chat" value="/w gm @{weapon-damage-formula}"></button>
-              <button class="hidden" type="roll" name="roll_whisper-crit-damage-to-chat" value="/w gm @{weapon-crit-damage-formula}"></button>
+              <!-- Action Buttons for Custom Roll Parsing-->
+              <button class="hidden" type="action" name="act_weaponattack"></button>
+              <button class="hidden" type="action" name="act_weaponwhisperattack"></button>
+              <button class="hidden" type="action" name="act_weapondamage"></button>
+              <button class="hidden" type="action" name="act_weaponcriticaldamage"></button>
+              <button class="hidden" type="action" name="act_weaponwhisperdamage"></button>
+              <button class="hidden" type="action" name="act_weaponwhispercriticaldamage"></button>
+              <input type="hidden" name="attr_weapon-attack-action-call" value=""/>
+              <input type="hidden" name="attr_weapon-whisper-attack-action-call" value=""/>
               <!-- Attack Formulae-->
               <input type="hidden" name="attr_attack_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=@{weapon}}} {{roll=[[1d20cs&gt;@{weapon-crit}cf1 + @{weapon-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} "/>
               <!-- Damage Button Template Includes-->
-              <input type="hidden" name="attr_damage_button" value="{{buttons=1}} {{damage=[Normal Damage](~repeating_weapons_damage-to-chat)}} {{critical damage=[Critical Damage](~repeating_weapons_crit-damage-to-chat)}}"/>
-              <input type="hidden" name="attr_whisper_damage_button" value="{{buttons=1}} {{damage=[Normal Damage](~repeating_weapons_whisper-damage-to-chat)}} {{critical damage=[Critical Damage](~repeating_weapons_whisper-crit-damage-to-chat)}}"/>
+              <input type="hidden" name="attr_damage_button" value=""/>
+              <input type="hidden" name="attr_whisper_damage_button" value=""/>
               <!-- Damage-->
               <input type="hidden" name="attr_weapon-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{weapon}}} {{Roll=[[ @{weapon-damage} + [[?{Additional # of damage dice|0}]]d6 ]]}}"/>
               <input type="hidden" name="attr_weapon-crit-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{weapon}}} {{Roll=[[ @{weapon-damage-dice}! + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{weapon-damage-attribute-mod} Mod] + @{weapon-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}"/>
+              <input type="hidden" name="attr_weapon-attack-history" value="[]"/>
+              <input type="hidden" name="attr_weapon-last-attack-rollid" value=""/>
+              <input type="hidden" name="attr_weapon-last-attack-success" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-crit" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-raises" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-total" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-natural" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-target" value="0"/>
             </div>
             <div class="weapon">
               <label class="fieldLabelAbove" data-i18n="weapon">Weapon</label>
@@ -1593,12 +1607,15 @@
 </div>
 <!--Rolltemplates--><!-- Styles are in _rolltemplateStyles.scss -->
 <rolltemplate class="sheet-rolltemplate-roll">
-    <div class="sheet-rolltemplate-header">
+    <div class="sheet-rolltemplate-header{{#damageroll}} sheet-damage-header{{/damageroll}}">
         <h1>{{name}}</h1>
             <!-- title would something like the skill name, weapon, attribute, etc. -->
         {{#title}}
             <h2>
                 {{title}}
+                {{#damageroll}}
+                <span data-i18n="damage">Damage</span>
+                {{/damageroll}}
             </h2>
         {{/title}}
     </div>
@@ -1616,19 +1633,40 @@
                 {{roll}}
             </div>
             {{/roll}}
+            {{#dmg}}
+            <div class="sheet-left-column">
+                {{#critdamage}}
+                <span data-i18n="critical-damage-total">Critical Damage Total</span>
+                {{/critdamage}}
+                {{#normaldamage}}
+                <span data-i18n="damage-total">Damage Total</span>
+                {{/normaldamage}}
+            </div>
+            <div class="sheet-right-column">{{dmg}}</div>
+            {{/dmg}}
+            {{#secondwind}}
+            <div class="sheet-one-column sheet-secondwind" data-i18n="second-wind-result" data-i18n-vars="{{secondwind}}"></div>
+            {{/secondwind}}
         </div>
         <div class="sheet-roll-results">
+            {{#roll}}
             {{#rollWasCrit() roll}}
                 <div class="sheet-one-column sheet-crit sheet-result" data-i18n="critical-success">Critical Success!</div>
+                {{#rollGreater() computed::raises 0}}
+                <div class="sheet-one-column sheet-result">Raises: {{computed::raises}}</div>
+                {{/rollGreater() computed::raises 0}}
                 {{#buttons}}
-                <div class="sheet-one-column sheet-button">{{critical damage}}</div>
+                <div class="sheet-one-column sheet-button">{{criticaldamagebutton}}</div>
                 {{/buttons}}
             {{/rollWasCrit() roll}}
             {{#^rollWasCrit() roll}}
                 {{#^rollLess() roll target}}
                     <div class="sheet-one-column sheet-result" data-i18n="success">Success</div>
+                    {{#rollGreater() computed::raises 0}}
+                    <div class="sheet-one-column sheet-result sheet-raises">Raises: {{computed::raises}}</div>
+                    {{/rollGreater() computed::raises 0}}
                     {{#buttons}}
-                    <div class="sheet-one-column sheet-button">{{damage}}</div>
+                    <div class="sheet-one-column sheet-button">{{damagebutton}}</div>
                     {{/buttons}}
                 {{/^rollLess() roll target}}
             {{/^rollWasCrit() roll}}
@@ -1640,6 +1678,7 @@
                 <div class="sheet-one-column sheet-result" data-i18n="failure">Failure</div>
                 {{/rollLess() roll target}}
             {{/^rollWasFumble() roll}}
+            {{/roll}}
         </div>
     </div>
     <div class="sheet-rolltemplate-footer">
@@ -1648,6 +1687,7 @@
         {{/notes}}
     </div>
 </rolltemplate>
+
 <!-- Sheet Worker Scripts-->
 <script type="text/worker">
   // Define colors for Logs
@@ -2249,5 +2289,255 @@ on('change:heroic_proficiency_bonus change:repeating_weapons:weapon-atk-bonus ch
         updateWeapons(fields, section, id);
         log('Processed','Used updateWeapons,r20color');
     }
+});const WEAPON_ATTACK_HISTORY_LIMIT = 10;
+
+const getRepeatingRowId = sourceAttribute => {
+    const match = sourceAttribute && sourceAttribute.match(/^repeating_weapons_([^_]+)_/);
+    return match ? match[1] : '';
+};
+
+const toInt = value => parseInt(value, 10) || 0;
+
+const parseSignedValue = value => {
+    if (value === undefined || value === null) {
+        return 0;
+    }
+    return parseInt(String(value).split(' ')[0], 10) || 0;
+};
+
+const explodeDiceExpression = expression =>
+    String(expression || '').replace(/(\d+d\d+)/gi, '$1!');
+
+const getWeaponActionName = (rowId, actionName) =>
+    `repeating_weapons_${rowId}_${actionName}`;
+
+const buildWeaponActionCall = (characterName, rowId, actionName) =>
+    `%{${characterName}|${getWeaponActionName(rowId, actionName)}}`;
+
+const buildWeaponDamageButtons = (rowId, whisper = false) => {
+    const damageAction = whisper ? 'weaponwhisperdamage' : 'weapondamage';
+    const critDamageAction = whisper ? 'weaponwhispercriticaldamage' : 'weaponcriticaldamage';
+    return `{{buttons=1}} {{damagebutton=[Normal Damage](~${getWeaponActionName(rowId, damageAction)})}} {{criticaldamagebutton=[Critical Damage](~${getWeaponActionName(rowId, critDamageAction)})}}`;
+};
+
+const parseAttackHistory = historyValue => {
+    try {
+        const parsed = JSON.parse(historyValue || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        log('Weapon Attack History Parse', `Unable to parse attack history: ${error.message}`, deltaColor);
+        return [];
+    }
+};
+
+const syncWeaponActionButtons = rowId => {
+    if (!rowId) {
+        return;
+    }
+
+    getAttrs(['character_name'], values => {
+        const characterName = values.character_name || 'character_name';
+        const setattrs = {};
+        setattrs[`repeating_weapons_${rowId}_weapon-attack-action-call`] = buildWeaponActionCall(characterName, rowId, 'weaponattack');
+        setattrs[`repeating_weapons_${rowId}_weapon-whisper-attack-action-call`] = buildWeaponActionCall(characterName, rowId, 'weaponwhisperattack');
+        setattrs[`repeating_weapons_${rowId}_damage_button`] = buildWeaponDamageButtons(rowId);
+        setattrs[`repeating_weapons_${rowId}_whisper_damage_button`] = buildWeaponDamageButtons(rowId, true);
+        setAttrs(setattrs, { silent: true });
+    });
+};
+
+const syncAllWeaponActionButtons = () => {
+    getSectionIDs('repeating_weapons', ids => {
+        ids.forEach(syncWeaponActionButtons);
+    });
+};
+
+const getAttackStateForRoll = (values, rowId, originalRollId) => {
+    const history = parseAttackHistory(values[`repeating_weapons_${rowId}_weapon-attack-history`]);
+    const matchedRoll = originalRollId ? history.find(entry => entry.rollId === originalRollId) : null;
+
+    return matchedRoll || {
+        rollId: values[`repeating_weapons_${rowId}_weapon-last-attack-rollid`] || '',
+        success: toInt(values[`repeating_weapons_${rowId}_weapon-last-attack-success`]),
+        crit: toInt(values[`repeating_weapons_${rowId}_weapon-last-attack-crit`]),
+        raises: toInt(values[`repeating_weapons_${rowId}_weapon-last-attack-raises`]),
+        total: toInt(values[`repeating_weapons_${rowId}_weapon-last-attack-total`]),
+        natural: toInt(values[`repeating_weapons_${rowId}_weapon-last-attack-natural`]),
+        target: toInt(values[`repeating_weapons_${rowId}_weapon-last-attack-target`])
+    };
+};
+
+const storeAttackState = (rowId, values, state) => {
+    const historyField = `repeating_weapons_${rowId}_weapon-attack-history`;
+    const history = parseAttackHistory(values[historyField]);
+    const nextHistory = [
+        state,
+        ...history.filter(entry => entry && entry.rollId && entry.rollId !== state.rollId)
+    ].slice(0, WEAPON_ATTACK_HISTORY_LIMIT);
+
+    const setattrs = {};
+    setattrs[historyField] = JSON.stringify(nextHistory);
+    setattrs[`repeating_weapons_${rowId}_weapon-last-attack-rollid`] = state.rollId;
+    setattrs[`repeating_weapons_${rowId}_weapon-last-attack-success`] = state.success;
+    setattrs[`repeating_weapons_${rowId}_weapon-last-attack-crit`] = state.crit;
+    setattrs[`repeating_weapons_${rowId}_weapon-last-attack-raises`] = state.raises;
+    setattrs[`repeating_weapons_${rowId}_weapon-last-attack-total`] = state.total;
+    setattrs[`repeating_weapons_${rowId}_weapon-last-attack-natural`] = state.natural;
+    setattrs[`repeating_weapons_${rowId}_weapon-last-attack-target`] = state.target;
+    setAttrs(setattrs, { silent: true });
+};
+
+const runWeaponAttack = whisper => eventInfo => {
+    const rowId = getRepeatingRowId(eventInfo.sourceAttribute);
+    if (!rowId) {
+        return;
+    }
+
+    syncWeaponActionButtons(rowId);
+
+    const fields = [
+        'character_name',
+        'condition',
+        `repeating_weapons_${rowId}_weapon`,
+        `repeating_weapons_${rowId}_weapon-atk`,
+        `repeating_weapons_${rowId}_weapon-crit`,
+        `repeating_weapons_${rowId}_weapon-attack-history`
+    ];
+
+    getAttrs(fields, values => {
+        const characterName = values.character_name || 'Character';
+        const weaponName = values[`repeating_weapons_${rowId}_weapon`] || 'Weapon';
+        const attackBonus = toInt(values[`repeating_weapons_${rowId}_weapon-atk`]);
+        const critThreshold = Math.max(2, toInt(values[`repeating_weapons_${rowId}_weapon-crit`]) || 20);
+        const critPoint = critThreshold - 1;
+        const condition = parseSignedValue(values.condition);
+        const whisperPrefix = whisper ? '/w gm ' : '';
+        const damageButtons = buildWeaponDamageButtons(rowId, whisper);
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf<2 + ${attackBonus}[ATK] + ${condition}[Condition] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} ${damageButtons}`;
+
+        startRoll(rollTemplate, results => {
+            const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
+            const totalRoll = toInt(results.results.roll.result);
+            const target = toInt(results.results.target.result);
+            const crit = naturalRoll >= critThreshold ? 1 : 0;
+            const success = crit || totalRoll >= target ? 1 : 0;
+            const raises = success ? Math.max(0, Math.floor((totalRoll - target) / 5)) : 0;
+
+            storeAttackState(rowId, values, {
+                rollId: results.rollId,
+                crit,
+                success,
+                raises,
+                total: totalRoll,
+                natural: naturalRoll,
+                target
+            });
+
+            finishRoll(results.rollId, {
+                raises
+            });
+        });
+    });
+};
+
+const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventInfo => {
+    const rowId = getRepeatingRowId(eventInfo.sourceAttribute);
+    if (!rowId) {
+        return;
+    }
+
+    const fields = [
+        'character_name',
+        `repeating_weapons_${rowId}_weapon`,
+        `repeating_weapons_${rowId}_weapon-damage-dice`,
+        `repeating_weapons_${rowId}_weapon-half-level`,
+        `repeating_weapons_${rowId}_weapon-damage-attribute-mod`,
+        `repeating_weapons_${rowId}_damage-attribute-mod-value`,
+        `repeating_weapons_${rowId}_weapon-damage-misc-mod`,
+        `repeating_weapons_${rowId}_weapon-attack-history`,
+        `repeating_weapons_${rowId}_weapon-last-attack-rollid`,
+        `repeating_weapons_${rowId}_weapon-last-attack-success`,
+        `repeating_weapons_${rowId}_weapon-last-attack-crit`,
+        `repeating_weapons_${rowId}_weapon-last-attack-raises`,
+        `repeating_weapons_${rowId}_weapon-last-attack-total`,
+        `repeating_weapons_${rowId}_weapon-last-attack-natural`,
+        `repeating_weapons_${rowId}_weapon-last-attack-target`
+    ];
+
+    getAttrs(fields, values => {
+        const attackState = getAttackStateForRoll(values, rowId, eventInfo.originalRollId);
+        const crit = forceCrit || !!attackState.crit;
+        const raises = Math.max(0, toInt(attackState.raises));
+        const weaponName = values[`repeating_weapons_${rowId}_weapon`] || 'Weapon';
+        const characterName = values.character_name || 'Character';
+        const damageDice = values[`repeating_weapons_${rowId}_weapon-damage-dice`] || '';
+        const damageAttributeModName = values[`repeating_weapons_${rowId}_weapon-damage-attribute-mod`] || 'Damage Attribute';
+        const damageAttributeModValue = toInt(values[`repeating_weapons_${rowId}_damage-attribute-mod-value`]);
+        const damageMiscMod = toInt(values[`repeating_weapons_${rowId}_weapon-damage-misc-mod`]);
+        const halfLevel = toInt(values[`repeating_weapons_${rowId}_weapon-half-level`]);
+        const whisperPrefix = whisper ? '/w gm ' : '';
+        const rollTerms = [];
+
+        if (checkDiceExpression(damageDice)) {
+            rollTerms.push(`${crit ? explodeDiceExpression(damageDice) : damageDice} [Weapon Damage]`);
+        }
+
+        if (halfLevel) {
+            rollTerms.push(`${halfLevel} [half-level]`);
+        }
+        if (damageAttributeModValue) {
+            rollTerms.push(`${damageAttributeModValue} [${damageAttributeModName} Mod]`);
+        }
+        if (damageMiscMod) {
+            rollTerms.push(`${damageMiscMod} [Misc Mod]`);
+        }
+        if (crit) {
+            rollTerms.push('1d6! [Crit d6]');
+        }
+        if (raises > 0) {
+            rollTerms.push(`${raises}d6${crit ? '!' : ''} [Additional d6s per raise]`);
+        }
+
+        const rollFormula = rollTerms.length ? rollTerms.join(' + ') : '0';
+
+        startRoll(
+            `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{weaponname=${weaponName}}} {{damageroll=yes}} {{critdamage=${crit ? 'yes' : ''}}} {{normaldamage=${crit ? '' : 'yes'}}} {{dmg=[[${rollFormula}]]}}`,
+            results => finishRoll(results.rollId)
+        );
+    });
+};
+
+on('sheet:opened', syncAllWeaponActionButtons);
+on('change:character_name', syncAllWeaponActionButtons);
+on('change:repeating_weapons:weapon', eventInfo => {
+    syncWeaponActionButtons(getRepeatingRowId(eventInfo.sourceAttribute));
+});
+
+on('clicked:repeating_weapons:weaponattack', runWeaponAttack(false));
+on('clicked:repeating_weapons:weaponwhisperattack', runWeaponAttack(true));
+on('clicked:repeating_weapons:weapondamage', runWeaponDamage());
+on('clicked:repeating_weapons:weaponcriticaldamage', runWeaponDamage({ forceCrit: true }));
+on('clicked:repeating_weapons:weaponwhisperdamage', runWeaponDamage({ whisper: true }));
+on('clicked:repeating_weapons:weaponwhispercriticaldamage', runWeaponDamage({ whisper: true, forceCrit: true }));
+
+// Second Wind
+on('clicked:secondwind', function() {
+    getAttrs(['character_name', 'constitution_modifer','stamina_max', 'stamina'], values => {
+        const characterName = values.character_name || 'Character';
+        const constitutionModifier = toInt(values.constitution_modifer);
+        const staminaMax = toInt(values.stamina_max);
+        const quarterStamina = Math.floor(staminaMax / 4);
+        const staminaCurrent = toInt(values.stamina);
+        let gain = Math.max(quarterStamina, constitutionModifier);
+        log("Second Wind Activated", `Constitution Modifier: ${constitutionModifier}, Stamina Max: ${staminaMax} (max possible = ${quarterStamina}), Current Stamina: ${staminaCurrent}, Stamina Gain: ${gain}`, r20color);
+        const gapToMax = staminaMax - staminaCurrent;
+        if (gain > gapToMax) {
+            gain = gapToMax;
+        }
+        const newCurrent = Math.min(staminaMax, staminaCurrent + gain);
+        setAttrs({ stamina: newCurrent });
+        const roll_result = `/w gm &{template:roll} {{name=${characterName}}} {{title=Second Wind}} {{secondwind=[[${gain}]]}}`;
+        startRoll(roll_result, results => finishRoll(results.rollId));
+    });
 });
 </script>

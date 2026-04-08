@@ -7,13 +7,11 @@
         column-gap: 10px;
         width: 100%;
         .spells {
-            width: 33%;
-            min-width: 33%;
-            max-width: 33%;
             display: flex;
             flex-flow: column;
             row-gap: 5px;
             margin: 10px 0 20px 0;
+            flex: 1 1 25%;
             .spellRow {
                 display: flex;
                 margin: 5px 0;
@@ -29,7 +27,8 @@
             flex-flow: row wrap;
             column-gap: 5px;
             row-gap: 5px;          
-            flex-grow: 2;
+            flex-grow: 1;
+            flex-basis: 50%;
             h2.headerLabel {
                 width: 100%;
 
@@ -44,12 +43,10 @@
                 .repitem {
                     display: flex;
                     flex-flow: row wrap;
-                    max-width: 45%;
-                    min-width: 32.75%;
                     column-gap: 5px;
-                    row-gap: 5px;          
-                    flex-grow: 2;
-                    flex-shrink: 1;
+                    row-gap: 5px; 
+                    flex: 1 1 clamp(30%, 30%, 50%);
+                    max-width: 50%;
                     .weaponContainer {
                         border: .5px dotted var(--ink);
                         display: flex;
