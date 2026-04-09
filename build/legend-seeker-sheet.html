@@ -1460,8 +1460,136 @@
         <!-- Styles are in _spellsAndWeapons.scss-->
         <h2 class="headerLabel" data-i18n="spells">Spells</h2>
         <fieldset class="repeating_spells">
-          <div class="spellRow">
-            <input class="textField spellName" type="text" name="attr_spell_name" value="" data-i18n-placeholder="spell-name"/>
+          <div class="spellContainer">
+            <div class="button"> 
+              <div class="chatButtons">
+                <button class="labelButton sendToChat" type="roll" name="roll_spell_to_chat" value="@{spell-action-call}" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="cast">Cast</span></button>
+                <div class="whisperButton"> 
+                  <button class="whisperToChat" type="roll" name="roll_whisper_spell" value="@{spell-whisper-action-call}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                </div>
+              </div>
+              <!-- Action Buttons for Custom Roll Parsing-->
+              <button class="hidden" type="action" name="act_spellcast"></button>
+              <button class="hidden" type="action" name="act_whisper_spellcast"></button>
+              <!-- Spell Formulae-->
+              <input type="hidden" name="attr_spell-action-call" value="&amp;{template:roll} {{name=@{character_name}}} {{title=@{spell_name}}} {{roll=[[1d20cs&gt;@{spell-crit}cf1 + @{spell-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} "/>
+              <input type="hidden" name="attr_spell-whisper-action-call" value="&amp;{template:roll} {{name=@{character_name}}} {{title=@{spell_name}}} {{roll=[[1d20cs&gt;@{spell-crit}cf1 + @{spell-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} "/>
+              <!-- Damage Button Template Includes-->
+              <input type="hidden" name="attr_spell-damage-button" value=""/>
+              <input type="hidden" name="attr_whisper_spell-damage-button" value=""/>
+              <!-- Damage-->
+              <input type="hidden" name="attr_spell-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{spell_name}}} {{Roll=[[ @{spell-damage} + [[?{Additional # of damage dice|0}]]d6 ]]}}"/>
+              <input type="hidden" name="attr_spell-crit-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{spell_name}}} {{Roll=[[ @{spell-damage-dice}! + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{spell-damage-attribute-mod} Mod] + @{spell-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}"/>
+              <input type="hidden" name="attr_spell-attack-history" value="[]"/>
+              <input type="hidden" name="attr_spell-last-attack-rollid" value=""/>
+              <input type="hidden" name="attr_spell-last-attack-success" value="0"/>
+              <input type="hidden" name="attr_spell-last-attack-crit" value="0"/>
+              <input type="hidden" name="attr_spell-last-attack-raises" value="0"/>
+              <input type="hidden" name="attr_spell-last-attack-total" value="0"/>
+              <input type="hidden" name="attr_spell-last-attack-natural" value="0"/>
+              <input type="hidden" name="attr_spell-last-attack-target" value="0"/>
+            </div>
+            <div class="spell">
+              <label class="fieldLabelAbove" data-i18n="spell-name">Spell Name</label>
+              <input class="textField spellName" type="text" name="attr_spell" value="" data-i18n-placeholder="spell-name"/>
+            </div>
+            <div class="slots"> 
+              <label class="fieldLabelAbove" data-i18n="spell-slots">Slots</label>
+              <input class="textField spellSlots" type="text" name="attr_spell-slot" value="" data-i18n-placeholder="spell-slots"/>
+              <input class="textField spellSlotsMax" type="text" name="attr_spell-slot_max" value="" data-i18n-placeholder="max-slots"/>
+            </div>
+            <div class="school"> 
+              <label class="fieldLabelAbove" data-i18n="spell-school">School</label>
+              <select class="spellSchoolDropdown" name="attr_spell-school">
+                <option value="abjuration" data-i18n="abjuration">Abjuration</option>
+                <option value="conjuration" data-i18n="conjuration">Conjuration</option>
+                <option value="divination" data-i18n="divination">Divination</option>
+                <option value="enchantment" data-i18n="enchantment">Enchantment</option>
+                <option value="evocation" data-i18n="evocation">Evocation</option>
+                <option value="illusion" data-i18n="illusion">Illusion</option>
+                <option value="necromancy" data-i18n="necromancy">Necromancy</option>
+              </select>
+            </div>
+            <div class="tier"> 
+              <label class="fieldLabelAbove" data-i18n="spell-tier">Tier</label>
+              <input class="textField spellTier" type="text" name="attr_spell-tier" value="" data-i18n-placeholder="cantrip"/>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_weapon_damage_config_toggle"/><span class="configIcon">y</span>
+              </label>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_weapon_damage_config_toggle" value="0"/>
+            <div class="spell-config">
+              <div class="castingTime"> 
+                <label class="fieldLabelAbove" data-i18n="casting-time">Casting Time</label>
+                <input class="textField spellCastingTime" type="text" name="attr_spell-casting-time" value="" data-i18n-placeholder="casting-time"/>
+              </div>
+              <div class="range"> 
+                <label class="fieldLabelAbove" data-i18n="range">Range</label>
+                <input class="textField spellRange" type="text" name="attr_spell-range" value="" data-i18n-placeholder="range"/>
+              </div>
+              <div class="components"> 
+                <label class="fieldLabelAbove" data-i18n="components">Components</label>
+                <input class="textField spellComponents" type="text" name="attr_spell-components" value="" data-i18n-placeholder="components"/>
+              </div>
+              <div class="description"> 
+                <label class="fieldLabelAbove" data-i18n="description">Description</label>
+                <textarea class="textField spellDescription" name="attr_spell-description" data-i18n-placeholder="description"></textarea>
+              </div>
+              <div class="dcs"> 
+                <div class="header">
+                  <div class="dcColumn"> 
+                    <h3 class="headerLabel" data-i18n="difficult-class-abbr">DC </h3>
+                  </div>
+                  <div class="damageColumn"> 
+                    <h3 class="headerLabel" data-i18n="damage">Damage</h3>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="dcColumn"> 
+                    <input class="textField spellDC1" type="text" name="attr_spell-dc1" value="10"/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc1-damage" value=""/>
+                  </div>
+                  <div class="effect"> 
+                    <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
+                    <textarea class="textField spellEffect" name="attr_spell-effect" data-i18n-placeholder="effect"></textarea>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="dcColumn"> 
+                    <input class="textField spellDC2" type="text" name="attr_spell-dc2" value="15"/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellCritDamage" type="text" name="attr_dc2-damage" value=""/>
+                  </div>
+                  <div class="effect"> 
+                    <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
+                    <textarea class="textField spellEffect" name="attr_spell-effect2" data-i18n-placeholder="effect"></textarea>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="dcColumn"> 
+                    <input class="textField spellDC3" type="text" name="attr_spell-dc3" value="20"/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellCritDamage" type="text" name="attr_dc3-damage" value=""/>
+                  </div>
+                  <div class="effect"> 
+                    <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
+                    <textarea class="textField spellEffect" name="attr_spell-effect3" data-i18n-placeholder="effect"></textarea>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="special"> 
+                    <label class="fieldLabelAbove" data-i18n="special">Special</label>
+                    <textarea class="textField spellSpecial" name="attr_spell-special" data-i18n-placeholder="special"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </fieldset>
       </div>

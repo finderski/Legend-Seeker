@@ -1,5 +1,104 @@
 // Styles are in _spellsAndWeapons.scss
 h2.headerLabel(data-i18n='spells') Spells
 fieldset(class='repeating_spells')
-    .spellRow
-        input(class='textField spellName', type='text', name='attr_spell_name', value='', data-i18n-placeholder='spell-name')
+    .spellContainer
+        .button 
+            .chatButtons
+                button(class="labelButton sendToChat", type="roll" name="roll_spell_to_chat", value="@{spell-action-call}", data-18n-title="send-to-chat")
+                    span(class="allcaps" data-i18n='cast') Cast
+                .whisperButton 
+                    button(class="whisperToChat", type="roll" name="roll_whisper_spell", value="@{spell-whisper-action-call}", data-i18n-title="whisper-to-chat")
+                        span.iconButton w
+            // Action Buttons for Custom Roll Parsing
+            button(class="hidden" type='action' name='act_spellcast')
+            button(class="hidden" type='action' name='act_whisper_spellcast')
+            // Spell Formulae
+            input(type='hidden', name='attr_spell-action-call', value='&{template:roll} {{name=@{character_name}}} {{title=@{spell_name}}} {{roll=[[1d20cs>@{spell-crit}cf1 + @{spell-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} ')
+            input(type='hidden', name='attr_spell-whisper-action-call', value='&{template:roll} {{name=@{character_name}}} {{title=@{spell_name}}} {{roll=[[1d20cs>@{spell-crit}cf1 + @{spell-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} ')
+            // Damage Button Template Includes
+            input(type='hidden', name='attr_spell-damage-button', value='')
+            input(type='hidden', name='attr_whisper_spell-damage-button', value='')
+            // Damage
+            input(type='hidden', name='attr_spell-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{spell_name}}} {{Roll=[[ @{spell-damage} + [[?{Additional # of damage dice|0}]]d6 ]]}}')
+            input(type='hidden', name='attr_spell-crit-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{spell_name}}} {{Roll=[[ @{spell-damage-dice}! + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{spell-damage-attribute-mod} Mod] + @{spell-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}')
+            input(type='hidden', name='attr_spell-attack-history', value='[]')
+            input(type='hidden', name='attr_spell-last-attack-rollid', value='')
+            input(type='hidden', name='attr_spell-last-attack-success', value='0')
+            input(type='hidden', name='attr_spell-last-attack-crit', value='0')
+            input(type='hidden', name='attr_spell-last-attack-raises', value='0')
+            input(type='hidden', name='attr_spell-last-attack-total', value='0')
+            input(type='hidden', name='attr_spell-last-attack-natural', value='0')
+            input(type='hidden', name='attr_spell-last-attack-target', value='0')
+        .spell
+            label(class="fieldLabelAbove", data-i18n='spell-name') Spell Name
+            input(class='textField spellName', type='text', name='attr_spell', value='', data-i18n-placeholder='spell-name')
+        .slots 
+            label(class="fieldLabelAbove", data-i18n='spell-slots') Slots
+            input(class='textField spellSlots', type='text', name='attr_spell-slot', value='', data-i18n-placeholder='spell-slots')
+            input(class='textField spellSlotsMax', type='text', name='attr_spell-slot_max', value='', data-i18n-placeholder='max-slots')
+        .school 
+            label(class="fieldLabelAbove", data-i18n='spell-school') School
+            select(class="spellSchoolDropdown", name='attr_spell-school')
+                option(value='abjuration', data-i18n='abjuration') Abjuration
+                option(value='conjuration', data-i18n='conjuration') Conjuration
+                option(value='divination', data-i18n='divination') Divination
+                option(value='enchantment', data-i18n='enchantment') Enchantment
+                option(value='evocation', data-i18n='evocation') Evocation
+                option(value='illusion', data-i18n='illusion') Illusion
+                option(value='necromancy', data-i18n='necromancy') Necromancy
+        .tier 
+            label(class="fieldLabelAbove", data-i18n='spell-tier') Tier
+            input(class='textField spellTier', type='text', name='attr_spell-tier', value='', data-i18n-placeholder='cantrip')
+        .config 
+            label.cog
+                input(class='hiddenInput', type='checkbox', name='attr_weapon_damage_config_toggle')
+                span.configIcon y
+        input(class='hideSection', type='hidden', name='attr_weapon_damage_config_toggle', value='0')
+        .spell-config
+            .castingTime 
+                label(class="fieldLabelAbove", data-i18n='casting-time') Casting Time
+                input(class='textField spellCastingTime', type='text', name='attr_spell-casting-time', value='', data-i18n-placeholder='casting-time')
+            .range 
+                label(class="fieldLabelAbove", data-i18n='range') Range
+                input(class='textField spellRange', type='text', name='attr_spell-range', value='', data-i18n-placeholder='range')
+            .components 
+                label(class="fieldLabelAbove", data-i18n='components') Components
+                input(class='textField spellComponents', type='text', name='attr_spell-components', value='', data-i18n-placeholder='components')
+            .description 
+                label(class="fieldLabelAbove", data-i18n='description') Description
+                textarea(class='textField spellDescription', name='attr_spell-description', data-i18n-placeholder='description')
+            .dcs 
+                .header
+                    .dcColumn 
+                        h3.headerLabel(data-i18n='difficult-class-abbr') DC 
+                    .damageColumn 
+                        h3.headerLabel(data-i18n='damage') Damage
+                .row 
+                    .dcColumn 
+                        input(class='textField spellDC1', type='text', name='attr_spell-dc1', value='10')
+                    .damageColumn
+                        input(class='textField spellDamage', type='text', name='attr_dc1-damage', value='')
+                    .effect 
+                        label(class="fieldLabelAbove", data-i18n='effect') Effect
+                        textarea(class='textField spellEffect', name='attr_spell-effect', data-i18n-placeholder='effect')
+                .row 
+                    .dcColumn 
+                        input(class='textField spellDC2', type='text', name='attr_spell-dc2', value='15')
+                    .damageColumn
+                        input(class='textField spellCritDamage', type='text', name='attr_dc2-damage', value='')
+                    .effect 
+                        label(class="fieldLabelAbove", data-i18n='effect') Effect
+                        textarea(class='textField spellEffect', name='attr_spell-effect2', data-i18n-placeholder='effect')
+                .row 
+                    .dcColumn 
+                        input(class='textField spellDC3', type='text', name='attr_spell-dc3', value='20')
+                    .damageColumn
+                        input(class='textField spellCritDamage', type='text', name='attr_dc3-damage', value='')
+                    .effect 
+                        label(class="fieldLabelAbove", data-i18n='effect') Effect
+                        textarea(class='textField spellEffect', name='attr_spell-effect3', data-i18n-placeholder='effect')
+                .row 
+                    .special 
+                        label(class="fieldLabelAbove", data-i18n='special') Special
+                        textarea(class='textField spellSpecial', name='attr_spell-special', data-i18n-placeholder='special')
+            
