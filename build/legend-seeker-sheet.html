@@ -1499,7 +1499,7 @@
               <input class="textField spellSlotsMax" type="text" name="attr_spell-slot_max" value="" data-i18n-placeholder="max-slots"/>
             </div>
             <div class="school"> 
-              <label class="fieldLabelAbove" data-i18n="spell-school">School</label>
+              <label class="fieldLabelAbove" data-i18n="school">School</label>
               <select class="spellSchoolDropdown" name="attr_spell-school">
                 <option value="abjuration" data-i18n="abjuration">Abjuration</option>
                 <option value="conjuration" data-i18n="conjuration">Conjuration</option>
@@ -1508,18 +1508,19 @@
                 <option value="evocation" data-i18n="evocation">Evocation</option>
                 <option value="illusion" data-i18n="illusion">Illusion</option>
                 <option value="necromancy" data-i18n="necromancy">Necromancy</option>
+                <option value="transmutation" data-i18n="transmutation">Transmutation</option>
               </select>
             </div>
             <div class="tier"> 
-              <label class="fieldLabelAbove" data-i18n="spell-tier">Tier</label>
+              <label class="fieldLabelAbove" data-i18n="tier">Tier</label>
               <input class="textField spellTier" type="text" name="attr_spell-tier" value="" data-i18n-placeholder="cantrip"/>
             </div>
             <div class="config"> 
               <label class="cog">
-                <input class="hiddenInput" type="checkbox" name="attr_weapon_damage_config_toggle"/><span class="configIcon">y</span>
+                <input class="hiddenInput" type="checkbox" name="attr_spell_config_toggle"/><span class="configIcon">y</span>
               </label>
             </div>
-            <input class="hideSection" type="hidden" name="attr_weapon_damage_config_toggle" value="0"/>
+            <input class="hideSection" type="hidden" name="attr_spell_config_toggle" value="0"/>
             <div class="spell-config">
               <div class="castingTime"> 
                 <label class="fieldLabelAbove" data-i18n="casting-time">Casting Time</label>
@@ -1540,7 +1541,7 @@
               <div class="dcs"> 
                 <div class="header">
                   <div class="dcColumn"> 
-                    <h3 class="headerLabel" data-i18n="difficult-class-abbr">DC </h3>
+                    <h3 class="headerLabel" data-i18n="difficulty-class-abbr">DC </h3>
                   </div>
                   <div class="damageColumn"> 
                     <h3 class="headerLabel" data-i18n="damage">Damage</h3>

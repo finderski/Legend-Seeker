@@ -10,15 +10,30 @@
             display: flex;
             flex-flow: column;
             row-gap: 5px;
-            margin: 10px 0 20px 0;
+            margin: 0 0 20px 0;
             flex: 1 1 25%;
-            .spellRow {
-                display: flex;
-                margin: 5px 0;
-                font-size: .85em;
+            align-items: flex-start;
+            align-content: flex-start;
+            justify-content: flex-start;
+            .repcontainer[data-groupname="repeating_spells"] {
                 width: 100%;
-                .spellName {
-                    width: 100%;
+                display: inline-block;
+                .repitem {
+                    display: flex;
+                    flex-flow: column;
+                    row-gap: 5px; 
+                    border: .5px dotted var(--ink);
+                    padding: 5px;
+                    .spellContainer {
+                        display: flex;
+                        flex-flow: row wrap;
+                        margin: 5px 0;
+                        font-size: .85em;
+                        width: 100%;
+                        .spellName {
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
@@ -29,6 +44,9 @@
             row-gap: 5px;          
             flex-grow: 1;
             flex-basis: 50%;
+            align-items: flex-start;
+            align-content: flex-start;
+            justify-content: flex-start;
             h2.headerLabel {
                 width: 100%;
 
@@ -58,9 +76,11 @@
                         justify-content: center;
                         align-content: center;
                         align-items: center;
+                        /*
                         .hiddenInput {
                             display: none;
                         }
+                        */  
                         .button {
                             width: 70px;
                             flex: 0 0 auto;
@@ -87,6 +107,7 @@
                         .damage {
                             width: 28%;
                         }
+                        /* Hiding - maybe temporarily
                         .config {
                             display: flex;
                             width: 0;
@@ -105,6 +126,7 @@
                                 opacity: 1;
                             }
                         }
+                        */
                         .attributeMod {
                             min-width: 25%;
                             max-width: 30%;
@@ -220,6 +242,27 @@
                         }
                     }
                 }
+            }
+        }
+        .hiddenInput {
+            display: none;
+        }
+        .config {
+            display: flex;
+            width: 0;
+            font-family: 'Pictos';
+            font-size: .85em;
+            color: var(--ink);
+            align-self: flex-start;
+            position: relative;
+            left: -10%;
+            cursor: pointer;
+            opacity: 0.5;
+            &:hover {
+                opacity: 1;
+            }
+            > .cog > .hiddenInput:checked + .configIcon {
+                opacity: 1;
             }
         }
     }

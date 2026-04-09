@@ -175,8 +175,8 @@ input:not(:checked)+.isCarried::before {
     font-weight: bold;
 }
 
-.ui-dialog .charsheet button.labelButton,
-.ui-dialog .charsheet button[type='action'] {
+.ui-dialog .charactersheet button.labelButton,
+.ui-dialog .charactersheet button[type='action'] {
     display: inline-block;
     width: auto;
     background-color: transparent;
@@ -190,19 +190,23 @@ input:not(:checked)+.isCarried::before {
     border-radius: 8px;
 }
 
-.ui-dialog .charsheet button.labelButton:hover,
-.ui-dialog .charsheet button[type='action']:hover,
-.ui-dialog .charsheet label.buttonStyle:hover {
+.ui-dialog .charactersheet button.labelButton:hover,
+.ui-dialog .charactersheet button[type='action']:hover,
+.ui-dialog .charactersheet label.buttonStyle:hover {
     background-color: var(--ink);
     color: var(--parchment);
     cursor: pointer;
 }
 
 /* Chat Buttons */
-.chatButtons {
+.ui-dialog .charactersheet .chatButtons {
     position: relative;
     display: inline-flex;
     align-items: center;
+    .sendToChat:hover {
+        background-color: var(--ink);
+        color: var(--parchment);
+    }
 }
 .sendToChat {
     width: 30px;
@@ -212,33 +216,53 @@ input:not(:checked)+.isCarried::before {
 }
 .chatButtons:hover .whisperButton {
     display: inline-block;
+    width: 30px;
+    height: 30px;
     position: absolute;
-    left: 30px;
+    /*left: 30px;*/
+    left: 100%;
     background-color: var(--parchment);
     font-family: 'Pictos';
+    :hover {
+        background-color: var(--ink);
+        color: var(--parchment);
+    }
+    .iconButton {
+        font-family: Pictos;
+        font-size: 1.2em;
+    }
+}
+.ui-dialog .charactersheet button[type='roll'].whisperToChat {
+    padding: 0 5px;
+    width: 30px;
+    min-width: 30px;
+    max-width: 30px;
+    height: 30px;
+    min-height: 30px;
+    max-height: 30px;
 }
 /* End Chat Buttons */
 
-.ui-dialog .charsheet .repcontrol .repcontrol_edit,
-.ui-dialog .charsheet .repcontrol .repcontrol_add {
+.ui-dialog .charactersheet .repcontrol .repcontrol_edit,
+.ui-dialog .charactersheet .repcontrol .repcontrol_add {
     background-image: none;
     background-color: var(--ink);
     color: var(--parchment);
     border: .5px solid var(--gold);
 }
 
-.ui-dialog .charsheet .repcontainer .repitem .itemcontrol{
+.ui-dialog .charactersheet .repcontainer .repitem .itemcontrol{
     z-index: 99;
 }
 
-.ui-dialog .charsheet .repitem .itemcontrol .repcontrol_del {
+.ui-dialog .charactersheet .repitem .itemcontrol .repcontrol_del {
     font-family: 'Pictos';
     background-color: var(--ink);
     background-image: none;
     color: var(--parchment);
 }
 
-.ui-dialog .charsheet .repitem .itemcontrol .repcontrol_move {
+.ui-dialog .charactersheet .repitem .itemcontrol .repcontrol_move {
     background-image: none;
     background-color: var(--ink);
     color: var(--parchment);
