@@ -1,6 +1,6 @@
 <!-- Styles are in _rolltemplateStyles.scss -->
 <rolltemplate class="sheet-rolltemplate-roll">
-    <div class="sheet-rolltemplate-header{{#damageroll}} sheet-damage-header{{/damageroll}}">
+    <div class="sheet-rolltemplate-header{{#damageroll}} sheet-damage-header{{/damageroll}}{{#spellcast}} sheet-spell-header{{/spellcast}}">
         <h1>{{name}}</h1>
             <!-- title would something like the skill name, weapon, attribute, etc. -->
         {{#title}}
@@ -14,6 +14,17 @@
     </div>
     <div class="sheet-rolltemplate-body">
         <div class="sheet-roll-info">
+            {{#spellcast}}
+            <div class="sheet-left-column school">{{school}}</div>
+            <div class="sheet-right-column">{{tier}}</div>
+            <div class="sheet-left-column" data-i18n-vars="{{castingtime}}" data-i18n="casting-time-rt"></div>
+            <div class="sheet-right-column" data-i18n-vars="{{range}}" data-i18n="range-rt"></div>
+            <div class="sheet-left-column-full" data-i18n-vars="{{duration}}" data-i18n="duration-rt"></div>
+            {{#rollTotal() target dc1}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect1}}|{{special}}" data-i18n="dc-effect1-rt"></div>{{/rollTotal() target dc1}}
+            {{#rollTotal() target dc2}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect2}}|{{special}}" data-i18n="dc-effect2-rt"></div>{{/rollTotal() target dc2}}
+            {{#rollTotal() target dc3}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect3}}|{{special}}" data-i18n="dc-effect3-rt"></div>{{/rollTotal() target dc3}}
+            {{#rollTotal() legendary-point 1}}<div class="sheet-left-column-full" data-i18n-vars="{{special}}" data-i18n="special-rt"></div>{{/rollTotal() legendary-point 1}}
+            {{/spellcast}}
             {{#target}}
             <div class="sheet-left-column" data-i18n="target-number">Target Number</div>
             <div class="sheet-right-column">{{target}}</div>

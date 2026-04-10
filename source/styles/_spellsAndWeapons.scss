@@ -52,6 +52,7 @@
                             flex-flow: row wrap;
                             .spellSlots {
                                 width: 47%;
+                                text-align: center;
                             }
                             .slotDivider {
                                 align-self: center;
@@ -89,6 +90,73 @@
                             flex-flow: row wrap;
                             column-gap: 5px;
                             padding: 3px 0 5px 0;
+                            .castingTime,
+                            .range,
+                            .duration,
+                            .components {
+                                width: 48%;
+                                .textField {
+                                    width: 100%;
+                                    font-size: 1.2em;
+                                }
+                            }
+                            .description {
+                                width: 100%;
+                            }
+                            .dcs {
+                                width: 100%;
+                                .row {
+                                    display: flex;
+                                    flex-flow: row wrap;
+                                    column-gap: 5px;
+                                    row-gap: 3px;
+                                    width: 100%;
+                                    margin: 0;
+                                    .dcColumn {
+                                        flex: 0 1 10%;
+                                        h3 {
+                                            text-align: left;
+                                        }
+                                        .textField {
+                                            width: 100%;
+                                        }
+                                    }
+                                    .damageColumn {
+                                        flex: 2 1 25%;
+                                        .textField {
+                                            width: 100%;
+                                            text-align: center;
+                                        }
+                                    }
+                                    .effect {
+                                        width: 100%;
+                                        .spellArea {
+                                            height: 2rem;
+                                            min-height: fit-content;
+                                            max-height: 6rem;
+                                        }
+                                    }
+                                    .special {
+                                        width: 100%;
+                                        .spellArea {
+                                            height: 2rem;
+                                            min-height: fit-content;
+                                            max-height: 6rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .spellArea {
+                            width: 100%;
+                            font-size: 1.15em;
+                            resize: vertical;
+                            background-color: transparent;
+                            color: var(--ink);
+                            border: none;
+                            max-height: 150px;
+                            height: 6rem;
+                            min-height: 3rem;
                         }
                     }
                 }

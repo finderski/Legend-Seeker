@@ -165,5 +165,14 @@
   "effect": "Effect",
   "special": "Special",
   "cantrip": "Cantrip",
-  "duration": "Duration"
+  "duration": "Duration",
+  "alternative-abbr-damage": "Alt. Damage",
+  "special-damage-abbr": "Special Dmg",
+  "casting-time-rt": "<strong>Casting Time</strong>: {{0}}",
+  "range-rt": "<strong>Range</strong>: {{0}}",
+  "duration-rt": "<strong>Duration</strong>: {{0}}",
+  "dc-effect1-rt": "<strong>DC</strong>: {{0}}<br><strong>Effect</strong>: {{1}}",
+  "dc-effect2-rt": "<strong>DC</strong>: {{0}}<br><strong>Effect</strong>: {{1}}",
+  "dc-effect3-rt": "<strong>DC</strong>: {{0}}<br><strong>Effect</strong>: {{1}}",
+  "special-rt": "<strong>Special</strong>: {{0}}"
 }

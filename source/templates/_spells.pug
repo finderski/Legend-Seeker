@@ -7,28 +7,13 @@ fieldset(class='repeating_spells')
                 button(class="labelButton sendToChat", type="roll" name="roll_spell_to_chat", value="@{spell-action-call}", data-18n-title="send-to-chat")
                     span(class="allcaps" data-i18n='cast') Cast
                 .whisperButton 
-                    button(class="whisperToChat", type="roll" name="roll_whisper_spell", value="@{spell-whisper-action-call}", data-i18n-title="whisper-to-chat")
+                    button(class="whisperToChat", type="roll" name="roll_whisper_spell", value="/w gm @{spell-action-call}", data-i18n-title="whisper-to-chat")
                         span.iconButton w
             // Action Buttons for Custom Roll Parsing
             button(class="hidden" type='action' name='act_spellcast')
             button(class="hidden" type='action' name='act_whisper_spellcast')
             // Spell Formulae
-            input(type='hidden', name='attr_spell-action-call', value='&{template:roll} {{name=@{character_name}}} {{title=@{spell_name}}} {{roll=[[1d20cs>@{spell-crit}cf1 + @{spell-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} ')
-            input(type='hidden', name='attr_spell-whisper-action-call', value='&{template:roll} {{name=@{character_name}}} {{title=@{spell_name}}} {{roll=[[1d20cs>@{spell-crit}cf1 + @{spell-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} ')
-            // Damage Button Template Includes
-            input(type='hidden', name='attr_spell-damage-button', value='')
-            input(type='hidden', name='attr_whisper_spell-damage-button', value='')
-            // Damage
-            input(type='hidden', name='attr_spell-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{spell_name}}} {{Roll=[[ @{spell-damage} + [[?{Additional # of damage dice|0}]]d6 ]]}}')
-            input(type='hidden', name='attr_spell-crit-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{spell_name}}} {{Roll=[[ @{spell-damage-dice}! + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{spell-damage-attribute-mod} Mod] + @{spell-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}')
-            input(type='hidden', name='attr_spell-attack-history', value='[]')
-            input(type='hidden', name='attr_spell-last-attack-rollid', value='')
-            input(type='hidden', name='attr_spell-last-attack-success', value='0')
-            input(type='hidden', name='attr_spell-last-attack-crit', value='0')
-            input(type='hidden', name='attr_spell-last-attack-raises', value='0')
-            input(type='hidden', name='attr_spell-last-attack-total', value='0')
-            input(type='hidden', name='attr_spell-last-attack-natural', value='0')
-            input(type='hidden', name='attr_spell-last-attack-target', value='0')
+            input(type='hidden', name='attr_spell-action-call', value='&{template:roll} {{spellcast=roll}} {{name=@{character_name}}} {{title=@{spell}}} {{school=^{@{spell-school}}}} {{tier=@{spell-tier}}} {{castingtime=@{spell-casting-time}}} {{range=@{spell-range}}} {{duration=@{spell-duration}}} {{roll=[[1d20cs>20cf1 + @{mana-tap_bonus}[^{mana-tap}]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{DC|@{spell-dc1}|@{spell-dc2}|@{spell-dc3}}]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=@{spell-effect}}} {{effect2=@{spell-effect2}}} {{effect3=@{spell-effect3}}} {{special=@{spell-special}}} {{dc1=[[@{spell-dc1}]]}} {{dc2=[[@{spell-dc2}]]}} {{dc3=[[@{spell-dc3}]]}} ')
         .spell
             label(class="fieldLabelAbove", data-i18n='spell-name') Spell Name
             input(class='textField spellName', type='text', name='attr_spell', value='', data-i18n-placeholder='spell-name')
@@ -71,39 +56,55 @@ fieldset(class='repeating_spells')
                 input(class='textField spellDuration', type='text', name='attr_spell-duration', value='', data-i18n-placeholder='duration')
             .description 
                 label(class="fieldLabelAbove", data-i18n='description') Description
-                textarea(class='textField spellDescription', name='attr_spell-description', data-i18n-placeholder='description')
+                textarea(class='spellArea spellDescription', name='attr_spell-description', data-i18n-placeholder='description')
             .dcs 
-                .header
+                .row.header
                     .dcColumn 
                         h3.headerLabel(data-i18n='difficulty-class-abbr') DC 
                     .damageColumn 
                         h3.headerLabel(data-i18n='damage') Damage
+                    .damageColumn 
+                        h3.headerLabel(data-i18n='alternative-abbr-damage') Alt Damage
+                    .damageColumn 
+                        h3.headerLabel(data-i18n='special-damage-abbr') Special Dmg
                 .row 
                     .dcColumn 
                         input(class='textField spellDC1', type='text', name='attr_spell-dc1', value='10')
                     .damageColumn
                         input(class='textField spellDamage', type='text', name='attr_dc1-damage', value='')
+                    .damageColumn
+                        input(class='textField spellDamage', type='text', name='attr_dc1-alt-damage', value='')
+                    .damageColumn
+                        input(class='textField spellDamage', type='text', name='attr_dc1-special-damage', value='')
                     .effect 
                         label(class="fieldLabelAbove", data-i18n='effect') Effect
-                        textarea(class='textField spellEffect', name='attr_spell-effect', data-i18n-placeholder='effect')
+                        textarea(class='spellArea spellEffect', name='attr_spell-effect', data-i18n-placeholder='effect')
                 .row 
                     .dcColumn 
                         input(class='textField spellDC2', type='text', name='attr_spell-dc2', value='15')
                     .damageColumn
                         input(class='textField spellCritDamage', type='text', name='attr_dc2-damage', value='')
+                    .damageColumn
+                        input(class='textField spellDamage', type='text', name='attr_dc2-alt-damage', value='')
+                    .damageColumn
+                        input(class='textField spellDamage', type='text', name='attr_dc2-special-damage', value='')
                     .effect 
                         label(class="fieldLabelAbove", data-i18n='effect') Effect
-                        textarea(class='textField spellEffect', name='attr_spell-effect2', data-i18n-placeholder='effect')
+                        textarea(class='spellArea spellEffect', name='attr_spell-effect2', data-i18n-placeholder='effect')
                 .row 
                     .dcColumn 
                         input(class='textField spellDC3', type='text', name='attr_spell-dc3', value='20')
                     .damageColumn
                         input(class='textField spellCritDamage', type='text', name='attr_dc3-damage', value='')
+                    .damageColumn
+                        input(class='textField spellDamage', type='text', name='attr_dc3-alt-damage', value='')
+                    .damageColumn
+                        input(class='textField spellDamage', type='text', name='attr_dc3-special-damage', value='')
                     .effect 
                         label(class="fieldLabelAbove", data-i18n='effect') Effect
-                        textarea(class='textField spellEffect', name='attr_spell-effect3', data-i18n-placeholder='effect')
+                        textarea(class='spellArea spellEffect', name='attr_spell-effect3', data-i18n-placeholder='effect')
                 .row 
                     .special 
                         label(class="fieldLabelAbove", data-i18n='special') Special
-                        textarea(class='textField spellSpecial', name='attr_spell-special', data-i18n-placeholder='special')
+                        textarea(class='spellArea spellSpecial', name='attr_spell-special', data-i18n-placeholder='special')
             

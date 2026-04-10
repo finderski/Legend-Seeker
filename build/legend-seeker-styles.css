@@ -1327,6 +1327,7 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots .spellSlots {
   width: 47%;
+  text-align: center;
 }
 .ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots .slotDivider {
   align-self: center;
@@ -1363,6 +1364,76 @@ label.buttonStyle {
   flex-flow: row wrap;
   column-gap: 5px;
   padding: 3px 0 5px 0;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .castingTime,
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .range,
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .duration,
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .components {
+  width: 48%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .castingTime .textField,
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .range .textField,
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .duration .textField,
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .components .textField {
+  width: 100%;
+  font-size: 1.2em;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .description {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  row-gap: 3px;
+  width: 100%;
+  margin: 0;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn {
+  flex: 0 1 10%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn h3 {
+  text-align: left;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn .textField {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn {
+  flex: 2 1 25%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .textField {
+  width: 100%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .effect {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .effect .spellArea {
+  height: 2rem;
+  min-height: fit-content;
+  max-height: 6rem;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .special {
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .special .spellArea {
+  height: 2rem;
+  min-height: fit-content;
+  max-height: 6rem;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spellArea {
+  width: 100%;
+  font-size: 1.15em;
+  resize: vertical;
+  background-color: transparent;
+  color: var(--ink);
+  border: none;
+  max-height: 150px;
+  height: 6rem;
+  min-height: 3rem;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons {
   display: flex;
@@ -1661,6 +1732,13 @@ label.buttonStyle {
 .sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-damage-header h2 {
   color: #E3D2A6;
 }
+.sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-spell-header {
+  background-color: #2F5496;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-spell-header h1,
+.sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-spell-header h2 {
+  color: #F8FAFC;
+}
 .sheet-rolltemplate-roll .sheet-rolltemplate-body {
   display: flex;
   flex-flow: column nowrap;
@@ -1679,6 +1757,13 @@ label.buttonStyle {
   width: 55%;
   min-width: 55%;
   max-width: 55%;
+  text-align: left;
+  font-size: 1.15em;
+  font-weight: 900;
+  font-synthesis: unset !important;
+}
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-left-column-full {
+  width: 100%;
   text-align: left;
   font-size: 1.15em;
   font-weight: 900;

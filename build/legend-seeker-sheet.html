@@ -1465,29 +1465,14 @@
               <div class="chatButtons">
                 <button class="labelButton sendToChat" type="roll" name="roll_spell_to_chat" value="@{spell-action-call}" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="cast">Cast</span></button>
                 <div class="whisperButton"> 
-                  <button class="whisperToChat" type="roll" name="roll_whisper_spell" value="@{spell-whisper-action-call}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                  <button class="whisperToChat" type="roll" name="roll_whisper_spell" value="/w gm @{spell-action-call}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
                 </div>
               </div>
               <!-- Action Buttons for Custom Roll Parsing-->
               <button class="hidden" type="action" name="act_spellcast"></button>
               <button class="hidden" type="action" name="act_whisper_spellcast"></button>
               <!-- Spell Formulae-->
-              <input type="hidden" name="attr_spell-action-call" value="&amp;{template:roll} {{name=@{character_name}}} {{title=@{spell_name}}} {{roll=[[1d20cs&gt;@{spell-crit}cf1 + @{spell-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} "/>
-              <input type="hidden" name="attr_spell-whisper-action-call" value="&amp;{template:roll} {{name=@{character_name}}} {{title=@{spell_name}}} {{roll=[[1d20cs&gt;@{spell-crit}cf1 + @{spell-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} "/>
-              <!-- Damage Button Template Includes-->
-              <input type="hidden" name="attr_spell-damage-button" value=""/>
-              <input type="hidden" name="attr_whisper_spell-damage-button" value=""/>
-              <!-- Damage-->
-              <input type="hidden" name="attr_spell-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{spell_name}}} {{Roll=[[ @{spell-damage} + [[?{Additional # of damage dice|0}]]d6 ]]}}"/>
-              <input type="hidden" name="attr_spell-crit-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{spell_name}}} {{Roll=[[ @{spell-damage-dice}! + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{spell-damage-attribute-mod} Mod] + @{spell-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}"/>
-              <input type="hidden" name="attr_spell-attack-history" value="[]"/>
-              <input type="hidden" name="attr_spell-last-attack-rollid" value=""/>
-              <input type="hidden" name="attr_spell-last-attack-success" value="0"/>
-              <input type="hidden" name="attr_spell-last-attack-crit" value="0"/>
-              <input type="hidden" name="attr_spell-last-attack-raises" value="0"/>
-              <input type="hidden" name="attr_spell-last-attack-total" value="0"/>
-              <input type="hidden" name="attr_spell-last-attack-natural" value="0"/>
-              <input type="hidden" name="attr_spell-last-attack-target" value="0"/>
+              <input type="hidden" name="attr_spell-action-call" value="&amp;{template:roll} {{spellcast=roll}} {{name=@{character_name}}} {{title=@{spell}}} {{school=^{@{spell-school}}}} {{tier=@{spell-tier}}} {{castingtime=@{spell-casting-time}}} {{range=@{spell-range}}} {{duration=@{spell-duration}}} {{roll=[[1d20cs&gt;20cf1 + @{mana-tap_bonus}[^{mana-tap}]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{DC|@{spell-dc1}|@{spell-dc2}|@{spell-dc3}}]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=@{spell-effect}}} {{effect2=@{spell-effect2}}} {{effect3=@{spell-effect3}}} {{special=@{spell-special}}} {{dc1=[[@{spell-dc1}]]}} {{dc2=[[@{spell-dc2}]]}} {{dc3=[[@{spell-dc3}]]}} "/>
             </div>
             <div class="spell">
               <label class="fieldLabelAbove" data-i18n="spell-name">Spell Name</label>
@@ -1540,15 +1525,21 @@
               </div>
               <div class="description"> 
                 <label class="fieldLabelAbove" data-i18n="description">Description</label>
-                <textarea class="textField spellDescription" name="attr_spell-description" data-i18n-placeholder="description"></textarea>
+                <textarea class="spellArea spellDescription" name="attr_spell-description" data-i18n-placeholder="description"></textarea>
               </div>
               <div class="dcs"> 
-                <div class="header">
+                <div class="row header">
                   <div class="dcColumn"> 
                     <h3 class="headerLabel" data-i18n="difficulty-class-abbr">DC </h3>
                   </div>
                   <div class="damageColumn"> 
                     <h3 class="headerLabel" data-i18n="damage">Damage</h3>
+                  </div>
+                  <div class="damageColumn"> 
+                    <h3 class="headerLabel" data-i18n="alternative-abbr-damage">Alt Damage</h3>
+                  </div>
+                  <div class="damageColumn"> 
+                    <h3 class="headerLabel" data-i18n="special-damage-abbr">Special Dmg</h3>
                   </div>
                 </div>
                 <div class="row"> 
@@ -1558,9 +1549,15 @@
                   <div class="damageColumn">
                     <input class="textField spellDamage" type="text" name="attr_dc1-damage" value=""/>
                   </div>
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc1-alt-damage" value=""/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc1-special-damage" value=""/>
+                  </div>
                   <div class="effect"> 
                     <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
-                    <textarea class="textField spellEffect" name="attr_spell-effect" data-i18n-placeholder="effect"></textarea>
+                    <textarea class="spellArea spellEffect" name="attr_spell-effect" data-i18n-placeholder="effect"></textarea>
                   </div>
                 </div>
                 <div class="row"> 
@@ -1570,9 +1567,15 @@
                   <div class="damageColumn">
                     <input class="textField spellCritDamage" type="text" name="attr_dc2-damage" value=""/>
                   </div>
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc2-alt-damage" value=""/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc2-special-damage" value=""/>
+                  </div>
                   <div class="effect"> 
                     <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
-                    <textarea class="textField spellEffect" name="attr_spell-effect2" data-i18n-placeholder="effect"></textarea>
+                    <textarea class="spellArea spellEffect" name="attr_spell-effect2" data-i18n-placeholder="effect"></textarea>
                   </div>
                 </div>
                 <div class="row"> 
@@ -1582,15 +1585,21 @@
                   <div class="damageColumn">
                     <input class="textField spellCritDamage" type="text" name="attr_dc3-damage" value=""/>
                   </div>
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc3-alt-damage" value=""/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc3-special-damage" value=""/>
+                  </div>
                   <div class="effect"> 
                     <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
-                    <textarea class="textField spellEffect" name="attr_spell-effect3" data-i18n-placeholder="effect"></textarea>
+                    <textarea class="spellArea spellEffect" name="attr_spell-effect3" data-i18n-placeholder="effect"></textarea>
                   </div>
                 </div>
                 <div class="row"> 
                   <div class="special"> 
                     <label class="fieldLabelAbove" data-i18n="special">Special</label>
-                    <textarea class="textField spellSpecial" name="attr_spell-special" data-i18n-placeholder="special"></textarea>
+                    <textarea class="spellArea spellSpecial" name="attr_spell-special" data-i18n-placeholder="special"></textarea>
                   </div>
                 </div>
               </div>
@@ -1740,7 +1749,7 @@
 </div>
 <!--Rolltemplates--><!-- Styles are in _rolltemplateStyles.scss -->
 <rolltemplate class="sheet-rolltemplate-roll">
-    <div class="sheet-rolltemplate-header{{#damageroll}} sheet-damage-header{{/damageroll}}">
+    <div class="sheet-rolltemplate-header{{#damageroll}} sheet-damage-header{{/damageroll}}{{#spellcast}} sheet-spell-header{{/spellcast}}">
         <h1>{{name}}</h1>
             <!-- title would something like the skill name, weapon, attribute, etc. -->
         {{#title}}
@@ -1754,6 +1763,17 @@
     </div>
     <div class="sheet-rolltemplate-body">
         <div class="sheet-roll-info">
+            {{#spellcast}}
+            <div class="sheet-left-column school">{{school}}</div>
+            <div class="sheet-right-column">{{tier}}</div>
+            <div class="sheet-left-column" data-i18n-vars="{{castingtime}}" data-i18n="casting-time-rt"></div>
+            <div class="sheet-right-column" data-i18n-vars="{{range}}" data-i18n="range-rt"></div>
+            <div class="sheet-left-column-full" data-i18n-vars="{{duration}}" data-i18n="duration-rt"></div>
+            {{#rollTotal() target dc1}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect1}}|{{special}}" data-i18n="dc-effect1-rt"></div>{{/rollTotal() target dc1}}
+            {{#rollTotal() target dc2}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect2}}|{{special}}" data-i18n="dc-effect2-rt"></div>{{/rollTotal() target dc2}}
+            {{#rollTotal() target dc3}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect3}}|{{special}}" data-i18n="dc-effect3-rt"></div>{{/rollTotal() target dc3}}
+            {{#rollTotal() legendary-point 1}}<div class="sheet-left-column-full" data-i18n-vars="{{special}}" data-i18n="special-rt"></div>{{/rollTotal() legendary-point 1}}
+            {{/spellcast}}
             {{#target}}
             <div class="sheet-left-column" data-i18n="target-number">Target Number</div>
             <div class="sheet-right-column">{{target}}</div>

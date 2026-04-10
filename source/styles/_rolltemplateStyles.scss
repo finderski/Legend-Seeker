@@ -32,6 +32,13 @@
             color: #E3D2A6;
         }
     }
+    .sheet-rolltemplate-header.sheet-spell-header {
+        background-color: #2F5496;
+        h1,
+        h2 {
+            color: #F8FAFC;
+        }
+    }
     .sheet-rolltemplate-body {
         display: flex;
         flex-flow: column nowrap;
@@ -49,6 +56,13 @@
             width: 55%;
             min-width: 55%;
             max-width: 55%;
+            text-align: left;
+            font-size: 1.15em;
+            font-weight: 900;
+            font-synthesis: unset !important;
+        }
+        .sheet-left-column-full {
+            width: 100%;
             text-align: left;
             font-size: 1.15em;
             font-weight: 900;
