@@ -1495,12 +1495,12 @@
             </div>
             <div class="slots"> 
               <label class="fieldLabelAbove" data-i18n="spell-slots">Slots</label>
-              <input class="textField spellSlots" type="text" name="attr_spell-slot" value="" data-i18n-placeholder="spell-slots"/>
-              <input class="textField spellSlotsMax" type="text" name="attr_spell-slot_max" value="" data-i18n-placeholder="max-slots"/>
+              <input class="textField spellSlots" type="text" name="attr_spell-slot" value="" placeholder="1"/><span class="slotDivider">/</span>
+              <input class="textField spellSlots" type="text" name="attr_spell-slot_max" value="" placeholder="1"/>
             </div>
             <div class="school"> 
               <label class="fieldLabelAbove" data-i18n="school">School</label>
-              <select class="spellSchoolDropdown" name="attr_spell-school">
+              <select class="ls-Dropdown spellSchoolDropdown" name="attr_spell-school">
                 <option value="abjuration" data-i18n="abjuration">Abjuration</option>
                 <option value="conjuration" data-i18n="conjuration">Conjuration</option>
                 <option value="divination" data-i18n="divination">Divination</option>
@@ -1533,6 +1533,10 @@
               <div class="components"> 
                 <label class="fieldLabelAbove" data-i18n="components">Components</label>
                 <input class="textField spellComponents" type="text" name="attr_spell-components" value="" data-i18n-placeholder="components"/>
+              </div>
+              <div class="duration"> 
+                <label class="fieldLabelAbove" data-i18n="duration">Duration</label>
+                <input class="textField spellDuration" type="text" name="attr_spell-duration" value="" data-i18n-placeholder="duration"/>
               </div>
               <div class="description"> 
                 <label class="fieldLabelAbove" data-i18n="description">Description</label>

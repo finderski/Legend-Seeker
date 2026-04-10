@@ -34,11 +34,12 @@ fieldset(class='repeating_spells')
             input(class='textField spellName', type='text', name='attr_spell', value='', data-i18n-placeholder='spell-name')
         .slots 
             label(class="fieldLabelAbove", data-i18n='spell-slots') Slots
-            input(class='textField spellSlots', type='text', name='attr_spell-slot', value='', data-i18n-placeholder='spell-slots')
-            input(class='textField spellSlotsMax', type='text', name='attr_spell-slot_max', value='', data-i18n-placeholder='max-slots')
+            input(class='textField spellSlots', type='text', name='attr_spell-slot', value='', placeholder='1')
+            span(class='slotDivider') /
+            input(class='textField spellSlots', type='text', name='attr_spell-slot_max', value='', placeholder='1')
         .school 
             label(class="fieldLabelAbove", data-i18n='school') School
-            select(class="spellSchoolDropdown", name='attr_spell-school')
+            select(class="ls-Dropdown spellSchoolDropdown", name='attr_spell-school')
                 option(value='abjuration', data-i18n='abjuration') Abjuration
                 option(value='conjuration', data-i18n='conjuration') Conjuration
                 option(value='divination', data-i18n='divination') Divination
@@ -65,6 +66,9 @@ fieldset(class='repeating_spells')
             .components 
                 label(class="fieldLabelAbove", data-i18n='components') Components
                 input(class='textField spellComponents', type='text', name='attr_spell-components', value='', data-i18n-placeholder='components')
+            .duration 
+                label(class="fieldLabelAbove", data-i18n='duration') Duration
+                input(class='textField spellDuration', type='text', name='attr_spell-duration', value='', data-i18n-placeholder='duration')
             .description 
                 label(class="fieldLabelAbove", data-i18n='description') Description
                 textarea(class='textField spellDescription', name='attr_spell-description', data-i18n-placeholder='description')

@@ -339,3 +339,11 @@ label.buttonStyle {
 .ui-dialog .charactersheet .checkboxInput {
     display: none;
 }
+
+.u-dialog .charactersheet select.ls-Dropdown {
+    background-color: transparent;
+    border: none;
+    font-family: var(--mainBody);
+    font-size: .9em;
+    width: 100%;
+}

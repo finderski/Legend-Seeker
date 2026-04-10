@@ -21,17 +21,74 @@
                 .repitem {
                     display: flex;
                     flex-flow: column;
-                    row-gap: 5px; 
+                    row-gap: 5px;
                     border: .5px dotted var(--ink);
                     padding: 5px;
                     .spellContainer {
                         display: flex;
                         flex-flow: row wrap;
                         margin: 5px 0;
-                        font-size: .85em;
+                        font-size: .85em !important;
                         width: 100%;
-                        .spellName {
+                        column-gap: 5px;
+                        row-gap: 10px;
+                        font-size: 1.2em;
+                        .button {
+                            .labelButton.sendToChat {
+                                margin: 0;
+                                width: 48px;
+                            }
+                        }
+                        .spell {
+                            width: 50%;
+                            .textField {
+                                width: 100%;
+                                font-size: 1.2em;
+                            }
+                        }
+                        .slots {
+                            width: 30%;
+                            display: flex;
+                            flex-flow: row wrap;
+                            .spellSlots {
+                                width: 47%;
+                            }
+                            .slotDivider {
+                                align-self: center;
+                            }
+                        }
+                        .school {
+                            width: 40%;
+                            .ls-Dropdown {
+                                width: 100%;
+                                background-color: transparent;
+                                border: none;
+                                font-family: var(--mainBody);
+                                font-size: 1.15em;
+                            }
+                            .spellSchoolDropdown {
+                                color: #2F5496;
+                                font-size: 1.45em;
+                                font-family: var(--mainBody);
+                                font-style: italic;
+                                font-weight: 900;
+                            }
+                        }
+                        .tier {
+                            width: 56%;
+                            .spellTier {
+                                width: 100%;
+                            }
+                        }
+                        .config {
+                            left: -5%;
+                        }
+                        .spell-config {
                             width: 100%;
+                            display: flex;
+                            flex-flow: row wrap;
+                            column-gap: 5px;
+                            padding: 3px 0 5px 0;
                         }
                     }
                 }
@@ -85,7 +142,6 @@
                             width: 70px;
                             flex: 0 0 auto;
                             .chatButtons .whisperButton {
-                                left: 70px;
                                 :hover {
                                     background-color: var(--ink);
                                     color: var(--parchment);

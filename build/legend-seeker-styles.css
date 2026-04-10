@@ -347,6 +347,14 @@ label.buttonStyle {
   display: none;
 }
 
+.u-dialog .charactersheet select.ls-Dropdown {
+  background-color: transparent;
+  border: none;
+  font-family: var(--mainBody);
+  font-size: 0.9em;
+  width: 100%;
+}
+
 .buttonbar {
   display: flex;
   margin-bottom: 20px;
@@ -1295,11 +1303,66 @@ label.buttonStyle {
   display: flex;
   flex-flow: row wrap;
   margin: 5px 0;
-  font-size: 0.85em;
+  font-size: 0.85em !important;
+  width: 100%;
+  column-gap: 5px;
+  row-gap: 10px;
+  font-size: 1.2em;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .button .labelButton.sendToChat {
+  margin: 0;
+  width: 48px;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell {
+  width: 50%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell .textField {
+  width: 100%;
+  font-size: 1.2em;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots {
+  width: 30%;
+  display: flex;
+  flex-flow: row wrap;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots .spellSlots {
+  width: 47%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots .slotDivider {
+  align-self: center;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school {
+  width: 40%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school .ls-Dropdown {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-family: var(--mainBody);
+  font-size: 1.15em;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school .spellSchoolDropdown {
+  color: #2F5496;
+  font-size: 1.45em;
+  font-family: var(--mainBody);
+  font-style: italic;
+  font-weight: 900;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .tier {
+  width: 56%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .tier .spellTier {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spellName {
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .config {
+  left: -5%;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config {
   width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  padding: 3px 0 5px 0;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons {
   display: flex;
@@ -1351,9 +1414,6 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button {
   width: 70px;
   flex: 0 0 auto;
-}
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton {
-  left: 70px;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton :hover {
   background-color: var(--ink);
