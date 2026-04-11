@@ -102,13 +102,13 @@ on('change:level', function(eventInfo) {
 
 
 // Update Corruption
-on('change:wisdom change:corruption_1 change:corruption_2 change:corruption_3 change:corruption_4 change:corruption_5 change:corruption_6 change:corruption_7 change:corruption_8 change:corruption_9 change:corruption_10 change:corruption_11 change:corruption_12 change:corruption_13 change:corruption_14 change:corruption_15 change:corruption_16 change:corruption_17 change:corruption_18 change:corruption_19 change:corruption_20 change:corruption_21 change:corruption_22 change:corruption_23 change:corruption_24', function(eventInfo) {
+on('change:wisdom change:corruption_0 change:corruption_1 change:corruption_2 change:corruption_3 change:corruption_4 change:corruption_5 change:corruption_6 change:corruption_7 change:corruption_8 change:corruption_9 change:corruption_10 change:corruption_11 change:corruption_12 change:corruption_13 change:corruption_14 change:corruption_15 change:corruption_16 change:corruption_17 change:corruption_18 change:corruption_19 change:corruption_20 change:corruption_21 change:corruption_22 change:corruption_23 change:corruption_24', function(eventInfo) {
     //log('Corruption Watch Detected Change', JSON.stringify(eventInfo), r20color);
     if (eventInfo.sourceAttribute === 'wisdom') {
         // update the number of corruption slots
         const wisdomScore = Math.floor((parseInt(eventInfo.newValue) || 0));
         const setattrs = {};
-        for(let i=1; i <= 24; i++) {
+        for(let i=0; i <= 24; i++) {
             // while i is the less than 24, hide the lock inputs
             if (i <= wisdomScore) {
                 setattrs[`corruption_lock_${i}`] = 'show';
@@ -123,7 +123,7 @@ on('change:wisdom change:corruption_1 change:corruption_2 change:corruption_3 ch
         const setattrs = {};
         const corruptionValue = parseInt(eventInfo.sourceAttribute.split('_')[1]) || 0; // get the number from corruption_1, corruption_2, etc.
         //log("Corruption Value", corruptionValue, r20color);
-        for(let i=1; i <= 24; i++) {
+        for(let i=0; i <= 24; i++) {
             if (i <= corruptionValue) {
                 setattrs[`corruption_${i}`] = 'on';
             } else {

@@ -68,13 +68,85 @@
             .sectionDivider {
                 margin: 10px 0;
             }
+            .armor {
+                display: flex;
+                flex-flow: column nowrap;
+                row-gap: 5px;
+                padding: 3px;
+                border-radius: 0 8px;
+                margin-top: auto;
+                .armorGroup {
+                    display: flex;
+                    flex-flow: row wrap;
+                    column-gap: 5px;
+                    width: 100%;
+                    .armorType {
+                        width: 80%;
+                    }
+                    .config {
+                        left: -5%;
+                        top: -6px;
+                    }
+                    .armorClass {
+                        width: 30%;
+                        select.ls-Dropdown {
+                            background-color: transparent;
+                            border: none;
+                            font-family: var(--mainBody);
+                            font-size: 1.2em;
+                            width: 100%;
+                        }
+                    }
+                    .worn {
+                        display: inline-block;
+                        .shifted {
+                            margin: 5px 0 0 -3px;
+                        }
+                        .isCarried::before {
+                            content: "";
+                            display: inline-block;
+                            width: 24px;
+                            height: 24px;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                        }
+                        input:checked+.isCarried::before {
+                            background-image: url('https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png');
+                        }
+
+                        input:not(:checked)+.isCarried::before {
+                            background-image: url('https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_not_worn.png');
+                        }
+                    }
+                    .armor-config {
+                        display: flex;
+                        flex-flow: row wrap;
+                        column-gap: 5px;
+                        width: 100%;
+                        padding: 0;
+                        margin: 0;
+                        .armorDamageReduction,
+                        .willDefense,
+                        .fortDefense,
+                        .armorLevel,
+                        .dexCap {
+                            width: 20%;
+                            .textField {
+                                width: 100%;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
             .classResources {
                 display: flex;
                 flex-flow: column nowrap;
                 row-gap: 5px;
                 background-color: var(--light-gold);
                 padding: 3px;
-                margin-top: auto;
+                /*margin-top: auto;*/
                 border-radius: 0 8px;
                 .resourceGroup {
                     display: flex;
@@ -82,12 +154,25 @@
                     column-gap: 5px;
                     width: 100%;
                     margin: 3px 0;
+                    .resourceName {
+                        width: 55%;
+                        flex: 2 0 auto;
+                        font-size: 1em;
+                        .textField {
+                            font-size: 1em;
+                        }
+                    } 
+                    & > span {
+                        align-self: flex-end;
+                    }
                     .resourceLeft,
                     .resourceRight {
                         width: 50%;
+                        flex: 0 1 auto;
                         .textField {
                             width: 100%;
                             font-size: 1em;
+                            text-align: center;
                         }
                     }
                 }

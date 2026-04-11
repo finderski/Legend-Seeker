@@ -232,6 +232,11 @@
               <div class="headerRow"> 
                 <h3 class="headerLabel" data-i18n="corruption">Corruption</h3>
               </div>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_0" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_0"/>
+                <div class="corruptionNumber">0</div>
+              </label>
               <input class="hideCorruption" type="hidden" name="attr_corruption_lock_1" value="show"/>
               <label class="corruptionCell">
                 <input class="corruptionInput" type="checkbox" name="attr_corruption_1"/>
@@ -629,44 +634,52 @@
           <div class="armorGroup">
             <div class="armorType"> 
               <label class="fieldLabelAbove" data-i18n="armor-type">Armor Type</label>
-              <input class="textField" type="text" name="attr_armor_name" value="" data-i18n-placeholder="armor-name"/>
+              <input class="textField" type="text" name="attr_armor_name" value=""/>
             </div>
-            <div class="armorClass"> 
-              <label class="fieldLabelAbove" data-i18n="class">Class</label>
-              <select class="ls-Dropdown" name="attr_armor_class">
-                <option value="" data-i18n="select">Select</option>
-                <option value="light" data-i18n="light">Light</option>
-                <option value="medium" data-i18n="medium">Medium</option>
-                <option value="heavy" data-i18n="heavy">Heavy</option>
-              </select>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_weapon_damage_config_toggle" checked="checked"/><span class="configIcon">y</span>
+              </label>
             </div>
             <!--armor by lastspark from <a href="https://thenounproject.com/browse/icons/term/armor/" target="_blank" title="armor Icons">Noun Project</a> (CC BY 3.0)
             -->
             <div class="worn">
-              <label>
+              <label class="fieldLabelAbove" data-i18n="worn">Worn</label>
+              <label class="shifted">
                 <input class="hidden" type="checkbox" name="attr_armor_worn" value="1" checked="checked"/><span class="isCarried"></span>
               </label>
             </div>
-            <div class="armorDamageReduction"> 
-              <label class="fieldLabelAbove" data-i18n="damage-reduction-abbr-caps">DR</label>
-              <input class="textField" type="text" name="attr_armor_dr" value="" placeholder="1"/>
-            </div>
-            <div class="armorLevel"> 
-              <!--Used for REF Defense (or Level, whichever is higher)-->
-              <label class="fieldLabelAbove" data-i18n="armor-level">Armor Level</label>
-              <input class="textField" type="text" name="attr_armor_level" value="" placeholder="1"/>
-            </div>
-            <div class="fortDefense"> 
-              <label class="fieldLabelAbove" data-i18n="fortitude-defense">Fort Defense</label>
-              <input class="textField" type="text" name="attr_armor_fort_defense" value="" placeholder="1"/>
-            </div>
-            <div class="willDefense"> 
-              <label class="fieldLabelAbove" data-i18n="will-defense">Will Defense</label>
-              <input class="textField" type="text" name="attr_armor_will_defense" value="" placeholder="1"/>
-            </div>
-            <div class="dexCap"> 
-              <label class="fieldLabelAbove" data-i18n="dexterity-cap">Dex Cap</label>
-              <input class="textField" type="text" name="attr_armor_dex_cap" value="" placeholder="1"/>
+            <input class="hideSection" type="hidden" name="attr_weapon_damage_config_toggle" value="1"/>
+            <div class="armor-config">
+              <div class="armorClass"> 
+                <label class="fieldLabelAbove" data-i18n="class">Class</label>
+                <select class="ls-Dropdown" name="attr_armor_class">
+                  <option value="light" data-i18n="light" selected="selected">Light</option>
+                  <option value="medium" data-i18n="medium">Medium</option>
+                  <option value="heavy" data-i18n="heavy">Heavy</option>
+                </select>
+              </div>
+              <div class="armorDamageReduction"> 
+                <label class="fieldLabelAbove" data-i18n="damage-reduction-abbr-caps">DR</label>
+                <input class="textField" type="text" name="attr_armor_dr" value="" placeholder="1"/>
+              </div>
+              <div class="armorLevel"> 
+                <!--Used for REF Defense (or Level, whichever is higher)-->
+                <label class="fieldLabelAbove" data-i18n="armor-level">Armor Level</label>
+                <input class="textField" type="text" name="attr_armor_level" value="" placeholder="1"/>
+              </div>
+              <div class="fortDefense"> 
+                <label class="fieldLabelAbove" data-i18n="fortitude-defense">Fort Defense</label>
+                <input class="textField" type="text" name="attr_armor_fort_defense" value="" placeholder="1"/>
+              </div>
+              <div class="willDefense"> 
+                <label class="fieldLabelAbove" data-i18n="will-defense">Will Defense</label>
+                <input class="textField" type="text" name="attr_armor_will_defense" value="" placeholder="1"/>
+              </div>
+              <div class="dexCap"> 
+                <label class="fieldLabelAbove" data-i18n="dexterity-cap-abbr">Dex Cap</label>
+                <input class="textField" type="text" name="attr_armor_dex_cap" value="" placeholder="1"/>
+              </div>
             </div>
           </div>
           <!--
@@ -685,9 +698,11 @@
                 <input class="textField" type="text" name="attr_resource_name" value="" data-i18n-placeholder="resource-name"/>
               </div>
               <div class="resourceLeft"> 
+                <label class="fieldLabelAbove" data-i18n="current">Current</label>
                 <input class="textField" type="text" name="attr_resource_current" value="" placeholder="1"/>
               </div><span>/ </span>
               <div class="resourceRight">
+                <label class="fieldLabelAbove" data-i18n="total">Total</label>
                 <input class="textField" type="text" name="attr_resource_max" value="" placeholder="1"/>
               </div>
             </div>
@@ -2092,13 +2107,13 @@ on('change:level', function(eventInfo) {
 
 
 // Update Corruption
-on('change:wisdom change:corruption_1 change:corruption_2 change:corruption_3 change:corruption_4 change:corruption_5 change:corruption_6 change:corruption_7 change:corruption_8 change:corruption_9 change:corruption_10 change:corruption_11 change:corruption_12 change:corruption_13 change:corruption_14 change:corruption_15 change:corruption_16 change:corruption_17 change:corruption_18 change:corruption_19 change:corruption_20 change:corruption_21 change:corruption_22 change:corruption_23 change:corruption_24', function(eventInfo) {
+on('change:wisdom change:corruption_0 change:corruption_1 change:corruption_2 change:corruption_3 change:corruption_4 change:corruption_5 change:corruption_6 change:corruption_7 change:corruption_8 change:corruption_9 change:corruption_10 change:corruption_11 change:corruption_12 change:corruption_13 change:corruption_14 change:corruption_15 change:corruption_16 change:corruption_17 change:corruption_18 change:corruption_19 change:corruption_20 change:corruption_21 change:corruption_22 change:corruption_23 change:corruption_24', function(eventInfo) {
     //log('Corruption Watch Detected Change', JSON.stringify(eventInfo), r20color);
     if (eventInfo.sourceAttribute === 'wisdom') {
         // update the number of corruption slots
         const wisdomScore = Math.floor((parseInt(eventInfo.newValue) || 0));
         const setattrs = {};
-        for(let i=1; i <= 24; i++) {
+        for(let i=0; i <= 24; i++) {
             // while i is the less than 24, hide the lock inputs
             if (i <= wisdomScore) {
                 setattrs[`corruption_lock_${i}`] = 'show';
@@ -2113,7 +2128,7 @@ on('change:wisdom change:corruption_1 change:corruption_2 change:corruption_3 ch
         const setattrs = {};
         const corruptionValue = parseInt(eventInfo.sourceAttribute.split('_')[1]) || 0; // get the number from corruption_1, corruption_2, etc.
         //log("Corruption Value", corruptionValue, r20color);
-        for(let i=1; i <= 24; i++) {
+        for(let i=0; i <= 24; i++) {
             if (i <= corruptionValue) {
                 setattrs[`corruption_${i}`] = 'on';
             } else {

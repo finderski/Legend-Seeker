@@ -105,7 +105,7 @@ body.sheet-darkmode {
   font-weight: 600;
   font-size: 1.4em;
   color: black;
-  width: auto;
+  width: 100%;
   padding: 3px;
   border-bottom: 1px solid var(--ink);
 }
@@ -356,6 +356,25 @@ label.buttonStyle {
   font-family: var(--mainBody);
   font-size: 0.9em;
   width: 100%;
+}
+
+.config {
+  display: flex;
+  width: 0;
+  font-family: "Pictos";
+  font-size: 0.85em;
+  color: var(--ink);
+  align-self: flex-start;
+  position: relative;
+  left: -10%;
+  cursor: pointer;
+  opacity: 0.5;
+}
+.config:hover {
+  opacity: 1;
+}
+.config > .cog > .hiddenInput:checked + .configIcon {
+  opacity: 1;
 }
 
 .buttonbar {
@@ -999,6 +1018,10 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .bottomSection .pageNumber {
   width: 47px;
   margin: 0 0 3px 5px;
+  align-content: flex-end;
+}
+.ui-dialog .charactersheet .frontPage .bottomSection .pageNumber .textField {
+  font-size: 0.95em;
 }
 .ui-dialog .charactersheet .frontPage .bottomSection {
   font-synthesis: unset !important;
@@ -1081,13 +1104,88 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .sectionDivider {
   margin: 10px 0;
 }
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 5px;
+  padding: 3px;
+  border-radius: 0 8px;
+  margin-top: auto;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armorType {
+  width: 80%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .config {
+  left: -5%;
+  top: -6px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armorClass {
+  width: 30%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armorClass select.ls-Dropdown {
+  background-color: transparent;
+  border: none;
+  font-family: var(--mainBody);
+  font-size: 1.2em;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .worn {
+  display: inline-block;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .worn .shifted {
+  margin: 5px 0 0 -3px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .worn .isCarried::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .worn input:checked + .isCarried::before {
+  background-image: url("https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png");
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .worn input:not(:checked) + .isCarried::before {
+  background-image: url("https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_not_worn.png");
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorDamageReduction,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .willDefense,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .fortDefense,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorLevel,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .dexCap {
+  width: 20%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorDamageReduction .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .willDefense .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .fortDefense .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorLevel .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .dexCap .textField {
+  width: 100%;
+  text-align: center;
+}
 .ui-dialog .charactersheet .backPage .topContainer .equipment .classResources {
   display: flex;
   flex-flow: column nowrap;
   row-gap: 5px;
   background-color: var(--light-gold);
   padding: 3px;
-  margin-top: auto;
+  /*margin-top: auto;*/
   border-radius: 0 8px;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup {
@@ -1097,14 +1195,27 @@ label.buttonStyle {
   width: 100%;
   margin: 3px 0;
 }
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceName {
+  width: 55%;
+  flex: 2 0 auto;
+  font-size: 1em;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceName .textField {
+  font-size: 1em;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup > span {
+  align-self: flex-end;
+}
 .ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceLeft,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceRight {
   width: 50%;
+  flex: 0 1 auto;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceLeft .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .classResources .resourceGroup .resourceRight .textField {
   width: 100%;
   font-size: 1em;
+  text-align: center;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills {
   width: 67%;
@@ -1481,11 +1592,6 @@ label.buttonStyle {
   justify-content: center;
   align-content: center;
   align-items: center;
-  /*
-  .hiddenInput {
-      display: none;
-  }
-  */
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button {
   width: 70px;
@@ -1512,28 +1618,6 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage {
   width: 28%;
-}
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer {
-  /* Hiding - maybe temporarily
-  .config {
-      display: flex;
-      width: 0;
-      font-family: 'Pictos';
-      font-size: .85em;
-      color: var(--ink);
-      align-self: flex-start;
-      position: relative;
-      left: -10%;
-      cursor: pointer;
-      opacity: 0.5;
-      &:hover {
-          opacity: 1;
-      }
-      > .cog > .hiddenInput:checked + .configIcon {
-          opacity: 1;
-      }
-  }
-  */
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .attributeMod {
   min-width: 25%;

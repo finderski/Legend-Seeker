@@ -4,36 +4,42 @@
     .armorGroup
         .armorType 
             label(class="fieldLabelAbove", data-i18n='armor-type') Armor Type
-            input(class="textField", type="text", name="attr_armor_name", value="", data-i18n-placeholder="armor-name")
-        .armorClass 
-            label(class="fieldLabelAbove", data-i18n='class') Class
-            select(class="ls-Dropdown", name="attr_armor_class")
-                option(value="", data-i18n='select') Select
-                option(value="light", data-i18n='light') Light
-                option(value="medium", data-i18n='medium') Medium
-                option(value="heavy", data-i18n='heavy') Heavy
+            input(class="textField", type="text", name="attr_armor_name", value="")
+        .config 
+            label.cog
+                input(class='hiddenInput', type='checkbox', name='attr_weapon_damage_config_toggle' checked)
+                span.configIcon y
         //
             armor by lastspark from <a href="https://thenounproject.com/browse/icons/term/armor/" target="_blank" title="armor Icons">Noun Project</a> (CC BY 3.0)
         .worn
-            label
+            label(class="fieldLabelAbove", data-i18n='worn') Worn
+            label(class="shifted")
                 input(class="hidden", type='checkbox', name='attr_armor_worn', value='1', checked)
                 span(class="isCarried")
-        .armorDamageReduction 
-            label(class="fieldLabelAbove", data-i18n='damage-reduction-abbr-caps') DR
-            input(class="textField", type="text", name="attr_armor_dr", value="", placeholder="1")
-        .armorLevel 
-            //Used for REF Defense (or Level, whichever is higher)
-            label(class="fieldLabelAbove", data-i18n='armor-level') Armor Level
-            input(class="textField", type="text", name="attr_armor_level", value="", placeholder="1")
-        .fortDefense 
-            label(class="fieldLabelAbove", data-i18n='fortitude-defense') Fort Defense
-            input(class="textField", type="text", name="attr_armor_fort_defense", value="", placeholder="1")
-        .willDefense 
-            label(class="fieldLabelAbove", data-i18n='will-defense') Will Defense
-            input(class="textField", type="text", name="attr_armor_will_defense", value="", placeholder="1")
-        .dexCap 
-            label(class="fieldLabelAbove", data-i18n='dexterity-cap') Dex Cap
-            input(class="textField", type="text", name="attr_armor_dex_cap", value="", placeholder="1")
+        input(class='hideSection', type='hidden', name='attr_weapon_damage_config_toggle', value='1')
+        .armor-config
+            .armorClass 
+                label(class="fieldLabelAbove", data-i18n='class') Class
+                select(class="ls-Dropdown", name="attr_armor_class")
+                    option(value="light", data-i18n='light' selected) Light
+                    option(value="medium", data-i18n='medium') Medium
+                    option(value="heavy", data-i18n='heavy') Heavy
+            .armorDamageReduction 
+                label(class="fieldLabelAbove", data-i18n='damage-reduction-abbr-caps') DR
+                input(class="textField", type="text", name="attr_armor_dr", value="", placeholder="1")
+            .armorLevel 
+                //Used for REF Defense (or Level, whichever is higher)
+                label(class="fieldLabelAbove", data-i18n='armor-level') Armor Level
+                input(class="textField", type="text", name="attr_armor_level", value="", placeholder="1")
+            .fortDefense 
+                label(class="fieldLabelAbove", data-i18n='fortitude-defense') Fort Defense
+                input(class="textField", type="text", name="attr_armor_fort_defense", value="", placeholder="1")
+            .willDefense 
+                label(class="fieldLabelAbove", data-i18n='will-defense') Will Defense
+                input(class="textField", type="text", name="attr_armor_will_defense", value="", placeholder="1")
+            .dexCap 
+                label(class="fieldLabelAbove", data-i18n='dexterity-cap-abbr') Dex Cap
+                input(class="textField", type="text", name="attr_armor_dex_cap", value="", placeholder="1")
     //
         fieldset(class="repeating_armor")
             .armorGroup

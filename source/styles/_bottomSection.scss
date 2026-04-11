@@ -61,6 +61,10 @@
         .pageNumber {
             width: 47px;
             margin: 0 0 3px 5px;
+            align-content: flex-end;
+            .textField {
+                font-size: .95em;
+            }
         }
     }
 }
