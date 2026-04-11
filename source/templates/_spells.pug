@@ -4,16 +4,26 @@ fieldset(class='repeating_spells')
     .spellContainer
         .button 
             .chatButtons
-                button(class="labelButton sendToChat", type="roll" name="roll_spell_to_chat", value="@{spell-action-call}", data-18n-title="send-to-chat")
+                button(class="labelButton sendToChat", type="roll" name="roll_spell_to_chat", value="@{spell-action-button-call}", data-18n-title="send-to-chat")
                     span(class="allcaps" data-i18n='cast') Cast
                 .whisperButton 
-                    button(class="whisperToChat", type="roll" name="roll_whisper_spell", value="/w gm @{spell-action-call}", data-i18n-title="whisper-to-chat")
+                    button(class="whisperToChat", type="roll" name="roll_whisper_spell", value="@{spell-whisper-action-button-call}", data-i18n-title="whisper-to-chat")
                         span.iconButton w
             // Action Buttons for Custom Roll Parsing
             button(class="hidden" type='action' name='act_spellcast')
             button(class="hidden" type='action' name='act_whisper_spellcast')
+            button(class="hidden" type='action' name='act_spelldamage')
+            button(class="hidden" type='action' name='act_spellaltdamage')
+            button(class="hidden" type='action' name='act_spellspecialdamage')
+            button(class="hidden" type='action' name='act_whisper_spelldamage')
+            button(class="hidden" type='action' name='act_whisper_spellaltdamage')
+            button(class="hidden" type='action' name='act_whisper_spellspecialdamage')
             // Spell Formulae
+            input(type='hidden', name='attr_spell-action-button-call', value='')
+            input(type='hidden', name='attr_spell-whisper-action-button-call', value='')
             input(type='hidden', name='attr_spell-action-call', value='&{template:roll} {{spellcast=roll}} {{name=@{character_name}}} {{title=@{spell}}} {{school=^{@{spell-school}}}} {{tier=@{spell-tier}}} {{castingtime=@{spell-casting-time}}} {{range=@{spell-range}}} {{duration=@{spell-duration}}} {{roll=[[1d20cs>20cf1 + @{mana-tap_bonus}[^{mana-tap}]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{DC|@{spell-dc1}|@{spell-dc2}|@{spell-dc3}}]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=@{spell-effect}}} {{effect2=@{spell-effect2}}} {{effect3=@{spell-effect3}}} {{special=@{spell-special}}} {{dc1=[[@{spell-dc1}]]}} {{dc2=[[@{spell-dc2}]]}} {{dc3=[[@{spell-dc3}]]}} ')
+            input(type='hidden', name='attr_spell-cast-history', value='[]')
+            input(type='hidden', name='attr_spell-last-cast-rollid', value='')
         .spell
             label(class="fieldLabelAbove", data-i18n='spell-name') Spell Name
             input(class='textField spellName', type='text', name='attr_spell', value='', data-i18n-placeholder='spell-name')
@@ -64,7 +74,7 @@ fieldset(class='repeating_spells')
                     .damageColumn 
                         h3.headerLabel(data-i18n='damage') Damage
                     .damageColumn 
-                        h3.headerLabel(data-i18n='alternative-abbr-damage') Alt Damage
+                        h3.headerLabel(data-i18n='failure-damage-abbr') Failure Damage
                     .damageColumn 
                         h3.headerLabel(data-i18n='special-damage-abbr') Special Dmg
                 .row 

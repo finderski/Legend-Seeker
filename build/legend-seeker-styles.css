@@ -1,5 +1,8 @@
 /* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Cinzel:wght@400..900|Cormorant+Garamond:ital,wght@0,300..700;1,300..700|Cormorant+Unicase:wght@300;400;500;600;700|Metamorphous|Eagle+Lake|IM+Fell+English:ital@0;1|Lora:ital,wght@0,400..700;1,400..700|Noto+Emoji:wght@300..700|Smooch&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Garamond|Cormorant+Unicase|Metamorphous|Eagle+Lake|IM+Fell+English|Lora|Noto+Emoji|Smooch&display=swap");
+/*
+@import url('https://fonts.googleapis.com/css?family=Cinzel:wght@400..900|Cormorant+Garamond:ital,wght@0,300..700;1,300..700|Cormorant+Unicase:wght@300;400;500;600;700|Metamorphous|Eagle+Lake|IM+Fell+English:ital@0;1|Lora:ital,wght@0,400..700;1,400..700|Noto+Emoji:wght@300..700|Smooch&display=swap');
+*/
 .ui-dialog .charactersheet *,
 .ui-dialog .charactersheet *::after,
 .ui-dialog .charactersheet *::before {
@@ -1290,7 +1293,9 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] {
   width: 100%;
-  display: inline-block;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  row-gap: 5px;
 }
 .ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem {
   display: flex;
@@ -1485,6 +1490,9 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button {
   width: 70px;
   flex: 0 0 auto;
+}
+.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .sendToChat {
+  margin: 0;
 }
 .ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton :hover {
   background-color: var(--ink);
@@ -1753,6 +1761,11 @@ label.buttonStyle {
   gap: 10px;
   justify-content: space-evenly;
 }
+.sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-roll-info .sheet-school {
+  font-style: italic;
+  font-weight: bold;
+  color: #2F5496;
+}
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-left-column {
   width: 55%;
   min-width: 55%;
@@ -1820,7 +1833,7 @@ label.buttonStyle {
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-button,
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-secondwind {
-  margin: 15px 0 0 0;
+  margin: 15px 0;
   padding: 5px 10px;
   font-size: 1.5em;
   font-family: "Merriweather";

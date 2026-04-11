@@ -60,7 +60,23 @@
                 <div class="sheet-one-column sheet-result">Raises: {{computed::raises}}</div>
                 {{/rollGreater() computed::raises 0}}
                 {{#buttons}}
+                {{#spellcast}}
+                {{#rollTotal() target dc1}}
+                {{#rollTotal() legendary-point 0}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/rollTotal() legendary-point 0}}
+                {{#rollTotal() legendary-point 1}}{{#dc1specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1specialdamagebutton}}</div>{{/dc1specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                {{/rollTotal() target dc1}}
+                {{#rollTotal() target dc2}}
+                {{#rollTotal() legendary-point 0}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/rollTotal() legendary-point 0}}
+                {{#rollTotal() legendary-point 1}}{{#dc2specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2specialdamagebutton}}</div>{{/dc2specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                {{/rollTotal() target dc2}}
+                {{#rollTotal() target dc3}}
+                {{#rollTotal() legendary-point 0}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/rollTotal() legendary-point 0}}
+                {{#rollTotal() legendary-point 1}}{{#dc3specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3specialdamagebutton}}</div>{{/dc3specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                {{/rollTotal() target dc3}}
+                {{/spellcast}}
+                {{^spellcast}}
                 <div class="sheet-one-column sheet-button">{{criticaldamagebutton}}</div>
+                {{/spellcast}}
                 {{/buttons}}
             {{/rollWasCrit() roll}}
             {{#^rollWasCrit() roll}}
@@ -70,7 +86,23 @@
                     <div class="sheet-one-column sheet-result sheet-raises">Raises: {{computed::raises}}</div>
                     {{/rollGreater() computed::raises 0}}
                     {{#buttons}}
-                    <div class="sheet-one-column sheet-button">{{damagebutton}}</div>
+                    {{#spellcast}}
+                    {{#rollTotal() target dc1}}
+                    {{#rollTotal() legendary-point 0}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/rollTotal() legendary-point 0}}
+                    {{#rollTotal() legendary-point 1}}{{#dc1specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1specialdamagebutton}}</div>{{/dc1specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                    {{/rollTotal() target dc1}}
+                    {{#rollTotal() target dc2}}
+                    {{#rollTotal() legendary-point 0}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/rollTotal() legendary-point 0}}
+                    {{#rollTotal() legendary-point 1}}{{#dc2specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2specialdamagebutton}}</div>{{/dc2specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                    {{/rollTotal() target dc2}}
+                    {{#rollTotal() target dc3}}
+                    {{#rollTotal() legendary-point 0}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/rollTotal() legendary-point 0}}
+                    {{#rollTotal() legendary-point 1}}{{#dc3specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3specialdamagebutton}}</div>{{/dc3specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                    {{/rollTotal() target dc3}}
+                    {{/spellcast}}
+                    {{^spellcast}}
+                    {{#damagebutton}}<div class="sheet-one-column sheet-button">{{damagebutton}}</div>{{/damagebutton}}
+                    {{/spellcast}}
                     {{/buttons}}
                 {{/^rollLess() roll target}}
             {{/^rollWasCrit() roll}}
@@ -79,6 +111,19 @@
             {{/rollWasFumble() roll}}
             {{#^rollWasFumble() roll}}
                 {{#rollLess() roll target}}
+                {{#buttons}}
+                {{#spellcast}}
+                {{#rollTotal() target dc1}}
+                {{#dc1altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1altdamagebutton}}</div>{{/dc1altdamagebutton}}
+                {{/rollTotal() target dc1}}
+                {{#rollTotal() target dc2}}
+                {{#dc2altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2altdamagebutton}}</div>{{/dc2altdamagebutton}}
+                {{/rollTotal() target dc2}}
+                {{#rollTotal() target dc3}}
+                {{#dc3altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3altdamagebutton}}</div>{{/dc3altdamagebutton}}
+                {{/rollTotal() target dc3}}
+                {{/spellcast}}
+                {{/buttons}}
                 <div class="sheet-one-column sheet-result" data-i18n="failure">Failure</div>
                 {{/rollLess() roll target}}
             {{/^rollWasFumble() roll}}

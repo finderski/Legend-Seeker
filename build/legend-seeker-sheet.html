@@ -622,17 +622,73 @@
         <div class="weights"> 
           <label class="fieldLabel" data-i18n="total-weight-carried">Total Weight Carried</label><span class="totalWeight" name="attr_total_weight_carried"></span>
         </div>
-        <!-- stying found in _equipmentAndSkills.scss-->
         <hr class="sectionDivider"/>
+        <!-- stying found in _equipmentAndSkills.scss-->
+        <div class="armor">
+          <h3 class="headerLabel left" data-i18n="armor">Armor</h3>
+          <div class="armorGroup">
+            <div class="armorType"> 
+              <label class="fieldLabelAbove" data-i18n="armor-type">Armor Type</label>
+              <input class="textField" type="text" name="attr_armor_name" value="" data-i18n-placeholder="armor-name"/>
+            </div>
+            <div class="armorClass"> 
+              <label class="fieldLabelAbove" data-i18n="class">Class</label>
+              <select class="ls-Dropdown" name="attr_armor_class">
+                <option value="" data-i18n="select">Select</option>
+                <option value="light" data-i18n="light">Light</option>
+                <option value="medium" data-i18n="medium">Medium</option>
+                <option value="heavy" data-i18n="heavy">Heavy</option>
+              </select>
+            </div>
+            <!--armor by lastspark from <a href="https://thenounproject.com/browse/icons/term/armor/" target="_blank" title="armor Icons">Noun Project</a> (CC BY 3.0)
+            -->
+            <div class="worn">
+              <label>
+                <input class="hidden" type="checkbox" name="attr_armor_worn" value="1" checked="checked"/><span class="isCarried"></span>
+              </label>
+            </div>
+            <div class="armorDamageReduction"> 
+              <label class="fieldLabelAbove" data-i18n="damage-reduction-abbr-caps">DR</label>
+              <input class="textField" type="text" name="attr_armor_dr" value="" placeholder="1"/>
+            </div>
+            <div class="armorLevel"> 
+              <!--Used for REF Defense (or Level, whichever is higher)-->
+              <label class="fieldLabelAbove" data-i18n="armor-level">Armor Level</label>
+              <input class="textField" type="text" name="attr_armor_level" value="" placeholder="1"/>
+            </div>
+            <div class="fortDefense"> 
+              <label class="fieldLabelAbove" data-i18n="fortitude-defense">Fort Defense</label>
+              <input class="textField" type="text" name="attr_armor_fort_defense" value="" placeholder="1"/>
+            </div>
+            <div class="willDefense"> 
+              <label class="fieldLabelAbove" data-i18n="will-defense">Will Defense</label>
+              <input class="textField" type="text" name="attr_armor_will_defense" value="" placeholder="1"/>
+            </div>
+            <div class="dexCap"> 
+              <label class="fieldLabelAbove" data-i18n="dexterity-cap">Dex Cap</label>
+              <input class="textField" type="text" name="attr_armor_dex_cap" value="" placeholder="1"/>
+            </div>
+          </div>
+          <!--
+          fieldset(class="repeating_armor")
+              .armorGroup
+              
+          -->
+        </div>
+        <!-- stying found in _equipmentAndSkills.scss-->
         <div class="classResources">
           <h3 class="headerLabel left" data-i18n="class-resources">Class Resources</h3>
           <fieldset class="repeating_class-resources">
             <div class="resourceGroup">
+              <div class="resourceName"> 
+                <label class="fieldLabelAbove" data-i18n="resource-name">Resource Name</label>
+                <input class="textField" type="text" name="attr_resource_name" value="" data-i18n-placeholder="resource-name"/>
+              </div>
               <div class="resourceLeft"> 
-                <input class="textField" type="text" name="attr_resource_left" value="" data-i18n-placeholder="class-resource"/>
+                <input class="textField" type="text" name="attr_resource_current" value="" placeholder="1"/>
               </div><span>/ </span>
               <div class="resourceRight">
-                <input class="textField" type="text" name="attr_resource_right" value="" data-i18n-placeholder="class-resource"/>
+                <input class="textField" type="text" name="attr_resource_max" value="" placeholder="1"/>
               </div>
             </div>
           </fieldset>
@@ -1463,16 +1519,26 @@
           <div class="spellContainer">
             <div class="button"> 
               <div class="chatButtons">
-                <button class="labelButton sendToChat" type="roll" name="roll_spell_to_chat" value="@{spell-action-call}" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="cast">Cast</span></button>
+                <button class="labelButton sendToChat" type="roll" name="roll_spell_to_chat" value="@{spell-action-button-call}" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="cast">Cast</span></button>
                 <div class="whisperButton"> 
-                  <button class="whisperToChat" type="roll" name="roll_whisper_spell" value="/w gm @{spell-action-call}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                  <button class="whisperToChat" type="roll" name="roll_whisper_spell" value="@{spell-whisper-action-button-call}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
                 </div>
               </div>
               <!-- Action Buttons for Custom Roll Parsing-->
               <button class="hidden" type="action" name="act_spellcast"></button>
               <button class="hidden" type="action" name="act_whisper_spellcast"></button>
+              <button class="hidden" type="action" name="act_spelldamage"></button>
+              <button class="hidden" type="action" name="act_spellaltdamage"></button>
+              <button class="hidden" type="action" name="act_spellspecialdamage"></button>
+              <button class="hidden" type="action" name="act_whisper_spelldamage"></button>
+              <button class="hidden" type="action" name="act_whisper_spellaltdamage"></button>
+              <button class="hidden" type="action" name="act_whisper_spellspecialdamage"></button>
               <!-- Spell Formulae-->
+              <input type="hidden" name="attr_spell-action-button-call" value=""/>
+              <input type="hidden" name="attr_spell-whisper-action-button-call" value=""/>
               <input type="hidden" name="attr_spell-action-call" value="&amp;{template:roll} {{spellcast=roll}} {{name=@{character_name}}} {{title=@{spell}}} {{school=^{@{spell-school}}}} {{tier=@{spell-tier}}} {{castingtime=@{spell-casting-time}}} {{range=@{spell-range}}} {{duration=@{spell-duration}}} {{roll=[[1d20cs&gt;20cf1 + @{mana-tap_bonus}[^{mana-tap}]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{DC|@{spell-dc1}|@{spell-dc2}|@{spell-dc3}}]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=@{spell-effect}}} {{effect2=@{spell-effect2}}} {{effect3=@{spell-effect3}}} {{special=@{spell-special}}} {{dc1=[[@{spell-dc1}]]}} {{dc2=[[@{spell-dc2}]]}} {{dc3=[[@{spell-dc3}]]}} "/>
+              <input type="hidden" name="attr_spell-cast-history" value="[]"/>
+              <input type="hidden" name="attr_spell-last-cast-rollid" value=""/>
             </div>
             <div class="spell">
               <label class="fieldLabelAbove" data-i18n="spell-name">Spell Name</label>
@@ -1536,7 +1602,7 @@
                     <h3 class="headerLabel" data-i18n="damage">Damage</h3>
                   </div>
                   <div class="damageColumn"> 
-                    <h3 class="headerLabel" data-i18n="alternative-abbr-damage">Alt Damage</h3>
+                    <h3 class="headerLabel" data-i18n="failure-damage-abbr">Failure Damage</h3>
                   </div>
                   <div class="damageColumn"> 
                     <h3 class="headerLabel" data-i18n="special-damage-abbr">Special Dmg</h3>
@@ -1686,7 +1752,9 @@
                 <label class="fieldLabelAbove" data-i18n="attribute-abbr-modifier-abbr">Att Mod</label>
                 <select class="weaponTypeDropdown" name="attr_weapon-damage-attribute-mod">
                   <option value="strength_modifier" data-i18n="strength-abbr">STR</option>
+                  <option value="strength_modifier_x2" data-i18n="strength-x2-abbr">STR x2</option>
                   <option value="dexterity_modifier" data-i18n="dexterity-abbr">DEX</option>
+                  <option value="dexterity_modifier_x2" data-i18n="dexterity-x2-abbr">DEX x2</option>
                   <option value="constitution_modifier" data-i18n="constitution-abbr">CON</option>
                   <option value="intelligence_modifier" data-i18n="intelligence-abbr">INT</option>
                   <option value="wisdom_modifier" data-i18n="wisdom-abbr">WIS</option>
@@ -1809,7 +1877,23 @@
                 <div class="sheet-one-column sheet-result">Raises: {{computed::raises}}</div>
                 {{/rollGreater() computed::raises 0}}
                 {{#buttons}}
+                {{#spellcast}}
+                {{#rollTotal() target dc1}}
+                {{#rollTotal() legendary-point 0}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/rollTotal() legendary-point 0}}
+                {{#rollTotal() legendary-point 1}}{{#dc1specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1specialdamagebutton}}</div>{{/dc1specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                {{/rollTotal() target dc1}}
+                {{#rollTotal() target dc2}}
+                {{#rollTotal() legendary-point 0}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/rollTotal() legendary-point 0}}
+                {{#rollTotal() legendary-point 1}}{{#dc2specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2specialdamagebutton}}</div>{{/dc2specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                {{/rollTotal() target dc2}}
+                {{#rollTotal() target dc3}}
+                {{#rollTotal() legendary-point 0}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/rollTotal() legendary-point 0}}
+                {{#rollTotal() legendary-point 1}}{{#dc3specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3specialdamagebutton}}</div>{{/dc3specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                {{/rollTotal() target dc3}}
+                {{/spellcast}}
+                {{^spellcast}}
                 <div class="sheet-one-column sheet-button">{{criticaldamagebutton}}</div>
+                {{/spellcast}}
                 {{/buttons}}
             {{/rollWasCrit() roll}}
             {{#^rollWasCrit() roll}}
@@ -1819,7 +1903,23 @@
                     <div class="sheet-one-column sheet-result sheet-raises">Raises: {{computed::raises}}</div>
                     {{/rollGreater() computed::raises 0}}
                     {{#buttons}}
-                    <div class="sheet-one-column sheet-button">{{damagebutton}}</div>
+                    {{#spellcast}}
+                    {{#rollTotal() target dc1}}
+                    {{#rollTotal() legendary-point 0}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/rollTotal() legendary-point 0}}
+                    {{#rollTotal() legendary-point 1}}{{#dc1specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1specialdamagebutton}}</div>{{/dc1specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                    {{/rollTotal() target dc1}}
+                    {{#rollTotal() target dc2}}
+                    {{#rollTotal() legendary-point 0}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/rollTotal() legendary-point 0}}
+                    {{#rollTotal() legendary-point 1}}{{#dc2specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2specialdamagebutton}}</div>{{/dc2specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                    {{/rollTotal() target dc2}}
+                    {{#rollTotal() target dc3}}
+                    {{#rollTotal() legendary-point 0}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/rollTotal() legendary-point 0}}
+                    {{#rollTotal() legendary-point 1}}{{#dc3specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3specialdamagebutton}}</div>{{/dc3specialdamagebutton}}{{/rollTotal() legendary-point 1}}
+                    {{/rollTotal() target dc3}}
+                    {{/spellcast}}
+                    {{^spellcast}}
+                    {{#damagebutton}}<div class="sheet-one-column sheet-button">{{damagebutton}}</div>{{/damagebutton}}
+                    {{/spellcast}}
                     {{/buttons}}
                 {{/^rollLess() roll target}}
             {{/^rollWasCrit() roll}}
@@ -1828,6 +1928,19 @@
             {{/rollWasFumble() roll}}
             {{#^rollWasFumble() roll}}
                 {{#rollLess() roll target}}
+                {{#buttons}}
+                {{#spellcast}}
+                {{#rollTotal() target dc1}}
+                {{#dc1altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1altdamagebutton}}</div>{{/dc1altdamagebutton}}
+                {{/rollTotal() target dc1}}
+                {{#rollTotal() target dc2}}
+                {{#dc2altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2altdamagebutton}}</div>{{/dc2altdamagebutton}}
+                {{/rollTotal() target dc2}}
+                {{#rollTotal() target dc3}}
+                {{#dc3altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3altdamagebutton}}</div>{{/dc3altdamagebutton}}
+                {{/rollTotal() target dc3}}
+                {{/spellcast}}
+                {{/buttons}}
                 <div class="sheet-one-column sheet-result" data-i18n="failure">Failure</div>
                 {{/rollLess() roll target}}
             {{/^rollWasFumble() roll}}
@@ -2328,7 +2441,9 @@ function updateWeapons(fields, section, id) {
         log("damage attr mod",values[`repeating_weapons_${id}_weapon-damage-attribute-mod`], deltaColor);
         const damageAttributeMod = values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'none' ? 0 :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'strength_modifier' ? strengthMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'strength_modifier_x2' ? strengthMod * 2 :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'dexterity_modifier' ? dexterityMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'dexterity_modifier_x2' ? dexterityMod * 2 :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'constitution_modifier' ? constitutionMod :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'intelligence_modifier' ? intelligenceMod :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'wisdom_modifier' ? wisdomMod :
@@ -2442,7 +2557,375 @@ on('change:heroic_proficiency_bonus change:repeating_weapons:weapon-atk-bonus ch
         updateWeapons(fields, section, id);
         log('Processed','Used updateWeapons,r20color');
     }
-});const WEAPON_ATTACK_HISTORY_LIMIT = 10;
+});
+
+on(`change:${listOfAttributes.join(' change:')}`, function(eventInfo) {
+    log('Weapon Attribute Modifier Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
+    getSectionIDs('repeating_weapons', function(ids) {
+        ids.forEach(function(id) {
+            updateWeapons([...damageFields, ...listOfAttributes], 'dmg', id);
+            updateWeapons([...atkFields, ...listOfAttributes, 'heroic_proficiency_bonus'], 'atk', id);
+        });
+    });
+});
+  const SPELL_CAST_HISTORY_LIMIT = 10;
+
+const getRepeatingSpellRowId = sourceAttribute => {
+    const match = sourceAttribute && sourceAttribute.match(/^repeating_spells_([^_]+)_/);
+    return match ? match[1] : '';
+};
+
+const buildSpellActionName = (rowId, actionName) =>
+    `repeating_spells_${rowId}_${actionName}`;
+
+const buildSpellActionCall = (characterName, rowId, actionName) =>
+    `%{${characterName}|${buildSpellActionName(rowId, actionName)}}`;
+
+const explodeSpellDiceExpression = expression =>
+    String(expression || '').replace(/(\d+d\d+)/gi, '$1!');
+
+const parseSpellHistory = historyValue => {
+    try {
+        const parsed = JSON.parse(historyValue || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        log('Spell Cast History Parse', `Unable to parse spell cast history: ${error.message}`, deltaColor);
+        return [];
+    }
+};
+
+const hasBalancedParens = expression => {
+    let depth = 0;
+    for (const char of expression) {
+        if (char === '(') {
+            depth += 1;
+        } else if (char === ')') {
+            depth -= 1;
+            if (depth < 0) {
+                return false;
+            }
+        }
+    }
+    return depth === 0;
+};
+
+const isValidInlineRollExpression = expression => {
+    const trimmedExpression = String(expression || '').trim();
+    if (!trimmedExpression || !/\d/.test(trimmedExpression)) {
+        return false;
+    }
+    if (/[{}\[\]|~"'`;:$]/.test(trimmedExpression)) {
+        return false;
+    }
+    if (!hasBalancedParens(trimmedExpression)) {
+        return false;
+    }
+    return /^[A-Za-z0-9dcsfkhlodr!<>=+\-*/%(),.\s?]+$/.test(trimmedExpression);
+};
+
+const buildLegendaryFailureAltFormula = (altDamage, specialDamage) => {
+    const altExpression = String(altDamage || '').trim();
+    const specialExpression = String(specialDamage || '').trim();
+    if (!isValidInlineRollExpression(altExpression) || !isValidInlineRollExpression(specialExpression)) {
+        return '';
+    }
+
+    const replaceableTerm = /(?:\d*d\d+[A-Za-z0-9!<>=]*\s*(?:[+\-]\s*\d+)*)/i;
+    if (!replaceableTerm.test(altExpression)) {
+        return altExpression;
+    }
+    return altExpression.replace(replaceableTerm, `(${specialExpression})`);
+};
+
+const syncSpellActionButtons = rowId => {
+    if (!rowId) {
+        return;
+    }
+
+    getAttrs(['character_name'], values => {
+        const characterName = values.character_name || 'character_name';
+        const setattrs = {};
+        setattrs[`repeating_spells_${rowId}_spell-action-button-call`] = buildSpellActionCall(characterName, rowId, 'spellcast');
+        setattrs[`repeating_spells_${rowId}_spell-whisper-action-button-call`] = buildSpellActionCall(characterName, rowId, 'whisper_spellcast');
+        setAttrs(setattrs, { silent: true });
+    });
+};
+
+const syncAllSpellActionButtons = () => {
+    getSectionIDs('repeating_spells', ids => {
+        ids.forEach(syncSpellActionButtons);
+    });
+};
+
+const buildSpellDamageButtons = (rowId, castState, whisper = false) => {
+    const baseAction = whisper ? 'whisper_spell' : 'spell';
+    const buttonParts = [];
+
+    if (castState.damage) {
+        buttonParts.push(`{{damagebutton=[^{damage}](~${buildSpellActionName(rowId, `${baseAction}damage`)})}}`);
+    }
+    if (castState.altDamage) {
+        buttonParts.push(`{{altdamagebutton=[^{damage-failed}](~${buildSpellActionName(rowId, `${baseAction}altdamage`)})}}`);
+    }
+    if (castState.specialDamage) {
+        buttonParts.push(`{{specialdamagebutton=[^{special-damage-abbr}](~${buildSpellActionName(rowId, `${baseAction}specialdamage`)})}}`);
+    }
+
+    return buttonParts.join(' ');
+};
+
+const buildSpellDcButtonFields = (rowId, values, whisper = false) => {
+    const buttonFields = [];
+    ['dc1', 'dc2', 'dc3'].forEach(dcKey => {
+        const castState = {
+            damage: isValidInlineRollExpression(values[`repeating_spells_${rowId}_${dcKey}-damage`]) ? values[`repeating_spells_${rowId}_${dcKey}-damage`].trim() : '',
+            altDamage: isValidInlineRollExpression(values[`repeating_spells_${rowId}_${dcKey}-alt-damage`]) ? values[`repeating_spells_${rowId}_${dcKey}-alt-damage`].trim() : '',
+            specialDamage: isValidInlineRollExpression(values[`repeating_spells_${rowId}_${dcKey}-special-damage`]) ? values[`repeating_spells_${rowId}_${dcKey}-special-damage`].trim() : ''
+        };
+        const buttonString = buildSpellDamageButtons(rowId, castState, whisper);
+        if (buttonString) {
+            buttonFields.push(
+                buttonString
+                    .replace(/altdamagebutton/g, '__ALT_DAMAGE__')
+                    .replace(/specialdamagebutton/g, '__SPECIAL_DAMAGE__')
+                    .replace(/damagebutton/g, '__BASE_DAMAGE__')
+                    .replace(/__BASE_DAMAGE__/g, `${dcKey}damagebutton`)
+                    .replace(/__ALT_DAMAGE__/g, `${dcKey}altdamagebutton`)
+                    .replace(/__SPECIAL_DAMAGE__/g, `${dcKey}specialdamagebutton`)
+            );
+        }
+    });
+    return buttonFields.length ? `{{buttons=1}} ${buttonFields.join(' ')}` : '';
+};
+
+const getSpellCastState = (values, rowId, originalRollId) => {
+    const history = parseSpellHistory(values[`repeating_spells_${rowId}_spell-cast-history`]);
+    const matchedRoll = originalRollId ? history.find(entry => entry.rollId === originalRollId) : null;
+    if (matchedRoll) {
+        return matchedRoll;
+    }
+    const lastRollId = values[`repeating_spells_${rowId}_spell-last-cast-rollid`];
+    return lastRollId ? history.find(entry => entry.rollId === lastRollId) || null : null;
+};
+
+const storeSpellCastState = (rowId, values, state) => {
+    const historyField = `repeating_spells_${rowId}_spell-cast-history`;
+    const history = parseSpellHistory(values[historyField]);
+    const nextHistory = [
+        state,
+        ...history.filter(entry => entry && entry.rollId && entry.rollId !== state.rollId)
+    ].slice(0, SPELL_CAST_HISTORY_LIMIT);
+
+    const setattrs = {};
+    setattrs[historyField] = JSON.stringify(nextHistory);
+    setattrs[`repeating_spells_${rowId}_spell-last-cast-rollid`] = state.rollId;
+    setAttrs(setattrs, { silent: true });
+};
+
+const restoreAllSpellSlots = () => {
+    getSectionIDs('repeating_spells', ids => {
+        const maxFields = ids.map(id => `repeating_spells_${id}_spell-slot_max`);
+        getAttrs(maxFields, values => {
+            const setattrs = {};
+            ids.forEach(id => {
+                const maxField = `repeating_spells_${id}_spell-slot_max`;
+                setattrs[`repeating_spells_${id}_spell-slot`] = values[maxField] || 0;
+            });
+            setAttrs(setattrs, { silent: true });
+        });
+    });
+};
+
+const showNoSpellSlotsPopup = (characterName, spellName) => {
+    startRoll(
+        `!&{template:roll} {{name=${characterName}}} {{title=${spellName}}} {{roll=[[0]]}} {{notes=?{No spell slots remain for ${spellName}.|OK}}}`,
+        results => finishRoll(results.rollId)
+    );
+};
+
+const runSpellCast = whisper => eventInfo => {
+    const rowId = getRepeatingSpellRowId(eventInfo.sourceAttribute);
+    if (!rowId) {
+        return;
+    }
+
+    syncSpellActionButtons(rowId);
+
+    const fields = [
+        'character_name',
+        'condition',
+        'mana-tap_bonus',
+        `repeating_spells_${rowId}_spell`,
+        `repeating_spells_${rowId}_spell-school`,
+        `repeating_spells_${rowId}_spell-tier`,
+        `repeating_spells_${rowId}_spell-casting-time`,
+        `repeating_spells_${rowId}_spell-range`,
+        `repeating_spells_${rowId}_spell-duration`,
+        `repeating_spells_${rowId}_spell-effect`,
+        `repeating_spells_${rowId}_spell-effect2`,
+        `repeating_spells_${rowId}_spell-effect3`,
+        `repeating_spells_${rowId}_spell-special`,
+        `repeating_spells_${rowId}_spell-dc1`,
+        `repeating_spells_${rowId}_spell-dc2`,
+        `repeating_spells_${rowId}_spell-dc3`,
+        `repeating_spells_${rowId}_dc1-damage`,
+        `repeating_spells_${rowId}_dc1-alt-damage`,
+        `repeating_spells_${rowId}_dc1-special-damage`,
+        `repeating_spells_${rowId}_dc2-damage`,
+        `repeating_spells_${rowId}_dc2-alt-damage`,
+        `repeating_spells_${rowId}_dc2-special-damage`,
+        `repeating_spells_${rowId}_dc3-damage`,
+        `repeating_spells_${rowId}_dc3-alt-damage`,
+        `repeating_spells_${rowId}_dc3-special-damage`,
+        `repeating_spells_${rowId}_spell-slot`,
+        `repeating_spells_${rowId}_spell-slot_max`,
+        `repeating_spells_${rowId}_spell-cast-history`
+    ];
+
+    getAttrs(fields, values => {
+        const characterName = values.character_name || 'Character';
+        const spellName = values[`repeating_spells_${rowId}_spell`] || 'Spell';
+        const spellSlots = parseInt(values[`repeating_spells_${rowId}_spell-slot`], 10) || 0;
+        const manaTapBonus = parseInt(values['mana-tap_bonus'], 10) || 0;
+        const condition = parseSignedValue(values.condition);
+        const whisperPrefix = whisper ? '/w gm ' : '';
+
+        if (spellSlots <= 0) {
+            showNoSpellSlotsPopup(characterName, spellName);
+            return;
+        }
+
+        setAttrs({
+            [`repeating_spells_${rowId}_spell-slot`]: spellSlots - 1
+        }, { silent: true });
+
+        const spellSchool = values[`repeating_spells_${rowId}_spell-school`] || 'evocation';
+        const spellTier = values[`repeating_spells_${rowId}_spell-tier`] || '';
+        const castingTime = values[`repeating_spells_${rowId}_spell-casting-time`] || '';
+        const spellRange = values[`repeating_spells_${rowId}_spell-range`] || '';
+        const spellDuration = values[`repeating_spells_${rowId}_spell-duration`] || '';
+        const effect1 = values[`repeating_spells_${rowId}_spell-effect`] || '';
+        const effect2 = values[`repeating_spells_${rowId}_spell-effect2`] || '';
+        const effect3 = values[`repeating_spells_${rowId}_spell-effect3`] || '';
+        const special = values[`repeating_spells_${rowId}_spell-special`] || '';
+        const dc1 = parseInt(values[`repeating_spells_${rowId}_spell-dc1`], 10) || 0;
+        const dc2 = parseInt(values[`repeating_spells_${rowId}_spell-dc2`], 10) || 0;
+        const dc3 = parseInt(values[`repeating_spells_${rowId}_spell-dc3`], 10) || 0;
+
+        const spellButtons = buildSpellDcButtonFields(rowId, values, whisper);
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{spellcast=roll}} {{name=${characterName}}} {{title=${spellName}}} {{school=^{${spellSchool}}}} {{tier=${spellTier}}} {{castingtime=${castingTime}}} {{range=${spellRange}}} {{duration=${spellDuration}}} {{roll=[[1d20cs>20cf<2 + ${manaTapBonus}[^{mana-tap}] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{target=[[?{DC|${dc1}|${dc2}|${dc3}}]]}} {{raises=[[0]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=${effect1}}} {{effect2=${effect2}}} {{effect3=${effect3}}} {{special=${special}}} {{dc1=[[${dc1}]]}} {{dc2=[[${dc2}]]}} {{dc3=[[${dc3}]]}} ${spellButtons}`;
+
+        startRoll(rollTemplate, results => {
+            const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
+            const target = parseInt(results.results.target.result, 10) || 0;
+            const legendaryPoint = parseInt(results.results['legendary-point'].result, 10) || 0;
+            const totalRoll = parseInt(results.results.roll.result, 10) || 0;
+            const success = naturalRoll === 20 || totalRoll >= target ? 1 : 0;
+            const raises = success ? Math.max(0, Math.floor((totalRoll - target) / 5)) : 0;
+            const selectedDcKey = target === dc1 ? 'dc1' : target === dc2 ? 'dc2' : 'dc3';
+            const damage = values[`repeating_spells_${rowId}_${selectedDcKey}-damage`] || '';
+            const altDamage = values[`repeating_spells_${rowId}_${selectedDcKey}-alt-damage`] || '';
+            const specialDamage = values[`repeating_spells_${rowId}_${selectedDcKey}-special-damage`] || '';
+            const legendaryFailureAltDamage = legendaryPoint && !success
+                ? buildLegendaryFailureAltFormula(altDamage, specialDamage)
+                : '';
+
+            const castState = {
+                rollId: results.rollId,
+                damage: isValidInlineRollExpression(damage) ? damage.trim() : '',
+                altDamage: isValidInlineRollExpression(legendaryFailureAltDamage || altDamage)
+                    ? String(legendaryFailureAltDamage || altDamage).trim()
+                    : '',
+                specialDamage: isValidInlineRollExpression(specialDamage) ? specialDamage.trim() : '',
+                legendaryPoint,
+                selectedDcKey,
+                success,
+                naturalRoll,
+                raises
+            };
+
+            storeSpellCastState(rowId, values, castState);
+
+            if (naturalRoll === 20) {
+                restoreAllSpellSlots();
+            }
+
+            finishRoll(results.rollId, {
+                raises
+            });
+        });
+    });
+};
+
+const runSpellDamage = ({ whisper = false, damageType = 'damage' } = {}) => eventInfo => {
+    const rowId = getRepeatingSpellRowId(eventInfo.sourceAttribute);
+    if (!rowId) {
+        return;
+    }
+
+    const fields = [
+        'character_name',
+        `repeating_spells_${rowId}_spell`,
+        `repeating_spells_${rowId}_spell-cast-history`,
+        `repeating_spells_${rowId}_spell-last-cast-rollid`
+    ];
+
+    getAttrs(fields, values => {
+        const castState = getSpellCastState(values, rowId, eventInfo.originalRollId);
+        if (!castState) {
+            return;
+        }
+
+        const characterName = values.character_name || 'Character';
+        const spellName = values[`repeating_spells_${rowId}_spell`] || 'Spell';
+        const whisperPrefix = whisper ? '/w gm ' : '';
+        const baseFormula = damageType === 'altDamage'
+            ? castState.altDamage
+            : damageType === 'specialDamage'
+                ? castState.specialDamage
+                : castState.damage;
+        const raises = Math.max(0, parseInt(castState.raises, 10) || 0);
+        const crit = (parseInt(castState.naturalRoll, 10) || 0) === 20;
+
+        if (damageType === 'specialDamage' && !castState.legendaryPoint) {
+            return;
+        }
+        if (!isValidInlineRollExpression(baseFormula)) {
+            return;
+        }
+
+        const rollTerms = [
+            crit ? explodeSpellDiceExpression(baseFormula) : baseFormula
+        ];
+
+        if (damageType !== 'altDamage' && raises > 0) {
+            rollTerms.push(`${raises}d6${crit ? '!' : ''} [Additional d6s per raise]`);
+        }
+
+        const formula = rollTerms.join(' + ');
+
+        startRoll(
+            `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${spellName}}} {{damageroll=yes}} {{normaldamage=yes}} {{dmg=[[${formula}]]}}`,
+            results => finishRoll(results.rollId)
+        );
+    });
+};
+
+on('sheet:opened', syncAllSpellActionButtons);
+on('change:character_name', syncAllSpellActionButtons);
+on('change:repeating_spells:spell', eventInfo => {
+    syncSpellActionButtons(getRepeatingSpellRowId(eventInfo.sourceAttribute));
+});
+
+on('clicked:repeating_spells:spellcast', runSpellCast(false));
+on('clicked:repeating_spells:whisper_spellcast', runSpellCast(true));
+on('clicked:repeating_spells:spelldamage', runSpellDamage({ damageType: 'damage' }));
+on('clicked:repeating_spells:spellaltdamage', runSpellDamage({ damageType: 'altDamage' }));
+on('clicked:repeating_spells:spellspecialdamage', runSpellDamage({ damageType: 'specialDamage' }));
+on('clicked:repeating_spells:whisper_spelldamage', runSpellDamage({ whisper: true, damageType: 'damage' }));
+on('clicked:repeating_spells:whisper_spellaltdamage', runSpellDamage({ whisper: true, damageType: 'altDamage' }));
+on('clicked:repeating_spells:whisper_spellspecialdamage', runSpellDamage({ whisper: true, damageType: 'specialDamage' }));
+  const WEAPON_ATTACK_HISTORY_LIMIT = 10;
 
 const getRepeatingRowId = sourceAttribute => {
     const match = sourceAttribute && sourceAttribute.match(/^repeating_weapons_([^_]+)_/);
@@ -2466,6 +2949,21 @@ const getWeaponActionName = (rowId, actionName) =>
 
 const buildWeaponActionCall = (characterName, rowId, actionName) =>
     `%{${characterName}|${getWeaponActionName(rowId, actionName)}}`;
+
+const getWeaponDamageModifierLabel = modifierName => {
+    const labelMap = {
+        strength_modifier: '^{strength-mod}',
+        strength_modifier_x2: '^{strength-x2-mod}',
+        dexterity_modifier: '^{dexterity-mod}',
+        dexterity_modifier_x2: '^{dexterity-x2-mod}',
+        constitution_modifier: '^{constitution-mod}',
+        intelligence_modifier: '^{intelligence-mod}',
+        wisdom_modifier: '^{wisdom-mod}',
+        charisma_modifier: '^{charisma-mod}'
+    };
+
+    return labelMap[modifierName] || '^{attribute-modifier}';
+};
 
 const buildWeaponDamageButtons = (rowId, whisper = false) => {
     const damageAction = whisper ? 'weaponwhisperdamage' : 'weapondamage';
@@ -2566,7 +3064,7 @@ const runWeaponAttack = whisper => eventInfo => {
         const condition = parseSignedValue(values.condition);
         const whisperPrefix = whisper ? '/w gm ' : '';
         const damageButtons = buildWeaponDamageButtons(rowId, whisper);
-        const rollTemplate = `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf<2 + ${attackBonus}[ATK] + ${condition}[Condition] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} ${damageButtons}`;
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf<2 + ${attackBonus}[ATK] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} ${damageButtons}`;
 
         startRoll(rollTemplate, results => {
             const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
@@ -2638,8 +3136,8 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
         if (halfLevel) {
             rollTerms.push(`${halfLevel} [half-level]`);
         }
-        if (damageAttributeModValue) {
-            rollTerms.push(`${damageAttributeModValue} [${damageAttributeModName} Mod]`);
+        if (damageAttributeModName && damageAttributeModName !== '0' && damageAttributeModName !== 'none') {
+            rollTerms.push(`${damageAttributeModValue} [${getWeaponDamageModifierLabel(damageAttributeModName)}]`);
         }
         if (damageMiscMod) {
             rollTerms.push(`${damageMiscMod} [Misc Mod]`);
@@ -2675,9 +3173,9 @@ on('clicked:repeating_weapons:weaponwhispercriticaldamage', runWeaponDamage({ wh
 
 // Second Wind
 on('clicked:secondwind', function() {
-    getAttrs(['character_name', 'constitution_modifer','stamina_max', 'stamina'], values => {
+    getAttrs(['character_name', 'constitution','stamina_max', 'stamina'], values => {
         const characterName = values.character_name || 'Character';
-        const constitutionModifier = toInt(values.constitution_modifer);
+        const constitutionModifier = toInt(values.constitution);
         const staminaMax = toInt(values.stamina_max);
         const quarterStamina = Math.floor(staminaMax / 4);
         const staminaCurrent = toInt(values.stamina);
@@ -2693,4 +3191,5 @@ on('clicked:secondwind', function() {
         startRoll(roll_result, results => finishRoll(results.rollId));
     });
 });
+
 </script>

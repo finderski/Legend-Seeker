@@ -17,7 +17,9 @@
             justify-content: flex-start;
             .repcontainer[data-groupname="repeating_spells"] {
                 width: 100%;
-                display: inline-block;
+                display: inline-flex;
+                flex-flow: column nowrap;
+                row-gap: 5px;
                 .repitem {
                     display: flex;
                     flex-flow: column;
@@ -209,6 +211,9 @@
                         .button {
                             width: 70px;
                             flex: 0 0 auto;
+                            .chatButtons .sendToChat {
+                                margin: 0;
+                            }
                             .chatButtons .whisperButton {
                                 :hover {
                                     background-color: var(--ink);

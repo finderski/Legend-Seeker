@@ -83,7 +83,9 @@ function updateWeapons(fields, section, id) {
         log("damage attr mod",values[`repeating_weapons_${id}_weapon-damage-attribute-mod`], deltaColor);
         const damageAttributeMod = values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'none' ? 0 :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'strength_modifier' ? strengthMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'strength_modifier_x2' ? strengthMod * 2 :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'dexterity_modifier' ? dexterityMod :
+                                    values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'dexterity_modifier_x2' ? dexterityMod * 2 :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'constitution_modifier' ? constitutionMod :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'intelligence_modifier' ? intelligenceMod :
                                     values[`repeating_weapons_${id}_weapon-damage-attribute-mod`] === 'wisdom_modifier' ? wisdomMod :
@@ -197,4 +199,14 @@ on('change:heroic_proficiency_bonus change:repeating_weapons:weapon-atk-bonus ch
         updateWeapons(fields, section, id);
         log('Processed','Used updateWeapons,r20color');
     }
+});
+
+on(`change:${listOfAttributes.join(' change:')}`, function(eventInfo) {
+    log('Weapon Attribute Modifier Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
+    getSectionIDs('repeating_weapons', function(ids) {
+        ids.forEach(function(id) {
+            updateWeapons([...damageFields, ...listOfAttributes], 'dmg', id);
+            updateWeapons([...atkFields, ...listOfAttributes, 'heroic_proficiency_bonus'], 'atk', id);
+        });
+    });
 });

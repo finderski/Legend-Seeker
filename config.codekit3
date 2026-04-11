@@ -45,6 +45,32 @@
       "q" : 90,
       "rq" : 75
     },
+    "\/images\/armor_not_worn.png" : {
+      "ft" : 32768,
+      "iS" : 37310,
+      "oA" : 0,
+      "oAP" : "\/build\/images\/armor_not_worn.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 1,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/images\/armor_worn.png" : {
+      "ft" : 32768,
+      "iS" : 37398,
+      "oA" : 0,
+      "oAP" : "\/build\/images\/armor_worn.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 1,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/images\/lengend-seeker-logo.png" : {
       "ft" : 32768,
       "iS" : 90329,
@@ -138,7 +164,7 @@
       "mi" : 1,
       "oA" : 1,
       "oAP" : "\/build\/scripts\/actionButtons-min.js",
-      "oF" : 0,
+      "oF" : 1,
       "sC" : 3,
       "tS" : 0
     },
@@ -160,7 +186,7 @@
       "mi" : 1,
       "oA" : 1,
       "oAP" : "\/build\/scripts\/globalVariables-min.js",
-      "oF" : 0,
+      "oF" : 1,
       "sC" : 3,
       "tS" : 0
     },
@@ -182,6 +208,17 @@
       "mi" : 1,
       "oA" : 1,
       "oAP" : "\/build\/scripts\/skillWorkers-min.js",
+      "oF" : 1,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/source\/scripts\/spells.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 1,
+      "oAP" : "\/build\/scripts\/spells-min.js",
       "oF" : 1,
       "sC" : 3,
       "tS" : 0
@@ -491,6 +528,16 @@
       "oF" : 0,
       "oS" : 1,
       "pg" : 0
+    },
+    "\/source\/templates\/_armor.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_armor.html",
+      "oF" : 0,
+      "oS" : 1
     },
     "\/source\/templates\/_attributes.pug" : {
       "cB" : 0,

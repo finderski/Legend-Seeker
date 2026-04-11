@@ -23,6 +23,21 @@ const getWeaponActionName = (rowId, actionName) =>
 const buildWeaponActionCall = (characterName, rowId, actionName) =>
     `%{${characterName}|${getWeaponActionName(rowId, actionName)}}`;
 
+const getWeaponDamageModifierLabel = modifierName => {
+    const labelMap = {
+        strength_modifier: '^{strength-mod}',
+        strength_modifier_x2: '^{strength-x2-mod}',
+        dexterity_modifier: '^{dexterity-mod}',
+        dexterity_modifier_x2: '^{dexterity-x2-mod}',
+        constitution_modifier: '^{constitution-mod}',
+        intelligence_modifier: '^{intelligence-mod}',
+        wisdom_modifier: '^{wisdom-mod}',
+        charisma_modifier: '^{charisma-mod}'
+    };
+
+    return labelMap[modifierName] || '^{attribute-modifier}';
+};
+
 const buildWeaponDamageButtons = (rowId, whisper = false) => {
     const damageAction = whisper ? 'weaponwhisperdamage' : 'weapondamage';
     const critDamageAction = whisper ? 'weaponwhispercriticaldamage' : 'weaponcriticaldamage';
@@ -122,7 +137,7 @@ const runWeaponAttack = whisper => eventInfo => {
         const condition = parseSignedValue(values.condition);
         const whisperPrefix = whisper ? '/w gm ' : '';
         const damageButtons = buildWeaponDamageButtons(rowId, whisper);
-        const rollTemplate = `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf<2 + ${attackBonus}[ATK] + ${condition}[Condition] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} ${damageButtons}`;
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf<2 + ${attackBonus}[ATK] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} ${damageButtons}`;
 
         startRoll(rollTemplate, results => {
             const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
@@ -194,8 +209,8 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
         if (halfLevel) {
             rollTerms.push(`${halfLevel} [half-level]`);
         }
-        if (damageAttributeModValue) {
-            rollTerms.push(`${damageAttributeModValue} [${damageAttributeModName} Mod]`);
+        if (damageAttributeModName && damageAttributeModName !== '0' && damageAttributeModName !== 'none') {
+            rollTerms.push(`${damageAttributeModValue} [${getWeaponDamageModifierLabel(damageAttributeModName)}]`);
         }
         if (damageMiscMod) {
             rollTerms.push(`${damageMiscMod} [Misc Mod]`);
@@ -231,9 +246,9 @@ on('clicked:repeating_weapons:weaponwhispercriticaldamage', runWeaponDamage({ wh
 
 // Second Wind
 on('clicked:secondwind', function() {
-    getAttrs(['character_name', 'constitution_modifer','stamina_max', 'stamina'], values => {
+    getAttrs(['character_name', 'constitution','stamina_max', 'stamina'], values => {
         const characterName = values.character_name || 'Character';
-        const constitutionModifier = toInt(values.constitution_modifer);
+        const constitutionModifier = toInt(values.constitution);
         const staminaMax = toInt(values.stamina_max);
         const quarterStamina = Math.floor(staminaMax / 4);
         const staminaCurrent = toInt(values.stamina);

@@ -51,6 +51,11 @@
             flex-flow: row wrap;
             gap: 10px;
             justify-content: space-evenly;
+            .sheet-school {
+                font-style: italic;
+                font-weight: bold;
+                color: #2F5496;
+            }
         }
         .sheet-left-column {
             width: 55%;
@@ -119,7 +124,7 @@
         }
         .sheet-button,
         .sheet-secondwind {
-            margin: 15px 0 0 0;
+            margin: 15px 0;
             padding: 5px 10px;
             font-size: 1.5em;
             font-family: 'Merriweather';
