@@ -6,9 +6,14 @@ mixin attribute(attr)
     
       .attribute-row
         .attribute-field
-            button(class="labelButton", type="roll", name=`roll_${longName}_check`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${longName}}}} {{roll=[[1d20 + @{${longName}_modifier}[^{attribute-modifier}]+@{condition}]]}}`)
-                span(class="allcaps", data-i18n=translationLabel) #{shortName}
-                span(class="smallcaps", data-i18n=`${longName}-minus-first-three`) #{lastPart}
+            .chatButtons
+                button(class="labelButton sendToChat", type="roll", name=`roll_${longName}_check`, value=`@{${longName}_check_formula}`)
+                    span(class="allcaps", data-i18n=translationLabel) #{shortName}
+                    span(class="smallcaps", data-i18n=`${longName}-minus-first-three`) #{lastPart}
+                .whisperButton 
+                    button(class="whisperToChat", type="roll" name=`roll_whisper_${longName}_check`, value=`/w gm @{${longName}_check_formula}`)
+                        span.iconButton w
+            input(type='hidden', name=`attr_${longName}_check_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${longName}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty]} + @{${longName}_modifier}[^{attribute-modifier}]+@{condition}]]}}`)
         .score-field
             input(class="attributeInput", type="text", name=fieldName, placeholder="3")
         .modifier-field

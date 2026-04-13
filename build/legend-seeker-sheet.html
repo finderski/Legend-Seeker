@@ -3,17 +3,29 @@
 <div class="maindiv">
   <!--h1(class='sheetTitle', data-i18n='character-score-sheet') Character Score Sheet-->
   <!-- Hidden inputs for character sheet functionality-->
+  <!-- Tab Styling in _tabSetup.scss-->
+  <!-- buttonbar styles in the _buttonbarStyles.scss-->
   <input class="selectedTab" type="hidden" name="attr_sheetTab" value="1"/>
   <div class="buttonbar"> 
     <!-- Buttons to control the sheet display-->
     <!--
     1 = Character
     2 = Resources
+    4 = Concise Sheet
     3 = Settings
     -->
-    <button class="topButton characterSheet" type="action" name="act_frontsheet_1" data-i18n-title="character">Character</button>
-    <button class="topButton resourcesSheet" type="action" name="act_backsheet_2" data-i18n-title="resources">Resources</button>
-    <button class="topButton settingsSheet" type="action" name="act_settings_3" data-i18n-title="settings">Settings</button>
+    <button class="topButton characterSheet" type="action" name="act_frontsheet_1" data-i18n-title="character" data-i18n="character">Character</button>
+    <button class="topButton resourcesSheet" type="action" name="act_backsheet_2" data-i18n-title="resources" data-i18n="resources">Resources</button>
+    <!-- button(class='topButton conciseSheet' type='action', name="act_concise_4" data-i18n-title='concise', data-i18n='concise') Concise-->
+    <button class="topButton settingsSheet" type="action" name="act_settings_3" data-i18n-title="settings" data-i18n="settings">Settings</button>
+    <div class="numberOfActions"> 
+      <label class="sideLabel" data-i18n="number-of-actions">Actions</label>
+      <select class="ls-Dropdown actionCount" name="attr_multi-action-penalty">
+        <option value="0" selected="selected">1</option>
+        <option value="-4">2</option>
+        <option value="-8">3</option>
+      </select>
+    </div>
   </div>
   <div class="frontPage">
     <h1 class="sheetTitle" data-i18n="character-score-sheet">Character Score Sheet</h1>
@@ -82,6 +94,7 @@
           <div class="threeBythree">
             <div class="attributesSection">
               <!-- Attributes Section-->
+              <!-- Styles are found in _middleSection-attributes.scss-->
               <div class="headerRow"> 
                 <div class="attribute-field">
                   <label class="headerLabel" data-i18n="core-attributes">Core Attributes</label>
@@ -93,9 +106,16 @@
                   <label class="headerLabel" data-i18n="modifier">Modifier</label>
                 </div>
               </div>
+              <input type="hidden" name="attr_capped_dex_mod" value="1000"/>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_strength_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{strength}}} {{roll=[[1d20 + @{strength_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_strength_check" value="@{strength_check_formula}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_strength_check" value="/w gm @{strength_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_strength_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{strength}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty]} + @{strength_modifier}[^{attribute-modifier}]+@{condition}]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_strength" placeholder="3"/>
@@ -106,7 +126,13 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_dexterity_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{dexterity_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_dexterity_check" value="@{dexterity_check_formula}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_dexterity_check" value="/w gm @{dexterity_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty]} + @{dexterity_modifier}[^{attribute-modifier}]+@{condition}]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
@@ -117,7 +143,13 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_constitution_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{constitution}}} {{roll=[[1d20 + @{constitution_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_constitution_check" value="@{constitution_check_formula}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_constitution_check" value="/w gm @{constitution_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_constitution_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{constitution}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty]} + @{constitution_modifier}[^{attribute-modifier}]+@{condition}]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_constitution" placeholder="3"/>
@@ -128,7 +160,13 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_intelligence_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{intelligence}}} {{roll=[[1d20 + @{intelligence_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_intelligence_check" value="@{intelligence_check_formula}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_intelligence_check" value="/w gm @{intelligence_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_intelligence_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{intelligence}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty]} + @{intelligence_modifier}[^{attribute-modifier}]+@{condition}]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_intelligence" placeholder="3"/>
@@ -139,7 +177,13 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_wisdom_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{wisdom}}} {{roll=[[1d20 + @{wisdom_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_wisdom_check" value="@{wisdom_check_formula}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_wisdom_check" value="/w gm @{wisdom_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_wisdom_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{wisdom}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty]} + @{wisdom_modifier}[^{attribute-modifier}]+@{condition}]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_wisdom" placeholder="3"/>
@@ -150,7 +194,13 @@
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
-                  <button class="labelButton" type="roll" name="roll_charisma_check" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{charisma}}} {{roll=[[1d20 + @{charisma_modifier}[^{attribute-modifier}]+@{condition}]]}}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_charisma_check" value="@{charisma_check_formula}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_charisma_check" value="/w gm @{charisma_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_charisma_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{charisma}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty]} + @{charisma_modifier}[^{attribute-modifier}]+@{condition}]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_charisma" placeholder="3"/>
@@ -391,16 +441,35 @@
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_fort_level_or_armor" placeholder="0" readonly="readonly"/>
                 </div>
                 <div class="saveClassBonus">
                   <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_constitution_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="constitution-abbr">CON</span>
+                  <input class="showWatermark" type="hidden" name="attr_fort_ability_mod" value="constitution"/>
+                  <input class="attributeInput" type="text" name="attr_fort_ability_modifier" readonly="readonly"/><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+                </div>
+                <div class="config"> 
+                  <label class="cog">
+                    <input class="hiddenInput" type="checkbox" name="attr_fort_save_toggle"/><span class="configIcon">y</span>
+                  </label>
                 </div>
                 <div class="saveMisc">
                   <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
+                </div>
+                <input class="hideSection" type="hidden" name="attr_fort_save_toggle" value="0"/>
+                <div class="abilityConfig"> 
+                  <div class="shim-left"></div>
+                  <select class="ls-Dropdown" name="attr_fort_ability_mod">
+                    <option value="strength" data-i18n="strength-abbr">STR</option>
+                    <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
+                    <option value="constitution" data-i18n="constitution-abbr" selected="selected">CON</option>
+                    <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                    <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
+                    <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+                  </select>
+                  <div class="shim-right"></div>
                 </div>
               </div>
               <div class="saveRow">
@@ -412,16 +481,35 @@
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_ref_level_or_armor" placeholder="0" readonly="readonly"/>
                 </div>
                 <div class="saveClassBonus">
                   <input class="attributeInput" type="text" name="attr_ref_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_dexterity_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="dexterity-abbr">DEX</span>
+                  <input class="showWatermark" type="hidden" name="attr_ref_ability_mod" value="dexterity"/>
+                  <input class="attributeInput" type="text" name="attr_ref_ability_modifier" readonly="readonly"/><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+                </div>
+                <div class="config"> 
+                  <label class="cog">
+                    <input class="hiddenInput" type="checkbox" name="attr_ref_save_toggle"/><span class="configIcon">y</span>
+                  </label>
                 </div>
                 <div class="saveMisc">
                   <input class="attributeInput" type="text" name="attr_ref_misc_save_mod" placeholder="0"/>
+                </div>
+                <input class="hideSection" type="hidden" name="attr_ref_save_toggle" value="0"/>
+                <div class="abilityConfig"> 
+                  <div class="shim-left"></div>
+                  <select class="ls-Dropdown" name="attr_ref_ability_mod">
+                    <option value="strength" data-i18n="strength-abbr">STR</option>
+                    <option value="dexterity" data-i18n="dexterity-abbr" selected="selected">DEX</option>
+                    <option value="constitution" data-i18n="constitution-abbr">CON</option>
+                    <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                    <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
+                    <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+                  </select>
+                  <div class="shim-right"></div>
                 </div>
               </div>
               <div class="saveRow">
@@ -433,23 +521,42 @@
                 </div>
                 <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
                 <div class="saveLvlOrArmor">
-                  <input class="attributeInput" type="text" name="attr_level_or_armor" placeholder="0"/>
+                  <input class="attributeInput readOnly" type="text" name="attr_will_level_or_armor" placeholder="0" readonly="readonly"/>
                 </div>
                 <div class="saveClassBonus">
                   <input class="attributeInput" type="text" name="attr_will_class_bonus" placeholder="0"/>
                 </div>
                 <div class="saveAbilityMod">
-                  <input class="attributeInput" type="text" name="attr_wisdom_modifier" readonly="readonly"/><span class="abilityWatermark" data-i18n="wisdom-abbr">WIS</span>
+                  <input class="showWatermark" type="hidden" name="attr_will_ability_mod" value="wisdom"/>
+                  <input class="attributeInput" type="text" name="attr_will_ability_modifier" readonly="readonly"/><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+                </div>
+                <div class="config"> 
+                  <label class="cog">
+                    <input class="hiddenInput" type="checkbox" name="attr_will_save_toggle"/><span class="configIcon">y</span>
+                  </label>
                 </div>
                 <div class="saveMisc">
                   <input class="attributeInput" type="text" name="attr_will_misc_save_mod" placeholder="0"/>
+                </div>
+                <input class="hideSection" type="hidden" name="attr_will_save_toggle" value="0"/>
+                <div class="abilityConfig"> 
+                  <div class="shim-left"></div>
+                  <select class="ls-Dropdown" name="attr_will_ability_mod">
+                    <option value="strength" data-i18n="strength-abbr">STR</option>
+                    <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
+                    <option value="constitution" data-i18n="constitution-abbr">CON</option>
+                    <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                    <option value="wisdom" data-i18n="wisdom-abbr" selected="selected">WIS</option>
+                    <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+                  </select>
+                  <div class="shim-right"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="secondCol">
-          <h3 class="headerLabel">CONDITIONS</h3>
+          <h3 class="headerLabel" data-i18n="conditions">CONDITIONS</h3>
           <!-- Conditions Section-->
           <input class="conditionToggle" type="hidden" name="attr_condition_selected" value="0 [Normal]"/>
           <label class="condition zero"> 
@@ -638,7 +745,7 @@
             </div>
             <div class="config"> 
               <label class="cog">
-                <input class="hiddenInput" type="checkbox" name="attr_weapon_damage_config_toggle" checked="checked"/><span class="configIcon">y</span>
+                <input class="hiddenInput" type="checkbox" name="attr_armor_config_toggle" checked="checked"/><span class="configIcon">y</span>
               </label>
             </div>
             <!--armor by lastspark from <a href="https://thenounproject.com/browse/icons/term/armor/" target="_blank" title="armor Icons">Noun Project</a> (CC BY 3.0)
@@ -649,7 +756,7 @@
                 <input class="hidden" type="checkbox" name="attr_armor_worn" value="1" checked="checked"/><span class="isCarried"></span>
               </label>
             </div>
-            <input class="hideSection" type="hidden" name="attr_weapon_damage_config_toggle" value="1"/>
+            <input class="hideSection" type="hidden" name="attr_armor_config_toggle" value="1"/>
             <div class="armor-config">
               <div class="armorClass"> 
                 <label class="fieldLabelAbove" data-i18n="class">Class</label>
@@ -657,6 +764,14 @@
                   <option value="light" data-i18n="light" selected="selected">Light</option>
                   <option value="medium" data-i18n="medium">Medium</option>
                   <option value="heavy" data-i18n="heavy">Heavy</option>
+                </select>
+                <input type="hidden" name="attr_armor_check_penalty" value="0"/>
+              </div>
+              <div class="proficient"> 
+                <label class="fieldLabelAbove" data-i18n="proficient">Proficient</label>
+                <select class="ls-Dropdown" name="attr_armor_proficient_multiplier">
+                  <option value="1" data-i18n="no" selected="selected">No</option>
+                  <option value="0" data-i18n="yes">Yes</option>
                 </select>
               </div>
               <div class="armorDamageReduction"> 
@@ -747,15 +862,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{acrobatics_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{acrobatics}}} {{roll=[[1d20 + @{acrobatics_bonus}[^{Acrobatics} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{acrobatics}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{acrobatics_bonus}[Acrobatics} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_acrobatics_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
             <input type="hidden" name="attr_acrobatics_ability" value="@{dexterity}"/>
           </div>
@@ -786,15 +903,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{climb_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_climb_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{climb}}} {{roll=[[1d20 + @{climb_bonus}[^{Climb} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_climb_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{climb}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{climb_bonus}[Climb} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_climb_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
             <input type="hidden" name="attr_climb_ability" value="@{strength}"/>
           </div>
@@ -825,15 +944,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft}}} {{roll=[[1d20 + @{craft_bonus}[^{Craft} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_craft_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft_bonus}[Craft} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_craft_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
             <input type="hidden" name="attr_craft_ability" value="@{wisdom}"/>
           </div>
@@ -864,15 +985,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{deception_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_deception_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{deception}}} {{roll=[[1d20 + @{deception_bonus}[^{Deception} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_deception_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{deception}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{deception_bonus}[Deception} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_deception_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
             <input type="hidden" name="attr_deception_ability" value="@{charisma}"/>
           </div>
@@ -903,15 +1026,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{endurance_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_endurance_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{endurance}}} {{roll=[[1d20 + @{endurance_bonus}[^{Endurance} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_endurance_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{endurance}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{endurance_bonus}[Endurance} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_endurance_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_constitution_modifier"></span>
             <input type="hidden" name="attr_endurance_ability" value="@{constitution}"/>
           </div>
@@ -942,15 +1067,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{gather-information_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_gather-information_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{gather-information}}} {{roll=[[1d20 + @{gather-information_bonus}[^{Gather Information} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_gather-information_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{gather-information}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{gather-information_bonus}[Gather Information} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_gather-information_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
             <input type="hidden" name="attr_gather-information_ability" value="@{charisma}"/>
           </div>
@@ -981,15 +1108,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{initiative_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{initiative_bonus}[^{Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{initiative_bonus}[Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_initiative_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
             <input type="hidden" name="attr_initiative_ability" value="@{dexterity}"/>
           </div>
@@ -1021,15 +1150,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{invoke-arcana_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_invoke-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{invoke-arcana}}} {{roll=[[1d20 + @{invoke-arcana_bonus}[^{Invoke Arcana} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_invoke-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{invoke-arcana}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{invoke-arcana_bonus}[Invoke Arcana} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_invoke-arcana_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
             <input type="hidden" name="attr_invoke-arcana_ability" value="@{intelligence}"/>
           </div>
@@ -1060,15 +1191,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{jump_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_jump_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{jump}}} {{roll=[[1d20 + @{jump_bonus}[^{Jump} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_jump_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{jump}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{jump_bonus}[Jump} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_jump_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
             <input type="hidden" name="attr_jump_ability" value="@{strength}"/>
           </div>
@@ -1099,15 +1232,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore}}} {{roll=[[1d20 + @{lore_bonus}[^{Lore} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_lore_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore_bonus}[Lore} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_lore_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
             <input type="hidden" name="attr_lore_ability" value="@{intelligence}"/>
           </div>
@@ -1138,15 +1273,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{notice_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_notice_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{notice}}} {{roll=[[1d20 + @{notice_bonus}[^{Notice} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_notice_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{notice}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{notice_bonus}[Notice} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_notice_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
             <input type="hidden" name="attr_notice_ability" value="@{wisdom}"/>
           </div>
@@ -1177,15 +1314,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{persuasion_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_persuasion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{persuasion}}} {{roll=[[1d20 + @{persuasion_bonus}[^{Persuasion} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_persuasion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{persuasion}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{persuasion_bonus}[Persuasion} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_persuasion_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
             <input type="hidden" name="attr_persuasion_ability" value="@{charisma}"/>
           </div>
@@ -1216,15 +1355,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{ride_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_ride_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{ride}}} {{roll=[[1d20 + @{ride_bonus}[^{Ride} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_ride_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{ride}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{ride_bonus}[Ride} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_ride_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
             <input type="hidden" name="attr_ride_ability" value="@{dexterity}"/>
           </div>
@@ -1255,15 +1396,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{sense-motive_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_sense-motive_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{sense-motive}}} {{roll=[[1d20 + @{sense-motive_bonus}[^{Sense Motive} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_sense-motive_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{sense-motive}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{sense-motive_bonus}[Sense Motive} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_sense-motive_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
             <input type="hidden" name="attr_sense-motive_ability" value="@{wisdom}"/>
           </div>
@@ -1294,15 +1437,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{stealth_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{stealth_bonus}[^{Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{stealth_bonus}[Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_stealth_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
             <input type="hidden" name="attr_stealth_ability" value="@{dexterity}"/>
           </div>
@@ -1333,15 +1478,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{survival_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_survival_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{survival}}} {{roll=[[1d20 + @{survival_bonus}[^{Survival} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_survival_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{survival}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{survival_bonus}[Survival} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_survival_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
             <input type="hidden" name="attr_survival_ability" value="@{wisdom}"/>
           </div>
@@ -1372,15 +1519,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{swim_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_swim_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{swim}}} {{roll=[[1d20 + @{swim_bonus}[^{Swim} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_swim_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{swim}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{swim_bonus}[Swim} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_swim_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
             <input type="hidden" name="attr_swim_ability" value="@{strength}"/>
           </div>
@@ -1412,15 +1561,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{tinkering_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_tinkering_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{tinkering}}} {{roll=[[1d20 + @{tinkering_bonus}[^{Tinkering} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_tinkering_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{tinkering}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{tinkering_bonus}[Tinkering} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_tinkering_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
             <input type="hidden" name="attr_tinkering_ability" value="@{intelligence}"/>
           </div>
@@ -1451,15 +1602,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{treat-wounds_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_treat-wounds_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{treat-wounds}}} {{roll=[[1d20 + @{treat-wounds_bonus}[^{Treat Wounds} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_treat-wounds_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{treat-wounds}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{treat-wounds_bonus}[Treat Wounds} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_treat-wounds_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
             <input type="hidden" name="attr_treat-wounds_ability" value="@{wisdom}"/>
           </div>
@@ -1492,15 +1645,17 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{mana-tap_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_mana-tap_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{mana-tap}}} {{roll=[[1d20 + @{mana-tap_bonus}[^{Mana Tap} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
+              <input type="hidden" name="attr_mana-tap_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{mana-tap}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{mana-tap_bonus}[Mana Tap} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}"/>
             </div>
           </div>
+          <div class="skillDetails"></div>
           <div class="skillBonus"> 
             <input class="attributeInput readOnly" type="text" name="attr_mana-tap_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
+          <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
             <input type="hidden" name="attr_mana-tap_ability" value="@{charisma}"/>
           </div>
@@ -1821,12 +1976,18 @@
       </div>
     </div>
   </div>
-  <div class="settings">
-    <h1 class="headerLabel">Settings</h1>
+  <div class="concise"> 
+    <h1 class="headerLabel" data-i18n="concise">Concise</h1>
+  </div>
+  <div class="sheetSettings">
+    <h1 class="headerLabel" data-i18n="settings">Settings</h1>
     <div class="settingRow">
       <label class="settingLabel">
         <input class="checkboxInput" type="checkbox" name="attr_mana-tap_hider" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="show-spells-on-sheet">Show Spell Slots on Sheet</span>
       </label>
+    </div>
+    <div class="footer"> 
+      <p class="credit" data-i18n="armor-credit"> </p>
     </div>
   </div>
 </div>
@@ -2159,55 +2320,147 @@ on('change:condition', function(eventInfo) {
     setAttrs(setattrs);
 });
 
-// Watch for Fort Save Changes
-on('change:level_or_armor change:fort_class_bonus change:constitution_modifier change:fort_misc_save_mod change:condition_selected', function() {
-    getAttrs(['level_or_armor', 'fort_class_bonus', 'constitution_modifier', 'fort_misc_save_mod', 'condition_selected'], function(v) {
-        console.log("v for Fort Save ", v);
-        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
-        const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.fort_class_bonus) || 0;
-        const constitutionModifier = parseInt(v.constitution_modifier) || 0;
-        const fortMiscSaveMod = parseInt(v.fort_misc_save_mod) || 0;
-        log("Fort Save Calculation", `10 + ${levelOrArmor} (Level/Armor) + ${classBonus} (Class Bonus) + ${constitutionModifier} (Constitution Modifier) + ${fortMiscSaveMod} (Misc Mod) + ${condition} (Condition)`, r20color);
-        const fortSaveTotal = 10+levelOrArmor + classBonus + constitutionModifier + fortMiscSaveMod + condition;
-        const setattrs = {};
-        setattrs['fort_total'] = fortSaveTotal;
-        setattrs['stamina_fortDef'] = fortSaveTotal;
-        setAttrs(setattrs);
+// Watch for Armor Changes
+on('change:armor_worn change:armor_dex_cap', function(eventInfo) {
+    log("Armor Watch Detected Change", eventInfo, r20color);
+    getAttrs(['armor_worn', 'armor_dex_cap'], function(v) {
+        const armorWorn = parseInt(v.armor_worn) || 0;
+        const armorDexCap = parseInt(v.armor_dex_cap);
+        let cappedDexMod = !armorWorn || isNaN(armorDexCap) ? '1000' : armorDexCap;
+        setAttrs({ "capped_dex_mod": cappedDexMod });
     });
 });
 
-// Watch for Ref Save Changes
-on('change:level_or_armor change:ref_class_bonus change:dexterity_modifier change:ref_misc_save_mod change:condition_selected', function() {
-    getAttrs(['level_or_armor', 'ref_class_bonus', 'dexterity_modifier', 'ref_misc_save_mod', 'condition_selected'], function(v) {
-        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
-        const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.ref_class_bonus) || 0;
-        const dexterityModifier = parseInt(v.dexterity_modifier) || 0;
-        const refMiscSaveMod = parseInt(v.ref_misc_save_mod) || 0;
-
-        const refSaveTotal = 10+levelOrArmor + classBonus + dexterityModifier + refMiscSaveMod + condition;
-        setAttrs({ ref_total: refSaveTotal });
+on('change:armor_class change:armor_proficient_multiplier change:armor_worn', function() {
+    getAttrs(['armor_class', 'armor_proficient_multiplier', 'armor_worn'], function(v) {
+        const armorClass = v.armor_class;
+        const armorClassPenalty = armorClass === 'light' ? -2 : armorClass === 'medium' ? -5 : armorClass === 'heavy' ? -10 : 0;
+        const proficientMultiplier = parseInt(v.armor_proficient_multiplier) || 0;
+        const armorWorn = parseInt(v.armor_worn) || 0;
+        const armorCheckPenalty = armorWorn ? armorClassPenalty * proficientMultiplier : 0;
+        setAttrs({ "armor_check_penalty": armorCheckPenalty });
     });
 });
 
-// Watch for Will Save Changes
-on('change:level_or_armor change:will_class_bonus change:wisdom_modifier change:will_misc_save_mod change:condition_selected', function() {
-    getAttrs(['level_or_armor', 'will_class_bonus', 'wisdom_modifier', 'will_misc_save_mod', 'condition_selected'], function(v) {
-        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
-        const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.will_class_bonus) || 0;
-        const wisdomModifier = parseInt(v.wisdom_modifier) || 0;
-        const willMiscSaveMod = parseInt(v.will_misc_save_mod) || 0;
+// Watch for Defense Score Changes
+const saveList = ['fort', 'ref', 'will'];
+const fortFields = ['level', 'armor_fort_defense', 'armor_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const fortWatch = `change:${fortFields.join(' change:')}`;
 
-        const willSaveTotal = 10+levelOrArmor + classBonus + wisdomModifier + willMiscSaveMod + condition;
-        setAttrs({ will_total: willSaveTotal });
+const refFields = ['level', 'armor_level', 'armor_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const refWatch = `change:${refFields.join(' change:')}`;
+
+const willFields = ['level', 'armor_will_defense', 'armor_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const willWatch = `change:${willFields.join(' change:')}`;
+
+const watchMap = {
+  fort: fortWatch,
+  ref: refWatch,
+  will: willWatch
+};
+
+const fieldsMap = {
+  fort: fortFields,
+  ref: refFields,
+  will: willFields
+};
+
+saveList.forEach(save => {
+    on(watchMap[save], function(eventInfo) {
+        getAttrs(fieldsMap[save], function(v) {
+            //was it an attribute modifier that triggered the change?
+            log(`${save} Save Watch Detected Change`, JSON.stringify(eventInfo), r20color);
+            let newCalcNeeded = false;
+            if (coreAttributes.some(value => eventInfo.sourceAttribute.includes(value))) {
+                log(`${save} Save Watch Detected Attribute Modifier Change`, eventInfo.sourceAttribute, r20color);
+                //check to seee if the attribute modifier is what's currently used by this particular save
+                const saveAbility = v[`${save}_ability_modifier`];
+                const changedAttribute = eventInfo.sourceAttribute.replace('_modifier', '');
+                if (saveAbility === changedAttribute) {
+                    log(`${save} Save Watch Detected Attribute Modifier Change That Affects Save`, eventInfo.sourceAttribute, r20color);
+                    //if it is, update the save with the new modifier value
+                    newCalcNeeded = true;
+                }
+                else {
+                    log(`${save} Save Watch Detected Attribute Modifier Change That Does Not Affect Save`, eventInfo.sourceAttribute, r20color);
+                    return; // exit early if the changed attribute does not affect this save
+                }
+            }
+            // Do The Calculations
+            //Fields for Level or Armor
+            const level = parseInt(v.level) || 0;
+            const armorFortDefense = parseInt(v.armor_fort_defense) || 0;
+            const armorLevel = parseInt(v.armor_level) || 0;
+            const armorWillDefense = parseInt(v.armor_will_defense) || 0;
+            const armorWorn = parseInt(v.armor_worn) || 0;
+            //Field for Class Bonus
+            const classBonus = parseInt(v[`${save}_class_bonus`]) || 0;
+            //Fields for Ability Modifier            
+            const abilityModifier = v[`${save}_ability_modifier`] || ''; // What the modifier value gets placed into
+            const abilityModSelected = v[`${save}_ability_mod`] || ''; // What the dropdown for ability mod is set to
+            const strengthMod = parseInt(v.strength_modifier) || 0;
+            const dexterityMod = parseInt(v.dexterity_modifier) || 0;
+            const cappedDexMod = parseInt(v.capped_dex_mod) || 0;
+            const constitutionMod = parseInt(v.constitution_modifier) || 0;
+            const intelligenceMod = parseInt(v.intelligence_modifier) || 0;
+            const wisdomMod = parseInt(v.wisdom_modifier) || 0;
+            const charismaMod = parseInt(v.charisma_modifier) || 0;
+            //Field for Misc Mod
+            const miscSaveMod = parseInt(v[`${save}_misc_save_mod`]) || 0;
+            const abilityMod = parseInt(v[`${save}_ability_mod`]) || 0;
+            //prep for updates
+            const setAttrsObj = {};
+            setAttrsObj[`${save}_misc_save_mod`] = miscSaveMod; // ensure misc mod is included in updates even if it didn't trigger the change
+            setAttrsObj[`${save}_class_bonus`] = classBonus; // ensure class bonus is included in updates even if it didn't trigger the change
+            let levelOrArmorBonus, abilityModValue;
+            //determine which attribute modifier to use....
+            switch (abilityModSelected) {
+                case 'strength':
+                    abilityModValue = strengthMod;
+                    break;
+                case 'dexterity':
+                    abilityModValue = cappedDexMod === 'none' ? dexterityMod : Math.min(dexterityMod,parseInt(cappedDexMod) || 0);
+                    break;
+                case 'constitution':
+                    abilityModValue = constitutionMod;
+                    break;
+                case 'intelligence':
+                    abilityModValue = intelligenceMod;
+                    break;
+                case 'wisdom':
+                    abilityModValue = wisdomMod;
+                    break;
+                case 'charisma':
+                    abilityModValue = charismaMod;
+                    break;
+            }
+            setAttrsObj[`${save}_ability_modifier`] = abilityModValue; // ensure ability mod is included in updates even if it didn't trigger the change
+            if (armorWorn === 1) {
+                levelOrArmorBonus = save === 'fort' ? Math.max(level, armorFortDefense) : save === 'ref' ? Math.max(level, armorLevel) : Math.max(level, armorWillDefense);
+            }
+            else {
+                levelOrArmorBonus = level;
+            }
+            setAttrsObj[`${save}_level_or_armor`] = levelOrArmorBonus; // ensure level or armor bonus is included in updates even if it didn't trigger the change
+            const saveTotal = 10 + levelOrArmorBonus + classBonus + abilityModValue + miscSaveMod;
+            setAttrsObj[`${save}_total`] = saveTotal; // ensure save total is included in updates even if it didn't trigger the change
+            setAttrs(setAttrsObj,{silent: true});
+        });
     });
-});/* ---- Button Bar Clicks ---- */
+});
+
+
+
+
+
+
+
+  /* ---- Button Bar Clicks ---- */
 const buttonlist = [
     'frontsheet_1',
     'backsheet_2',
-    'settings_3'
+    'settings_3',
+    'concise_4'
 ];
 
 buttonlist.forEach(button => {

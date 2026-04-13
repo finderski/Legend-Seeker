@@ -154,48 +154,138 @@ on('change:condition', function(eventInfo) {
     setAttrs(setattrs);
 });
 
-// Watch for Fort Save Changes
-on('change:level_or_armor change:fort_class_bonus change:constitution_modifier change:fort_misc_save_mod change:condition_selected', function() {
-    getAttrs(['level_or_armor', 'fort_class_bonus', 'constitution_modifier', 'fort_misc_save_mod', 'condition_selected'], function(v) {
-        console.log("v for Fort Save ", v);
-        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
-        const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.fort_class_bonus) || 0;
-        const constitutionModifier = parseInt(v.constitution_modifier) || 0;
-        const fortMiscSaveMod = parseInt(v.fort_misc_save_mod) || 0;
-        log("Fort Save Calculation", `10 + ${levelOrArmor} (Level/Armor) + ${classBonus} (Class Bonus) + ${constitutionModifier} (Constitution Modifier) + ${fortMiscSaveMod} (Misc Mod) + ${condition} (Condition)`, r20color);
-        const fortSaveTotal = 10+levelOrArmor + classBonus + constitutionModifier + fortMiscSaveMod + condition;
-        const setattrs = {};
-        setattrs['fort_total'] = fortSaveTotal;
-        setattrs['stamina_fortDef'] = fortSaveTotal;
-        setAttrs(setattrs);
+// Watch for Armor Changes
+on('change:armor_worn change:armor_dex_cap', function(eventInfo) {
+    log("Armor Watch Detected Change", eventInfo, r20color);
+    getAttrs(['armor_worn', 'armor_dex_cap'], function(v) {
+        const armorWorn = parseInt(v.armor_worn) || 0;
+        const armorDexCap = parseInt(v.armor_dex_cap);
+        let cappedDexMod = !armorWorn || isNaN(armorDexCap) ? '1000' : armorDexCap;
+        setAttrs({ "capped_dex_mod": cappedDexMod });
     });
 });
 
-// Watch for Ref Save Changes
-on('change:level_or_armor change:ref_class_bonus change:dexterity_modifier change:ref_misc_save_mod change:condition_selected', function() {
-    getAttrs(['level_or_armor', 'ref_class_bonus', 'dexterity_modifier', 'ref_misc_save_mod', 'condition_selected'], function(v) {
-        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
-        const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.ref_class_bonus) || 0;
-        const dexterityModifier = parseInt(v.dexterity_modifier) || 0;
-        const refMiscSaveMod = parseInt(v.ref_misc_save_mod) || 0;
-
-        const refSaveTotal = 10+levelOrArmor + classBonus + dexterityModifier + refMiscSaveMod + condition;
-        setAttrs({ ref_total: refSaveTotal });
+on('change:armor_class change:armor_proficient_multiplier change:armor_worn', function() {
+    getAttrs(['armor_class', 'armor_proficient_multiplier', 'armor_worn'], function(v) {
+        const armorClass = v.armor_class;
+        const armorClassPenalty = armorClass === 'light' ? -2 : armorClass === 'medium' ? -5 : armorClass === 'heavy' ? -10 : 0;
+        const proficientMultiplier = parseInt(v.armor_proficient_multiplier) || 0;
+        const armorWorn = parseInt(v.armor_worn) || 0;
+        const armorCheckPenalty = armorWorn ? armorClassPenalty * proficientMultiplier : 0;
+        setAttrs({ "armor_check_penalty": armorCheckPenalty });
     });
 });
 
-// Watch for Will Save Changes
-on('change:level_or_armor change:will_class_bonus change:wisdom_modifier change:will_misc_save_mod change:condition_selected', function() {
-    getAttrs(['level_or_armor', 'will_class_bonus', 'wisdom_modifier', 'will_misc_save_mod', 'condition_selected'], function(v) {
-        const condition = parseInt(v.condition_selected.split(' ')[0]||0);
-        const levelOrArmor = parseInt(v.level_or_armor) || 0;
-        const classBonus = parseInt(v.will_class_bonus) || 0;
-        const wisdomModifier = parseInt(v.wisdom_modifier) || 0;
-        const willMiscSaveMod = parseInt(v.will_misc_save_mod) || 0;
+// Watch for Defense Score Changes
+const saveList = ['fort', 'ref', 'will'];
+const fortFields = ['level', 'armor_fort_defense', 'armor_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const fortWatch = `change:${fortFields.join(' change:')}`;
 
-        const willSaveTotal = 10+levelOrArmor + classBonus + wisdomModifier + willMiscSaveMod + condition;
-        setAttrs({ will_total: willSaveTotal });
+const refFields = ['level', 'armor_level', 'armor_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const refWatch = `change:${refFields.join(' change:')}`;
+
+const willFields = ['level', 'armor_will_defense', 'armor_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const willWatch = `change:${willFields.join(' change:')}`;
+
+const watchMap = {
+  fort: fortWatch,
+  ref: refWatch,
+  will: willWatch
+};
+
+const fieldsMap = {
+  fort: fortFields,
+  ref: refFields,
+  will: willFields
+};
+
+saveList.forEach(save => {
+    on(watchMap[save], function(eventInfo) {
+        getAttrs(fieldsMap[save], function(v) {
+            //was it an attribute modifier that triggered the change?
+            log(`${save} Save Watch Detected Change`, JSON.stringify(eventInfo), r20color);
+            let newCalcNeeded = false;
+            if (coreAttributes.some(value => eventInfo.sourceAttribute.includes(value))) {
+                log(`${save} Save Watch Detected Attribute Modifier Change`, eventInfo.sourceAttribute, r20color);
+                //check to seee if the attribute modifier is what's currently used by this particular save
+                const saveAbility = v[`${save}_ability_modifier`];
+                const changedAttribute = eventInfo.sourceAttribute.replace('_modifier', '');
+                if (saveAbility === changedAttribute) {
+                    log(`${save} Save Watch Detected Attribute Modifier Change That Affects Save`, eventInfo.sourceAttribute, r20color);
+                    //if it is, update the save with the new modifier value
+                    newCalcNeeded = true;
+                }
+                else {
+                    log(`${save} Save Watch Detected Attribute Modifier Change That Does Not Affect Save`, eventInfo.sourceAttribute, r20color);
+                    return; // exit early if the changed attribute does not affect this save
+                }
+            }
+            // Do The Calculations
+            //Fields for Level or Armor
+            const level = parseInt(v.level) || 0;
+            const armorFortDefense = parseInt(v.armor_fort_defense) || 0;
+            const armorLevel = parseInt(v.armor_level) || 0;
+            const armorWillDefense = parseInt(v.armor_will_defense) || 0;
+            const armorWorn = parseInt(v.armor_worn) || 0;
+            //Field for Class Bonus
+            const classBonus = parseInt(v[`${save}_class_bonus`]) || 0;
+            //Fields for Ability Modifier            
+            const abilityModifier = v[`${save}_ability_modifier`] || ''; // What the modifier value gets placed into
+            const abilityModSelected = v[`${save}_ability_mod`] || ''; // What the dropdown for ability mod is set to
+            const strengthMod = parseInt(v.strength_modifier) || 0;
+            const dexterityMod = parseInt(v.dexterity_modifier) || 0;
+            const cappedDexMod = parseInt(v.capped_dex_mod) || 0;
+            const constitutionMod = parseInt(v.constitution_modifier) || 0;
+            const intelligenceMod = parseInt(v.intelligence_modifier) || 0;
+            const wisdomMod = parseInt(v.wisdom_modifier) || 0;
+            const charismaMod = parseInt(v.charisma_modifier) || 0;
+            //Field for Misc Mod
+            const miscSaveMod = parseInt(v[`${save}_misc_save_mod`]) || 0;
+            const abilityMod = parseInt(v[`${save}_ability_mod`]) || 0;
+            //prep for updates
+            const setAttrsObj = {};
+            setAttrsObj[`${save}_misc_save_mod`] = miscSaveMod; // ensure misc mod is included in updates even if it didn't trigger the change
+            setAttrsObj[`${save}_class_bonus`] = classBonus; // ensure class bonus is included in updates even if it didn't trigger the change
+            let levelOrArmorBonus, abilityModValue;
+            //determine which attribute modifier to use....
+            switch (abilityModSelected) {
+                case 'strength':
+                    abilityModValue = strengthMod;
+                    break;
+                case 'dexterity':
+                    abilityModValue = cappedDexMod === 'none' ? dexterityMod : Math.min(dexterityMod,parseInt(cappedDexMod) || 0);
+                    break;
+                case 'constitution':
+                    abilityModValue = constitutionMod;
+                    break;
+                case 'intelligence':
+                    abilityModValue = intelligenceMod;
+                    break;
+                case 'wisdom':
+                    abilityModValue = wisdomMod;
+                    break;
+                case 'charisma':
+                    abilityModValue = charismaMod;
+                    break;
+            }
+            setAttrsObj[`${save}_ability_modifier`] = abilityModValue; // ensure ability mod is included in updates even if it didn't trigger the change
+            if (armorWorn === 1) {
+                levelOrArmorBonus = save === 'fort' ? Math.max(level, armorFortDefense) : save === 'ref' ? Math.max(level, armorLevel) : Math.max(level, armorWillDefense);
+            }
+            else {
+                levelOrArmorBonus = level;
+            }
+            setAttrsObj[`${save}_level_or_armor`] = levelOrArmorBonus; // ensure level or armor bonus is included in updates even if it didn't trigger the change
+            const saveTotal = 10 + levelOrArmorBonus + classBonus + abilityModValue + miscSaveMod;
+            setAttrsObj[`${save}_total`] = saveTotal; // ensure save total is included in updates even if it didn't trigger the change
+            setAttrs(setAttrsObj,{silent: true});
+        });
     });
 });
+
+
+
+
+
+
+

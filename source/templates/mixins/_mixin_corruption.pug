@@ -3,8 +3,8 @@ mixin corruption(maxCorruption)
       if i <= 3
         input(class="hideCorruption", type="hidden", name=`attr_corruption_lock_${i}`, value="show")
         label(class="corruptionCell")
-            input(class="corruptionInput", type="checkbox", name=`attr_corruption_${i}`)
-            .corruptionNumber #{i}
+          input(class="corruptionInput", type="checkbox", name=`attr_corruption_${i}`)
+          .corruptionNumber #{i}
       else 
         input(class="hideCorruption", type="hidden", name=`attr_corruption_lock_${i}`, value="hide")
         label(class="corruptionCell")

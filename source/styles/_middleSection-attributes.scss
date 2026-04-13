@@ -50,6 +50,15 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                .chatButtons {
+                    width: 100%;
+                    .sendToChat {
+                        width: 100%;
+                    }
+                    &:hover .whisperButton {
+                        left: calc(100% - 10px);
+                    }
+                }
             }
             .score-field {
                 width: 23%;

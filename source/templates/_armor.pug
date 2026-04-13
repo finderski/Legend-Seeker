@@ -7,7 +7,7 @@
             input(class="textField", type="text", name="attr_armor_name", value="")
         .config 
             label.cog
-                input(class='hiddenInput', type='checkbox', name='attr_weapon_damage_config_toggle' checked)
+                input(class='hiddenInput', type='checkbox', name='attr_armor_config_toggle' checked)
                 span.configIcon y
         //
             armor by lastspark from <a href="https://thenounproject.com/browse/icons/term/armor/" target="_blank" title="armor Icons">Noun Project</a> (CC BY 3.0)
@@ -16,7 +16,7 @@
             label(class="shifted")
                 input(class="hidden", type='checkbox', name='attr_armor_worn', value='1', checked)
                 span(class="isCarried")
-        input(class='hideSection', type='hidden', name='attr_weapon_damage_config_toggle', value='1')
+        input(class='hideSection', type='hidden', name='attr_armor_config_toggle', value='1')
         .armor-config
             .armorClass 
                 label(class="fieldLabelAbove", data-i18n='class') Class
@@ -24,6 +24,12 @@
                     option(value="light", data-i18n='light' selected) Light
                     option(value="medium", data-i18n='medium') Medium
                     option(value="heavy", data-i18n='heavy') Heavy
+                input(type="hidden", name="attr_armor_check_penalty", value="0")
+            .proficient 
+                label(class="fieldLabelAbove", data-i18n='proficient') Proficient
+                select(class="ls-Dropdown", name="attr_armor_proficient_multiplier")
+                    option(value="1", data-i18n='no' selected) No
+                    option(value="0", data-i18n='yes') Yes
             .armorDamageReduction 
                 label(class="fieldLabelAbove", data-i18n='damage-reduction-abbr-caps') DR
                 input(class="textField", type="text", name="attr_armor_dr", value="", placeholder="1")

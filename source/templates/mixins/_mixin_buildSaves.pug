@@ -2,8 +2,9 @@ mixin savingthrow(save)
     - const [shortName, longName, attributeName] = save;
     - const abilityShortName = attributeName.slice(0, 3).toUpperCase();
     - const fieldShortName = shortName.toLowerCase();
+    - const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
     
-      .saveRow
+    .saveRow
         .saveButton
             button(class="labelButton nonClickable", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
                 span(class="allcaps", data-i18n=`${longName}-abbr`) #{shortName}
@@ -13,11 +14,29 @@ mixin savingthrow(save)
             span(class="calcFormula")
                 | = 10 + 
         .saveLvlOrArmor
-            input(class="attributeInput", type="text", name="attr_level_or_armor", placeholder="0")
+            input(class="attributeInput readOnly", type="text", name=`attr_${fieldShortName}_level_or_armor`, placeholder="0" readonly)
         .saveClassBonus
             input(class="attributeInput", type="text", name=`attr_${fieldShortName}_class_bonus`, placeholder="0")
         .saveAbilityMod
-            input(class="attributeInput", type="text", name=`attr_${attributeName}_modifier`, readonly)
-            span(class="abilityWatermark", data-i18n=`${attributeName}-abbr`) #{abilityShortName}
+            input(class="showWatermark", type="hidden", name=`attr_${fieldShortName}_ability_mod`, value=`${attributeName}`)
+            input(class="attributeInput", type="text", name=`attr_${fieldShortName}_ability_modifier`, readonly)
+            span(class=`abilityWatermark ${attributeName}`, data-i18n=`${attributeName}-abbr`) #{abilityShortName}
+            each ability in fullAbilityList
+                if ability !== attributeName
+                    span(class=`abilityWatermark ${ability}`, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
+        .config 
+            label.cog
+                input(class='hiddenInput', type='checkbox', name=`attr_${fieldShortName}_save_toggle`)
+                span.configIcon y
         .saveMisc
             input(class="attributeInput", type="text", name=`attr_${fieldShortName}_misc_save_mod`, placeholder="0")
+        input(class='hideSection', type='hidden', name=`attr_${fieldShortName}_save_toggle`, value='0')
+        .abilityConfig 
+            .shim-left
+            select(class="ls-Dropdown", name=`attr_${fieldShortName}_ability_mod`)
+                each ability in fullAbilityList
+                    if ability === attributeName
+                        option(value=ability, data-i18n=`${ability}-abbr` selected) #{ability.slice(0,3).toUpperCase()}
+                    else
+                        option(value=ability, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
+            .shim-right

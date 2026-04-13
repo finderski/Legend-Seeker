@@ -199,5 +199,14 @@
   "will-defense": "Will Defense",
   "dexterity-cap-abbr": "DEX Cap",
   "worn": "Worn",
-  "resource-name": "Resource Name"
+  "resource-name": "Resource Name",
+  "armor-credit": "armor (icon) by lastspark from <a href='https://thenounproject.com/browse/icons/term/armor/' target='_blank' title='armor Icons'>Noun Project</a> (CC BY 3.0)",
+  "concise": "Concise",
+  "character": "Character",
+  "resources": "Resources",
+  "conditions": "Conditions",
+  "proficient": "Proficient",
+  "yes": "Yes",
+  "no": "No",
+  "number-of-actions": "Number of Actions"
 }

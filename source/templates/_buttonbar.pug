@@ -1,7 +1,15 @@
 //
     1 = Character
     2 = Resources
+    4 = Concise Sheet
     3 = Settings
-button(class='topButton characterSheet' type='action', name="act_frontsheet_1" data-i18n-title='character') Character
-button(class='topButton resourcesSheet' type='action', name="act_backsheet_2" data-i18n-title='resources') Resources
-button(class='topButton settingsSheet' type='action', name="act_settings_3" data-i18n-title='settings') Settings
+button(class='topButton characterSheet' type='action', name="act_frontsheet_1" data-i18n-title='character', data-i18n='character') Character
+button(class='topButton resourcesSheet' type='action', name="act_backsheet_2" data-i18n-title='resources', data-i18n='resources') Resources
+// button(class='topButton conciseSheet' type='action', name="act_concise_4" data-i18n-title='concise', data-i18n='concise') Concise
+button(class='topButton settingsSheet' type='action', name="act_settings_3" data-i18n-title='settings', data-i18n='settings') Settings
+.numberOfActions 
+    label(class="sideLabel", data-i18n='number-of-actions') Actions
+    select(class="ls-Dropdown actionCount", name="attr_multi-action-penalty")
+        option(value="0", selected) 1
+        option(value="-4") 2
+        option(value="-8") 3

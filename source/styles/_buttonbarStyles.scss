@@ -3,6 +3,16 @@
 .buttonbar {
     display: flex;
     margin-bottom: 20px;
+    .numberOfActions {
+        display: flex;
+        flex-flow: row nowrap;
+        margin-left: auto;
+        white-space: nowrap;
+        font-size: 1.3em;
+        .actionCount {
+            margin: -6px 0 0 10px;
+        }
+    }
 }
 
 .maindiv .selectedTab[value="1"] + .buttonbar > button[type="action"].characterSheet,

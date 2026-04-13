@@ -350,7 +350,7 @@ label.buttonStyle {
   display: none;
 }
 
-.u-dialog .charactersheet select.ls-Dropdown {
+.ui-dialog .charactersheet select.ls-Dropdown {
   background-color: transparent;
   border: none;
   font-family: var(--mainBody);
@@ -381,6 +381,16 @@ label.buttonStyle {
   display: flex;
   margin-bottom: 20px;
 }
+.buttonbar .numberOfActions {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-left: auto;
+  white-space: nowrap;
+  font-size: 1.3em;
+}
+.buttonbar .numberOfActions .actionCount {
+  margin: -6px 0 0 10px;
+}
 
 .maindiv .selectedTab[value="1"] + .buttonbar > button[type=action].characterSheet,
 .maindiv .selectedTab[value="2"] + .buttonbar > button[type=action].resourcesSheet,
@@ -389,15 +399,9 @@ label.buttonStyle {
   color: var(--parchment);
 }
 
-.frontPage,
-.backPage,
-.settings {
-  display: none;
-}
-
 .ui-dialog .charactersheet .selectedTab[value="1"] ~ .frontPage,
 .ui-dialog .charactersheet .selectedTab[value="2"] ~ .backPage,
-.ui-dialog .charactersheet .selectedTab[value="3"] ~ .settings {
+.ui-dialog .charactersheet .selectedTab[value="3"] ~ .sheetSettings {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -405,6 +409,14 @@ label.buttonStyle {
   max-width: 840px;
   padding: 0;
   margin: 0;
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .frontPage,
+.ui-dialog .charactersheet .backPage,
+.ui-dialog .charactersheet .sheetSettings,
+.ui-dialog .charactersheet .concise {
+  display: none;
   font-synthesis: unset !important;
 }
 
@@ -570,6 +582,15 @@ label.buttonStyle {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons {
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons .sendToChat {
+  width: 100%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons:hover .whisperButton {
+  left: calc(100% - 10px);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .score-field {
   width: 23%;
@@ -890,9 +911,12 @@ label.buttonStyle {
   display: inline-block;
   width: 100%;
   padding: 5px;
+  position: relative;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveButton {
-  display: inline-block;
+  display: inline-flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
   width: 20%;
   text-align: center;
 }
@@ -905,6 +929,11 @@ label.buttonStyle {
   display: inline-block;
   width: 12.5%;
   text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .config {
+  position: absolute;
+  left: 84%;
+  top: -30%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .attributeInput {
   width: 100%;
@@ -940,6 +969,32 @@ label.buttonStyle {
   top: 53%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
+  display: none;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=strength] ~ .abilityWatermark.strength,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=dexterity] ~ .abilityWatermark.dexterity,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=constitution] ~ .abilityWatermark.constitution,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=intelligence] ~ .abilityWatermark.intelligence,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=wisdom] ~ .abilityWatermark.wisdom,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma {
+  display: inline;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .abilityConfig {
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--parchment);
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  padding: 5px;
+  margin-top: 5px;
+  left: 79%;
+  top: -10px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
   font-synthesis: unset !important;
@@ -1169,7 +1224,7 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .fortDefense,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorLevel,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .dexCap {
-  width: 20%;
+  width: 30%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorDamageReduction .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .willDefense .textField,
@@ -1178,6 +1233,14 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .dexCap .textField {
   width: 100%;
   text-align: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .proficient {
+  display: flex;
+  flex-flow: row wrap;
+  flex-basis: 30%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .proficient .ls-Dropdown {
+  font-size: 1.2em;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .classResources {
   display: flex;
@@ -1756,27 +1819,38 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .settings .settingRow {
+.ui-dialog .charactersheet .settings {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 840px;
+  padding: 0;
+  margin: 0;
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .sheetSettings .settingRow {
   display: flex;
   flex-flow: row nowrap;
   column-gap: 5px;
   align-items: center;
 }
-.ui-dialog .charactersheet .settings .settingRow .settingLabel {
+.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel {
   display: inline;
 }
-.ui-dialog .charactersheet .settings .settingRow .settingLabel .styledCheckbox {
+.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel .styledCheckbox {
   display: inline-block;
   font-family: "Pictos";
   font-size: 1.5em;
 }
-.ui-dialog .charactersheet .settings .settingRow .settingLabel .checkboxInput:not(:checked) + .styledCheckbox::before {
+.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel .checkboxInput:not(:checked) + .styledCheckbox::before {
   content: "D";
 }
-.ui-dialog .charactersheet .settings .settingRow .settingLabel .checkboxInput:checked + .styledCheckbox::before {
+.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel .checkboxInput:checked + .styledCheckbox::before {
   content: "2";
 }
-.ui-dialog .charactersheet .settings .settingRow .settingLabel .styledCheckboxText {
+.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel .styledCheckboxText {
   display: inline-block;
   background-color: transparent;
   margin: 5px;
@@ -1785,7 +1859,14 @@ label.buttonStyle {
   font-family: var(--mainBodyAlt2);
   font-size: 1.5em;
 }
-.ui-dialog .charactersheet .settings {
+.ui-dialog .charactersheet .sheetSettings .footer {
+  margin: 20px 0 0 0;
+  display: flex;
+}
+.ui-dialog .charactersheet .sheetSettings .footer .credit {
+  font-size: 0.7em;
+}
+.ui-dialog .charactersheet .sheetSettings {
   font-synthesis: unset !important;
 }
 

@@ -30,13 +30,18 @@ mixin skills(skill)
                     .whisperButton 
                         button(class="whisperToChat", type="roll" name="roll_whisper_edge", value=`/w gm @{${skillName}_formula}`)
                             span.iconButton w
-                    input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{${skillName}_bonus}[^{${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}`)
+                    if armorCheck === 'yes'
+                        input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}`)
+                    else
+                        input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[^{modifier-pop-up}]]]}}`)
+            .skillDetails
             .skillBonus 
                 input(class="attributeInput readOnly", type="text", name=`attr_${skillName}_bonus` readonly)
             .equals
             .halfLevel
                 span(class="attributeInput readOnly", type="text", name=`attr_half-level`)
             .addition
+            //
             .abilityMod
                 span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
                 input(type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)

@@ -282,6 +282,19 @@
       "oS" : 1,
       "pg" : 0
     },
+    "\/source\/styles\/_concise.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_concise.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_demographics.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -566,6 +579,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/_classResources.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/_concise.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_concise.html",
       "oF" : 0,
       "oS" : 1
     },

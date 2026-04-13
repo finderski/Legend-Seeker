@@ -2,7 +2,8 @@
 const buttonlist = [
     'frontsheet_1',
     'backsheet_2',
-    'settings_3'
+    'settings_3',
+    'concise_4'
 ];
 
 buttonlist.forEach(button => {

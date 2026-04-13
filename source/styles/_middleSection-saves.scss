@@ -10,8 +10,11 @@
             display: inline-block;
             width: 100%;
             padding: 5px;
+            position: relative;
             .saveButton {
-                display: inline-block;
+                display: inline-flex;
+                flex-flow: row wrap;
+                column-gap: 5px;
                 width: 20%;
                 text-align: center;
             }
@@ -24,6 +27,11 @@
                 display: inline-block;
                 width: 12.5%;
                 text-align: center;
+            }
+            .config {
+                position: absolute;
+                left: 84%;
+                top: -30%
             }
             .attributeInput {
                 width: 100%;
@@ -59,6 +67,32 @@
                     left: 50%;
                     transform: translate(-50%, -50%);
                 }
+                .abilityWatermark {
+                    display: none;
+                }
+                .showWatermark[value="strength"] ~ .abilityWatermark.strength,
+                .showWatermark[value="dexterity"] ~ .abilityWatermark.dexterity,
+                .showWatermark[value="constitution"] ~ .abilityWatermark.constitution,
+                .showWatermark[value="intelligence"] ~ .abilityWatermark.intelligence,
+                .showWatermark[value="wisdom"] ~ .abilityWatermark.wisdom,
+                .showWatermark[value="charisma"] ~ .abilityWatermark.charisma {
+                    display: inline;
+                }
+            }
+            .abilityConfig {
+                position: absolute;
+                transform: translateX(-50%);
+                z-index: 20;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                background-color: var(--parchment);
+                border: 1px solid var(--ink);
+                border-radius: 8px;
+                padding: 5px;
+                margin-top: 5px;
+                left: 79%;
+                top: -10px;
             }
         }
     }
