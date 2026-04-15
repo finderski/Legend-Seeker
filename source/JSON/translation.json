@@ -179,6 +179,7 @@
   "duration": "Duration",
   "alternative-abbr-damage": "Alt. Damage",
   "special-damage-abbr": "Special Dmg",
+  "replace": "Replace",
   "casting-time-rt": "<strong>Casting Time</strong>: {{0}}",
   "range-rt": "<strong>Range</strong>: {{0}}",
   "duration-rt": "<strong>Duration</strong>: {{0}}",
@@ -208,5 +209,6 @@
   "proficient": "Proficient",
   "yes": "Yes",
   "no": "No",
-  "number-of-actions": "Number of Actions"
+  "number-of-actions": "Number of Actions",
+  "add": "Add"
 }

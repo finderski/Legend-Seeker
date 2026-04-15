@@ -14,14 +14,12 @@ fieldset(class='repeating_spells')
             button(class="hidden" type='action' name='act_whisper_spellcast')
             button(class="hidden" type='action' name='act_spelldamage')
             button(class="hidden" type='action' name='act_spellaltdamage')
-            button(class="hidden" type='action' name='act_spellspecialdamage')
             button(class="hidden" type='action' name='act_whisper_spelldamage')
             button(class="hidden" type='action' name='act_whisper_spellaltdamage')
-            button(class="hidden" type='action' name='act_whisper_spellspecialdamage')
             // Spell Formulae
             input(type='hidden', name='attr_spell-action-button-call', value='')
             input(type='hidden', name='attr_spell-whisper-action-button-call', value='')
-            input(type='hidden', name='attr_spell-action-call', value='&{template:roll} {{spellcast=roll}} {{name=@{character_name}}} {{title=@{spell}}} {{school=^{@{spell-school}}}} {{tier=@{spell-tier}}} {{castingtime=@{spell-casting-time}}} {{range=@{spell-range}}} {{duration=@{spell-duration}}} {{roll=[[1d20cs>20cf1 + @{mana-tap_bonus}[^{mana-tap}]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{DC|@{spell-dc1}|@{spell-dc2}|@{spell-dc3}}]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=@{spell-effect}}} {{effect2=@{spell-effect2}}} {{effect3=@{spell-effect3}}} {{special=@{spell-special}}} {{dc1=[[@{spell-dc1}]]}} {{dc2=[[@{spell-dc2}]]}} {{dc3=[[@{spell-dc3}]]}} ')
+            input(type='hidden', name='attr_spell-action-call', value='&{template:roll} {{spellcast=roll}} {{name=@{character_name}}} {{title=@{spell}}} {{school=^{@{spell-school}}}} {{tier=@{spell-tier}}} {{castingtime=@{spell-casting-time}}} {{range=@{spell-range}}} {{duration=@{spell-duration}}} {{roll=[[1d20cs>20cf<2 + @{mana-tap_bonus}[^{mana-tap}] + @{condition} + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{success=[[0]]}} {{resolveddc=[[0]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=@{spell-effect}}} {{effect2=@{spell-effect2}}} {{effect3=@{spell-effect3}}} {{special=@{spell-special}}} {{dc1=[[@{spell-dc1}]]}} {{dc2=[[@{spell-dc2}]]}} {{dc3=[[@{spell-dc3}]]}} ')
             input(type='hidden', name='attr_spell-cast-history', value='[]')
             input(type='hidden', name='attr_spell-last-cast-rollid', value='')
         .spell
@@ -86,6 +84,11 @@ fieldset(class='repeating_spells')
                         input(class='textField spellDamage', type='text', name='attr_dc1-alt-damage', value='')
                     .damageColumn
                         input(class='textField spellDamage', type='text', name='attr_dc1-special-damage', value='')
+                        label(class="fieldLabelAbove")
+                            input(class='checkboxInput', type='checkbox', name='attr_dc1-special-replace', value='1')
+                            span(class='styledCheckbox')
+                            span(class='styledCheckboxText replace', data-i18n='replace') Replace
+                            span(class='styledCheckboxText add', data-i18n='add') Add
                     .effect 
                         label(class="fieldLabelAbove", data-i18n='effect') Effect
                         textarea(class='spellArea spellEffect', name='attr_spell-effect', data-i18n-placeholder='effect')
@@ -98,6 +101,11 @@ fieldset(class='repeating_spells')
                         input(class='textField spellDamage', type='text', name='attr_dc2-alt-damage', value='')
                     .damageColumn
                         input(class='textField spellDamage', type='text', name='attr_dc2-special-damage', value='')
+                        label(class="fieldLabelAbove")
+                            input(class='checkboxInput', type='checkbox', name='attr_dc2-special-replace', value='1')
+                            span(class='styledCheckbox')
+                            span(class='styledCheckboxText replace', data-i18n='replace') Replace
+                            span(class='styledCheckboxText add', data-i18n='add') Add
                     .effect 
                         label(class="fieldLabelAbove", data-i18n='effect') Effect
                         textarea(class='spellArea spellEffect', name='attr_spell-effect2', data-i18n-placeholder='effect')
@@ -110,6 +118,11 @@ fieldset(class='repeating_spells')
                         input(class='textField spellDamage', type='text', name='attr_dc3-alt-damage', value='')
                     .damageColumn
                         input(class='textField spellDamage', type='text', name='attr_dc3-special-damage', value='')
+                        label(class="fieldLabelAbove")
+                            input(class='checkboxInput', type='checkbox', name='attr_dc3-special-replace', value='1')
+                            span(class='styledCheckbox')
+                            span(class='styledCheckboxText replace', data-i18n='replace') Replace
+                            span(class='styledCheckboxText add', data-i18n='add') Add
                     .effect 
                         label(class="fieldLabelAbove", data-i18n='effect') Effect
                         textarea(class='spellArea spellEffect', name='attr_spell-effect3', data-i18n-placeholder='effect')

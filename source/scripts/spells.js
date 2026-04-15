@@ -11,9 +11,6 @@ const buildSpellActionName = (rowId, actionName) =>
 const buildSpellActionCall = (characterName, rowId, actionName) =>
     `%{${characterName}|${buildSpellActionName(rowId, actionName)}}`;
 
-const explodeSpellDiceExpression = expression =>
-    String(expression || '').replace(/(\d+d\d+)/gi, '$1!');
-
 const parseSpellHistory = historyValue => {
     try {
         const parsed = JSON.parse(historyValue || '[]');
@@ -53,19 +50,48 @@ const isValidInlineRollExpression = expression => {
     return /^[A-Za-z0-9dcsfkhlodr!<>=+\-*/%(),.\s?]+$/.test(trimmedExpression);
 };
 
-const buildLegendaryFailureAltFormula = (altDamage, specialDamage) => {
-    const altExpression = String(altDamage || '').trim();
+const addLegendaryDamageToFormula = (baseDamage, specialDamage) => {
+    const baseExpression = String(baseDamage || '').trim();
     const specialExpression = String(specialDamage || '').trim();
-    if (!isValidInlineRollExpression(altExpression) || !isValidInlineRollExpression(specialExpression)) {
+    if (!isValidInlineRollExpression(baseExpression) || !isValidInlineRollExpression(specialExpression)) {
         return '';
     }
 
     const replaceableTerm = /(?:\d*d\d+[A-Za-z0-9!<>=]*\s*(?:[+\-]\s*\d+)*)/i;
-    if (!replaceableTerm.test(altExpression)) {
-        return altExpression;
+    if (!replaceableTerm.test(baseExpression)) {
+        return `(${baseExpression}) + (${specialExpression})`;
     }
-    return altExpression.replace(replaceableTerm, `(${specialExpression})`);
+
+    return baseExpression.replace(replaceableTerm, match => `(${match}+${specialExpression})`);
 };
+
+const replaceFailureDamageFormula = (baseDamage, specialDamage) => {
+    const baseExpression = String(baseDamage || '').trim();
+    const specialExpression = String(specialDamage || '').trim();
+    if (!isValidInlineRollExpression(baseExpression) || !isValidInlineRollExpression(specialExpression)) {
+        return '';
+    }
+
+    const replaceableTerm = /(?:\d*d\d+[A-Za-z0-9!<>=]*\s*(?:[+\-]\s*\d+)*)/i;
+    if (!replaceableTerm.test(baseExpression)) {
+        return specialExpression;
+    }
+
+    return baseExpression.replace(replaceableTerm, `(${specialExpression})`);
+};
+
+const getSpellTierData = (values, rowId) =>
+    ['dc1', 'dc2', 'dc3']
+        .map(dcKey => ({
+            key: dcKey,
+            dc: parseInt(values[`repeating_spells_${rowId}_spell-${dcKey}`], 10) || 0,
+            damage: values[`repeating_spells_${rowId}_${dcKey}-damage`] || '',
+            altDamage: values[`repeating_spells_${rowId}_${dcKey}-alt-damage`] || '',
+            specialDamage: values[`repeating_spells_${rowId}_${dcKey}-special-damage`] || '',
+            specialReplace: values[`repeating_spells_${rowId}_${dcKey}-special-replace`] === '1'
+        }))
+        .filter(tier => tier.dc > 0)
+        .sort((left, right) => left.dc - right.dc);
 
 const syncSpellActionButtons = rowId => {
     if (!rowId) {
@@ -97,31 +123,27 @@ const buildSpellDamageButtons = (rowId, castState, whisper = false) => {
     if (castState.altDamage) {
         buttonParts.push(`{{altdamagebutton=[^{damage-failed}](~${buildSpellActionName(rowId, `${baseAction}altdamage`)})}}`);
     }
-    if (castState.specialDamage) {
-        buttonParts.push(`{{specialdamagebutton=[^{special-damage-abbr}](~${buildSpellActionName(rowId, `${baseAction}specialdamage`)})}}`);
-    }
 
     return buttonParts.join(' ');
 };
 
-const buildSpellDcButtonFields = (rowId, values, whisper = false) => {
+const buildSpellDcButtonFields = (rowId, values, whisper = false, failureDcKey = 'dc1') => {
     const buttonFields = [];
     ['dc1', 'dc2', 'dc3'].forEach(dcKey => {
         const castState = {
             damage: isValidInlineRollExpression(values[`repeating_spells_${rowId}_${dcKey}-damage`]) ? values[`repeating_spells_${rowId}_${dcKey}-damage`].trim() : '',
-            altDamage: isValidInlineRollExpression(values[`repeating_spells_${rowId}_${dcKey}-alt-damage`]) ? values[`repeating_spells_${rowId}_${dcKey}-alt-damage`].trim() : '',
-            specialDamage: isValidInlineRollExpression(values[`repeating_spells_${rowId}_${dcKey}-special-damage`]) ? values[`repeating_spells_${rowId}_${dcKey}-special-damage`].trim() : ''
+            altDamage: dcKey === failureDcKey && isValidInlineRollExpression(values[`repeating_spells_${rowId}_${dcKey}-alt-damage`])
+                ? values[`repeating_spells_${rowId}_${dcKey}-alt-damage`].trim()
+                : ''
         };
         const buttonString = buildSpellDamageButtons(rowId, castState, whisper);
         if (buttonString) {
             buttonFields.push(
                 buttonString
                     .replace(/altdamagebutton/g, '__ALT_DAMAGE__')
-                    .replace(/specialdamagebutton/g, '__SPECIAL_DAMAGE__')
                     .replace(/damagebutton/g, '__BASE_DAMAGE__')
                     .replace(/__BASE_DAMAGE__/g, `${dcKey}damagebutton`)
                     .replace(/__ALT_DAMAGE__/g, `${dcKey}altdamagebutton`)
-                    .replace(/__SPECIAL_DAMAGE__/g, `${dcKey}specialdamagebutton`)
             );
         }
     });
@@ -201,12 +223,15 @@ const runSpellCast = whisper => eventInfo => {
         `repeating_spells_${rowId}_dc1-damage`,
         `repeating_spells_${rowId}_dc1-alt-damage`,
         `repeating_spells_${rowId}_dc1-special-damage`,
+        `repeating_spells_${rowId}_dc1-special-replace`,
         `repeating_spells_${rowId}_dc2-damage`,
         `repeating_spells_${rowId}_dc2-alt-damage`,
         `repeating_spells_${rowId}_dc2-special-damage`,
+        `repeating_spells_${rowId}_dc2-special-replace`,
         `repeating_spells_${rowId}_dc3-damage`,
         `repeating_spells_${rowId}_dc3-alt-damage`,
         `repeating_spells_${rowId}_dc3-special-damage`,
+        `repeating_spells_${rowId}_dc3-special-replace`,
         `repeating_spells_${rowId}_spell-slot`,
         `repeating_spells_${rowId}_spell-slot_max`,
         `repeating_spells_${rowId}_spell-cast-history`
@@ -241,37 +266,46 @@ const runSpellCast = whisper => eventInfo => {
         const dc1 = parseInt(values[`repeating_spells_${rowId}_spell-dc1`], 10) || 0;
         const dc2 = parseInt(values[`repeating_spells_${rowId}_spell-dc2`], 10) || 0;
         const dc3 = parseInt(values[`repeating_spells_${rowId}_spell-dc3`], 10) || 0;
+        const spellTiers = getSpellTierData(values, rowId);
+        const failureTier = spellTiers[0] || { key: 'dc1', dc: 0, altDamage: '', specialDamage: '' };
 
-        const spellButtons = buildSpellDcButtonFields(rowId, values, whisper);
-        const rollTemplate = `${whisperPrefix}&{template:roll} {{spellcast=roll}} {{name=${characterName}}} {{title=${spellName}}} {{school=^{${spellSchool}}}} {{tier=${spellTier}}} {{castingtime=${castingTime}}} {{range=${spellRange}}} {{duration=${spellDuration}}} {{roll=[[1d20cs>20cf<2 + ${manaTapBonus}[^{mana-tap}] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{target=[[?{DC|${dc1}|${dc2}|${dc3}}]]}} {{raises=[[0]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=${effect1}}} {{effect2=${effect2}}} {{effect3=${effect3}}} {{special=${special}}} {{dc1=[[${dc1}]]}} {{dc2=[[${dc2}]]}} {{dc3=[[${dc3}]]}} ${spellButtons}`;
+        const spellButtons = buildSpellDcButtonFields(rowId, values, whisper, failureTier.key);
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{spellcast=roll}} {{name=${characterName}}} {{title=${spellName}}} {{school=^{${spellSchool}}}} {{tier=${spellTier}}} {{castingtime=${castingTime}}} {{range=${spellRange}}} {{duration=${spellDuration}}} {{roll=[[1d20cs>20cf<2 + ${manaTapBonus}[^{mana-tap}] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{success=[[0]]}} {{resolveddc=[[0]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=${effect1}}} {{effect2=${effect2}}} {{effect3=${effect3}}} {{special=${special}}} {{dc1=[[${dc1}]]}} {{dc2=[[${dc2}]]}} {{dc3=[[${dc3}]]}} ${spellButtons}`;
 
         startRoll(rollTemplate, results => {
             const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
-            const target = parseInt(results.results.target.result, 10) || 0;
             const legendaryPoint = parseInt(results.results['legendary-point'].result, 10) || 0;
             const totalRoll = parseInt(results.results.roll.result, 10) || 0;
-            const success = naturalRoll === 20 || totalRoll >= target ? 1 : 0;
-            const raises = success ? Math.max(0, Math.floor((totalRoll - target) / 5)) : 0;
-            const selectedDcKey = target === dc1 ? 'dc1' : target === dc2 ? 'dc2' : 'dc3';
-            const damage = values[`repeating_spells_${rowId}_${selectedDcKey}-damage`] || '';
-            const altDamage = values[`repeating_spells_${rowId}_${selectedDcKey}-alt-damage`] || '';
-            const specialDamage = values[`repeating_spells_${rowId}_${selectedDcKey}-special-damage`] || '';
-            const legendaryFailureAltDamage = legendaryPoint && !success
-                ? buildLegendaryFailureAltFormula(altDamage, specialDamage)
+            const selectedTier = [...spellTiers].reverse().find(tier => totalRoll >= tier.dc) ||
+                (naturalRoll === 20 ? failureTier : null);
+            const success = selectedTier ? 1 : 0;
+            const resolvedDc = selectedTier ? selectedTier.dc : 0;
+            const successDamage = legendaryPoint && selectedTier && selectedTier.specialReplace
+                ? String(selectedTier.specialDamage || '').trim()
+                : legendaryPoint
+                    ? addLegendaryDamageToFormula(selectedTier && selectedTier.damage, selectedTier && selectedTier.specialDamage)
+                    : '';
+            const failureAltDamage = legendaryPoint && failureTier.specialReplace
+                ? replaceFailureDamageFormula(failureTier.altDamage, failureTier.specialDamage)
+                : '';
+            const additiveFailureAltDamage = legendaryPoint && !failureTier.specialReplace
+                ? addLegendaryDamageToFormula(failureTier.altDamage, failureTier.specialDamage)
                 : '';
 
             const castState = {
                 rollId: results.rollId,
-                damage: isValidInlineRollExpression(damage) ? damage.trim() : '',
-                altDamage: isValidInlineRollExpression(legendaryFailureAltDamage || altDamage)
-                    ? String(legendaryFailureAltDamage || altDamage).trim()
+                damage: isValidInlineRollExpression(successDamage || (selectedTier && selectedTier.damage))
+                    ? String(successDamage || (selectedTier && selectedTier.damage)).trim()
                     : '',
-                specialDamage: isValidInlineRollExpression(specialDamage) ? specialDamage.trim() : '',
+                altDamage: isValidInlineRollExpression(failureAltDamage || additiveFailureAltDamage || failureTier.altDamage)
+                    ? String(failureAltDamage || additiveFailureAltDamage || failureTier.altDamage).trim()
+                    : '',
                 legendaryPoint,
-                selectedDcKey,
+                selectedDcKey: selectedTier ? selectedTier.key : '',
+                failureDcKey: failureTier.key,
                 success,
                 naturalRoll,
-                raises
+                resolvedDc
             };
 
             storeSpellCastState(rowId, values, castState);
@@ -281,7 +315,8 @@ const runSpellCast = whisper => eventInfo => {
             }
 
             finishRoll(results.rollId, {
-                raises
+                success,
+                resolveddc: resolvedDc
             });
         });
     });
@@ -309,33 +344,14 @@ const runSpellDamage = ({ whisper = false, damageType = 'damage' } = {}) => even
         const characterName = values.character_name || 'Character';
         const spellName = values[`repeating_spells_${rowId}_spell`] || 'Spell';
         const whisperPrefix = whisper ? '/w gm ' : '';
-        const baseFormula = damageType === 'altDamage'
-            ? castState.altDamage
-            : damageType === 'specialDamage'
-                ? castState.specialDamage
-                : castState.damage;
-        const raises = Math.max(0, parseInt(castState.raises, 10) || 0);
-        const crit = (parseInt(castState.naturalRoll, 10) || 0) === 20;
+        const baseFormula = damageType === 'altDamage' ? castState.altDamage : castState.damage;
 
-        if (damageType === 'specialDamage' && !castState.legendaryPoint) {
-            return;
-        }
         if (!isValidInlineRollExpression(baseFormula)) {
             return;
         }
 
-        const rollTerms = [
-            crit ? explodeSpellDiceExpression(baseFormula) : baseFormula
-        ];
-
-        if (damageType !== 'altDamage' && raises > 0) {
-            rollTerms.push(`${raises}d6${crit ? '!' : ''} [Additional d6s per raise]`);
-        }
-
-        const formula = rollTerms.join(' + ');
-
         startRoll(
-            `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${spellName}}} {{damageroll=yes}} {{normaldamage=yes}} {{dmg=[[${formula}]]}}`,
+            `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${spellName}}} {{damageroll=yes}} {{normaldamage=yes}} {{dmg=[[${baseFormula}]]}}`,
             results => finishRoll(results.rollId)
         );
     });
@@ -351,7 +367,5 @@ on('clicked:repeating_spells:spellcast', runSpellCast(false));
 on('clicked:repeating_spells:whisper_spellcast', runSpellCast(true));
 on('clicked:repeating_spells:spelldamage', runSpellDamage({ damageType: 'damage' }));
 on('clicked:repeating_spells:spellaltdamage', runSpellDamage({ damageType: 'altDamage' }));
-on('clicked:repeating_spells:spellspecialdamage', runSpellDamage({ damageType: 'specialDamage' }));
 on('clicked:repeating_spells:whisper_spelldamage', runSpellDamage({ whisper: true, damageType: 'damage' }));
 on('clicked:repeating_spells:whisper_spellaltdamage', runSpellDamage({ whisper: true, damageType: 'altDamage' }));
-on('clicked:repeating_spells:whisper_spellspecialdamage', runSpellDamage({ whisper: true, damageType: 'specialDamage' }));

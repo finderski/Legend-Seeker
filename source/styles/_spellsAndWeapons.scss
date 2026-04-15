@@ -129,6 +129,37 @@
                                             width: 100%;
                                             text-align: center;
                                         }
+                                        .fieldLabelAbove {
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 0.25rem;
+                                            margin-top: 0.2rem;
+                                            cursor: pointer;
+                                            .styledCheckbox {
+                                                display: inline-block;
+                                                font-family: 'Pictos';
+                                                font-size: 1.4em;
+                                                line-height: 1;
+                                            }
+                                            .checkboxInput:not(:checked) + .styledCheckbox::before {
+                                                content: '+'; /*D*/
+                                            }
+                                            .checkboxInput:not(:checked) ~ .styledCheckboxText.replace {
+                                                display: none;
+                                            }
+                                            .checkboxInput:checked + .styledCheckbox::before {
+                                                content: '0'; /*2*/
+                                            }
+                                            .checkboxInput:checked ~ .styledCheckboxText.add {
+                                                display: none;
+                                            }
+                                            .styledCheckboxText {
+                                                display: inline-block;
+                                                font-family: var(--mainBodyAlt2);
+                                                font-size: 1.2em;
+                                                text-transform: none;
+                                            }
+                                        }
                                     }
                                     .effect {
                                         width: 100%;

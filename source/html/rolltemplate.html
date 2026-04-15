@@ -20,15 +20,17 @@
             <div class="sheet-left-column" data-i18n-vars="{{castingtime}}" data-i18n="casting-time-rt"></div>
             <div class="sheet-right-column" data-i18n-vars="{{range}}" data-i18n="range-rt"></div>
             <div class="sheet-left-column-full" data-i18n-vars="{{duration}}" data-i18n="duration-rt"></div>
-            {{#rollTotal() target dc1}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect1}}|{{special}}" data-i18n="dc-effect1-rt"></div>{{/rollTotal() target dc1}}
-            {{#rollTotal() target dc2}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect2}}|{{special}}" data-i18n="dc-effect2-rt"></div>{{/rollTotal() target dc2}}
-            {{#rollTotal() target dc3}}<div class="sheet-left-column-full" data-i18n-vars="{{target}}|{{effect3}}|{{special}}" data-i18n="dc-effect3-rt"></div>{{/rollTotal() target dc3}}
+            {{#rollTotal() computed::resolveddc dc1}}<div class="sheet-left-column-full" data-i18n-vars="{{computed::resolveddc}}|{{effect1}}|{{special}}" data-i18n="dc-effect1-rt"></div>{{/rollTotal() computed::resolveddc dc1}}
+            {{#rollTotal() computed::resolveddc dc2}}<div class="sheet-left-column-full" data-i18n-vars="{{computed::resolveddc}}|{{effect2}}|{{special}}" data-i18n="dc-effect2-rt"></div>{{/rollTotal() computed::resolveddc dc2}}
+            {{#rollTotal() computed::resolveddc dc3}}<div class="sheet-left-column-full" data-i18n-vars="{{computed::resolveddc}}|{{effect3}}|{{special}}" data-i18n="dc-effect3-rt"></div>{{/rollTotal() computed::resolveddc dc3}}
             {{#rollTotal() legendary-point 1}}<div class="sheet-left-column-full" data-i18n-vars="{{special}}" data-i18n="special-rt"></div>{{/rollTotal() legendary-point 1}}
             {{/spellcast}}
+            {{^spellcast}}
             {{#target}}
             <div class="sheet-left-column" data-i18n="target-number">Target Number</div>
             <div class="sheet-right-column">{{target}}</div>
             {{/target}}
+            {{/spellcast}}
             {{#roll}}
             <div class="sheet-left-column" data-i18n="roll">Roll</div>
             <div class="sheet-right-column">
@@ -54,29 +56,40 @@
         </div>
         <div class="sheet-roll-results">
             {{#roll}}
+            {{#spellcast}}
+            {{#rollWasCrit() roll}}
+                <div class="sheet-one-column sheet-crit sheet-result" data-i18n="critical-success">Critical Success!</div>
+            {{/rollWasCrit() roll}}
+            {{#rollTotal() computed::success 1}}
+                {{#^rollWasCrit() roll}}
+                <div class="sheet-one-column sheet-result" data-i18n="success">Success</div>
+                {{/^rollWasCrit() roll}}
+                {{#buttons}}
+                {{#rollTotal() computed::resolveddc dc1}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/rollTotal() computed::resolveddc dc1}}
+                {{#rollTotal() computed::resolveddc dc2}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/rollTotal() computed::resolveddc dc2}}
+                {{#rollTotal() computed::resolveddc dc3}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/rollTotal() computed::resolveddc dc3}}
+                {{/buttons}}
+            {{/rollTotal() computed::success 1}}
+            {{#rollWasFumble() roll}}
+                <div class="sheet-one-column sheet-fumble sheet-result" data-i18n="critical-failure">Critical Failure!</div>
+            {{/rollWasFumble() roll}}
+            {{#rollTotal() computed::success 0}}
+                {{#buttons}}
+                {{#dc1altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1altdamagebutton}}</div>{{/dc1altdamagebutton}}
+                {{#dc2altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2altdamagebutton}}</div>{{/dc2altdamagebutton}}
+                {{#dc3altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3altdamagebutton}}</div>{{/dc3altdamagebutton}}
+                {{/buttons}}
+                <div class="sheet-one-column sheet-result" data-i18n="failure">Failure</div>
+            {{/rollTotal() computed::success 0}}
+            {{/spellcast}}
+            {{^spellcast}}
             {{#rollWasCrit() roll}}
                 <div class="sheet-one-column sheet-crit sheet-result" data-i18n="critical-success">Critical Success!</div>
                 {{#rollGreater() computed::raises 0}}
                 <div class="sheet-one-column sheet-result">Raises: {{computed::raises}}</div>
                 {{/rollGreater() computed::raises 0}}
                 {{#buttons}}
-                {{#spellcast}}
-                {{#rollTotal() target dc1}}
-                {{#rollTotal() legendary-point 0}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/rollTotal() legendary-point 0}}
-                {{#rollTotal() legendary-point 1}}{{#dc1specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1specialdamagebutton}}</div>{{/dc1specialdamagebutton}}{{/rollTotal() legendary-point 1}}
-                {{/rollTotal() target dc1}}
-                {{#rollTotal() target dc2}}
-                {{#rollTotal() legendary-point 0}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/rollTotal() legendary-point 0}}
-                {{#rollTotal() legendary-point 1}}{{#dc2specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2specialdamagebutton}}</div>{{/dc2specialdamagebutton}}{{/rollTotal() legendary-point 1}}
-                {{/rollTotal() target dc2}}
-                {{#rollTotal() target dc3}}
-                {{#rollTotal() legendary-point 0}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/rollTotal() legendary-point 0}}
-                {{#rollTotal() legendary-point 1}}{{#dc3specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3specialdamagebutton}}</div>{{/dc3specialdamagebutton}}{{/rollTotal() legendary-point 1}}
-                {{/rollTotal() target dc3}}
-                {{/spellcast}}
-                {{^spellcast}}
                 <div class="sheet-one-column sheet-button">{{criticaldamagebutton}}</div>
-                {{/spellcast}}
                 {{/buttons}}
             {{/rollWasCrit() roll}}
             {{#^rollWasCrit() roll}}
@@ -86,23 +99,7 @@
                     <div class="sheet-one-column sheet-result sheet-raises">Raises: {{computed::raises}}</div>
                     {{/rollGreater() computed::raises 0}}
                     {{#buttons}}
-                    {{#spellcast}}
-                    {{#rollTotal() target dc1}}
-                    {{#rollTotal() legendary-point 0}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/rollTotal() legendary-point 0}}
-                    {{#rollTotal() legendary-point 1}}{{#dc1specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1specialdamagebutton}}</div>{{/dc1specialdamagebutton}}{{/rollTotal() legendary-point 1}}
-                    {{/rollTotal() target dc1}}
-                    {{#rollTotal() target dc2}}
-                    {{#rollTotal() legendary-point 0}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/rollTotal() legendary-point 0}}
-                    {{#rollTotal() legendary-point 1}}{{#dc2specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2specialdamagebutton}}</div>{{/dc2specialdamagebutton}}{{/rollTotal() legendary-point 1}}
-                    {{/rollTotal() target dc2}}
-                    {{#rollTotal() target dc3}}
-                    {{#rollTotal() legendary-point 0}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/rollTotal() legendary-point 0}}
-                    {{#rollTotal() legendary-point 1}}{{#dc3specialdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3specialdamagebutton}}</div>{{/dc3specialdamagebutton}}{{/rollTotal() legendary-point 1}}
-                    {{/rollTotal() target dc3}}
-                    {{/spellcast}}
-                    {{^spellcast}}
                     {{#damagebutton}}<div class="sheet-one-column sheet-button">{{damagebutton}}</div>{{/damagebutton}}
-                    {{/spellcast}}
                     {{/buttons}}
                 {{/^rollLess() roll target}}
             {{/^rollWasCrit() roll}}
@@ -111,22 +108,10 @@
             {{/rollWasFumble() roll}}
             {{#^rollWasFumble() roll}}
                 {{#rollLess() roll target}}
-                {{#buttons}}
-                {{#spellcast}}
-                {{#rollTotal() target dc1}}
-                {{#dc1altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1altdamagebutton}}</div>{{/dc1altdamagebutton}}
-                {{/rollTotal() target dc1}}
-                {{#rollTotal() target dc2}}
-                {{#dc2altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2altdamagebutton}}</div>{{/dc2altdamagebutton}}
-                {{/rollTotal() target dc2}}
-                {{#rollTotal() target dc3}}
-                {{#dc3altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3altdamagebutton}}</div>{{/dc3altdamagebutton}}
-                {{/rollTotal() target dc3}}
-                {{/spellcast}}
-                {{/buttons}}
                 <div class="sheet-one-column sheet-result" data-i18n="failure">Failure</div>
                 {{/rollLess() roll target}}
             {{/^rollWasFumble() roll}}
+            {{/spellcast}}
             {{/roll}}
         </div>
     </div>

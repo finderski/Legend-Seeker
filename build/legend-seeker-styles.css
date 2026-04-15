@@ -1587,6 +1587,37 @@ label.buttonStyle {
   width: 100%;
   text-align: center;
 }
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.2rem;
+  cursor: pointer;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .styledCheckbox {
+  display: inline-block;
+  font-family: "Pictos";
+  font-size: 1.4em;
+  line-height: 1;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:not(:checked) + .styledCheckbox::before {
+  content: "+"; /*D*/
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:not(:checked) ~ .styledCheckboxText.replace {
+  display: none;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:checked + .styledCheckbox::before {
+  content: "0"; /*2*/
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:checked ~ .styledCheckboxText.add {
+  display: none;
+}
+.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .styledCheckboxText {
+  display: inline-block;
+  font-family: var(--mainBodyAlt2);
+  font-size: 1.2em;
+  text-transform: none;
+}
 .ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .effect {
   width: 100%;
 }
