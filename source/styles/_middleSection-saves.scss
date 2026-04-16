@@ -18,6 +18,10 @@
                 width: 20%;
                 text-align: center;
             }
+            .modifiedByCondition[value='1'] + .saveTotal > .attributeInput {
+                background-color: var(--dragon-wing);
+                color: var(--condition);
+            }
             .saveTotal,
             .saveCalc,
             .saveLvlOrArmor,

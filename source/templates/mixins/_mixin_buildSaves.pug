@@ -8,8 +8,10 @@ mixin savingthrow(save)
         .saveButton
             button(class="labelButton nonClickable", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
                 span(class="allcaps", data-i18n=`${longName}-abbr`) #{shortName}
+        input(class="modifiedByCondition" type='hidden' value='0' name='attr_modified_by_condition')
         .saveTotal
             input(class="attributeInput readOnly", type="text", name=`attr_${fieldShortName}_total` readonly placeholder="10")
+            // span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)
         .saveCalc
             span(class="calcFormula")
                 | = 10 + 

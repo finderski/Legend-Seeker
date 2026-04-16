@@ -10,9 +10,10 @@ input(class="xPointInput", type='text', name='attr_stamina_max', placeholder="0"
     label(data-i18n='current') Current
 input(class="xPointInput", type='text', name='attr_stamina', placeholder="0")
 .calculation
-    .fortDef 
+    input(class="modifiedByCondition" type='hidden' value='0' name='attr_modified_by_condition')
+    .fortDef.readOnly 
         label(class="fieldLabelAbove", data-i18n='fortitude-defense') Fort Def
-        input(class="xPointInput", type='text', name='attr_stamina_fortDef', placeholder="0")
+        input(class="xPointInput", type='text', name='attr_stamina_fortDef', placeholder="0" readonly)
     .symbol 
         p +
     .MiscBonus 

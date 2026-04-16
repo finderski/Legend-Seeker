@@ -38,6 +38,14 @@
                         top: 10px;
                     }
                 }
+                .modifiedByCondition[value='1'] + .fortDef {
+                    background-color: var(--dragon-wing);
+                    color: var(--condition);
+                    .fieldLabelAbove,
+                    .fieldLabelAbove + input.xPointInput {
+                        color: var(--condition);
+                    }
+                }
                 .fortDef,
                 .MiscBonus,
                 .damageThreshold {

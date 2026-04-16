@@ -136,14 +136,20 @@ on('change:wisdom change:corruption_0 change:corruption_1 change:corruption_2 ch
 });
 
 // Watch for changes for Stamina Damage Threshold
-on('change:stamina_fortdef change:stamina_miscbonus', function(eventInfo) {
+on('change:fort_total change:stamina_miscbonus', function(eventInfo) {
     log("Threshold Watch Detected Change", eventInfo, r20color);
-    getAttrs(['stamina_fortDef', 'stamina_miscBonus'], function(v) {
-        const fortTotal = parseInt(v.stamina_fortDef) || 0;
+    damageThreshold();
+    /*
+    getAttrs(['fort_total', 'stamina_miscBonus'], function(v) {
+        const fortTotal = parseInt(v.fort_total) || 0;
         const staminaMiscBonus = parseInt(v.stamina_miscBonus) || 0;
         const staminaDamageThreshold = fortTotal + staminaMiscBonus;
-        setAttrs({ "stamina_damageThreshold": staminaDamageThreshold });
+        const setattrs = {};
+        setattrs['stamina_fortDef'] = fortTotal;
+        setattrs['stamina_damageThreshold'] = staminaDamageThreshold
+        setAttrs(setattrs);
     });
+    */
 });
 
 // Watch for Changes to Condition to update Styling.
@@ -178,13 +184,13 @@ on('change:armor_class change:armor_proficient_multiplier change:armor_worn', fu
 
 // Watch for Defense Score Changes
 const saveList = ['fort', 'ref', 'will'];
-const fortFields = ['level', 'armor_fort_defense', 'armor_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const fortFields = ['level', 'condition',  'armor_fort_defense','armor_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
-const refFields = ['level', 'armor_level', 'armor_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const refWatch = `change:${refFields.join(' change:')}`;
 
-const willFields = ['level', 'armor_will_defense', 'armor_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const willWatch = `change:${willFields.join(' change:')}`;
 
 const watchMap = {
@@ -242,6 +248,8 @@ saveList.forEach(save => {
             //Field for Misc Mod
             const miscSaveMod = parseInt(v[`${save}_misc_save_mod`]) || 0;
             const abilityMod = parseInt(v[`${save}_ability_mod`]) || 0;
+            //Condition
+            const conditionMod = parseInt(v.condition) || 0;
             //prep for updates
             const setAttrsObj = {};
             setAttrsObj[`${save}_misc_save_mod`] = miscSaveMod; // ensure misc mod is included in updates even if it didn't trigger the change
@@ -276,8 +284,9 @@ saveList.forEach(save => {
                 levelOrArmorBonus = level;
             }
             setAttrsObj[`${save}_level_or_armor`] = levelOrArmorBonus; // ensure level or armor bonus is included in updates even if it didn't trigger the change
-            const saveTotal = 10 + levelOrArmorBonus + classBonus + abilityModValue + miscSaveMod;
+            const saveTotal = 10 + conditionMod + levelOrArmorBonus + classBonus + abilityModValue + miscSaveMod;
             setAttrsObj[`${save}_total`] = saveTotal; // ensure save total is included in updates even if it didn't trigger the change
+            setAttrsObj["modified_by_condition"] = Math.abs(conditionMod) > 0 ? 1 : 0;
             setAttrs(setAttrsObj,{silent: true});
         });
     });

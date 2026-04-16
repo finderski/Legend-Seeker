@@ -86,7 +86,7 @@
             {{#rollWasCrit() roll}}
                 <div class="sheet-one-column sheet-crit sheet-result" data-i18n="critical-success">Critical Success!</div>
                 {{#rollGreater() computed::raises 0}}
-                <div class="sheet-one-column sheet-result">Raises: {{computed::raises}}</div>
+                <div class="sheet-one-column sheet-result">Raises: {{computed::raises}} {{#rollGreater() computed::raises 1}}<span data-i18n="heavy-hit"> Heavy Hit!</span>{{/rollGreater() computed::raises 1}}</div>
                 {{/rollGreater() computed::raises 0}}
                 {{#buttons}}
                 <div class="sheet-one-column sheet-button">{{criticaldamagebutton}}</div>
@@ -96,7 +96,7 @@
                 {{#^rollLess() roll target}}
                     <div class="sheet-one-column sheet-result" data-i18n="success">Success</div>
                     {{#rollGreater() computed::raises 0}}
-                    <div class="sheet-one-column sheet-result sheet-raises">Raises: {{computed::raises}}</div>
+                    <div class="sheet-one-column sheet-result sheet-raises">Raises: {{computed::raises}}{{#rollGreater() computed::raises 1}}<span data-i18n="heavy-hit"> Heavy Hit!</span>{{/rollGreater() computed::raises 1}}</div>
                     {{/rollGreater() computed::raises 0}}
                     {{#buttons}}
                     {{#damagebutton}}<div class="sheet-one-column sheet-button">{{damagebutton}}</div>{{/damagebutton}}

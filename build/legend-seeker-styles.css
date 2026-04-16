@@ -16,6 +16,7 @@
   --light-gold: #cead5f;
   --read-only: #D9BF87;
   --dragon-wing: #7F1216;
+  --condition: #E5D3A9;
   --title: 'Cinzel';
   --mainBody: 'Merriweather';
   --mainBodyAlt: 'Cormorant Garamond';
@@ -651,6 +652,14 @@ label.buttonStyle {
   position: relative;
   top: 10px;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef {
+  background-color: var(--dragon-wing);
+  color: var(--condition);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove + input.xPointInput {
+  color: var(--condition);
+}
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
@@ -919,6 +928,10 @@ label.buttonStyle {
   column-gap: 5px;
   width: 20%;
   text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput {
+  background-color: var(--dragon-wing);
+  color: var(--condition);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveTotal,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveCalc,
@@ -2026,6 +2039,7 @@ label.buttonStyle {
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-result.sheet-raises {
   font-family: "Merriweather";
+  line-height: 1.75em;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-button,
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-secondwind {
