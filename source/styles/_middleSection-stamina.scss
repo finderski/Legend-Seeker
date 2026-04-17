@@ -107,6 +107,84 @@
             .legendaryPoints {
                 align-self: flex-end;
             }
+            .numberOfActions {
+                width: 100%;
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: center;
+                align-items: center;
+                column-gap: 5px;
+                .actionCount {
+                    display: none;
+                }
+                .selectorLabel {
+                    flex: 1 1 30%;
+                    align-self: center;
+                    align-items: center;
+                    align-content: center;
+                    font-size: 2em;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 10px 0 0 0;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+                .actionCounter[value='0'] ~ .selectorLabel > .one-action {
+                    color: var(--ink);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+                .actionCounter[value='0'] ~ .selectorLabel > .two-actions {
+                    color: var(--gold);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+                .actionCounter[value='0'] ~ .selectorLabel > .three-actions {
+                    color: var(--gold);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+                .actionCounter[value='-4'] ~ .selectorLabel > .one-action {
+                    color: var(--gold);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+                .actionCounter[value='-4'] ~ .selectorLabel > .two-actions {
+                    color: var(--ink);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+                .actionCounter[value='-4'] ~ .selectorLabel > .three-actions {
+                    color: var(--gold);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+                .actionCounter[value='-8'] ~ .selectorLabel > .one-action {
+                    color: var(--gold);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+                .actionCounter[value='-8'] ~ .selectorLabel > .two-actions {
+                    color: var(--gold);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+                .actionCounter[value='-8'] ~ .selectorLabel > .three-actions {
+                    color: var(--ink);
+                    &:hover {
+                        color: var(--dragon-wing);
+                    }
+                }
+            }
         }
         .stamina .fieldLabel,
          .hitPoints .fieldLabel {

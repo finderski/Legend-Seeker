@@ -725,6 +725,84 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
   align-self: flex-end;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCount {
+  display: none;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel {
+  flex: 1 1 30%;
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel:hover {
+  cursor: pointer;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action {
+  color: var(--ink);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action:hover {
+  color: var(--dragon-wing);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions {
+  color: var(--gold);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions:hover {
+  color: var(--dragon-wing);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions {
+  color: var(--gold);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions:hover {
+  color: var(--dragon-wing);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action {
+  color: var(--gold);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action:hover {
+  color: var(--dragon-wing);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions {
+  color: var(--ink);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions:hover {
+  color: var(--dragon-wing);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions {
+  color: var(--gold);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions:hover {
+  color: var(--dragon-wing);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action {
+  color: var(--gold);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action:hover {
+  color: var(--dragon-wing);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions {
+  color: var(--gold);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions:hover {
+  color: var(--dragon-wing);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions {
+  color: var(--ink);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions:hover {
+  color: var(--dragon-wing);
+}
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel {
   width: 35%;

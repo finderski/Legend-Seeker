@@ -18,3 +18,15 @@ input(class="xPointInput", type='text', name='attr_hitpoints', placeholder="0")
 .legendaryPoints 
     label(class="fieldLabelAbove", data-i18n='legendary-points') Legendary Points
     input(class="xPointInput", type='text', name='attr_legendary_points', placeholder="0")
+.numberOfActions 
+    label(class="fieldLabelAbove", data-i18n='number-of-actions') Number of Actions
+    input(class="actionCounter", type='hidden', name='attr_multi-action-penalty', value="0")
+    label(class="selectorLabel")
+        input(class="actionCount", type='radio', name='attr_multi-action-penalty', value="0" checked)
+        span(class='one-action') I 
+    label(class="selectorLabel")
+        input(class="actionCount", type='radio', name='attr_multi-action-penalty', value="-4")
+        span(class='two-actions') II
+    label(class="selectorLabel")
+        input(class="actionCount", type='radio', name='attr_multi-action-penalty', value="-8")
+        span(class='three-actions') III
