@@ -115,7 +115,7 @@
                       <button class="whisperToChat" type="roll" name="roll_whisper_strength_check" value="/w gm @{strength_check_formula}"><span class="iconButton">w</span></button>
                     </div>
                   </div>
-                  <input type="hidden" name="attr_strength_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{strength}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{strength_modifier}[strength modifier]+@{condition}]]}}"/>
+                  <input type="hidden" name="attr_strength_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{strength}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{strength_modifier}[strength modifier]+@{condition} + [[?{Additional Modifiers|0}]][additional modifiers]]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_strength" placeholder="3"/>
@@ -132,7 +132,7 @@
                       <button class="whisperToChat" type="roll" name="roll_whisper_dexterity_check" value="/w gm @{dexterity_check_formula}"><span class="iconButton">w</span></button>
                     </div>
                   </div>
-                  <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{dexterity_modifier}[dexterity modifier]+@{condition}]]}}"/>
+                  <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{dexterity_modifier}[dexterity modifier]+@{condition} + [[?{Additional Modifiers|0}]][additional modifiers]]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
@@ -149,7 +149,7 @@
                       <button class="whisperToChat" type="roll" name="roll_whisper_constitution_check" value="/w gm @{constitution_check_formula}"><span class="iconButton">w</span></button>
                     </div>
                   </div>
-                  <input type="hidden" name="attr_constitution_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{constitution}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{constitution_modifier}[constitution modifier]+@{condition}]]}}"/>
+                  <input type="hidden" name="attr_constitution_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{constitution}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{constitution_modifier}[constitution modifier]+@{condition} + [[?{Additional Modifiers|0}]][additional modifiers]]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_constitution" placeholder="3"/>
@@ -166,7 +166,7 @@
                       <button class="whisperToChat" type="roll" name="roll_whisper_intelligence_check" value="/w gm @{intelligence_check_formula}"><span class="iconButton">w</span></button>
                     </div>
                   </div>
-                  <input type="hidden" name="attr_intelligence_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{intelligence}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{intelligence_modifier}[intelligence modifier]+@{condition}]]}}"/>
+                  <input type="hidden" name="attr_intelligence_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{intelligence}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{intelligence_modifier}[intelligence modifier]+@{condition} + [[?{Additional Modifiers|0}]][additional modifiers]]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_intelligence" placeholder="3"/>
@@ -183,7 +183,7 @@
                       <button class="whisperToChat" type="roll" name="roll_whisper_wisdom_check" value="/w gm @{wisdom_check_formula}"><span class="iconButton">w</span></button>
                     </div>
                   </div>
-                  <input type="hidden" name="attr_wisdom_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{wisdom}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{wisdom_modifier}[wisdom modifier]+@{condition}]]}}"/>
+                  <input type="hidden" name="attr_wisdom_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{wisdom}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{wisdom_modifier}[wisdom modifier]+@{condition} + [[?{Additional Modifiers|0}]][additional modifiers]]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_wisdom" placeholder="3"/>
@@ -200,7 +200,7 @@
                       <button class="whisperToChat" type="roll" name="roll_whisper_charisma_check" value="/w gm @{charisma_check_formula}"><span class="iconButton">w</span></button>
                     </div>
                   </div>
-                  <input type="hidden" name="attr_charisma_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{charisma}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{charisma_modifier}[charisma modifier]+@{condition}]]}}"/>
+                  <input type="hidden" name="attr_charisma_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{charisma}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{charisma_modifier}[charisma modifier]+@{condition} + [[?{Additional Modifiers|0}]][additional modifiers]]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_charisma" placeholder="3"/>
