@@ -48,16 +48,12 @@ include ./mixins/_mixin_skills.pug
                     include _conditions.pug
                     include _languages.pug
         hr.sectionDivider
-        .bottomSection
-            .talents 
-                // Talents Section
-                include _talents.pug
-            .edges 
-                // Edges Section
-                include _edges.pug
-            .traits 
-                //Special Traits Section
-                include _specialTraits.pug
+        .combat
+            input(class="hideSection", type="hidden", name="attr_mana-tap_hider", value="0")
+            .spells 
+                include _spells.pug
+            .weapons 
+                include _weapons.pug
     .backPage
         .topContainer
             .equipment 
@@ -68,12 +64,16 @@ include ./mixins/_mixin_skills.pug
             .skills 
                 include _skills.pug
         hr.sectionDivider
-        .combat
-            input(class="hideSection", type="hidden", name="attr_mana-tap_hider", value="0")
-            .spells 
-                include _spells.pug
-            .weapons 
-                include _weapons.pug
+        .bottomSection
+            // Talents Section
+            .talents 
+                include _talents.pug
+            // Edges Section
+            .edges 
+                include _edges.pug
+            //Special Traits Section
+            .traits 
+                include _specialTraits.pug
     .concise 
         h1.headerLabel(data-i18n="concise") Concise
         include _concise.pug

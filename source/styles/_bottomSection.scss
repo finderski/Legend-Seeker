@@ -1,6 +1,6 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage .bottomSection {
+.backPage .bottomSection {
     @include sheet-scope {
         display: flex;
         flex-flow: row nowrap;

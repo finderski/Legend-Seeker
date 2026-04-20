@@ -1091,7 +1091,7 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .bottomSection {
+.ui-dialog .charactersheet .backPage .bottomSection {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
@@ -1099,50 +1099,50 @@ label.buttonStyle {
   padding: 0;
   column-gap: 5px;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talents,
-.ui-dialog .charactersheet .frontPage .bottomSection .edges,
-.ui-dialog .charactersheet .frontPage .bottomSection .traits {
+.ui-dialog .charactersheet .backPage .bottomSection .talents,
+.ui-dialog .charactersheet .backPage .bottomSection .edges,
+.ui-dialog .charactersheet .backPage .bottomSection .traits {
   width: 33%;
   align-content: flex-start;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .iconButton {
+.ui-dialog .charactersheet .backPage .bottomSection .iconButton {
   font-family: "Pictos";
   font-size: 1.75em;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge,
-.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait {
+.ui-dialog .charactersheet .backPage .bottomSection .talent,
+.ui-dialog .charactersheet .backPage .bottomSection .edge,
+.ui-dialog .charactersheet .backPage .bottomSection .specialTrait {
   display: flex;
   flex-flow: row wrap;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .talentName,
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .edgeName,
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .specialTraitName,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .talentName,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .edgeName,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .specialTraitName,
-.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .talentName,
-.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .edgeName,
-.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .specialTraitName {
+.ui-dialog .charactersheet .backPage .bottomSection .talent .talentName,
+.ui-dialog .charactersheet .backPage .bottomSection .talent .edgeName,
+.ui-dialog .charactersheet .backPage .bottomSection .talent .specialTraitName,
+.ui-dialog .charactersheet .backPage .bottomSection .edge .talentName,
+.ui-dialog .charactersheet .backPage .bottomSection .edge .edgeName,
+.ui-dialog .charactersheet .backPage .bottomSection .edge .specialTraitName,
+.ui-dialog .charactersheet .backPage .bottomSection .specialTrait .talentName,
+.ui-dialog .charactersheet .backPage .bottomSection .specialTrait .edgeName,
+.ui-dialog .charactersheet .backPage .bottomSection .specialTrait .specialTraitName {
   width: 183px;
   margin: 0 0 3px 5px;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .fieldLabelAbove,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .fieldLabelAbove,
-.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .fieldLabelAbove {
+.ui-dialog .charactersheet .backPage .bottomSection .talent .fieldLabelAbove,
+.ui-dialog .charactersheet .backPage .bottomSection .edge .fieldLabelAbove,
+.ui-dialog .charactersheet .backPage .bottomSection .specialTrait .fieldLabelAbove {
   font-family: "Cinzel", serif;
   font-size: 0.6em;
   font-weight: bold;
   width: 100%;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .textField,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .textField,
-.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .textField {
+.ui-dialog .charactersheet .backPage .bottomSection .talent .textField,
+.ui-dialog .charactersheet .backPage .bottomSection .edge .textField,
+.ui-dialog .charactersheet .backPage .bottomSection .specialTrait .textField {
   width: 100%;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .talent .detailsInput,
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .detailsInput,
-.ui-dialog .charactersheet .frontPage .bottomSection .specialTrait .detailsInput {
+.ui-dialog .charactersheet .backPage .bottomSection .talent .detailsInput,
+.ui-dialog .charactersheet .backPage .bottomSection .edge .detailsInput,
+.ui-dialog .charactersheet .backPage .bottomSection .specialTrait .detailsInput {
   background-color: var(--parchment);
   color: var(--ink);
   font-family: var(--mainBody);
@@ -1153,23 +1153,23 @@ label.buttonStyle {
   height: 6rem;
   min-height: 3rem;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .edge {
+.ui-dialog .charactersheet .backPage .bottomSection .edge {
   border-left: 1px solid var(--ink);
   border-right: 1px solid var(--ink);
   padding: 0 3px;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .edge .pageNumber {
+.ui-dialog .charactersheet .backPage .bottomSection .edge .pageNumber {
   width: 45px;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .pageNumber {
+.ui-dialog .charactersheet .backPage .bottomSection .pageNumber {
   width: 47px;
   margin: 0 0 3px 5px;
   align-content: flex-end;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection .pageNumber .textField {
+.ui-dialog .charactersheet .backPage .bottomSection .pageNumber .textField {
   font-size: 0.95em;
 }
-.ui-dialog .charactersheet .frontPage .bottomSection {
+.ui-dialog .charactersheet .backPage .bottomSection {
   font-synthesis: unset !important;
 }
 
@@ -1540,13 +1540,13 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .backPage .combat {
+.ui-dialog .charactersheet .frontPage .combat {
   display: flex;
   flex-flow: row nowrap;
   column-gap: 10px;
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells {
+.ui-dialog .charactersheet .frontPage .combat .spells {
   display: flex;
   flex-flow: column;
   row-gap: 5px;
@@ -1556,20 +1556,20 @@ label.buttonStyle {
   align-content: flex-start;
   justify-content: flex-start;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] {
   width: 100%;
   display: inline-flex;
   flex-flow: column nowrap;
   row-gap: 5px;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem {
   display: flex;
   flex-flow: column;
   row-gap: 5px;
   border: 0.5px dotted var(--ink);
   padding: 5px;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer {
   display: flex;
   flex-flow: row wrap;
   margin: 5px 0;
@@ -1579,82 +1579,82 @@ label.buttonStyle {
   row-gap: 10px;
   font-size: 1.2em;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .button .labelButton.sendToChat {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .button .labelButton.sendToChat {
   margin: 0;
   width: 48px;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell {
   width: 50%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell .textField {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell .textField {
   width: 100%;
   font-size: 1.2em;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots {
   width: 30%;
   display: flex;
   flex-flow: row wrap;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots .spellSlots {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots .spellSlots {
   width: 47%;
   text-align: center;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots .slotDivider {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .slots .slotDivider {
   align-self: center;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school {
   width: 40%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school .ls-Dropdown {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school .ls-Dropdown {
   width: 100%;
   background-color: transparent;
   border: none;
   font-family: var(--mainBody);
   font-size: 1.15em;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school .spellSchoolDropdown {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school .spellSchoolDropdown {
   color: #2F5496;
   font-size: 1.45em;
   font-family: var(--mainBody);
   font-style: italic;
   font-weight: 900;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .tier {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .tier {
   width: 56%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .tier .spellTier {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .tier .spellTier {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .config {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .config {
   left: -5%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
   padding: 3px 0 5px 0;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .castingTime,
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .range,
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .duration,
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .components {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .castingTime,
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .range,
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .duration,
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .components {
   width: 48%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .castingTime .textField,
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .range .textField,
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .duration .textField,
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .components .textField {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .castingTime .textField,
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .range .textField,
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .duration .textField,
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .components .textField {
   width: 100%;
   font-size: 1.2em;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .description {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .description {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row {
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
@@ -1662,70 +1662,70 @@ label.buttonStyle {
   width: 100%;
   margin: 0;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn {
   flex: 0 1 10%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn h3 {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn h3 {
   text-align: left;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn .textField {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn .textField {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn {
   flex: 2 1 25%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .textField {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .textField {
   width: 100%;
   text-align: center;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove {
   display: flex;
   align-items: center;
   gap: 0.25rem;
   margin-top: 0.2rem;
   cursor: pointer;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .styledCheckbox {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .styledCheckbox {
   display: inline-block;
   font-family: "Pictos";
   font-size: 1.4em;
   line-height: 1;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:not(:checked) + .styledCheckbox::before {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:not(:checked) + .styledCheckbox::before {
   content: "+"; /*D*/
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:not(:checked) ~ .styledCheckboxText.replace {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:not(:checked) ~ .styledCheckboxText.replace {
   display: none;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:checked + .styledCheckbox::before {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:checked + .styledCheckbox::before {
   content: "0"; /*2*/
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:checked ~ .styledCheckboxText.add {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .checkboxInput:checked ~ .styledCheckboxText.add {
   display: none;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .styledCheckboxText {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .damageColumn .fieldLabelAbove .styledCheckboxText {
   display: inline-block;
   font-family: var(--mainBodyAlt2);
   font-size: 1.2em;
   text-transform: none;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .effect {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .effect {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .effect .spellArea {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .effect .spellArea {
   height: 2rem;
   min-height: fit-content;
   max-height: 6rem;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .special {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .special {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .special .spellArea {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .special .spellArea {
   height: 2rem;
   min-height: fit-content;
   max-height: 6rem;
 }
-.ui-dialog .charactersheet .backPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spellArea {
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spellArea {
   width: 100%;
   font-size: 1.15em;
   resize: vertical;
@@ -1736,7 +1736,7 @@ label.buttonStyle {
   height: 6rem;
   min-height: 3rem;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons {
+.ui-dialog .charactersheet .frontPage .combat .weapons {
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
@@ -1747,10 +1747,10 @@ label.buttonStyle {
   align-content: flex-start;
   justify-content: flex-start;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons h2.headerLabel {
+.ui-dialog .charactersheet .frontPage .combat .weapons h2.headerLabel {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -1758,7 +1758,7 @@ label.buttonStyle {
   row-gap: 5px;
   flex-grow: 2;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem {
   display: flex;
   flex-flow: row wrap;
   column-gap: 5px;
@@ -1766,7 +1766,7 @@ label.buttonStyle {
   flex: 1 1 30%;
   max-width: 50%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer {
   border: 0.5px dotted var(--ink);
   display: flex;
   flex-flow: row wrap;
@@ -1778,42 +1778,42 @@ label.buttonStyle {
   align-content: center;
   align-items: center;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button {
   width: 70px;
   flex: 0 0 auto;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .sendToChat {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .sendToChat {
   margin: 0;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton :hover {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton :hover {
   background-color: var(--ink);
   color: var(--parchment);
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton .iconButton {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .button .chatButtons .whisperButton .iconButton {
   font-family: Pictos;
   font-size: 1.2em;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weapon {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weapon {
   width: 65%;
   flex: 1 1 auto;
   min-width: 0;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .type {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .type {
   width: 33%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage {
   width: 28%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .attributeMod {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .attributeMod {
   min-width: 25%;
   max-width: 30%;
   flex: 1 1 30%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .attributeMod .weaponTypeDropdown {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .attributeMod .weaponTypeDropdown {
   font-size: 0.9em;
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -1822,83 +1822,83 @@ label.buttonStyle {
   background-color: var(--light-gold);
   border-radius: 5px 0 5px 0;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .dice {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .dice {
   min-width: 20%;
   max-width: 25%;
   flex: 1 1 20%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .halfLevel {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .halfLevel {
   max-width: 20%;
   min-width: 15%;
   flex: 1 1 20%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .miscMod {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .miscMod {
   min-width: 20%;
   max-width: 25%;
   flex: 1 1 20%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .miscMod .fieldLabelAbove {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .miscMod .fieldLabelAbove {
   white-space: nowrap;
   overflow: visible;
   margin-left: -3px;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .addition {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage-config .addition {
   max-width: 8%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .crit {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .crit {
   width: 29%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
   column-gap: 5px;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkField {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkField {
   min-width: 15%;
   max-width: 20%;
   flex: 1 1 20%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .equals,
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .addition {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .equals,
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .addition {
   max-width: 8%;
   flex: 0 0 auto;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkFormula {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkFormula {
   min-width: 8%;
   max-width: 8%;
   flex: 0 0 auto;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .hpb {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .hpb {
   width: 15%;
   min-width: 15%;
   max-width: 20%;
   flex: 1 1 auto;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkFormula {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk .atkFormula {
   font-family: var(--title);
   font-size: 0.85em;
   text-align: center;
   align-self: center;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .notes {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .notes {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .textField,
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponTypeDropdown {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .textField,
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponTypeDropdown {
   width: 100%;
   text-align: center;
   font-size: 1.2em;
   line-height: 1.2em;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponTypeDropdown,
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponNotes {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponTypeDropdown,
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponNotes {
   background-color: transparent;
   border: none;
   font-family: var(--mainBody);
   font-size: 1.15em;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponNotes {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponNotes {
   resize: vertical;
   color: var(--ink);
   border: none;
@@ -1906,20 +1906,20 @@ label.buttonStyle {
   height: 6rem;
   min-height: 3rem;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage .textField,
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .crit .textField {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage .textField,
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .crit .textField {
   text-align: center;
 }
-.ui-dialog .charactersheet .backPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .fieldLabelAbove {
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .fieldLabelAbove {
   font-size: 0.75em;
   line-height: 1.2;
   width: 100%;
   white-space: nowrap;
 }
-.ui-dialog .charactersheet .backPage .combat .hiddenInput {
+.ui-dialog .charactersheet .frontPage .combat .hiddenInput {
   display: none;
 }
-.ui-dialog .charactersheet .backPage .combat .config {
+.ui-dialog .charactersheet .frontPage .combat .config {
   display: flex;
   width: 0;
   font-family: "Pictos";
@@ -1931,13 +1931,13 @@ label.buttonStyle {
   cursor: pointer;
   opacity: 0.5;
 }
-.ui-dialog .charactersheet .backPage .combat .config:hover {
+.ui-dialog .charactersheet .frontPage .combat .config:hover {
   opacity: 1;
 }
-.ui-dialog .charactersheet .backPage .combat .config > .cog > .hiddenInput:checked + .configIcon {
+.ui-dialog .charactersheet .frontPage .combat .config > .cog > .hiddenInput:checked + .configIcon {
   opacity: 1;
 }
-.ui-dialog .charactersheet .backPage .combat {
+.ui-dialog .charactersheet .frontPage .combat {
   font-synthesis: unset !important;
 }
 

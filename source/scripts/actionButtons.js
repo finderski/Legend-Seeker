@@ -222,7 +222,9 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
             rollTerms.push(`${raises}d6${crit ? '!' : ''} [Additional d6s per raise]`);
         }
 
-        const rollFormula = rollTerms.length ? rollTerms.join(' + ') : '0';
+        //const rollFormula = rollTerms.length ? rollTerms.join(' + ') : '0';
+        let rollFormula = rollTerms.length ? rollTerms.join(' + ') : '0';
+        rollFormula += " + ?{Additional Damage Mod|0}[Additional Mod]";
 
         startRoll(
             `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{weaponname=${weaponName}}} {{damageroll=yes}} {{critdamage=${crit ? 'yes' : ''}}} {{normaldamage=${crit ? '' : 'yes'}}} {{dmg=[[${rollFormula}]]}}`,

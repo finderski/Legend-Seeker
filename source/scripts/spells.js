@@ -344,11 +344,14 @@ const runSpellDamage = ({ whisper = false, damageType = 'damage' } = {}) => even
         const characterName = values.character_name || 'Character';
         const spellName = values[`repeating_spells_${rowId}_spell`] || 'Spell';
         const whisperPrefix = whisper ? '/w gm ' : '';
-        const baseFormula = damageType === 'altDamage' ? castState.altDamage : castState.damage;
+        let baseFormula = damageType === 'altDamage' ? castState.altDamage : castState.damage;
+        //baseFormula += " + [[?{Additional Damage Mod|0}]]";
 
         if (!isValidInlineRollExpression(baseFormula)) {
             return;
         }
+
+        baseFormula += ' + ?{Additional Damage Mod|0}[Additional Mod (?{Additional Damage Mod|0})]';
 
         startRoll(
             `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${spellName}}} {{damageroll=yes}} {{normaldamage=yes}} {{dmg=[[${baseFormula}]]}}`,
