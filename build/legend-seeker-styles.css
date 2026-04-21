@@ -2114,10 +2114,10 @@ label.buttonStyle {
   font-weight: 700;
   font-size: 2em;
   margin: 0 0 15px 0;
+  line-height: 1.2em;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-result.sheet-raises {
   font-family: "Merriweather";
-  line-height: 1.75em;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-button,
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-secondwind {

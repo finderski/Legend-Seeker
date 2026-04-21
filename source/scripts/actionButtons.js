@@ -1,8 +1,24 @@
 const WEAPON_ATTACK_HISTORY_LIMIT = 10;
 
+const WEAPON_ROW_SUFFIXES = [
+    'weaponwhispercriticaldamage',
+    'weaponcriticaldamage',
+    'weaponwhisperdamage',
+    'weapondamage',
+    'weaponwhisperattack',
+    'weaponattack',
+    'weapon'
+];
+
 const getRepeatingRowId = sourceAttribute => {
-    const match = sourceAttribute && sourceAttribute.match(/^repeating_weapons_([^_]+)_/);
-    return match ? match[1] : '';
+    const prefix = 'repeating_weapons_';
+    if (!sourceAttribute || !sourceAttribute.startsWith(prefix)) {
+        return '';
+    }
+
+    const remainder = sourceAttribute.slice(prefix.length);
+    const suffix = WEAPON_ROW_SUFFIXES.find(candidate => remainder.endsWith(`_${candidate}`));
+    return suffix ? remainder.slice(0, -(`_${suffix}`).length) : '';
 };
 
 const toInt = value => parseInt(value, 10) || 0;
@@ -137,14 +153,15 @@ const runWeaponAttack = whisper => eventInfo => {
         const condition = parseSignedValue(values.condition);
         const whisperPrefix = whisper ? '/w gm ' : '';
         const damageButtons = buildWeaponDamageButtons(rowId, whisper);
-        const rollTemplate = `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf<2 + ${attackBonus}[ATK] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} ${damageButtons}`;
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf1 + ${attackBonus}[ATK] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} ${damageButtons}`;
 
         startRoll(rollTemplate, results => {
             const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
             const totalRoll = toInt(results.results.roll.result);
             const target = toInt(results.results.target.result);
+            const isCriticalFailure = naturalRoll === 1;
             const crit = naturalRoll >= critThreshold ? 1 : 0;
-            const success = crit || totalRoll >= target ? 1 : 0;
+            const success = !isCriticalFailure && (crit || totalRoll >= target) ? 1 : 0;
             const raises = success ? Math.max(0, Math.floor((totalRoll - target) / 5)) : 0;
 
             storeAttackState(rowId, values, {

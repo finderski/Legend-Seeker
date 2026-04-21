@@ -1,15 +1,28 @@
 const SPELL_CAST_HISTORY_LIMIT = 10;
 
+const SPELL_ROW_SUFFIXES = [
+    'whisper_spellaltdamage',
+    'whisper_spelldamage',
+    'whisper_spellcast',
+    'spellaltdamage',
+    'spelldamage',
+    'spellcast',
+    'spell'
+];
+
 const getRepeatingSpellRowId = sourceAttribute => {
-    const match = sourceAttribute && sourceAttribute.match(/^repeating_spells_([^_]+)_/);
-    return match ? match[1] : '';
+    const prefix = 'repeating_spells_';
+    if (!sourceAttribute || !sourceAttribute.startsWith(prefix)) {
+        return '';
+    }
+
+    const remainder = sourceAttribute.slice(prefix.length);
+    const suffix = SPELL_ROW_SUFFIXES.find(candidate => remainder.endsWith(`_${candidate}`));
+    return suffix ? remainder.slice(0, -(`_${suffix}`).length) : '';
 };
 
 const buildSpellActionName = (rowId, actionName) =>
     `repeating_spells_${rowId}_${actionName}`;
-
-const buildSpellActionCall = (characterName, rowId, actionName) =>
-    `%{${characterName}|${buildSpellActionName(rowId, actionName)}}`;
 
 const parseSpellHistory = historyValue => {
     try {
@@ -92,26 +105,6 @@ const getSpellTierData = (values, rowId) =>
         }))
         .filter(tier => tier.dc > 0)
         .sort((left, right) => left.dc - right.dc);
-
-const syncSpellActionButtons = rowId => {
-    if (!rowId) {
-        return;
-    }
-
-    getAttrs(['character_name'], values => {
-        const characterName = values.character_name || 'character_name';
-        const setattrs = {};
-        setattrs[`repeating_spells_${rowId}_spell-action-button-call`] = buildSpellActionCall(characterName, rowId, 'spellcast');
-        setattrs[`repeating_spells_${rowId}_spell-whisper-action-button-call`] = buildSpellActionCall(characterName, rowId, 'whisper_spellcast');
-        setAttrs(setattrs, { silent: true });
-    });
-};
-
-const syncAllSpellActionButtons = () => {
-    getSectionIDs('repeating_spells', ids => {
-        ids.forEach(syncSpellActionButtons);
-    });
-};
 
 const buildSpellDamageButtons = (rowId, castState, whisper = false) => {
     const baseAction = whisper ? 'whisper_spell' : 'spell';
@@ -201,12 +194,11 @@ const runSpellCast = whisper => eventInfo => {
         return;
     }
 
-    syncSpellActionButtons(rowId);
-
     const fields = [
         'character_name',
         'condition',
         'mana-tap_bonus',
+        'legendary_points',
         `repeating_spells_${rowId}_spell`,
         `repeating_spells_${rowId}_spell-school`,
         `repeating_spells_${rowId}_spell-tier`,
@@ -243,16 +235,13 @@ const runSpellCast = whisper => eventInfo => {
         const spellSlots = parseInt(values[`repeating_spells_${rowId}_spell-slot`], 10) || 0;
         const manaTapBonus = parseInt(values['mana-tap_bonus'], 10) || 0;
         const condition = parseSignedValue(values.condition);
+        const legendaryPointsTotal = parseInt(values.legendary_points, 10) || 0;
         const whisperPrefix = whisper ? '/w gm ' : '';
 
         if (spellSlots <= 0) {
             showNoSpellSlotsPopup(characterName, spellName);
             return;
         }
-
-        setAttrs({
-            [`repeating_spells_${rowId}_spell-slot`]: spellSlots - 1
-        }, { silent: true });
 
         const spellSchool = values[`repeating_spells_${rowId}_spell-school`] || 'evocation';
         const spellTier = values[`repeating_spells_${rowId}_spell-tier`] || '';
@@ -270,16 +259,24 @@ const runSpellCast = whisper => eventInfo => {
         const failureTier = spellTiers[0] || { key: 'dc1', dc: 0, altDamage: '', specialDamage: '' };
 
         const spellButtons = buildSpellDcButtonFields(rowId, values, whisper, failureTier.key);
-        const rollTemplate = `${whisperPrefix}&{template:roll} {{spellcast=roll}} {{name=${characterName}}} {{title=${spellName}}} {{school=^{${spellSchool}}}} {{tier=${spellTier}}} {{castingtime=${castingTime}}} {{range=${spellRange}}} {{duration=${spellDuration}}} {{roll=[[1d20cs>20cf<2 + ${manaTapBonus}[^{mana-tap}] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{success=[[0]]}} {{resolveddc=[[0]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=${effect1}}} {{effect2=${effect2}}} {{effect3=${effect3}}} {{special=${special}}} {{dc1=[[${dc1}]]}} {{dc2=[[${dc2}]]}} {{dc3=[[${dc3}]]}} ${spellButtons}`;
+        const legendaryPointField = legendaryPointsTotal > 0
+            ? '{{legendary-point=?{Spend a Legendary Point?|No,[[0]]|Yes,[[1]]}}}'
+            : '{{legendary-point=[[0]]}}';
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{spellcast=roll}} {{name=${characterName}}} {{title=${spellName}}} {{roll=[[1d20cs20cf1 + ${manaTapBonus}[^{mana-tap}] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{school=^{${spellSchool}}}} {{tier=${spellTier}}} {{castingtime=${castingTime}}} {{range=${spellRange}}} {{duration=${spellDuration}}} ${legendaryPointField} {{effect1=${effect1}}} {{effect2=${effect2}}} {{effect3=${effect3}}} {{special=${special}}} {{dc1=[[${dc1}]]}} {{dc2=[[${dc2}]]}} {{dc3=[[${dc3}]]}} ${spellButtons}`;
 
         startRoll(rollTemplate, results => {
             const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
-            const legendaryPoint = parseInt(results.results['legendary-point'].result, 10) || 0;
+            const legendaryPoint = parseInt(results.results['legendary-point'] && results.results['legendary-point'].result, 10) || 0;
             const totalRoll = parseInt(results.results.roll.result, 10) || 0;
-            const selectedTier = [...spellTiers].reverse().find(tier => totalRoll >= tier.dc) ||
-                (naturalRoll === 20 ? failureTier : null);
+            const isCriticalFailure = naturalRoll === 1;
+            const matchedTierByTotal = [...spellTiers].reverse().find(tier => totalRoll >= tier.dc) || null;
+            const selectedTier = isCriticalFailure
+                ? null
+                : matchedTierByTotal;
             const success = selectedTier ? 1 : 0;
             const resolvedDc = selectedTier ? selectedTier.dc : 0;
+            const matchedDcKey = selectedTier ? selectedTier.key : '';
+            const resolvedTier = matchedDcKey === 'dc1' ? 1 : matchedDcKey === 'dc2' ? 2 : matchedDcKey === 'dc3' ? 3 : 0;
             const successDamage = legendaryPoint && selectedTier && selectedTier.specialReplace
                 ? String(selectedTier.specialDamage || '').trim()
                 : legendaryPoint
@@ -294,10 +291,10 @@ const runSpellCast = whisper => eventInfo => {
 
             const castState = {
                 rollId: results.rollId,
-                damage: isValidInlineRollExpression(successDamage || (selectedTier && selectedTier.damage))
+                damage: !isCriticalFailure && isValidInlineRollExpression(successDamage || (selectedTier && selectedTier.damage))
                     ? String(successDamage || (selectedTier && selectedTier.damage)).trim()
                     : '',
-                altDamage: isValidInlineRollExpression(failureAltDamage || additiveFailureAltDamage || failureTier.altDamage)
+                altDamage: !isCriticalFailure && isValidInlineRollExpression(failureAltDamage || additiveFailureAltDamage || failureTier.altDamage)
                     ? String(failureAltDamage || additiveFailureAltDamage || failureTier.altDamage).trim()
                     : '',
                 legendaryPoint,
@@ -307,17 +304,23 @@ const runSpellCast = whisper => eventInfo => {
                 naturalRoll,
                 resolvedDc
             };
-
             storeSpellCastState(rowId, values, castState);
 
             if (naturalRoll === 20) {
                 restoreAllSpellSlots();
+            } else {
+                setAttrs({
+                    [`repeating_spells_${rowId}_spell-slot`]: Math.max(spellSlots - 1, 0)
+                }, { silent: true });
             }
 
-            finishRoll(results.rollId, {
-                success,
-                resolveddc: resolvedDc
-            });
+            if (legendaryPoint) {
+                setAttrs({
+                    legendary_points: Math.max(legendaryPointsTotal - 1, 0)
+                }, { silent: true });
+            }
+
+            finishRoll(results.rollId);
         });
     });
 };
@@ -359,12 +362,6 @@ const runSpellDamage = ({ whisper = false, damageType = 'damage' } = {}) => even
         );
     });
 };
-
-on('sheet:opened', syncAllSpellActionButtons);
-on('change:character_name', syncAllSpellActionButtons);
-on('change:repeating_spells:spell', eventInfo => {
-    syncSpellActionButtons(getRepeatingSpellRowId(eventInfo.sourceAttribute));
-});
 
 on('clicked:repeating_spells:spellcast', runSpellCast(false));
 on('clicked:repeating_spells:whisper_spellcast', runSpellCast(true));

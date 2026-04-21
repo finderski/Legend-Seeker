@@ -20,9 +20,15 @@
             <div class="sheet-left-column" data-i18n-vars="{{castingtime}}" data-i18n="casting-time-rt"></div>
             <div class="sheet-right-column" data-i18n-vars="{{range}}" data-i18n="range-rt"></div>
             <div class="sheet-left-column-full" data-i18n-vars="{{duration}}" data-i18n="duration-rt"></div>
-            {{#rollTotal() computed::resolveddc dc1}}<div class="sheet-left-column-full" data-i18n-vars="{{computed::resolveddc}}|{{effect1}}|{{special}}" data-i18n="dc-effect1-rt"></div>{{/rollTotal() computed::resolveddc dc1}}
-            {{#rollTotal() computed::resolveddc dc2}}<div class="sheet-left-column-full" data-i18n-vars="{{computed::resolveddc}}|{{effect2}}|{{special}}" data-i18n="dc-effect2-rt"></div>{{/rollTotal() computed::resolveddc dc2}}
-            {{#rollTotal() computed::resolveddc dc3}}<div class="sheet-left-column-full" data-i18n-vars="{{computed::resolveddc}}|{{effect3}}|{{special}}" data-i18n="dc-effect3-rt"></div>{{/rollTotal() computed::resolveddc dc3}}
+            {{#^rollWasFumble() roll}}
+            {{#rollLess() roll dc2}}
+            {{#^rollLess() roll dc1}}<div class="sheet-left-column-full" data-i18n-vars="{{dc1}}|{{effect1}}|{{special}}" data-i18n="dc-effect1-rt"></div>{{/^rollLess() roll dc1}}
+            {{/rollLess() roll dc2}}
+            {{#rollLess() roll dc3}}
+            {{#^rollLess() roll dc2}}<div class="sheet-left-column-full" data-i18n-vars="{{dc2}}|{{effect2}}|{{special}}" data-i18n="dc-effect2-rt"></div>{{/^rollLess() roll dc2}}
+            {{/rollLess() roll dc3}}
+            {{#^rollLess() roll dc3}}<div class="sheet-left-column-full" data-i18n-vars="{{dc3}}|{{effect3}}|{{special}}" data-i18n="dc-effect3-rt"></div>{{/^rollLess() roll dc3}}
+            {{/^rollWasFumble() roll}}
             {{#rollTotal() legendary-point 1}}<div class="sheet-left-column-full" data-i18n-vars="{{special}}" data-i18n="special-rt"></div>{{/rollTotal() legendary-point 1}}
             {{/spellcast}}
             {{^spellcast}}
@@ -60,27 +66,29 @@
             {{#rollWasCrit() roll}}
                 <div class="sheet-one-column sheet-crit sheet-result" data-i18n="critical-success">Critical Success!</div>
             {{/rollWasCrit() roll}}
-            {{#rollTotal() computed::success 1}}
-                {{#^rollWasCrit() roll}}
-                <div class="sheet-one-column sheet-result" data-i18n="success">Success</div>
-                {{/^rollWasCrit() roll}}
-                {{#buttons}}
-                {{#rollTotal() computed::resolveddc dc1}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/rollTotal() computed::resolveddc dc1}}
-                {{#rollTotal() computed::resolveddc dc2}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/rollTotal() computed::resolveddc dc2}}
-                {{#rollTotal() computed::resolveddc dc3}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/rollTotal() computed::resolveddc dc3}}
-                {{/buttons}}
-            {{/rollTotal() computed::success 1}}
             {{#rollWasFumble() roll}}
                 <div class="sheet-one-column sheet-fumble sheet-result" data-i18n="critical-failure">Critical Failure!</div>
             {{/rollWasFumble() roll}}
-            {{#rollTotal() computed::success 0}}
+            {{#^rollWasFumble() roll}}
+            {{#rollLess() roll dc1}}
                 {{#buttons}}
                 {{#dc1altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc1altdamagebutton}}</div>{{/dc1altdamagebutton}}
                 {{#dc2altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc2altdamagebutton}}</div>{{/dc2altdamagebutton}}
                 {{#dc3altdamagebutton}}<div class="sheet-one-column sheet-button">{{dc3altdamagebutton}}</div>{{/dc3altdamagebutton}}
                 {{/buttons}}
                 <div class="sheet-one-column sheet-result" data-i18n="failure">Failure</div>
-            {{/rollTotal() computed::success 0}}
+            {{/rollLess() roll dc1}}
+            {{#^rollLess() roll dc1}}
+                {{#^rollWasCrit() roll}}
+                <div class="sheet-one-column sheet-result" data-i18n="success">Success</div>
+                {{/^rollWasCrit() roll}}
+                {{#buttons}}
+                {{#rollLess() roll dc2}}{{#^rollLess() roll dc1}}{{#dc1damagebutton}}<div class="sheet-one-column sheet-button">{{dc1damagebutton}}</div>{{/dc1damagebutton}}{{/^rollLess() roll dc1}}{{/rollLess() roll dc2}}
+                {{#rollLess() roll dc3}}{{#^rollLess() roll dc2}}{{#dc2damagebutton}}<div class="sheet-one-column sheet-button">{{dc2damagebutton}}</div>{{/dc2damagebutton}}{{/^rollLess() roll dc2}}{{/rollLess() roll dc3}}
+                {{#^rollLess() roll dc3}}{{#dc3damagebutton}}<div class="sheet-one-column sheet-button">{{dc3damagebutton}}</div>{{/dc3damagebutton}}{{/^rollLess() roll dc3}}
+                {{/buttons}}
+            {{/^rollLess() roll dc1}}
+            {{/^rollWasFumble() roll}}
             {{/spellcast}}
             {{^spellcast}}
             {{#rollWasCrit() roll}}
