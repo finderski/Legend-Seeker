@@ -265,16 +265,20 @@
                 <label class="fieldLabelAbove" data-i18n="speed">Speed</label>
                 <input class="xPointInput" type="text" name="attr_speed" placeholder="0"/>
               </div>
-              <div class="initiative readOnly">
-                <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
-                <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0" readonly="readonly"/>
+              <div class="initiative">
+                <button class="textButton" type="roll" name="roll_initiative" value="@{initiative_formula}">
+                  <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
+                  <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
+                </button>
               </div>
               <div class="hpb readOnly">
                 <label class="fieldLabelAbove" data-i18n="heroic-proficiency-bonus">Heroic Proficiency Bonus</label>
                 <input class="xPointInput" type="text" name="attr_heroic_proficiency_bonus" value="2" readonly="readonly"/>
               </div>
               <div class="legendaryPoints"> 
-                <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
+                <button class="textButton" type="action" name="act_use-legendary-points">
+                  <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
+                </button>
                 <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
               </div>
               <div class="numberOfActions"> 
@@ -638,6 +642,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="damageReduction"> 
+      <!-- Damage Reduction Section-->
+      <input type="hidden" name="attr_total_dr" value="0"/><span data-i18n="total-damage-reduction-abbr">Total DR: </span><span name="attr_total_dr"></span>
     </div>
     <hr class="sectionDivider"/>
     <div class="combat">
@@ -2003,9 +2011,12 @@
   </div>
   <div class="sheetSettings">
     <h1 class="headerLabel" data-i18n="settings">Settings</h1>
-    <div class="settingRow">
+    <div class="settingCol">
       <label class="settingLabel">
         <input class="checkboxInput" type="checkbox" name="attr_mana-tap_hider" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="show-spells-on-sheet">Show Spell Slots on Sheet</span>
+      </label>
+      <label class="settingLabel">
+        <input class="checkboxInput" type="checkbox" name="attr_true-legend" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="true-legend">True Legend</span>
       </label>
     </div>
     <div class="footer"> 
@@ -2142,6 +2153,17 @@
         {{#notes}}
         <div class="sheet-one-column">Notes: {{notes}}</div>
         {{/notes}}
+    </div>
+</rolltemplate>
+<rolltemplate class="sheet-rolltemplate-emote">
+    <div class="sheet-avatar">
+        {{#avatar}}
+        {{avatar}} 
+        {{/avatar}}
+    </div>
+    <div class="sheet-spacer"></div>
+    <div class="sheet-textContainer">
+        {{name}} {{text}} {{#roll}}{{roll}}{{/roll}}
     </div>
 </rolltemplate>
 
@@ -3530,4 +3552,34 @@ on('clicked:secondwind', function() {
     });
 });
 
+// Spending a Legendary Point
+on('clicked:use-legendary-points', function() {
+    getAttrs(['character_name', 'character_avatar', 'character_token', 'legendary_points', 'true-legend'], values => {
+        log('Avatar info', values.character_avatar, derivedStatsColor);
+        log('Token info', values.character_token, derivedStatsColor);
+        const characterName = values.character_name || 'Character';
+        const legendaryPoints = parseInt(values.legendary_points) || 0;
+        const trueLegend = parseInt(values['true-legend']) || 0;
+        let avatarURL = 'https://app.roll20.net/images/character.png';
+        if (values.character_avatar) {
+            avatarURL = values.character_avatar.split('?')[0]; // Remove any query parameters for Roll20 hosted images
+        } else if (values.character_token) {
+            avatarURL = values.character_token.split('?')[0]; // Remove any query parameters for Roll20 hosted images
+        }
+        let rollFormula = `&{template:emote} {{name=${characterName}}} `
+        // rollFormula += `{{avatar=${avatarURL}}} `;
+        rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
+        rollFormula += legendaryPoints > 0 ? `{{text=^{spends-alegendary-point-and-rolls}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
+        rollFormula += trueLegend ? `{{roll=[[1d8]]}}` : '{{roll=[[1d6]]}}';
+        log('Roll formula', rollFormula, derivedStatsColor);
+        const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
+        const roll_result = legendaryPoints > 0 ? rollFormula : noRollFormula;
+        const newLegendaryPoints = legendaryPoints - 1;
+        if(newLegendaryPoints >= 0) {
+            setAttrs({ legendary_points: newLegendaryPoints });
+        }
+        // const roll_result = `/w gm &{template:roll} {{name=${characterName}}} {{title=Legendary Point Spent}} {{legendarypoint=1}} {{legendarypointsleft=${newLegendaryPoints}}}`;
+        startRoll(roll_result, results => finishRoll(results.rollId));
+    });
+});
 </script>

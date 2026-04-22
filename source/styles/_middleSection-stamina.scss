@@ -103,6 +103,20 @@
                     width: 100%;
                     text-align: center;
                 }
+                button[type=action].textButton {
+                    border: none;
+                    padding: 0;
+                    margin: 0;
+                    &:hover  > label.fieldLabelAbove:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+            .initiative {
+                background-color: var(--read-only);
+            }
+            .initiative .textButton > .xPointInput:hover {
+                cursor: pointer;
             }
             .legendaryPoints {
                 align-self: flex-end;

@@ -19,6 +19,9 @@
     --decorative: 'Eagle Lake';
     --calculations: 'Smooch';
     --numbers: 'Cormorant Unicase';
+    --emote-bg: #f5e4d3;
+    --emote-text: #653e10;
+    --emote-border: #f0c392;
 }
 
 body.sheet-darkmode {
@@ -165,6 +168,8 @@ input:not(:checked)+.isCarried::before {
 }
 
 /* Button Styling */
+.charsheet button.textButton[type=roll]:before,
+.ui-dialog .charactersheet .charsheet button.textButton[type=action]:before,
 .charsheet button.labelButton[type=roll]:before,
 .charsheet button.sendToChat[type=roll]:before,
 .charsheet button.whisperToChat[type=roll]:before {
@@ -174,6 +179,17 @@ input:not(:checked)+.isCarried::before {
 .ui-dialog .charactersheet button {
     font-family: var(--decorative);
     font-weight: bold;
+}
+
+.ui-dialog .charactersheet button.textButton[type=roll],
+.ui-dialog .charactersheet button.textButton[type=action] {
+    border: none;
+    padding: 0;
+    margin: 0;
+    &:hover {
+        background-color: transparent;
+        cursor: pointer;
+    }
 }
 
 .ui-dialog .charactersheet button.labelButton,

@@ -2,10 +2,10 @@
 
 .sheetSettings {
     @include sheet-scope {
-        .settingRow {
+        .settingCol {
             display: flex;
-            flex-flow: row nowrap;
-            column-gap: 5px;
+            flex-flow: column wrap;
+            row-gap: 5px;
             align-items: center;
             .settingLabel {
                 display: inline;

@@ -151,3 +151,48 @@
         color: #7F1216;
     }
 }
+
+.sheet-rolltemplate-emote {
+    display: flex;
+    flex-flow: row nowrap;
+    column-gap: 15px;
+    align-items: flex-start;
+    border-top: 1px solid #f0c392;
+    background-color: #f5e4d3;
+    color: #653e10;
+    border-bottom: 1px solid #f0c392;
+    margin: 0 -15px 0 -45px;
+    padding: 5px;
+    line-height: 1.5em;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    .sheet-avatar {
+        position: absolute;
+        left: 5px;
+        width: 28px;
+        flex: 0 0 5%;
+        img {
+            max-width: 28px;
+            max-height: 28px;
+        }
+    }
+    .sheet-spacer {
+        flex: 0 0 4%;
+    }
+    .sheet-textContainer {
+        width: 100%;
+        padding: 5px 10px 5px 0;
+        flex: 2 0 80%;
+        .inlinerollresult {
+            background-color: transparent;
+            border: none;
+        }
+        .inlinerollresult.fullcrit {
+            color: #005700;
+        }
+        .inlinerollresult.fullfail {
+            color: #7F1216;
+        }
+    }
+}

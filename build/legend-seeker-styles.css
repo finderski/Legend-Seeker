@@ -24,6 +24,9 @@
   --decorative: 'Eagle Lake';
   --calculations: 'Smooch';
   --numbers: 'Cormorant Unicase';
+  --emote-bg: #f5e4d3;
+  --emote-text: #653e10;
+  --emote-border: #f0c392;
 }
 
 body.sheet-darkmode {
@@ -169,6 +172,8 @@ input:not(:checked) + .isCarried::before {
 }
 
 /* Button Styling */
+.charsheet button.textButton[type=roll]:before,
+.ui-dialog .charactersheet .charsheet button.textButton[type=action]:before,
 .charsheet button.labelButton[type=roll]:before,
 .charsheet button.sendToChat[type=roll]:before,
 .charsheet button.whisperToChat[type=roll]:before {
@@ -178,6 +183,18 @@ input:not(:checked) + .isCarried::before {
 .ui-dialog .charactersheet button {
   font-family: var(--decorative);
   font-weight: bold;
+}
+
+.ui-dialog .charactersheet button.textButton[type=roll],
+.ui-dialog .charactersheet button.textButton[type=action] {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.ui-dialog .charactersheet button.textButton[type=roll]:hover,
+.ui-dialog .charactersheet button.textButton[type=action]:hover {
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .ui-dialog .charactersheet button.labelButton,
@@ -721,6 +738,26 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints .xPointInput {
   width: 100%;
   text-align: center;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed button[type=action].textButton,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover {
+  cursor: pointer;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative {
+  background-color: var(--read-only);
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .textButton > .xPointInput:hover {
+  cursor: pointer;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
   align-self: flex-end;
@@ -1952,27 +1989,27 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .sheetSettings .settingRow {
+.ui-dialog .charactersheet .sheetSettings .settingCol {
   display: flex;
-  flex-flow: row nowrap;
-  column-gap: 5px;
+  flex-flow: column wrap;
+  row-gap: 5px;
   align-items: center;
 }
-.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel {
+.ui-dialog .charactersheet .sheetSettings .settingCol .settingLabel {
   display: inline;
 }
-.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel .styledCheckbox {
+.ui-dialog .charactersheet .sheetSettings .settingCol .settingLabel .styledCheckbox {
   display: inline-block;
   font-family: "Pictos";
   font-size: 1.5em;
 }
-.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel .checkboxInput:not(:checked) + .styledCheckbox::before {
+.ui-dialog .charactersheet .sheetSettings .settingCol .settingLabel .checkboxInput:not(:checked) + .styledCheckbox::before {
   content: "D";
 }
-.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel .checkboxInput:checked + .styledCheckbox::before {
+.ui-dialog .charactersheet .sheetSettings .settingCol .settingLabel .checkboxInput:checked + .styledCheckbox::before {
   content: "2";
 }
-.ui-dialog .charactersheet .sheetSettings .settingRow .settingLabel .styledCheckboxText {
+.ui-dialog .charactersheet .sheetSettings .settingCol .settingLabel .styledCheckboxText {
   display: inline-block;
   background-color: transparent;
   margin: 5px;
@@ -2143,6 +2180,51 @@ label.buttonStyle {
   color: #005700;
 }
 .sheet-rolltemplate-roll .inlinerollresult.fullfail {
+  color: #7F1216;
+}
+
+.sheet-rolltemplate-emote {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 15px;
+  align-items: flex-start;
+  border-top: 1px solid #f0c392;
+  background-color: #f5e4d3;
+  color: #653e10;
+  border-bottom: 1px solid #f0c392;
+  margin: 0 -15px 0 -45px;
+  padding: 5px;
+  line-height: 1.5em;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+.sheet-rolltemplate-emote .sheet-avatar {
+  position: absolute;
+  left: 5px;
+  width: 28px;
+  flex: 0 0 5%;
+}
+.sheet-rolltemplate-emote .sheet-avatar img {
+  max-width: 28px;
+  max-height: 28px;
+}
+.sheet-rolltemplate-emote .sheet-spacer {
+  flex: 0 0 4%;
+}
+.sheet-rolltemplate-emote .sheet-textContainer {
+  width: 100%;
+  padding: 5px 10px 5px 0;
+  flex: 2 0 80%;
+}
+.sheet-rolltemplate-emote .sheet-textContainer .inlinerollresult {
+  background-color: transparent;
+  border: none;
+}
+.sheet-rolltemplate-emote .sheet-textContainer .inlinerollresult.fullcrit {
+  color: #005700;
+}
+.sheet-rolltemplate-emote .sheet-textContainer .inlinerollresult.fullfail {
   color: #7F1216;
 }
 

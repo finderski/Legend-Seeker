@@ -47,6 +47,11 @@ include ./mixins/_mixin_skills.pug
                     // Conditions Section
                     include _conditions.pug
                     include _languages.pug
+        .damageReduction 
+            // Damage Reduction Section
+            input(type='hidden', name='attr_total_dr', value="0")
+            span(data-i18n='total-damage-reduction-abbr') Total DR: 
+            span(name="attr_total_dr")
         hr.sectionDivider
         .combat
             input(class="hideSection", type="hidden", name="attr_mana-tap_hider", value="0")

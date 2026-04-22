@@ -283,3 +283,34 @@ on('clicked:secondwind', function() {
         startRoll(roll_result, results => finishRoll(results.rollId));
     });
 });
+
+// Spending a Legendary Point
+on('clicked:use-legendary-points', function() {
+    getAttrs(['character_name', 'character_avatar', 'character_token', 'legendary_points', 'true-legend'], values => {
+        log('Avatar info', values.character_avatar, derivedStatsColor);
+        log('Token info', values.character_token, derivedStatsColor);
+        const characterName = values.character_name || 'Character';
+        const legendaryPoints = parseInt(values.legendary_points) || 0;
+        const trueLegend = parseInt(values['true-legend']) || 0;
+        let avatarURL = 'https://app.roll20.net/images/character.png';
+        if (values.character_avatar) {
+            avatarURL = values.character_avatar.split('?')[0]; // Remove any query parameters for Roll20 hosted images
+        } else if (values.character_token) {
+            avatarURL = values.character_token.split('?')[0]; // Remove any query parameters for Roll20 hosted images
+        }
+        let rollFormula = `&{template:emote} {{name=${characterName}}} `
+        // rollFormula += `{{avatar=${avatarURL}}} `;
+        rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
+        rollFormula += legendaryPoints > 0 ? `{{text=^{spends-alegendary-point-and-rolls}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
+        rollFormula += trueLegend ? `{{roll=[[1d8]]}}` : '{{roll=[[1d6]]}}';
+        log('Roll formula', rollFormula, derivedStatsColor);
+        const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
+        const roll_result = legendaryPoints > 0 ? rollFormula : noRollFormula;
+        const newLegendaryPoints = legendaryPoints - 1;
+        if(newLegendaryPoints >= 0) {
+            setAttrs({ legendary_points: newLegendaryPoints });
+        }
+        // const roll_result = `/w gm &{template:roll} {{name=${characterName}}} {{title=Legendary Point Spent}} {{legendarypoint=1}} {{legendarypointsleft=${newLegendaryPoints}}}`;
+        startRoll(roll_result, results => finishRoll(results.rollId));
+    });
+});

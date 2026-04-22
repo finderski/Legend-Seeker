@@ -211,5 +211,7 @@
   "no": "No",
   "number-of-actions": "Number of Actions",
   "add": "Add",
-  "heavy-hit": "&nbsp;(Heavy Hit!)"
+  "heavy-hit": "&nbsp;(Heavy Hit!)",
+  "true-legend": "True Legend",
+  "spends-alegendary-point-and-rolls": "spends a Legendary Point and rolls..."
 }
