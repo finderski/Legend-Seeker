@@ -1394,6 +1394,87 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .proficient .ls-Dropdown {
   font-size: 1.2em;
 }
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 5px;
+  padding: 3px;
+  border-radius: 0 8px;
+  margin-top: auto;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shieldType {
+  width: 80%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .config {
+  left: -5%;
+  top: -6px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shieldClass {
+  width: 30%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shieldClass select.ls-Dropdown {
+  background-color: transparent;
+  border: none;
+  font-family: var(--mainBody);
+  font-size: 1.2em;
+  width: 100%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .worn {
+  display: inline-block;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .worn .shifted {
+  margin: 5px 0 0 -3px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .worn .isCarried::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .worn input:checked + .isCarried::before {
+  background-image: url("https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/has_shield.png");
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .worn input:not(:checked) + .isCarried::before {
+  background-image: url("https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/no_shield.png");
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldDamageReduction,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .willDefense,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .fortDefense,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldLevel {
+  width: 30%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldDamageReduction .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .willDefense .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .fortDefense .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldLevel .textField {
+  width: 100%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .proficient {
+  display: flex;
+  flex-flow: row wrap;
+  flex-basis: 30%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .proficient .ls-Dropdown {
+  font-size: 1.2em;
+}
 .ui-dialog .charactersheet .backPage .topContainer .equipment .classResources {
   display: flex;
   flex-flow: column nowrap;

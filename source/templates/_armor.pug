@@ -46,7 +46,48 @@
             .dexCap 
                 label(class="fieldLabelAbove", data-i18n='dexterity-cap-abbr') Dex Cap
                 input(class="textField", type="text", name="attr_armor_dex_cap", value="", placeholder="1")
-    //
-        fieldset(class="repeating_armor")
-            .armorGroup
+.shield
+    h3(class='headerLabel left', data-i18n='shields') Shield
+    .shieldGroup
+        .shieldType 
+            label(class="fieldLabelAbove", data-i18n='shield-type') Shield Type
+            input(class="textField", type="text", name="attr_shield_name", value="")
+        .config 
+            label.cog
+                input(class='hiddenInput', type='checkbox', name='attr_shield_config_toggle' checked)
+                span.configIcon y
+        //
+            shield by lastspark from <a href="https://thenounproject.com/browse/icons/term/shield/" target="_blank" title="shield Icons">Noun Project</a> (CC BY 3.0)
+        .worn
+            label(class="fieldLabelAbove", data-i18n='worn') Worn
+            label(class="shifted")
+                input(class="hidden", type='checkbox', name='attr_shield_worn', value='1', checked)
+                span(class="isCarried")
+        input(class='hideSection', type='hidden', name='attr_shield_config_toggle', value='1')
+        .shield-config
+            .shieldClass 
+                label(class="fieldLabelAbove", data-i18n='class') Class
+                select(class="ls-Dropdown", name="attr_armor_class")
+                    option(value="light", data-i18n='light' selected) Light
+                    option(value="medium", data-i18n='medium') Medium
+                    option(value="heavy", data-i18n='heavy') Heavy
+                input(type="hidden", name="attr_armor_check_penalty", value="0")
+            .proficient 
+                label(class="fieldLabelAbove", data-i18n='proficient') Proficient
+                select(class="ls-Dropdown", name="attr_armor_proficient_multiplier")
+                    option(value="1", data-i18n='no' selected) No
+                    option(value="0", data-i18n='yes') Yes
+            .shieldDamageReduction 
+                label(class="fieldLabelAbove", data-i18n='damage-reduction-abbr-caps') DR
+                input(class="textField", type="text", name="attr_shield_dr", value="", placeholder="1")
+            .shieldLevel 
+                //Used for REF Defense (or Level, whichever is higher)
+                label(class="fieldLabelAbove", data-i18n='shield-level') Shield Level
+                input(class="textField", type="text", name="attr_shield_level", value="", placeholder="1")
+            .fortDefense 
+                label(class="fieldLabelAbove", data-i18n='fortitude-defense') Fort Defense
+                input(class="textField", type="text", name="attr_shield_fort_defense", value="", placeholder="1")
+            .willDefense 
+                label(class="fieldLabelAbove", data-i18n='will-defense') Will Defense
+                input(class="textField", type="text", name="attr_shield_will_defense", value="", placeholder="1")
             

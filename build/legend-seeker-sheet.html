@@ -1054,11 +1054,64 @@
               </div>
             </div>
           </div>
-          <!--
-          fieldset(class="repeating_armor")
-              .armorGroup
-              
-          -->
+        </div>
+        <div class="shield">
+          <h3 class="headerLabel left" data-i18n="shields">Shield</h3>
+          <div class="shieldGroup">
+            <div class="shieldType"> 
+              <label class="fieldLabelAbove" data-i18n="shield-type">Shield Type</label>
+              <input class="textField" type="text" name="attr_shield_name" value=""/>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_shield_config_toggle" checked="checked"/><span class="configIcon">y</span>
+              </label>
+            </div>
+            <!--shield by lastspark from <a href="https://thenounproject.com/browse/icons/term/shield/" target="_blank" title="shield Icons">Noun Project</a> (CC BY 3.0)
+            -->
+            <div class="worn">
+              <label class="fieldLabelAbove" data-i18n="worn">Worn</label>
+              <label class="shifted">
+                <input class="hidden" type="checkbox" name="attr_shield_worn" value="1" checked="checked"/><span class="isCarried"></span>
+              </label>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_shield_config_toggle" value="1"/>
+            <div class="shield-config">
+              <div class="shieldClass"> 
+                <label class="fieldLabelAbove" data-i18n="class">Class</label>
+                <select class="ls-Dropdown" name="attr_armor_class">
+                  <option value="light" data-i18n="light" selected="selected">Light</option>
+                  <option value="medium" data-i18n="medium">Medium</option>
+                  <option value="heavy" data-i18n="heavy">Heavy</option>
+                </select>
+                <input type="hidden" name="attr_armor_check_penalty" value="0"/>
+              </div>
+              <div class="proficient"> 
+                <label class="fieldLabelAbove" data-i18n="proficient">Proficient</label>
+                <select class="ls-Dropdown" name="attr_armor_proficient_multiplier">
+                  <option value="1" data-i18n="no" selected="selected">No</option>
+                  <option value="0" data-i18n="yes">Yes</option>
+                </select>
+              </div>
+              <div class="shieldDamageReduction"> 
+                <label class="fieldLabelAbove" data-i18n="damage-reduction-abbr-caps">DR</label>
+                <input class="textField" type="text" name="attr_shield_dr" value="" placeholder="1"/>
+              </div>
+              <div class="shieldLevel"> 
+                <!--Used for REF Defense (or Level, whichever is higher)-->
+                <label class="fieldLabelAbove" data-i18n="shield-level">Shield Level</label>
+                <input class="textField" type="text" name="attr_shield_level" value="" placeholder="1"/>
+              </div>
+              <div class="fortDefense"> 
+                <label class="fieldLabelAbove" data-i18n="fortitude-defense">Fort Defense</label>
+                <input class="textField" type="text" name="attr_shield_fort_defense" value="" placeholder="1"/>
+              </div>
+              <div class="willDefense"> 
+                <label class="fieldLabelAbove" data-i18n="will-defense">Will Defense</label>
+                <input class="textField" type="text" name="attr_shield_will_defense" value="" placeholder="1"/>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- stying found in _equipmentAndSkills.scss-->
         <div class="classResources">
