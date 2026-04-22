@@ -23,12 +23,13 @@
     --emote-text: #653e10;
     --emote-border: #f0c392;
 }
-
-body.sheet-darkmode {
+/*
+.ui-dialog body.sheet-darkmode .ui-dialog .charactersheet {
     --parchment: #000;
     --ink: #C0C0C0;
     --gold: #A9A9A9;
 }
+*/
 
 .ui-dialog {
     background-color: var(--parchment);

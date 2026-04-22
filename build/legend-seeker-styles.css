@@ -29,12 +29,13 @@
   --emote-border: #f0c392;
 }
 
-body.sheet-darkmode {
-  --parchment: #000;
-  --ink: #C0C0C0;
-  --gold: #A9A9A9;
+/*
+.ui-dialog body.sheet-darkmode .ui-dialog .charactersheet {
+    --parchment: #000;
+    --ink: #C0C0C0;
+    --gold: #A9A9A9;
 }
-
+*/
 .ui-dialog {
   background-color: var(--parchment);
   color: var(--ink);
@@ -1125,6 +1126,29 @@ label.buttonStyle {
   top: -10px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .frontPage .damageReduction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cinzel", serif;
+  font-size: 1.15em;
+  font-weight: bold;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .frontPage .damageReduction .subHeaderLabel {
+  font-size: 1em;
+  width: fit-content;
+  text-transform: small-caps;
+}
+.ui-dialog .charactersheet .frontPage .damageReduction > span {
+  margin: 3px 0 0 5px;
+  font-family: var(--mainBodyAlt);
+  font-size: 1.2em;
+}
+.ui-dialog .charactersheet .frontPage .damageReduction {
   font-synthesis: unset !important;
 }
 

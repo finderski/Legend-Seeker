@@ -1,0 +1,23 @@
+@use './mixins/sheet-scope' as *;
+
+.frontPage .damageReduction {
+    @include sheet-scope {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Cinzel', serif;
+        font-size: 1.15em;
+        font-weight: bold;
+        column-gap: 5px;
+        .subHeaderLabel {
+            font-size: 1em;
+            width: fit-content;
+            text-transform: small-caps;
+        }
+        > span {
+            margin: 3px 0 0 5px;
+            font-family: var(--mainBodyAlt);
+            font-size: 1.2em;
+        }
+    }
+}
