@@ -9,7 +9,9 @@
   box-sizing: border-box !important;
 }
 
-.ui-dialog {
+.ui-dialog,
+.sheet-rolltemplate-roll,
+.sheet-rolltemplate-emote {
   --parchment: #f2e7c9;
   --ink: #2b2418;
   --gold: #c9a44d;
@@ -17,6 +19,13 @@
   --read-only: #D9BF87;
   --dragon-wing: #7F1216;
   --condition: #E5D3A9;
+  --light-condition: #E3D2A6;
+  --cream: #F8FAFC;
+  --magic: #2F5496;
+  --critical: #005700;
+  --emote-bg: #f5e4d3;
+  --emote-text: #653e10;
+  --emote-border: #f0c392;
   --title: 'Cinzel';
   --mainBody: 'Merriweather';
   --mainBodyAlt: 'Cormorant Garamond';
@@ -24,13 +33,12 @@
   --decorative: 'Eagle Lake';
   --calculations: 'Smooch';
   --numbers: 'Cormorant Unicase';
-  --emote-bg: #f5e4d3;
-  --emote-text: #653e10;
-  --emote-border: #f0c392;
 }
 
 .ui-dialog,
-.ui-dialog .charactersheet .maindiv {
+.ui-dialog .characterviewer,
+.ui-dialog .charactersheet .maindiv,
+.sheetTitle {
   background-color: var(--parchment);
   color: var(--ink);
 }
@@ -60,12 +68,6 @@
   font-family: var(--mainBody);
 }
 
-/*
-.ui-dialog .charactersheet {
-    background-color: var(--parchment);
-    color: var(--ink);
-}
-*/
 /* Remove some default Roll20 Styles */
 .ui-dialog .charactersheet {
   font-synthesis: unset !important;
@@ -74,7 +76,8 @@
 .ui-dialog .charactersheet button[type=roll] {
   padding: 5px;
   margin: 0;
-  border: black 1px solid;
+  border: var(--ink) 1px solid;
+  color: var(--ink);
   background: transparent;
   cursor: pointer;
   font-size: 1em;
@@ -91,7 +94,7 @@
 .ui-dialog .charactersheet label {
   font-family: var(--title);
   font-size: 0.85em;
-  color: black;
+  color: var(--ink);
   text-transform: lowercase;
   padding: 0;
   margin: 0 0 -7px 0;
@@ -103,7 +106,7 @@
   font-family: "Cormorant Unicase", serif;
   font-weight: 600;
   font-size: 1.4em;
-  color: black;
+  color: var(--ink);
   width: 100%;
   padding: 3px;
   border-bottom: 1px solid var(--ink);
@@ -123,6 +126,7 @@
   text-align: center;
   margin: 0;
   width: 100%;
+  color: var(--ink);
 }
 
 .ui-dialog .charactersheet h2.headerLabel {
@@ -130,6 +134,7 @@
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
+  color: var(--ink);
 }
 
 .ui-dialog .charactersheet h3.headerLabel.left {
@@ -173,6 +178,7 @@ input:not(:checked) + .isCarried::before {
 .charsheet button.sendToChat[type=roll]:before,
 .charsheet button.whisperToChat[type=roll]:before {
   content: "";
+  color: var(--ink);
 }
 
 .ui-dialog .charactersheet button {
@@ -197,6 +203,7 @@ input:not(:checked) + .isCarried::before {
   display: inline-block;
   width: auto;
   background-color: transparent;
+  color: var(--ink);
   border: var(--ink) 1px solid;
   padding: 3px 9px;
   margin: 0 10px 0 0;
@@ -209,7 +216,8 @@ input:not(:checked) + .isCarried::before {
 
 .ui-dialog .charactersheet button.labelButton:hover,
 .ui-dialog .charactersheet button[type=action]:hover,
-.ui-dialog .charactersheet label.buttonStyle:hover {
+.ui-dialog .charactersheet label.buttonStyle:hover,
+.ui-dialog .charactersheet button.labelButton:hover > span {
   background-color: var(--ink);
   color: var(--parchment);
   cursor: pointer;
@@ -221,7 +229,8 @@ input:not(:checked) + .isCarried::before {
   display: inline-flex;
   align-items: center;
 }
-.ui-dialog .charactersheet .chatButtons .sendToChat:hover {
+.ui-dialog .charactersheet .chatButtons .sendToChat:hover,
+.ui-dialog .charactersheet .chatButtons .shedToChat:hover > span {
   background-color: var(--ink);
   color: var(--parchment);
 }
@@ -242,9 +251,11 @@ input:not(:checked) + .isCarried::before {
   /*left: 30px;*/
   left: 100%;
   background-color: var(--parchment);
+  color: var(--ink);
   font-family: "Pictos";
 }
-.chatButtons:hover .whisperButton :hover {
+.chatButtons:hover .whisperButton :hover,
+.chatButtons:hover .whisperButton :hover > span {
   background-color: var(--ink);
   color: var(--parchment);
 }
@@ -297,7 +308,7 @@ input:not(:checked) + .isCarried::before {
 label.buttonStyle {
   display: inline-block;
   width: fit-content;
-  border: black 2px solid;
+  border: var(--ink) 2px solid;
   text-align: center;
   padding: 5px;
   height: fit-content;
@@ -580,12 +591,14 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .allcaps {
   font-family: "Eagle Lake";
   text-transform: uppercase;
+  /*color: var(--ink);*/
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .smallcaps,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .smallcaps {
   font-family: "Cinzel";
   text-transform: lowercase;
   font-size: 0.75em;
+  /*color: var(--ink);*/
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput {
   text-align: center;
@@ -882,6 +895,7 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow .headerLabel {
   line-height: 1;
+  color: black;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .corruptionCell {
   display: none;
@@ -891,6 +905,7 @@ label.buttonStyle {
   width: 30px;
   height: 30px;
   border: 1px solid black;
+  color: black;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput {
   width: 100%;
@@ -1076,6 +1091,7 @@ label.buttonStyle {
   text-transform: uppercase;
   width: 100%;
   background-color: var(--ink);
+  color: var(--parchment);
   border-radius: 0 8px 0 8px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod {
@@ -1748,7 +1764,7 @@ label.buttonStyle {
   font-size: 1.15em;
 }
 .ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .school .spellSchoolDropdown {
-  color: #2F5496;
+  color: var(--magic);
   font-size: 1.45em;
   font-family: var(--mainBody);
   font-style: italic;
@@ -2032,6 +2048,7 @@ label.buttonStyle {
   border: none;
   font-family: var(--mainBody);
   font-size: 1.15em;
+  color: var(--ink);
 }
 .ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weaponNotes {
   resize: vertical;
@@ -2134,40 +2151,42 @@ label.buttonStyle {
   padding: 0;
   margin: 0;
   border-radius: 16px 0 16px 0;
-  border: 1px solid #2B2418;
-  background-color: #F3E6C9;
+  /* border: 1px solid #2B2418; */
+  background-color: var(--parchment);
+  border: 1px solid var(--ink);
+  /* background-color: #F3E6C9; */
   font-synthesis: unset !important;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-header {
   display: inline;
   padding: 10px;
-  background-color: #2B2418;
+  background-color: var(--ink);
   border-radius: 16px 0 0 0;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-header h1 {
   font-family: "Cinzel";
   font-size: 1.5em;
-  color: #F3E6C9;
+  color: var(--parchment);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-header h2 {
   font-family: "Eagle Lake";
   font-size: 1.4em;
   font-weight: bold;
-  color: #F3E6C9;
+  color: var(--parchment);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-damage-header {
-  background-color: #7F1216;
+  background-color: var(--dragon-wing);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-damage-header h1,
 .sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-damage-header h2 {
-  color: #E3D2A6;
+  color: var(--light-condition);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-spell-header {
-  background-color: #2F5496;
+  background-color: var(--magic);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-spell-header h1,
 .sheet-rolltemplate-roll .sheet-rolltemplate-header.sheet-spell-header h2 {
-  color: #F8FAFC;
+  color: var(--cream);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body {
   display: flex;
@@ -2186,7 +2205,7 @@ label.buttonStyle {
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-roll-info .sheet-school {
   font-style: italic;
   font-weight: bold;
-  color: #2F5496;
+  color: var(--magic);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-left-column {
   width: 55%;
@@ -2218,24 +2237,24 @@ label.buttonStyle {
   font-size: 1.2em;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-right-column .sheet-extremeRoll.sheet-crit {
-  color: #005700;
+  color: var(--critical);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-right-column .sheet-extremeRoll.sheet-fumble {
-  color: #7F1216;
+  color: var(--dragon-wing);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column {
   width: 100%;
   text-align: center;
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column .sheet-crit {
-  color: #005700;
+  color: var(--critical);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column .sheet-fumble {
-  color: #7F1216;
+  color: var(--dragon-wing);
 }
 .sheet-rolltemplate-roll .sheet-rolltemplate-body .sheet-one-column > a[href^="~"] {
-  background-color: #2b2418;
-  color: #f3e6c9;
+  background-color: var(--ink);
+  color: var(--parchment);
   padding: 10px 15px;
   border-radius: 8px;
   border: none;
@@ -2275,10 +2294,10 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 .sheet-rolltemplate-roll .inlinerollresult.fullcrit {
-  color: #005700;
+  color: var(--critical);
 }
 .sheet-rolltemplate-roll .inlinerollresult.fullfail {
-  color: #7F1216;
+  color: var(--dragon-wing);
 }
 
 .sheet-rolltemplate-emote {
@@ -2286,10 +2305,10 @@ label.buttonStyle {
   flex-flow: row nowrap;
   column-gap: 15px;
   align-items: flex-start;
-  border-top: 1px solid #f0c392;
-  background-color: #f5e4d3;
-  color: #653e10;
-  border-bottom: 1px solid #f0c392;
+  border-top: 1px solid var(--emote-border);
+  background-color: var(--emote-bg);
+  color: var(--emote-text);
+  border-bottom: 1px solid var(--emote-border);
   margin: 0 -15px 0 -45px;
   padding: 5px;
   line-height: 1.5em;
@@ -2320,19 +2339,39 @@ label.buttonStyle {
   border: none;
 }
 .sheet-rolltemplate-emote .sheet-textContainer .inlinerollresult.fullcrit {
-  color: #005700;
+  color: var(--critical);
 }
 .sheet-rolltemplate-emote .sheet-textContainer .inlinerollresult.fullfail {
-  color: #7F1216;
+  color: var(--dragon-wing);
 }
 
 body.sheet-darkmode,
-.sheet-darkmode .characterviewer .charsheet .maindiv {
-  --parchment: #1f1f1f;
-  --ink: #C0C0C0;
-  --gold: #A9A9A9;
+body.sheet-darkmode .ui-dialog,
+body.sheet-darkmode .characterviewer,
+.sheet-darkmode .characterviewer .charsheet .maindiv,
+.sheet-rolltemplate-roll.sheet-rolltemplate-darkmode,
+.sheet-rolltemplate-emote.sheet-rolltemplate-darkmode {
+  --parchment: #0c1835;
+  --ink: #d4dbe6;
+  --gold: #325aae;
+  --light-gold: #2d519d;
+  --read-only: #233f76;
+  --dragon-wing: #6fe3e6;
+  --condition: #182b55;
+  --light-condition: #1b2c58;
+  --cream: #060503;
+  --magic: #ccaa67;
+  --critical: #e8a6f9;
+  /* Match R20's Emote Darkmnode Colors - Don't Change */
+  --emote-bg: #353535;
+  --emote-text: #ffab00;
+  --emote-border: #1c1c1c;
 }
 
 body.sheet-darkmode .characterviewer .sheetform {
   background-color: unset;
 }
+
+/*
+@use './styles/colors';
+*/

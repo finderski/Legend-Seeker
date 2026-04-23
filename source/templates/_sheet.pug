@@ -5,7 +5,8 @@ include ./mixins/_mixin_buildSaves.pug
 include ./mixins/_mixin_skills.pug
 
 .maindiv
-    //h1(class='sheetTitle', data-i18n='character-score-sheet') Character Score Sheet
+    // Color Palette
+        include _colors.pug
     // Hidden inputs for character sheet functionality
     input(type='hidden', name='attr_sheetversion', value='0.1.0')
     input(type='hidden', name='attr_shield_dr', value='0')

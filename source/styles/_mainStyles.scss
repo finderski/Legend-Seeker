@@ -4,7 +4,9 @@
     box-sizing: border-box !important;
 }
 
-.ui-dialog {
+.ui-dialog,
+.sheet-rolltemplate-roll,
+.sheet-rolltemplate-emote {
     --parchment: #f2e7c9;
     --ink: #2b2418;
     --gold: #c9a44d;
@@ -12,6 +14,13 @@
     --read-only: #D9BF87;
     --dragon-wing: #7F1216;
     --condition: #E5D3A9;
+    --light-condition: #E3D2A6;
+    --cream: #F8FAFC;
+    --magic: #2F5496;
+    --critical: #005700;
+    --emote-bg: #f5e4d3;
+    --emote-text: #653e10;
+    --emote-border: #f0c392;
     --title: 'Cinzel';
     --mainBody: 'Merriweather';
     --mainBodyAlt: 'Cormorant Garamond';
@@ -19,13 +28,12 @@
     --decorative: 'Eagle Lake';
     --calculations: 'Smooch';
     --numbers: 'Cormorant Unicase';
-    --emote-bg: #f5e4d3;
-    --emote-text: #653e10;
-    --emote-border: #f0c392;
 }
 
 .ui-dialog,
-.ui-dialog .charactersheet .maindiv {
+.ui-dialog .characterviewer,
+.ui-dialog .charactersheet .maindiv,
+.sheetTitle {
     background-color: var(--parchment);
     color: var(--ink);
 }
@@ -55,13 +63,6 @@
     font-family: var(--mainBody);
 }
 
-/*
-.ui-dialog .charactersheet {
-    background-color: var(--parchment);
-    color: var(--ink);
-}
-*/
-
 /* Remove some default Roll20 Styles */
 .ui-dialog .charactersheet {
     font-synthesis: unset !important;
@@ -70,7 +71,8 @@
 .ui-dialog .charactersheet button[type=roll] {
     padding: 5px;
     margin: 0;
-    border: black 1px solid;
+    border: var(--ink) 1px solid;
+    color: var(--ink);
     background: transparent;
     cursor: pointer;
     font-size: 1em;
@@ -87,7 +89,7 @@
 .ui-dialog .charactersheet label {
     font-family: var(--title);
     font-size: .85em;
-    color: black;
+    color: var(--ink);
     text-transform: lowercase;
     padding: 0;
     margin: 0 0 -7px 0;
@@ -99,7 +101,7 @@
     font-family: 'Cormorant Unicase', serif;
     font-weight:600;
     font-size: 1.4em;
-    color: black;
+    color: var(--ink);
     width: 100%;
     padding: 3px;
     border-bottom: 1px solid var(--ink);
@@ -119,6 +121,7 @@
     text-align: center;
     margin: 0;
     width: 100%;
+    color: var(--ink);
 }
 
 .ui-dialog .charactersheet h2.headerLabel {
@@ -126,6 +129,8 @@
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
+    color: var(--ink);
+
 }
 
 .ui-dialog .charactersheet h3.headerLabel.left {
@@ -169,6 +174,7 @@ input:not(:checked)+.isCarried::before {
 .charsheet button.sendToChat[type=roll]:before,
 .charsheet button.whisperToChat[type=roll]:before {
     content: '';
+    color: var(--ink);
 }
 
 .ui-dialog .charactersheet button {
@@ -192,6 +198,7 @@ input:not(:checked)+.isCarried::before {
     display: inline-block;
     width: auto;
     background-color: transparent;
+    color: var(--ink);
     border: var(--ink) 1px solid;
     padding: 3px 9px;
     margin: 0 10px 0 0;
@@ -204,7 +211,8 @@ input:not(:checked)+.isCarried::before {
 
 .ui-dialog .charactersheet button.labelButton:hover,
 .ui-dialog .charactersheet button[type='action']:hover,
-.ui-dialog .charactersheet label.buttonStyle:hover {
+.ui-dialog .charactersheet label.buttonStyle:hover,
+.ui-dialog .charactersheet button.labelButton:hover > span {
     background-color: var(--ink);
     color: var(--parchment);
     cursor: pointer;
@@ -215,7 +223,8 @@ input:not(:checked)+.isCarried::before {
     position: relative;
     display: inline-flex;
     align-items: center;
-    .sendToChat:hover {
+    .sendToChat:hover,
+    .shedToChat:hover > span {
         background-color: var(--ink);
         color: var(--parchment);
     }
@@ -234,8 +243,10 @@ input:not(:checked)+.isCarried::before {
     /*left: 30px;*/
     left: 100%;
     background-color: var(--parchment);
+    color: var(--ink);
     font-family: 'Pictos';
-    :hover {
+    :hover,
+    :hover > span {
         background-color: var(--ink);
         color: var(--parchment);
     }
@@ -289,7 +300,7 @@ input:not(:checked)+.isCarried::before {
 label.buttonStyle {
     display: inline-block;
     width: fit-content;
-    border: black 2px solid;
+    border: var(--ink) 2px solid;
     text-align: center;
     padding: 5px;
     height: fit-content;

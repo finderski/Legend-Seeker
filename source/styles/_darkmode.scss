@@ -1,8 +1,24 @@
 body.sheet-darkmode,
-.sheet-darkmode .characterviewer .charsheet .maindiv {
-    --parchment: #1f1f1f;
-    --ink: #C0C0C0;
-    --gold: #A9A9A9;
+body.sheet-darkmode .ui-dialog,
+body.sheet-darkmode .characterviewer,
+.sheet-darkmode .characterviewer .charsheet .maindiv,
+.sheet-rolltemplate-roll.sheet-rolltemplate-darkmode,
+.sheet-rolltemplate-emote.sheet-rolltemplate-darkmode {
+    --parchment: #0c1835;
+    --ink: #d4dbe6;
+    --gold: #325aae;
+    --light-gold: #2d519d;
+    --read-only: #233f76;
+    --dragon-wing: #6fe3e6;
+    --condition: #182b55;
+    --light-condition: #1b2c58;
+    --cream: #060503;
+    --magic: #ccaa67;
+    --critical: #e8a6f9;
+    /* Match R20's Emote Darkmnode Colors - Don't Change */
+    --emote-bg: #353535;
+    --emote-text: #ffab00;
+    --emote-border: #1c1c1c;
 }
 
 body.sheet-darkmode .characterviewer .sheetform {

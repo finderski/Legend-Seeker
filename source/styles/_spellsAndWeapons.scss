@@ -70,7 +70,7 @@
                                 font-size: 1.15em;
                             }
                             .spellSchoolDropdown {
-                                color: #2F5496;
+                                color: var(--magic);
                                 font-size: 1.45em;
                                 font-family: var(--mainBody);
                                 font-style: italic;
@@ -356,6 +356,7 @@
                             border: none;
                             font-family: var(--mainBody);
                             font-size: 1.15em;
+                            color: var(--ink);
                         }
                         .weaponNotes {
                             resize: vertical;

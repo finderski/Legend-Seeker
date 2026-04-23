@@ -1,0 +1,72 @@
+.colors {
+    display:flex;
+    flex-flow: row nowrap;
+    gap: 0;
+    width: 100%;
+    .color1 {
+        background-color: var(--parchment);
+        color: var(--ink);
+        width: 8%;
+        height: 50px;
+    }
+    .color2 {
+        background-color: var(--ink);
+        color: var(--parchment);
+        width: 8%;
+        height: 50px;
+    }
+    .color3 {
+        background-color: var(--gold);
+        color: var(--parchment);
+        width: 8%;
+        height: 50px;
+    }
+    .color4 {
+        background-color: var(--light-gold);
+        color: var(--parchment);
+        width: 8%;
+        height: 50px;
+    }
+    .color5 {
+        background-color: var(--read-only);
+        color: var(--ink);
+        width: 8%;
+        height: 50px;
+    }
+    .color6 {
+        background-color: var(--dragon-wing);
+        color: var(--parchment);
+        width: 8%;
+        height: 50px;
+    }
+    .color7 {
+        background-color: var(--condition);
+        color: var(--ink);
+        width: 8%;
+        height: 50px;
+    }
+    .color8 {
+        background-color: var(--light-condition);
+        color: var(--ink);
+        width: 8%;
+        height: 50px;
+    }
+    .color9 {
+        background-color: var(--cream);
+        color: var(--ink);
+        width: 8%;
+        height: 50px;
+    }
+    .color10 {
+        background-color: var(--magic);
+        color: var(--parchment);
+        width: 8%;
+        height: 50px;
+    }
+    .color11 {
+        background-color: var(--critical);
+        color: var(--parchment);
+        width: 8%;
+        height: 50px;
+    }
+}

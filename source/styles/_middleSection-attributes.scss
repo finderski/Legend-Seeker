@@ -35,11 +35,14 @@
                 .allcaps {
                     font-family: 'Eagle Lake';
                     text-transform: uppercase;
+                    /*color: var(--ink);*/
                 }
                 .smallcaps {
                     font-family: 'Cinzel';
                     text-transform: lowercase;
                     font-size: .75em;
+                    /*color: var(--ink);*/
+
                 }
             }
             .attribute-row .attributeInput {
