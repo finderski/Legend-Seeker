@@ -29,14 +29,8 @@
   --emote-border: #f0c392;
 }
 
-/*
-.ui-dialog body.sheet-darkmode .ui-dialog .charactersheet {
-    --parchment: #000;
-    --ink: #C0C0C0;
-    --gold: #A9A9A9;
-}
-*/
-.ui-dialog {
+.ui-dialog,
+.ui-dialog .charactersheet .maindiv {
   background-color: var(--parchment);
   color: var(--ink);
 }
@@ -1400,7 +1394,6 @@ label.buttonStyle {
   row-gap: 5px;
   padding: 3px;
   border-radius: 0 8px;
-  margin-top: auto;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup {
   display: flex;
@@ -2333,16 +2326,13 @@ label.buttonStyle {
   color: #7F1216;
 }
 
-/*
-@use './styles/demographicStyles';
-@use './styles/npcStyles';
-@use './styles/coreStatsStyles';
-@use './styles/combatStyles';
-@use './styles/mutationStyles';
-@use './styles/equipmentStyles';
+body.sheet-darkmode,
+.sheet-darkmode .characterviewer .charsheet .maindiv {
+  --parchment: #1f1f1f;
+  --ink: #C0C0C0;
+  --gold: #A9A9A9;
+}
 
-@use './styles/characterNotesStyles';
-@use './styles/gmStyles';
-@use './styles/rollTemplateStyles';
-
-*/
+body.sheet-darkmode .characterviewer .sheetform {
+  background-color: unset;
+}

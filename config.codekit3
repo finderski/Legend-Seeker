@@ -354,6 +354,19 @@
       "oS" : 1,
       "pg" : 0
     },
+    "\/source\/styles\/_darkmode.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_darkmode.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_demographics.scss" : {
       "aP" : 0,
       "bl" : 0,

@@ -1,6 +1,7 @@
 // stying found in _equipmentAndSkills.scss
 .armor
-    h3(class='headerLabel left', data-i18n='armor') Armor
+    h3(class='headerLabel left', data-i18n='armor-and-shield') Armor and Shield
+    input(type="hidden", name="attr_armor_check_penalty", value="0")
     .armorGroup
         .armorType 
             label(class="fieldLabelAbove", data-i18n='armor-type') Armor Type
@@ -24,7 +25,6 @@
                     option(value="light", data-i18n='light' selected) Light
                     option(value="medium", data-i18n='medium') Medium
                     option(value="heavy", data-i18n='heavy') Heavy
-                input(type="hidden", name="attr_armor_check_penalty", value="0")
             .proficient 
                 label(class="fieldLabelAbove", data-i18n='proficient') Proficient
                 select(class="ls-Dropdown", name="attr_armor_proficient_multiplier")
@@ -47,7 +47,7 @@
                 label(class="fieldLabelAbove", data-i18n='dexterity-cap-abbr') Dex Cap
                 input(class="textField", type="text", name="attr_armor_dex_cap", value="", placeholder="1")
 .shield
-    h3(class='headerLabel left', data-i18n='shields') Shield
+    // h3(class='headerLabel left', data-i18n='shield') Shield
     .shieldGroup
         .shieldType 
             label(class="fieldLabelAbove", data-i18n='shield-type') Shield Type
@@ -61,20 +61,19 @@
         .worn
             label(class="fieldLabelAbove", data-i18n='worn') Worn
             label(class="shifted")
-                input(class="hidden", type='checkbox', name='attr_shield_worn', value='1', checked)
+                input(class="hidden", type='checkbox', name='attr_shield_worn', value='1')
                 span(class="isCarried")
-        input(class='hideSection', type='hidden', name='attr_shield_config_toggle', value='1')
+        input(class='hideSection', type='hidden', name='attr_shield_config_toggle', value='0')
         .shield-config
             .shieldClass 
                 label(class="fieldLabelAbove", data-i18n='class') Class
-                select(class="ls-Dropdown", name="attr_armor_class")
+                select(class="ls-Dropdown", name="attr_shield_class")
                     option(value="light", data-i18n='light' selected) Light
                     option(value="medium", data-i18n='medium') Medium
                     option(value="heavy", data-i18n='heavy') Heavy
-                input(type="hidden", name="attr_armor_check_penalty", value="0")
             .proficient 
                 label(class="fieldLabelAbove", data-i18n='proficient') Proficient
-                select(class="ls-Dropdown", name="attr_armor_proficient_multiplier")
+                select(class="ls-Dropdown", name="attr_shield_proficient_multiplier")
                     option(value="1", data-i18n='no' selected) No
                     option(value="0", data-i18n='yes') Yes
             .shieldDamageReduction 

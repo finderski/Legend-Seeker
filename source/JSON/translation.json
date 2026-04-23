@@ -214,5 +214,10 @@
   "heavy-hit": "&nbsp;(Heavy Hit!)",
   "true-legend": "True Legend",
   "spends-alegendary-point-and-rolls": "spends a Legendary Point and rolls...",
-  "total-damage-reduction-abbr": "Total DR: "
+  "total-damage-reduction-abbr": "Total DR: ",
+  "shields": "Shields",
+  "shield": "Shield",
+  "shield-level": "Shield Level",
+  "shield-type": "Shield Type",
+  "armor-and-shield": "Armor and Shield"
 }

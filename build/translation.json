@@ -122,6 +122,7 @@
   "talent-details" : "Talent Details...",
   "resources" : "Resources",
   "conditions" : "Conditions",
+  "armor-and-shield" : "Armor and Shield",
   "class-resource" : "Class Resource",
   "dexterity-minus-first-three" : "terity",
   "item-name" : "Item Name",
@@ -141,6 +142,7 @@
   "concise" : "Concise",
   "weight-abbr" : "Wt.",
   "true-legend" : "True Legend",
+  "shield-type" : "Shield Type",
   "description" : "Description",
   "melee" : "Melee",
   "damage-reduction-abbr-caps" : "DR",
@@ -153,6 +155,7 @@
   "experience-points-abbr" : "XP",
   "replace" : "Replace",
   "conjuration" : "Conjuration",
+  "shield" : "Shield",
   "1d6" : "1d6",
   "gender" : "Gender",
   "trained" : "Trained",
@@ -197,6 +200,7 @@
   "dc-effect2-rt" : "<strong>DC<\/strong>: {{0}}<br><strong>Effect<\/strong>: {{1}}",
   "unconscious-or-deceased" : "Unconscious or Deceased",
   "weapons" : "Weapons",
+  "shields" : "Shields",
   "damage-threshold" : "Damage Threshold",
   "initiative" : "Initiative",
   "critical-failure" : "Critical Failure!",
@@ -214,5 +218,6 @@
   "armor-credit" : "armor (icon) by lastspark from <a href='https:\/\/thenounproject.com\/browse\/icons\/term\/armor\/' target='_blank' title='armor Icons'>Noun Project<\/a> (CC BY 3.0)",
   "dexterity-x2-mod" : "DEX x2 Mod",
   "score" : "Score",
-  "dexterity-x2-abbr" : "DEX x2"
+  "dexterity-x2-abbr" : "DEX x2",
+  "shield-level" : "Shield Level"
 }

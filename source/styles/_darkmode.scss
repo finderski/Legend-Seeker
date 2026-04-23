@@ -1,0 +1,10 @@
+body.sheet-darkmode,
+.sheet-darkmode .characterviewer .charsheet .maindiv {
+    --parchment: #1f1f1f;
+    --ink: #C0C0C0;
+    --gold: #A9A9A9;
+}
+
+body.sheet-darkmode .characterviewer .sheetform {
+    background-color: unset;
+}
