@@ -18,10 +18,10 @@ fieldset(class='repeating_spells')
             input(type='hidden', name='attr_spell-cast-history', value='[]')
             input(type='hidden', name='attr_spell-last-cast-rollid', value='')
         .spell
-            label(class="fieldLabelAbove", data-i18n='spell-name') Spell Name
+            label(class="fieldLabelAbove", data-i18n='spell-name') Spell Memory
             input(class='textField spellName', type='text', name='attr_spell', value='', data-i18n-placeholder='spell-name')
         .slots 
-            label(class="fieldLabelAbove", data-i18n='spell-slots') Slots
+            label(class="fieldLabelAbove", data-i18n='spell-memory') Slots
             input(class='textField spellSlots', type='text', name='attr_spell-slot', value='', placeholder='1')
             span(class='slotDivider') /
             input(class='textField spellSlots', type='text', name='attr_spell-slot_max', value='', placeholder='1')
@@ -36,6 +36,9 @@ fieldset(class='repeating_spells')
                 option(value='illusion', data-i18n='illusion') Illusion
                 option(value='necromancy', data-i18n='necromancy') Necromancy
                 option(value='transmutation', data-i18n='transmutation') Transmutation
+        .copies 
+            label(class="fieldLabelAbove", data-i18n='number-of-copies-abbr') # of Copies
+            input(class='textField spellTier', type='text', name='attr_spell-copies', value='1')
         .tier 
             label(class="fieldLabelAbove", data-i18n='tier') Tier
             input(class='textField spellTier', type='text', name='attr_spell-tier', value='', data-i18n-placeholder='cantrip')

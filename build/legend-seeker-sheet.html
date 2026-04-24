@@ -676,11 +676,11 @@
               <input type="hidden" name="attr_spell-last-cast-rollid" value=""/>
             </div>
             <div class="spell">
-              <label class="fieldLabelAbove" data-i18n="spell-name">Spell Name</label>
+              <label class="fieldLabelAbove" data-i18n="spell-name">Spell Memory</label>
               <input class="textField spellName" type="text" name="attr_spell" value="" data-i18n-placeholder="spell-name"/>
             </div>
             <div class="slots"> 
-              <label class="fieldLabelAbove" data-i18n="spell-slots">Slots</label>
+              <label class="fieldLabelAbove" data-i18n="spell-memory">Slots</label>
               <input class="textField spellSlots" type="text" name="attr_spell-slot" value="" placeholder="1"/><span class="slotDivider">/</span>
               <input class="textField spellSlots" type="text" name="attr_spell-slot_max" value="" placeholder="1"/>
             </div>
@@ -696,6 +696,10 @@
                 <option value="necromancy" data-i18n="necromancy">Necromancy</option>
                 <option value="transmutation" data-i18n="transmutation">Transmutation</option>
               </select>
+            </div>
+            <div class="copies"> 
+              <label class="fieldLabelAbove" data-i18n="number-of-copies-abbr"># of Copies</label>
+              <input class="textField spellTier" type="text" name="attr_spell-copies" value="1"/>
             </div>
             <div class="tier"> 
               <label class="fieldLabelAbove" data-i18n="tier">Tier</label>

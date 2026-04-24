@@ -219,5 +219,7 @@
   "shield": "Shield",
   "shield-level": "Shield Level",
   "shield-type": "Shield Type",
-  "armor-and-shield": "Armor and Shield"
+  "armor-and-shield": "Armor and Shield",
+  "number-of-copies-abbr": "# of Copies",
+  "spell-memory": "Spell Memory"
 }

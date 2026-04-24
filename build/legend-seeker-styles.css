@@ -1770,8 +1770,11 @@ label.buttonStyle {
   font-style: italic;
   font-weight: 900;
 }
+.ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .copies {
+  width: 20%;
+}
 .ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .tier {
-  width: 56%;
+  width: 31%;
 }
 .ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .tier .spellTier {
   width: 100%;
