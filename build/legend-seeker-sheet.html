@@ -3536,7 +3536,7 @@ const runWeaponAttack = whisper => eventInfo => {
         const weaponName = values[`repeating_weapons_${rowId}_weapon`] || 'Weapon';
         const attackBonus = toInt(values[`repeating_weapons_${rowId}_weapon-atk`]);
         const critThreshold = Math.max(2, toInt(values[`repeating_weapons_${rowId}_weapon-crit`]) || 20);
-        const critPoint = critThreshold - 1;
+        const critPoint = critThreshold;
         const condition = parseSignedValue(values.condition);
         const whisperPrefix = whisper ? '/w gm ' : '';
         const damageButtons = buildWeaponDamageButtons(rowId, whisper);
