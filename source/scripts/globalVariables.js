@@ -14,6 +14,6 @@ const listOfSklls = ['acrobatics','climb','craft','deception','endurance','gathe
 
 // For Weapons
 const damageFields = ["repeating_weapons_weapon-half-level", "repeating_weapons_weapon-damage-dice", "repeating_weapons_weapon-damage-attribute-mod", "repeating_weapons_damage-attribute-mod-value", "repeating_weapons_weapon-damage-misc-mod"];
-const atkFields = ["repeating_weapons_weapon-heroic-proficiency", "repeating_weapons_weapon-atk-bonus", "repeating_weapons_weapon-misc-mod"];
+const atkFields = ["repeating_weapons_weapon-base-attack-bonus", "repeating_weapons_weapon-atk-bonus", "repeating_weapons_weapon-misc-mod"];
 
 

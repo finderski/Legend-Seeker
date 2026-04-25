@@ -275,8 +275,9 @@
                 </button>
               </div>
               <div class="hpb readOnly">
-                <label class="fieldLabelAbove" data-i18n="heroic-proficiency-bonus">Heroic Proficiency Bonus</label>
-                <input class="xPointInput" type="text" name="attr_heroic_proficiency_bonus" value="2" readonly="readonly"/>
+                <label class="fieldLabelAbove" data-i18n="base-attack-bonus">Base Attack Bonus</label>
+                <!-- input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)-->
+                <input class="xPointInput" type="text" name="attr_base_attack_bonus" value="2" readonly="readonly"/>
               </div>
               <div class="legendaryPoints"> 
                 <button class="textButton" type="action" name="act_use-legendary-points">
@@ -740,9 +741,10 @@
                   <div class="damageColumn"> 
                     <h3 class="headerLabel" data-i18n="damage">Damage</h3>
                   </div>
-                  <div class="damageColumn"> 
-                    <h3 class="headerLabel" data-i18n="failure-damage-abbr">Failure Damage</h3>
-                  </div>
+                  <!--
+                  .damageColumn 
+                      h3.headerLabel(data-i18n='failure-damage-abbr') Failure Damage
+                  -->
                   <div class="damageColumn"> 
                     <h3 class="headerLabel" data-i18n="special-damage-abbr">Special Dmg</h3>
                   </div>
@@ -754,9 +756,10 @@
                   <div class="damageColumn">
                     <input class="textField spellDamage" type="text" name="attr_dc1-damage" value=""/>
                   </div>
-                  <div class="damageColumn">
-                    <input class="textField spellDamage" type="text" name="attr_dc1-alt-damage" value=""/>
-                  </div>
+                  <!--
+                  .damageColumn
+                      input(class='textField spellDamage', type='text', name='attr_dc1-alt-damage', value='')
+                  -->
                   <div class="damageColumn">
                     <input class="textField spellDamage" type="text" name="attr_dc1-special-damage" value=""/>
                     <label class="fieldLabelAbove">
@@ -775,9 +778,10 @@
                   <div class="damageColumn">
                     <input class="textField spellCritDamage" type="text" name="attr_dc2-damage" value=""/>
                   </div>
-                  <div class="damageColumn">
-                    <input class="textField spellDamage" type="text" name="attr_dc2-alt-damage" value=""/>
-                  </div>
+                  <!--
+                  .damageColumn
+                      input(class='textField spellDamage', type='text', name='attr_dc2-alt-damage', value='')
+                  -->
                   <div class="damageColumn">
                     <input class="textField spellDamage" type="text" name="attr_dc2-special-damage" value=""/>
                     <label class="fieldLabelAbove">
@@ -796,9 +800,10 @@
                   <div class="damageColumn">
                     <input class="textField spellCritDamage" type="text" name="attr_dc3-damage" value=""/>
                   </div>
-                  <div class="damageColumn">
-                    <input class="textField spellDamage" type="text" name="attr_dc3-alt-damage" value=""/>
-                  </div>
+                  <!--
+                  .damageColumn
+                      input(class='textField spellDamage', type='text', name='attr_dc3-alt-damage', value='')
+                  -->
                   <div class="damageColumn">
                     <input class="textField spellDamage" type="text" name="attr_dc3-special-damage" value=""/>
                     <label class="fieldLabelAbove">
@@ -924,8 +929,8 @@
               </div>
               <div class="equals"> </div>
               <div class="hpb"> 
-                <label class="fieldLabelAbove" data-i18n="heroic-proficiency-bonus-abbr" data-i18n-title="heroic-proficiency">HPB</label>
-                <input class="textField" type="text" name="attr_weapon-heroic-proficiency" readonly="readonly"/>
+                <label class="fieldLabelAbove" data-i18n="base-attack-bonus-abbr" data-i18n-title="base-attack-bonus">BAB</label>
+                <input class="textField" type="text" name="attr_weapon-base-attack-bonus" readonly="readonly" data-i18n-title="base-attack-bonus"/>
               </div>
               <div class="addition"> </div>
               <div class="attributeMod"> 
@@ -2245,7 +2250,7 @@ const listOfSklls = ['acrobatics','climb','craft','deception','endurance','gathe
 
 // For Weapons
 const damageFields = ["repeating_weapons_weapon-half-level", "repeating_weapons_weapon-damage-dice", "repeating_weapons_weapon-damage-attribute-mod", "repeating_weapons_damage-attribute-mod-value", "repeating_weapons_weapon-damage-misc-mod"];
-const atkFields = ["repeating_weapons_weapon-heroic-proficiency", "repeating_weapons_weapon-atk-bonus", "repeating_weapons_weapon-misc-mod"];
+const atkFields = ["repeating_weapons_weapon-base-attack-bonus", "repeating_weapons_weapon-atk-bonus", "repeating_weapons_weapon-misc-mod"];
 
 
   function damageThreshold () {
@@ -2276,14 +2281,15 @@ function compareVersions(a, b) {
     return 0;
 }
 
-const sheetVersionFields = ['sheetversion','shield_dr','armor_dr'];
+const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level'];
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.1.1';
+        const currentVersion = '0.1.2';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
+        const level = parseInt(values.level) || 1;
         log("Sheet Version", sheetVersion, r20color);
         // Check if sheetversion is less than 0.1.1, if so, update the weapon attributes. This ensures that we don't overwrite any existing values for current users, but new users will have the correct attributes from the start.
         if (compareVersions(sheetVersion, '0.1.1') < 0) {
@@ -2292,6 +2298,11 @@ on('sheet:opened', function() {
             setattrs['sheetversion'] = currentVersion;
             setattrs['total_dr'] = shield_dr + armor_dr;
             setAttrs(setattrs);
+        }
+        if (compareVersions(sheetVersion, '0.1.2') < 0) {
+            log('Updates for version 0.1.2', "Update Base Attack Bonus to replace HPB", r20color);
+            const bab = level < 5 ? 2 : level < 9 ? 3 : level < 13 ? 4 : level < 17 ? 5 : 6;
+            setAttrs({ "base_attack_bonus": bab });
         }
         else {
             log('Sheet version is up to date', "No updates needed", r20color);
@@ -2304,13 +2315,12 @@ on('sheet:opened', function() {
     log('Sheet Opened',"Updating weapon attributes to ensure calculations work", r20color);
     damageThreshold();
     getSectionIDs('repeating_weapons', function(ids) {
-        getAttrs(['heroic_proficiency_bonus','half-level'], function(values) {
-            
+        getAttrs(['base_attack_bonus','half-level'], function(values) {
             // Update Weapons stuff
             ids.forEach(function(id) {
                 const attrsToSet = {};
                 attrsToSet[`repeating_weapons_${id}_weapon-half-level`] = values['half-level'] || 0;
-                attrsToSet[`repeating_weapons_${id}_weapon-heroic-proficiency`] = values['heroic_proficiency_bonus'] || 0;
+                attrsToSet[`repeating_weapons_${id}_weapon-base-attack-bonus`] = values['base_attack_bonus'] || 0;
                 setAttrs(attrsToSet);
             });
         });
@@ -2414,7 +2424,7 @@ coreAttributes.forEach(attribute => {
 on('change:level', function(eventInfo) {
     const level = parseInt(eventInfo.newValue) || 0;
     let hpb = level < 5 ? 2 : level < 9 ? 3 : level < 13 ? 4 : level < 17 ? 5 : 6;
-    setAttrs({ "heroic_proficiency_bonus": hpb });
+    setAttrs({ "base_attack_bonus": hpb });
 });
 
 
@@ -2809,7 +2819,7 @@ listOfAttributes.forEach(attribute => {
 });// Sheet Workers for Weapons
 //--------------------------
 //rereating_weapons_weapon = Weapon Name
-//repeating_weapons_weapon-atk = Total ATK (Heroic Proficiency Bonus + Attack Bonus from Str/Dex + Misc Modifiers)
+//repeating_weapons_weapon-atk = Total ATK (Base Attack Bonus + Attack Bonus from Str/Dex + Misc Modifiers)
 //repeating_weapons_weapon-atk-bonus = ATK Attack Bonus from Attribute Modifiers (e.g. Str, Dex, etc.)
 //repeating_weapons_weapon-misc-mod = ATK Miscellaneous Attack Modifier (from magic items, etc.)
 //repeating_weapons_weapon-type = Weapon Type (Melee, Ranged)
@@ -2829,7 +2839,7 @@ function updateWeapons(fields, section, id) {
     // Before doing any updates or getAttrs, may need to .replace('repeating_weapons', `repeating_weapons_${id}`) to ensure getting 
     // the correct fields for the correct weapon row.
     // And doing the replace should avoid adding repeating_weapons to a field we may need to get from outside of the repeating section 
-    // (e.g. half-level, heroic_proficiency_bonus, strength_modifier, etc.)
+    // (e.g. half-level, base_attack_bonus, strength_modifier, etc.)
 
     // NOTE: section should be atk, dmg, or all to determine which fields to update and which calculations to do. If section is all, 
     // then update all fields and do all calculations. If section is atk, then only update atk fields and do atk calculation. If 
@@ -2862,12 +2872,12 @@ function updateWeapons(fields, section, id) {
         });
     // Now get the attributes and do the calculations for the specified weapon row
     getAttrs(fields, function(values) {
-        log("Half Level and HPB", `Half Level: ${values['half-level']}, Heroic Proficiency Bonus: ${values['heroic_proficiency_bonus']}`, r20color);
+        log("Half Level and HPB", `Half Level: ${values['half-level']}, Base Attack Bonus: ${values['base_attack_bonus']}`, r20color);
         const updateHalfLevel = values['half-level'] || values['half-level'] === '0' || values['half-level'] === 0 ? parseInt(values['half-level']) || 0 : 'skip';
         const halfLevel = values['half-level'] || values['half-level'] === '0' || values['half-level'] === 0 ? parseInt(values['half-level']) || 0 : parseInt(values[`repeating_weapons_${id}_weapon-half-level`]) || 0;
-        const updateHeroicProficiencyBonus = values['heroic_proficiency_bonus'] || values['heroic_proficiency_bonus'] === '0' || values['heroic_proficiency_bonus'] === 0 ? parseInt(values['heroic_proficiency_bonus']) || 0 : 'skip';
-        const heroicProficiencyBonus = values['heroic_proficiency_bonus'] || values['heroic_proficiency_bonus'] === '0' || values['heroic_proficiency_bonus'] === 0 ? parseInt(values['heroic_proficiency_bonus']) || 0 : parseInt(values[`repeating_weapons_${id}_weapon-heroic-proficiency`]) || 0;
-        log("Heroic Proficiency Bonus Value After process", `Heroic Proficiency Bonus: ${heroicProficiencyBonus}, type: ${typeof(heroicProficiencyBonus)}`, r20color);
+        const updateHeroicProficiencyBonus = values['base_attack_bonus'] || values['base_attack_bonus'] === '0' || values['base_attack_bonus'] === 0 ? parseInt(values['base_attack_bonus']) || 0 : 'skip';
+        const heroicProficiencyBonus = values['base_attack_bonus'] || values['base_attack_bonus'] === '0' || values['base_attack_bonus'] === 0 ? parseInt(values['base_attack_bonus']) || 0 : parseInt(values[`repeating_weapons_${id}_weapon-base-attack-bonus`]) || 0;
+        log("Base Attack Bonus Value After process", `Base Attack Bonus: ${heroicProficiencyBonus}, type: ${typeof(heroicProficiencyBonus)}`, r20color);
         const setattrs = {};
         switch(updateHalfLevel) {
             case 'skip':
@@ -2879,7 +2889,7 @@ function updateWeapons(fields, section, id) {
             case 'skip':
                 break;
             default:
-                setattrs[`repeating_weapons_${id}_weapon-heroic-proficiency`] = updateHeroicProficiencyBonus;
+                setattrs[`repeating_weapons_${id}_weapon-base-attack-bonus`] = updateHeroicProficiencyBonus;
         }
         //set up Attribute Modifiers
         const strengthMod = parseInt(values['strength_modifier']) || 0;
@@ -2937,10 +2947,10 @@ function updateWeapons(fields, section, id) {
     });
 }
 
-// Watch for a new weapon to be added and set the half-level and heroic proficiency bonus for that weapon.
+// Watch for a new weapon to be added and set the half-level and Base Attack Bonus for that weapon.
 on('change:repeating_weapons:weapon', function(eventInfo) {
     log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
-    const fields = ['half-level', 'heroic_proficiency_bonus'];
+    const fields = ['half-level', 'base_attack_bonus'];
     //assume new weapon, so need to set up the damage and atk sections
     fields.push(...damageFields, ...atkFields, ...listOfAttributes);
     const id = eventInfo.sourceAttribute.split('_')[2];
@@ -2981,15 +2991,15 @@ on('change:repeating_weapons:weapon-damage-dice change:half-level change:repeati
 
 
 // Watch for Changes to ATK Fields to Update Total ATK
-on('change:heroic_proficiency_bonus change:repeating_weapons:weapon-atk-bonus change:repeating_weapons:weapon-misc-mod change:heroic-proficiency-bonus', function(eventInfo) {
+on('change:base_attack_bonus change:repeating_weapons:weapon-atk-bonus change:repeating_weapons:weapon-misc-mod change:heroic-proficiency-bonus', function(eventInfo) {
     log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
     // if hpb, then all weapons need to be updated, otherwise just the current weapon needs to be updated
-    if (eventInfo.sourceAttribute === 'heroic_proficiency_bonus') {
+    if (eventInfo.sourceAttribute === 'base_attack_bonus') {
         // Heroic Proficiency Trigger - must update ALL weapons
-        const fields = ['heroic_proficiency_bonus', ...atkFields, ...listOfAttributes];
+        const fields = ['base_attack_bonus', ...atkFields, ...listOfAttributes];
         const section = 'atk';
         //const id = 'all';
-        log("Heroic Proficiency Bonus Changed. Updating attack for all weapons.", r20color);
+        log("Base Attack Bonus Changed. Updating attack for all weapons.", r20color);
         getSectionIDs('repeating_weapons', function(ids) {
             ids.forEach(function(id) {
                 updateWeapons(fields, section, id);
@@ -3014,7 +3024,7 @@ on(`change:${listOfAttributes.join(' change:')}`, function(eventInfo) {
     getSectionIDs('repeating_weapons', function(ids) {
         ids.forEach(function(id) {
             updateWeapons([...damageFields, ...listOfAttributes], 'dmg', id);
-            updateWeapons([...atkFields, ...listOfAttributes, 'heroic_proficiency_bonus'], 'atk', id);
+            updateWeapons([...atkFields, ...listOfAttributes, 'base_attack_bonus'], 'atk', id);
         });
     });
 });
@@ -3133,9 +3143,11 @@ const buildSpellDamageButtons = (rowId, castState, whisper = false) => {
     if (castState.damage) {
         buttonParts.push(`{{damagebutton=[^{damage}](~${buildSpellActionName(rowId, `${baseAction}damage`)})}}`);
     }
+    /*
     if (castState.altDamage) {
         buttonParts.push(`{{altdamagebutton=[^{damage-failed}](~${buildSpellActionName(rowId, `${baseAction}altdamage`)})}}`);
     }
+    */
 
     return buttonParts.join(' ');
 };
@@ -3677,12 +3689,13 @@ on('clicked:secondwind', function() {
 
 // Spending a Legendary Point
 on('clicked:use-legendary-points', function() {
-    getAttrs(['character_name', 'character_avatar', 'character_token', 'legendary_points', 'true-legend'], values => {
+    getAttrs(['character_name', 'character_avatar', 'character_token', 'legendary_points', 'true-legend', 'level'], values => {
         log('Avatar info', values.character_avatar, derivedStatsColor);
         log('Token info', values.character_token, derivedStatsColor);
         const characterName = values.character_name || 'Character';
         const legendaryPoints = parseInt(values.legendary_points) || 0;
         const trueLegend = parseInt(values['true-legend']) || 0;
+        const level = parseInt(values.level) || 1;
         let avatarURL = 'https://app.roll20.net/images/character.png';
         if (values.character_avatar) {
             avatarURL = values.character_avatar.split('?')[0]; // Remove any query parameters for Roll20 hosted images
@@ -3693,7 +3706,8 @@ on('clicked:use-legendary-points', function() {
         // rollFormula += `{{avatar=${avatarURL}}} `;
         rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
         rollFormula += legendaryPoints > 0 ? `{{text=^{spends-alegendary-point-and-rolls}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
-        rollFormula += trueLegend ? `{{roll=[[1d8]]}}` : '{{roll=[[1d6]]}}';
+        const numDice = level >= 15 ? 3 : level >= 8 ? 2 : 1;
+        rollFormula += trueLegend ? `{{roll=[[${numDice}d8]]}}` : `{{roll=[[${numDice}d6]]}}`;
         log('Roll formula', rollFormula, derivedStatsColor);
         const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
         const roll_result = legendaryPoints > 0 ? rollFormula : noRollFormula;

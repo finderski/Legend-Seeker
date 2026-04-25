@@ -97,7 +97,7 @@ coreAttributes.forEach(attribute => {
 on('change:level', function(eventInfo) {
     const level = parseInt(eventInfo.newValue) || 0;
     let hpb = level < 5 ? 2 : level < 9 ? 3 : level < 13 ? 4 : level < 17 ? 5 : 6;
-    setAttrs({ "heroic_proficiency_bonus": hpb });
+    setAttrs({ "base_attack_bonus": hpb });
 });
 
 

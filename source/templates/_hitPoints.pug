@@ -14,8 +14,9 @@ input(class="xPointInput", type='text', name='attr_hitpoints', placeholder="0")
         label(class="fieldLabelAbove", data-i18n='initiative') Initiative
         input(class="xPointInput", type='text', name='attr_initiative_bonus', placeholder="0")
 .hpb.readOnly
-    label(class="fieldLabelAbove", data-i18n='heroic-proficiency-bonus') Heroic Proficiency Bonus
-    input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)
+    label(class="fieldLabelAbove", data-i18n='base-attack-bonus') Base Attack Bonus
+    // input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)
+    input(class="xPointInput", type='text', name='attr_base_attack_bonus', value="2" readonly)
 .legendaryPoints 
     button(class="textButton", type="action", name="act_use-legendary-points")
         label(class="fieldLabelAbove", data-i18n='legendary-points') Legendary Points

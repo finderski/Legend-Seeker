@@ -1817,7 +1817,7 @@ label.buttonStyle {
   margin: 0;
 }
 .ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn {
-  flex: 0 1 10%;
+  flex: 0 1 15%;
 }
 .ui-dialog .charactersheet .frontPage .combat .spells .repcontainer[data-groupname=repeating_spells] .repitem .spellContainer .spell-config .dcs .row .dcColumn h3 {
   text-align: left;

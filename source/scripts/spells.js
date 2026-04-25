@@ -113,9 +113,11 @@ const buildSpellDamageButtons = (rowId, castState, whisper = false) => {
     if (castState.damage) {
         buttonParts.push(`{{damagebutton=[^{damage}](~${buildSpellActionName(rowId, `${baseAction}damage`)})}}`);
     }
+    /*
     if (castState.altDamage) {
         buttonParts.push(`{{altdamagebutton=[^{damage-failed}](~${buildSpellActionName(rowId, `${baseAction}altdamage`)})}}`);
     }
+    */
 
     return buttonParts.join(' ');
 };

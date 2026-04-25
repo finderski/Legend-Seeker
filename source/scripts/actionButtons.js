@@ -286,12 +286,13 @@ on('clicked:secondwind', function() {
 
 // Spending a Legendary Point
 on('clicked:use-legendary-points', function() {
-    getAttrs(['character_name', 'character_avatar', 'character_token', 'legendary_points', 'true-legend'], values => {
+    getAttrs(['character_name', 'character_avatar', 'character_token', 'legendary_points', 'true-legend', 'level'], values => {
         log('Avatar info', values.character_avatar, derivedStatsColor);
         log('Token info', values.character_token, derivedStatsColor);
         const characterName = values.character_name || 'Character';
         const legendaryPoints = parseInt(values.legendary_points) || 0;
         const trueLegend = parseInt(values['true-legend']) || 0;
+        const level = parseInt(values.level) || 1;
         let avatarURL = 'https://app.roll20.net/images/character.png';
         if (values.character_avatar) {
             avatarURL = values.character_avatar.split('?')[0]; // Remove any query parameters for Roll20 hosted images
@@ -302,7 +303,8 @@ on('clicked:use-legendary-points', function() {
         // rollFormula += `{{avatar=${avatarURL}}} `;
         rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
         rollFormula += legendaryPoints > 0 ? `{{text=^{spends-alegendary-point-and-rolls}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
-        rollFormula += trueLegend ? `{{roll=[[1d8]]}}` : '{{roll=[[1d6]]}}';
+        const numDice = level >= 15 ? 3 : level >= 8 ? 2 : 1;
+        rollFormula += trueLegend ? `{{roll=[[${numDice}d8]]}}` : `{{roll=[[${numDice}d6]]}}`;
         log('Roll formula', rollFormula, derivedStatsColor);
         const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
         const roll_result = legendaryPoints > 0 ? rollFormula : noRollFormula;

@@ -221,5 +221,8 @@
   "shield-type": "Shield Type",
   "armor-and-shield": "Armor and Shield",
   "number-of-copies-abbr": "# of Copies",
-  "spell-memory": "Spell Memory"
+  "spell-memory": "Spell Memory",
+  "base-attack-bonus": "Base Attack Bonus",
+  "base-attack-abbr": "Base ATK",
+  "base-attack-bonus-abbr": "BAB"
 }

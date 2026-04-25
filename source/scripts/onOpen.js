@@ -26,14 +26,15 @@ function compareVersions(a, b) {
     return 0;
 }
 
-const sheetVersionFields = ['sheetversion','shield_dr','armor_dr'];
+const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level'];
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.1.1';
+        const currentVersion = '0.1.2';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
+        const level = parseInt(values.level) || 1;
         log("Sheet Version", sheetVersion, r20color);
         // Check if sheetversion is less than 0.1.1, if so, update the weapon attributes. This ensures that we don't overwrite any existing values for current users, but new users will have the correct attributes from the start.
         if (compareVersions(sheetVersion, '0.1.1') < 0) {
@@ -42,6 +43,11 @@ on('sheet:opened', function() {
             setattrs['sheetversion'] = currentVersion;
             setattrs['total_dr'] = shield_dr + armor_dr;
             setAttrs(setattrs);
+        }
+        if (compareVersions(sheetVersion, '0.1.2') < 0) {
+            log('Updates for version 0.1.2', "Update Base Attack Bonus to replace HPB", r20color);
+            const bab = level < 5 ? 2 : level < 9 ? 3 : level < 13 ? 4 : level < 17 ? 5 : 6;
+            setAttrs({ "base_attack_bonus": bab });
         }
         else {
             log('Sheet version is up to date', "No updates needed", r20color);
@@ -54,13 +60,12 @@ on('sheet:opened', function() {
     log('Sheet Opened',"Updating weapon attributes to ensure calculations work", r20color);
     damageThreshold();
     getSectionIDs('repeating_weapons', function(ids) {
-        getAttrs(['heroic_proficiency_bonus','half-level'], function(values) {
-            
+        getAttrs(['base_attack_bonus','half-level'], function(values) {
             // Update Weapons stuff
             ids.forEach(function(id) {
                 const attrsToSet = {};
                 attrsToSet[`repeating_weapons_${id}_weapon-half-level`] = values['half-level'] || 0;
-                attrsToSet[`repeating_weapons_${id}_weapon-heroic-proficiency`] = values['heroic_proficiency_bonus'] || 0;
+                attrsToSet[`repeating_weapons_${id}_weapon-base-attack-bonus`] = values['base_attack_bonus'] || 0;
                 setAttrs(attrsToSet);
             });
         });
