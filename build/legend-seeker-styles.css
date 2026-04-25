@@ -1522,6 +1522,16 @@ label.buttonStyle {
   font-size: 1em;
   text-align: center;
 }
+.ui-dialog .charactersheet .backPage .topContainer .skillConfigSection {
+  display: none;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skillConfig[value="1"] + .skillConfigSection {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 68%;
+  justify-content: end;
+  column-gap: 5px;
+}
 .ui-dialog .charactersheet .backPage .topContainer .skills {
   width: 67%;
   display: flex;
@@ -1604,10 +1614,44 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod {
+  display: flex;
   align-content: center;
   align-items: center;
   align-self: center;
   text-align: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .attributeInput.strength,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .attributeInput.dexterity,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .attributeInput.constitution,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .attributeInput.intelligence,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .attributeInput.wisdom,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .attributeInput.charisma,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .attributeInput.strength,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .attributeInput.dexterity,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .attributeInput.constitution,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .attributeInput.intelligence,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .attributeInput.wisdom,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .attributeInput.charisma {
+  display: none;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .showAttMod[value="@{strength}"] ~ .attributeInput.strength,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .showAttMod[value="@{dexterity}"] ~ .attributeInput.dexterity,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .showAttMod[value="@{constitution}"] ~ .attributeInput.constitution,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .showAttMod[value="@{intelligence}"] ~ .attributeInput.intelligence,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .showAttMod[value="@{wisdom}"] ~ .attributeInput.wisdom,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .showAttMod[value="@{charisma}"] ~ .attributeInput.charisma,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .showAttMod[value="@{strength}"] ~ .attributeInput.strength,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .showAttMod[value="@{dexterity}"] ~ .attributeInput.dexterity,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .showAttMod[value="@{constitution}"] ~ .attributeInput.constitution,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .showAttMod[value="@{intelligence}"] ~ .attributeInput.intelligence,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .showAttMod[value="@{wisdom}"] ~ .attributeInput.wisdom,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .showAttMod[value="@{charisma}"] ~ .attributeInput.charisma {
+  display: flex;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .halfLevel .config,
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .config {
+  top: -23px;
+  left: -10px;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus {

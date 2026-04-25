@@ -45,8 +45,17 @@ mixin skills(skill)
             //
             .abilityMod
                 if skillName === 'mana-tap'
-                    span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
-                    input(type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
+                    input(class="showAttMod", type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
+                    span(class="attributeInput strength readOnly", type="text", name="attr_strength_modifier")
+                    span(class="attributeInput dexterity readOnly", type="text", name="attr_dexterity_modifier")
+                    span(class="attributeInput constitution readOnly", type="text", name="attr_constitution_modifier")
+                    span(class="attributeInput intelligence readOnly", type="text", name="attr_intelligence_modifier")
+                    span(class="attributeInput wisdom readOnly", type="text", name="attr_wisdom_modifier")
+                    span(class="attributeInput charisma readOnly", type="text", name="attr_charisma_modifier")
+                    .config 
+                        label.cog
+                            input(class='hiddenInput', type='checkbox', name=`attr_${skillName}_config_toggle` value="1")
+                            span.configIcon y
                 else
                     span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
                     input(type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
@@ -66,3 +75,16 @@ mixin skills(skill)
             .addition
             .miscMod
                 input(class="attributeInput", type="text", name=`attr_${skillName}_misc`, value="0")
+        input(class=`skillConfig`, type="hidden", name=`attr_${skillName}_config_toggle`)
+        div(class=`skillConfigSection`)
+            .spacer &nbsp;
+            .abilityModSelector
+                label(class="fieldLabelAbove", data-i18n='linked-attribute') Linked Attribute
+                select(class="ls-Dropdown", name=`attr_${skillName}_ability`)
+                    option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength
+                    option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity
+                    option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution
+                    option(value="@{intelligence}", selected=(attributeName === 'intelligence'), data-i18n='intelligence') Intelligence
+                    option(value="@{wisdom}", selected=(attributeName === 'wisdom'), data-i18n='wisdom') Wisdom
+                    option(value="@{charisma}", selected=(attributeName === 'charisma'), data-i18n='charisma') Charisma
+            .endSpacer &nbsp;

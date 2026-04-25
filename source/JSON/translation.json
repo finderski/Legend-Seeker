@@ -235,5 +235,6 @@
   "spell-memory": "Spell Memory",
   "base-attack-bonus": "Base Attack Bonus",
   "base-attack-abbr": "Base ATK",
-  "base-attack-bonus-abbr": "BAB"
+  "base-attack-bonus-abbr": "BAB",
+  "linked-attribute": "Linked Attribute"
 }
