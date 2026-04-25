@@ -1194,7 +1194,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
-            <input type="hidden" name="attr_acrobatics_ability" value="@{dexterity}"/>
+            <input class="showWatermark" type="hidden" name="attr_acrobatics_ability" value="@{dexterity}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1220,9 +1220,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_acrobatics_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" selected="selected" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1252,7 +1252,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
-            <input type="hidden" name="attr_climb_ability" value="@{strength}"/>
+            <input class="showWatermark" type="hidden" name="attr_climb_ability" value="@{strength}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1278,9 +1278,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_climb_ability">
-              <option value="@{strength}" selected="selected" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1310,7 +1310,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
-            <input type="hidden" name="attr_craft_ability" value="@{wisdom}"/>
+            <input class="showWatermark" type="hidden" name="attr_craft_ability" value="@{wisdom}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1336,9 +1336,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_craft_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1368,7 +1368,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
-            <input type="hidden" name="attr_deception_ability" value="@{charisma}"/>
+            <input class="showWatermark" type="hidden" name="attr_deception_ability" value="@{charisma}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1394,9 +1394,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_deception_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" selected="selected" data-i18n="charisma">Charisma</option>
@@ -1426,7 +1426,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_constitution_modifier"></span>
-            <input type="hidden" name="attr_endurance_ability" value="@{constitution}"/>
+            <input class="showWatermark" type="hidden" name="attr_endurance_ability" value="@{constitution}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1452,9 +1452,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_endurance_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" selected="selected" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1484,7 +1484,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
-            <input type="hidden" name="attr_gather-information_ability" value="@{charisma}"/>
+            <input class="showWatermark" type="hidden" name="attr_gather-information_ability" value="@{charisma}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1510,9 +1510,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_gather-information_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" selected="selected" data-i18n="charisma">Charisma</option>
@@ -1542,7 +1542,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
-            <input type="hidden" name="attr_initiative_ability" value="@{dexterity}"/>
+            <input class="showWatermark" type="hidden" name="attr_initiative_ability" value="@{dexterity}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1568,9 +1568,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_initiative_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" selected="selected" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1601,7 +1601,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_invoke-arcana_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_invoke-arcana_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1627,9 +1627,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_invoke-arcana_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1659,7 +1659,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
-            <input type="hidden" name="attr_jump_ability" value="@{strength}"/>
+            <input class="showWatermark" type="hidden" name="attr_jump_ability" value="@{strength}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1685,9 +1685,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_jump_ability">
-              <option value="@{strength}" selected="selected" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1717,7 +1717,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-arcana_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-arcana_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1743,9 +1743,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-arcana_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1775,7 +1775,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-architecture_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-architecture_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1801,9 +1801,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-architecture_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1833,7 +1833,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-dungeoneering_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-dungeoneering_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1859,9 +1859,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-dungeoneering_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1891,7 +1891,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-geography_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-geography_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1917,9 +1917,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-geography_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -1949,7 +1949,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-history_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-history_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -1975,9 +1975,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-history_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2007,7 +2007,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-keepers_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-keepers_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2033,9 +2033,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-keepers_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2065,7 +2065,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-nature_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-nature_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2091,9 +2091,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-nature_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2123,7 +2123,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-nobility_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-nobility_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2149,9 +2149,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-nobility_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2181,7 +2181,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-planes_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-planes_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2207,9 +2207,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-planes_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2239,7 +2239,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-religion_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-religion_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2265,9 +2265,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-religion_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2297,7 +2297,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_lore-streetwise_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_lore-streetwise_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2323,9 +2323,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_lore-streetwise_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2355,7 +2355,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
-            <input type="hidden" name="attr_notice_ability" value="@{wisdom}"/>
+            <input class="showWatermark" type="hidden" name="attr_notice_ability" value="@{wisdom}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2381,9 +2381,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_notice_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2413,7 +2413,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_charisma_modifier"></span>
-            <input type="hidden" name="attr_persuasion_ability" value="@{charisma}"/>
+            <input class="showWatermark" type="hidden" name="attr_persuasion_ability" value="@{charisma}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2439,9 +2439,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_persuasion_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" selected="selected" data-i18n="charisma">Charisma</option>
@@ -2471,7 +2471,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
-            <input type="hidden" name="attr_ride_ability" value="@{dexterity}"/>
+            <input class="showWatermark" type="hidden" name="attr_ride_ability" value="@{dexterity}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2497,9 +2497,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_ride_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" selected="selected" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2529,7 +2529,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
-            <input type="hidden" name="attr_sense-motive_ability" value="@{wisdom}"/>
+            <input class="showWatermark" type="hidden" name="attr_sense-motive_ability" value="@{wisdom}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2555,9 +2555,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_sense-motive_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2587,7 +2587,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_dexterity_modifier"></span>
-            <input type="hidden" name="attr_stealth_ability" value="@{dexterity}"/>
+            <input class="showWatermark" type="hidden" name="attr_stealth_ability" value="@{dexterity}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2613,9 +2613,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_stealth_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" selected="selected" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2645,7 +2645,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
-            <input type="hidden" name="attr_survival_ability" value="@{wisdom}"/>
+            <input class="showWatermark" type="hidden" name="attr_survival_ability" value="@{wisdom}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2671,9 +2671,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_survival_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2703,7 +2703,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_strength_modifier"></span>
-            <input type="hidden" name="attr_swim_ability" value="@{strength}"/>
+            <input class="showWatermark" type="hidden" name="attr_swim_ability" value="@{strength}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2729,9 +2729,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_swim_ability">
-              <option value="@{strength}" selected="selected" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2762,7 +2762,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_intelligence_modifier"></span>
-            <input type="hidden" name="attr_tinkering_ability" value="@{intelligence}"/>
+            <input class="showWatermark" type="hidden" name="attr_tinkering_ability" value="@{intelligence}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2788,9 +2788,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_tinkering_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" selected="selected" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2820,7 +2820,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod"><span class="attributeInput readOnly" type="text" name="attr_wisdom_modifier"></span>
-            <input type="hidden" name="attr_treat-wounds_ability" value="@{wisdom}"/>
+            <input class="showWatermark" type="hidden" name="attr_treat-wounds_ability" value="@{wisdom}"/><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -2846,9 +2846,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_treat-wounds_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" data-i18n="charisma">Charisma</option>
@@ -2879,7 +2879,7 @@
           <div class="addition"></div>
           <!---->
           <div class="abilityMod">
-            <input class="showAttMod" type="hidden" name="attr_mana-tap_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_mana-tap_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
             <div class="config"> 
               <label class="cog">
                 <input class="hiddenInput" type="checkbox" name="attr_mana-tap_config_toggle" value="1"/><span class="configIcon">y</span>
@@ -2910,9 +2910,9 @@
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
             <select class="ls-Dropdown" name="attr_mana-tap_ability">
-              <option value="@{strength}" data-i18n="strength">Strength</option>
-              <option value="@{dexterity}" data-i18n="dexterity">Dexterity</option>
-              <option value="@{constitution}" data-i18n="constitution">Constitution</option>
+              <!-- option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength-->
+              <!-- option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity-->
+              <!-- option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution-->
               <option value="@{intelligence}" data-i18n="intelligence">Intelligence</option>
               <option value="@{wisdom}" data-i18n="wisdom">Wisdom</option>
               <option value="@{charisma}" selected="selected" data-i18n="charisma">Charisma</option>
