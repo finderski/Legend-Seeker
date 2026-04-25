@@ -293,6 +293,9 @@
                             position: relative;
                             top: -3px;
                         }
+                        .labelButton.smaller {
+                            font-size: .7em;
+                        }
                     }
                     .trainedHidden[value="0"] + .chatButtons{
                         pointer-events: none;

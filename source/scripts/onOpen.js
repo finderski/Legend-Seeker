@@ -27,10 +27,11 @@ function compareVersions(a, b) {
 }
 
 const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level'];
+sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.1.2';
+        const currentVersion = '0.1.4';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
@@ -40,7 +41,6 @@ on('sheet:opened', function() {
         if (compareVersions(sheetVersion, '0.1.1') < 0) {
             log('Updates for version 0.1.1', "update total_dr", r20color);
             const setattrs = {};
-            setattrs['sheetversion'] = currentVersion;
             setattrs['total_dr'] = shield_dr + armor_dr;
             setAttrs(setattrs);
         }
@@ -48,6 +48,14 @@ on('sheet:opened', function() {
             log('Updates for version 0.1.2', "Update Base Attack Bonus to replace HPB", r20color);
             const bab = level < 5 ? 2 : level < 9 ? 3 : level < 13 ? 4 : level < 17 ? 5 : 6;
             setAttrs({ "base_attack_bonus": bab });
+        }
+        if (compareVersions(sheetVersion, '0.1.3') < 0) {
+            log('Updates for version 0.1.3', "update the Lore skills with the ability modifiers", r20color);
+            const loreSkills = ['lore-arcana', 'lore-architecture', 'lore-dungeoneering', 'lore-geography', 'lore-history', 'lore-keepers', 'lore-nature', 'lore-nobility', 'lore-planes', 'lore-religion', 'lore-streetwise'];
+            const setattrs = {};
+            setattrs['sheetversion'] = currentVersion;
+            setAttrs(setattrs);
+            loreSkills.forEach(skill => { recalcSkill(skill); });
         }
         else {
             log('Sheet version is up to date', "No updates needed", r20color);

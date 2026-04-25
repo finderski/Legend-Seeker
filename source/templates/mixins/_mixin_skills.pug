@@ -12,7 +12,8 @@ mixin skills(skill)
                 if training === 'trained' 
                     input(class="trainedHidden", type="hidden", name=`attr_${skillName}_trained`, value="0")
                 .chatButtons
-                    button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")
+                    // button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")
+                    button(class=["sendToChat", "labelButton", { smaller: skillName === 'lore-dungeoneering' }], type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")
                         if training === 'trained'
                             span
                                 img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Training_Required.png', data-i18n-alt="trained-skill")
@@ -43,8 +44,12 @@ mixin skills(skill)
             .addition
             //
             .abilityMod
-                span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
-                input(type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
+                if skillName === 'mana-tap'
+                    span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
+                    input(type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
+                else
+                    span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
+                    input(type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
             .addition
             .trained
                 label

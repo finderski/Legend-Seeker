@@ -1555,6 +1555,9 @@ label.buttonStyle {
   position: relative;
   top: -3px;
 }
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName .chatButtons .labelButton.smaller {
+  font-size: 0.7em;
+}
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillName .trainedHidden[value="0"] + .chatButtons {
   pointer-events: none;
   opacity: 0.5;
