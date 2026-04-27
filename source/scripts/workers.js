@@ -94,12 +94,13 @@ coreAttributes.forEach(attribute => {
 });
 
 // Heroic Proficiency Bonus Calculation
+/*
 on('change:level', function(eventInfo) {
     const level = parseInt(eventInfo.newValue) || 0;
     let hpb = level < 5 ? 2 : level < 9 ? 3 : level < 13 ? 4 : level < 17 ? 5 : 6;
     setAttrs({ "base_attack_bonus": hpb });
 });
-
+*/
 
 // Update Corruption
 on('change:wisdom change:corruption_0 change:corruption_1 change:corruption_2 change:corruption_3 change:corruption_4 change:corruption_5 change:corruption_6 change:corruption_7 change:corruption_8 change:corruption_9 change:corruption_10 change:corruption_11 change:corruption_12 change:corruption_13 change:corruption_14 change:corruption_15 change:corruption_16 change:corruption_17 change:corruption_18 change:corruption_19 change:corruption_20 change:corruption_21 change:corruption_22 change:corruption_23 change:corruption_24', function(eventInfo) {

@@ -5,8 +5,9 @@ mixin skills(skill)
     - const capitalizeWords = str => str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     - const capitalizedSkillName = capitalizeWords(skillName);
     - const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+    - const isManaTap = skillName === 'mana-tap';
 
-        if skillName === 'mana-tap'
+        if isManaTap
             input(class="hideSection", type="hidden", name=`attr_${skillName}_hider`, value="0")
         .skill
             .skillName
@@ -30,7 +31,7 @@ mixin skills(skill)
                                 | 
                                 img.icon(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/Armor_Check_Icon.png', data-i18n-alt="armor-check-penalty-applies")
                     .whisperButton 
-                        button(class="whisperToChat", type="roll" name="roll_whisper_edge", value=`/w gm @{${skillName}_formula}`)
+                        button(class="whisperToChat", type="roll", name="roll_whisper_edge", value=`/w gm @{${skillName}_formula}`)
                             span.iconButton w
                     if armorCheck === 'yes'
                         input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
@@ -43,27 +44,29 @@ mixin skills(skill)
             .halfLevel
                 span(class="attributeInput readOnly", type="text", name=`attr_half-level`)
             .addition
-            //
-            .abilityMod
+            //-
+            .abilityMod 
+                // If statement used to be here...
+                input(class="showAttMod showWatermark", type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
+                span(class="attributeInput strength readOnly", type="text", name="attr_strength_modifier")
+                span(class="attributeInput dexterity readOnly", type="text", name="attr_dexterity_modifier")
+                span(class="attributeInput constitution readOnly", type="text", name="attr_constitution_modifier")
+                span(class="attributeInput intelligence readOnly", type="text", name="attr_intelligence_modifier")
+                span(class="attributeInput wisdom readOnly", type="text", name="attr_wisdom_modifier")
+                span(class="attributeInput charisma readOnly", type="text", name="attr_charisma_modifier")
+                each ability in fullAbilityList
+                    span(class=`abilityWatermark ${ability}`, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
                 if skillName === 'mana-tap'
-                    input(class="showAttMod showWatermark", type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
-                    span(class="attributeInput strength readOnly", type="text", name="attr_strength_modifier")
-                    span(class="attributeInput dexterity readOnly", type="text", name="attr_dexterity_modifier")
-                    span(class="attributeInput constitution readOnly", type="text", name="attr_constitution_modifier")
-                    span(class="attributeInput intelligence readOnly", type="text", name="attr_intelligence_modifier")
-                    span(class="attributeInput wisdom readOnly", type="text", name="attr_wisdom_modifier")
-                    span(class="attributeInput charisma readOnly", type="text", name="attr_charisma_modifier")
-                    each ability in fullAbilityList
-                        span(class=`abilityWatermark ${ability}`, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
                     .config 
                         label.cog
-                            input(class='hiddenInput', type='checkbox', name=`attr_${skillName}_config_toggle` value="1")
+                            input(class='hiddenInput', type='checkbox', name=`attr_${skillName}_config_toggle`, value="1")
                             span.configIcon y
-                else
-                    span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
-                    input(class="showWatermark", type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
-                    each ability in fullAbilityList
-                        span(class=`abilityWatermark ${ability}`, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
+                //-
+                    else
+                        span(class="attributeInput readOnly", type="text", name=`attr_${attributeName}_modifier`)
+                        input(class="showWatermark", type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
+                        each ability in fullAbilityList
+                            span(class=`abilityWatermark ${ability}`, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
             .addition
             .trained
                 label
@@ -86,10 +89,16 @@ mixin skills(skill)
             .abilityModSelector
                 label(class="fieldLabelAbove", data-i18n='linked-attribute') Linked Attribute
                 select(class="ls-Dropdown", name=`attr_${skillName}_ability`)
-                    // option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength
-                    // option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity
-                    // option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution
-                    option(value="@{intelligence}", selected=(attributeName === 'intelligence'), data-i18n='intelligence') Intelligence
-                    option(value="@{wisdom}", selected=(attributeName === 'wisdom'), data-i18n='wisdom') Wisdom
-                    option(value="@{charisma}", selected=(attributeName === 'charisma'), data-i18n='charisma') Charisma
+                    if attributeName === 'strength'
+                        option(value="@{strength}", selected=(attributeName === 'strength'), data-i18n='strength') Strength
+                    if attributeName === 'dexterity'
+                        option(value="@{dexterity}", selected=(attributeName === 'dexterity'), data-i18n='dexterity') Dexterity
+                    if attributeName === 'constitution'
+                        option(value="@{constitution}", selected=(attributeName === 'constitution'), data-i18n='constitution') Constitution
+                    if attributeName === 'intelligence' || isManaTap
+                        option(value="@{intelligence}", selected=(attributeName === 'intelligence'), data-i18n='intelligence') Intelligence
+                    if attributeName === 'wisdom' || isManaTap
+                        option(value="@{wisdom}", selected=(attributeName === 'wisdom'), data-i18n='wisdom') Wisdom
+                    if attributeName === 'charisma' || isManaTap
+                        option(value="@{charisma}", selected=(attributeName === 'charisma'), data-i18n='charisma') Charisma
             .endSpacer &nbsp;

@@ -236,5 +236,6 @@
   "base-attack-bonus": "Base Attack Bonus",
   "base-attack-abbr": "Base ATK",
   "base-attack-bonus-abbr": "BAB",
-  "linked-attribute": "Linked Attribute"
+  "linked-attribute": "Linked Attribute",
+  "sheet-version": "Sheet Version: "
 }

@@ -389,3 +389,16 @@ label.buttonStyle {
         opacity: 1;
     }
 }
+
+.sheetVersion {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: right;
+    font-size: .65em;
+    font-family: var(--title);
+    color: var(--ink);
+    label.sheetVersionLabel {
+        width: fit-content;
+        margin: 0 10px 10px 0;
+    }
+}

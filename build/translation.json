@@ -193,6 +193,7 @@
   "gender" : "Gender",
   "miscellaneous-abbr" : "Misc",
   "number-of-actions" : "Number of Actions",
+  "sheet-version" : "Sheet Version: ",
   "components" : "Components",
   "constitution-minus-first-three" : "stitution",
   "spell-name" : "Spell Name",
