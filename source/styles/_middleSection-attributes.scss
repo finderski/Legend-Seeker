@@ -34,8 +34,9 @@
                 .cappedDexMod[value="1"] + .cappedMod {
                     display: flex;
                     width: 17px;
-                    position: absolute;
-                    left: 36.5%;
+                    position: relative;
+                    margin-left: -18px;
+                    /*left: 36.5%;*/
                 }
             }
             .attribute-row .attributeInput,

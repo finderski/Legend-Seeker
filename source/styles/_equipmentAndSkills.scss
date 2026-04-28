@@ -412,8 +412,9 @@
                 .cappedDexMod[value="1"] + .cappedMod {
                     display: flex;
                     width: 17px;
-                    position: absolute;
-                    left: 71.5%;
+                    position: relative;
+                    margin-left: -18px;
+                    /*left: 71.5%;*/
                 }
                 .trained,
                 .skillFocus {

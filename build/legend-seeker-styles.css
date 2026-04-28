@@ -604,8 +604,9 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod {
   display: flex;
   width: 17px;
-  position: absolute;
-  left: 36.5%;
+  position: relative;
+  margin-left: -18px;
+  /*left: 36.5%;*/
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton {
@@ -1709,8 +1710,9 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .cappedDexMod[value="1"] + .cappedMod {
   display: flex;
   width: 17px;
-  position: absolute;
-  left: 71.5%;
+  position: relative;
+  margin-left: -18px;
+  /*left: 71.5%;*/
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus {
