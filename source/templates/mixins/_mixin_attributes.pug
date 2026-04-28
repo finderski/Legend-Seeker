@@ -18,3 +18,7 @@ mixin attribute(attr)
             input(class="attributeInput", type="text", name=fieldName, placeholder="3")
         .modifier-field
             input(class="attributeInput readOnly", type="text", name=`${fieldName}_modifier`, placeholder="0", readonly)
+        if longName === "dexterity"
+            input(class="cappedDexMod", type="hidden", name="attr_dex_is_capped", value="0")
+            .cappedMod 
+                img(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png', data-i18n-alt="capped-dex-mod")

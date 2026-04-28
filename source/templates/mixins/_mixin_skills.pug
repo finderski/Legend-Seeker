@@ -67,6 +67,10 @@ mixin skills(skill)
                         input(class="showWatermark", type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
                         each ability in fullAbilityList
                             span(class=`abilityWatermark ${ability}`, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
+            if attributeName === "dexterity"
+                input(class="cappedDexMod", type="hidden", name="attr_dex_is_capped", value="0")
+                .cappedMod 
+                    img(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png', data-i18n-alt="capped-dex-mod")
             .addition
             .trained
                 label

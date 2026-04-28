@@ -411,7 +411,7 @@ label.buttonStyle {
 }
 .sheetVersion label.sheetVersionLabel {
   width: fit-content;
-  margin: 0 10px 10px 0;
+  margin: -3px 10px 10px 0;
 }
 
 .buttonbar {
@@ -595,6 +595,17 @@ label.buttonStyle {
   display: flex;
   flex-flow: row nowrap;
   column-gap: 5px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedMod,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedMod {
+  display: none;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedDexMod[value="1"] + .cappedMod,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod {
+  display: flex;
+  width: 17px;
+  position: absolute;
+  left: 36.5%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton {
@@ -1691,6 +1702,15 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .showWatermark[value="@{wisdom}"] ~ .abilityWatermark.wisdom,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .abilityMod .showWatermark[value="@{charisma}"] ~ .abilityWatermark.charisma {
   display: inline;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .cappedMod {
+  display: none;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills .skill .cappedDexMod[value="1"] + .cappedMod {
+  display: flex;
+  width: 17px;
+  position: absolute;
+  left: 71.5%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .trained,
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill .skillFocus {

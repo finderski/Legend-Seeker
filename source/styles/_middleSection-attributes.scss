@@ -28,6 +28,15 @@
                 display: flex;
                 flex-flow: row nowrap;
                 column-gap: 5px;
+                .cappedMod {
+                    display: none;
+                }
+                .cappedDexMod[value="1"] + .cappedMod {
+                    display: flex;
+                    width: 17px;
+                    position: absolute;
+                    left: 36.5%;
+                }
             }
             .attribute-row .attributeInput,
             .attribute-row .labelButton {

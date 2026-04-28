@@ -6,6 +6,7 @@
 function recalcSkill(skill) {
     const fields = [
         "half-level",
+        "capped_dex_mod",
         `${skill}_attribute`,
         `${skill}_trained`,
         `${skill}_focus`,
@@ -27,19 +28,27 @@ function recalcSkill(skill) {
         const focus = parseInt(values[`${skill}_focus`], 10) || 0;
         const misc = parseInt(values[`${skill}_misc`], 10) || 0;
         const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
-
+        const calcAbilityMod = attribute === "dexterity" ? Math.min(abilityMod, parseInt(values["capped_dex_mod"], 10) || 0) : abilityMod;
+        
         setAttrs({
-            [`${skill}_bonus`]: halfLevel + trained + focus + misc + abilityMod
+            [`${skill}_bonus`]: halfLevel + trained + focus + misc + calcAbilityMod
         });
     });
 }
 
 //Calculate Half-Level and Re-calculate Skills when Level changes
-on('change:level', function(eventInfo) {
+on('change:level change:capped_dex_mod', function(eventInfo) {
+
     const halfLevelValue = Math.floor((parseInt(eventInfo.newValue)/2 || 0));
     const previousHalfLevelValue = Math.floor((parseInt(eventInfo.previousValue)/2 || 0));
 
-    if (halfLevelValue === previousHalfLevelValue) {
+    if (eventInfo.sourceAttribute === "capped_dex_mod") {
+        log("Dexterity Modifier Updated", `New Half-Level Value: ${halfLevelValue}, Previous Half-Level Value: ${previousHalfLevelValue}`, derivedStatsColor);
+        listOfSklls.forEach(async (skill) => {
+            recalcSkill(skill);
+        });
+    }
+    else if (halfLevelValue === previousHalfLevelValue) {
         log("Level Updated", "No Change in Half-Level Value.", derivedStatsColor);
     }
     else {

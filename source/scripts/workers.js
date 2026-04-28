@@ -168,16 +168,22 @@ on('change:armor_worn change:armor_dex_cap', function(eventInfo) {
         const armorWorn = parseInt(v.armor_worn) || 0;
         const armorDexCap = parseInt(v.armor_dex_cap);
         let cappedDexMod = !armorWorn || isNaN(armorDexCap) ? '1000' : armorDexCap;
-        setAttrs({ "capped_dex_mod": cappedDexMod });
+        setattrs = {};
+        setattrs['capped_dex_mod'] = cappedDexMod;
+        setattrs['dex_is_capped'] = !armorWorn ? 0 : isNaN(armorDexCap) ? 0 : 1;
+        setAttrs(setattrs);
     });
 });
 
 on('change:armor_class change:armor_proficient_multiplier change:armor_worn change:shield_class change:shield_proficient_multiplier change:shield_worn', function() {
     getAttrs(['armor_class', 'armor_proficient_multiplier', 'armor_worn', 'shield_class', 'shield_proficient_multiplier', 'shield_worn'], function(v) {
+        log("proficiencies", `armor proficient multiplier: ${v.armor_proficient_multiplier}, shield proficient multiplier: ${v.shield_proficient_multiplier}`, r20color);
+        
         const armorClass = v.armor_class;
         const shieldClass = v.shield_class;
         const armorClassPenalty = armorClass === 'light' ? -2 : armorClass === 'medium' ? -5 : armorClass === 'heavy' ? -10 : 0;
         const shieldClassPenalty = shieldClass === 'light' ? -2 : shieldClass === 'medium' ? -5 : shieldClass === 'heavy' ? -10 : 0;
+        log("Class Penalties", `armor class penalty: ${armorClassPenalty}, shield class penalty: ${shieldClassPenalty}`, r20color);
         const proficientMultiplier = parseInt(v.armor_proficient_multiplier) || 0;
         const shieldProficientMultiplier = parseInt(v.shield_proficient_multiplier) || 0;
         const armorWorn = parseInt(v.armor_worn) || 0;
@@ -190,26 +196,32 @@ on('change:armor_class change:armor_proficient_multiplier change:armor_worn chan
 });
 
 // Watch for Damage Reduction Changes
-on('change:armor_dr change:shield_dr change:armor_worn change:shield_worn', function() {
-    getAttrs(['armor_dr', 'shield_dr', 'armor_worn', 'shield_worn'], function(v) {
+function calculateDR() {
+    getAttrs(['armor_dr', 'shield_dr', 'armor_worn', 'shield_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier'], function(v) {
         const armorDR = parseInt(v.armor_dr) || 0;
         const shieldDR = parseInt(v.shield_dr) || 0;
         const armorWorn = parseInt(v.armor_worn) || 0;
         const shieldWorn = parseInt(v.shield_worn) || 0;
-        const totalDR = (armorDR * armorWorn) + (shieldDR * shieldWorn);
+        const armorProficientMultiplier = (parseInt(v.armor_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0
+        const shieldProficientMultiplier = (parseInt(v.shield_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0
+        const totalDR = (armorDR * armorWorn * armorProficientMultiplier) + (shieldDR * shieldWorn * shieldProficientMultiplier);
         setAttrs({ "total_dr": totalDR });
     });
+}
+
+on('change:armor_dr change:shield_dr change:armor_worn change:shield_worn change:armor_proficient_multiplier change:shield_proficient_multiplier', function() {
+    calculateDR();
 });
 
 // Watch for Defense Score Changes
 const saveList = ['fort', 'ref', 'will'];
-const fortFields = ['level', 'condition',  'armor_fort_defense','armor_worn', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const fortFields = ['level', 'condition',  'armor_fort_defense','armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
-const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const refWatch = `change:${refFields.join(' change:')}`;
 
-const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const willWatch = `change:${willFields.join(' change:')}`;
 
 const watchMap = {
@@ -252,6 +264,8 @@ saveList.forEach(save => {
             const armorLevel = parseInt(v.armor_level) || 0;
             const armorWillDefense = parseInt(v.armor_will_defense) || 0;
             const armorWorn = parseInt(v.armor_worn) || 0;
+            const armorProficientMultiplier = (parseInt(v.armor_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0, since a proficient multiplier of 1 means you take the full penalty, while a proficient multiplier of 0 means you ignore the penalty
+            const shieldProficientMultiplier = (parseInt(v.shield_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0, since a proficient multiplier of 1 means you take the full penalty, while a proficient multiplier of 0 means you ignore the penalty
             const shieldLevel = parseInt(v.shield_level) || 0;
             const shieldWillDefense = parseInt(v.shield_will_defense) || 0;
             const shieldFortDefense = parseInt(v.shield_fort_defense) || 0;
@@ -301,7 +315,7 @@ saveList.forEach(save => {
             }
             setAttrsObj[`${save}_ability_modifier`] = abilityModValue; // ensure ability mod is included in updates even if it didn't trigger the change
             if (armorWorn === 1 || shieldWorn === 1) {
-                levelOrArmorBonus = save === 'fort' ? Math.max(level, ((armorFortDefense * armorWorn) + (shieldFortDefense * shieldWorn))) : save === 'ref' ? Math.max(level, ((armorLevel * armorWorn) + (shieldLevel * shieldWorn))) : Math.max(level, ((armorWillDefense * armorWorn) + (shieldWillDefense * shieldWorn)));
+                levelOrArmorBonus = save === 'fort' ? level + (((armorFortDefense * armorProficientMultiplier) * armorWorn) + ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn)) : save === 'ref' ? Math.max(level, ((armorLevel * armorWorn) + (shieldLevel * shieldWorn))) : level + (((armorWillDefense * armorProficientMultiplier) * armorWorn) + ((shieldWillDefense * shieldProficientMultiplier) * shieldWorn));
             }
             else {
                 levelOrArmorBonus = level;

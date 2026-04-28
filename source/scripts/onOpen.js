@@ -26,12 +26,12 @@ function compareVersions(a, b) {
     return 0;
 }
 
-const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level'];
+const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn'];
 sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.2.0';
+        const currentVersion = '0.2.1';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
@@ -60,18 +60,34 @@ on('sheet:opened', function() {
         }
         log("version 0.1.3 update check complete", "No further updates needed for version 0.1.3", r20color);
         if(compareVersions(sheetVersion, '0.2.0') < 0) {
-            log('Updates for version 0.2.0', "update skill linked attributes and formulas", r20color);
+            log('Updates for version 0.2.0', "update skill linked attributes and formulas and defense Save Calculations", r20color);
             const skillList = [['acrobatics','dexterity'],['climb', 'strength'],['craft', 'wisdom'],['deception', 'charisma'],  ['endurance', 'constitution'],['gather-information','charisma'],['initiative','dexterity'],['invoke-arcana','intelligence'],['jump','strength'],['lore-arcana','intelligence'],['lore-architecture','intelligence'],['lore-dungeoneering','intelligence'],['lore-geography','intelligence'],['lore-history','intelligence'],['lore-keepers','intelligence'],['lore-nature','intelligence'],['lore-nobility','intelligence'],['lore-planes','intelligence'],['lore-religion','intelligence'],['lore-streetwise','intelligence'],['notice','wisdom'],['persuasion','charisma'],['ride','dexterity'],['sense-motive','wisdom'],['stealth','dexterity'],['survival','wisdom'],['swim','strength'],['tinkering','intelligence'],['treat-wounds','wisdom']];
             const setattrs = {};
             skillList.forEach(([skill, attribute]) => {
                 setattrs[`${skill}_ability`] = `@{${attribute}}`;
             });
-            setattrs['sheetversion'] = currentVersion;
             setAttrs(setattrs);
             log("version 0.2.0 update check complete", "No further updates needed for version 0.2.0", r20color);
             skillList.forEach(([skill]) => { recalcSkill(skill); });
+            //force Defense Saves to recalculate
+            log("Forcing defense saves to recalculate with new formulas", "Triggering changes to level to force recalculation", r20color);
+            setAttrs({level: level + 1}); // since the save calculations depend on level, we can just trigger a change to level to force them to recalculate with the new formulas
+            setAttrs({level: level - 1}); // set level back to its original value after triggering the change
+            log("Damage Reduction recalculation", "DR to recalculate with new formulas", r20color);
+            calculateDR();
         }
-        else {
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.2.1', "Fix Armor Check Penalty", r20color);
+            //toggle Armor Worn to force a calculation update
+            let armorWorn = (parseInt(values.armor_worn) || 0) ^ 1;
+            setAttrs({armor_worn: armorWorn});
+            armorWorn ^= 1; // toggle it back to its original value
+            setAttrs({armor_worn: armorWorn});
+            const setattrs = {};
+            setattrs['sheetversion'] = currentVersion;
+            setAttrs(setattrs);
+            log("version 0.2.1 update complete", "Sheet version updated to 0.2.1 and Armor Check Penalty should now be fixed", r20color);
+        } else {
             log('Sheet version is up to date', "No updates needed", r20color);
         }
     });

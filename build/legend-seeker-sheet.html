@@ -4,7 +4,7 @@
   <!-- Color Paletteinclude _colors.pug
   -->
   <!-- Hidden inputs for character sheet functionality-->
-  <input type="hidden" name="attr_sheetversion" value="0.2.0"/>
+  <input type="hidden" name="attr_sheetversion" value="0.2.1"/>
   <input type="hidden" name="attr_shield_dr" value="0"/>
   <!-- Tab Styling in _tabSetup.scss-->
   <!-- buttonbar styles in the _buttonbarStyles.scss-->
@@ -146,6 +146,8 @@
                 <div class="modifier-field">
                   <input class="attributeInput readOnly" type="text" name="attr_dexterity_modifier" placeholder="0" readonly="readonly"/>
                 </div>
+                <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
+                <div class="cappedMod"> <img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png" data-i18n-alt="capped-dex-mod"/></div>
               </div>
               <div class="attribute-row">
                 <div class="attribute-field">
@@ -1199,6 +1201,8 @@
             <!-- If statement used to be here...-->
             <input class="showAttMod showWatermark" type="hidden" name="attr_acrobatics_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
+          <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
+          <div class="cappedMod"> <img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png" data-i18n-alt="capped-dex-mod"/></div>
           <div class="addition"></div>
           <div class="trained">
             <label>
@@ -1517,6 +1521,8 @@
             <!-- If statement used to be here...-->
             <input class="showAttMod showWatermark" type="hidden" name="attr_initiative_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
+          <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
+          <div class="cappedMod"> <img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png" data-i18n-alt="capped-dex-mod"/></div>
           <div class="addition"></div>
           <div class="trained">
             <label>
@@ -2366,6 +2372,8 @@
             <!-- If statement used to be here...-->
             <input class="showAttMod showWatermark" type="hidden" name="attr_ride_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
+          <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
+          <div class="cappedMod"> <img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png" data-i18n-alt="capped-dex-mod"/></div>
           <div class="addition"></div>
           <div class="trained">
             <label>
@@ -2472,6 +2480,8 @@
             <!-- If statement used to be here...-->
             <input class="showAttMod showWatermark" type="hidden" name="attr_stealth_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
+          <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
+          <div class="cappedMod"> <img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png" data-i18n-alt="capped-dex-mod"/></div>
           <div class="addition"></div>
           <div class="trained">
             <label>
@@ -3060,12 +3070,12 @@ function compareVersions(a, b) {
     return 0;
 }
 
-const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level'];
+const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn'];
 sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.2.0';
+        const currentVersion = '0.2.1';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
@@ -3094,18 +3104,34 @@ on('sheet:opened', function() {
         }
         log("version 0.1.3 update check complete", "No further updates needed for version 0.1.3", r20color);
         if(compareVersions(sheetVersion, '0.2.0') < 0) {
-            log('Updates for version 0.2.0', "update skill linked attributes and formulas", r20color);
+            log('Updates for version 0.2.0', "update skill linked attributes and formulas and defense Save Calculations", r20color);
             const skillList = [['acrobatics','dexterity'],['climb', 'strength'],['craft', 'wisdom'],['deception', 'charisma'],  ['endurance', 'constitution'],['gather-information','charisma'],['initiative','dexterity'],['invoke-arcana','intelligence'],['jump','strength'],['lore-arcana','intelligence'],['lore-architecture','intelligence'],['lore-dungeoneering','intelligence'],['lore-geography','intelligence'],['lore-history','intelligence'],['lore-keepers','intelligence'],['lore-nature','intelligence'],['lore-nobility','intelligence'],['lore-planes','intelligence'],['lore-religion','intelligence'],['lore-streetwise','intelligence'],['notice','wisdom'],['persuasion','charisma'],['ride','dexterity'],['sense-motive','wisdom'],['stealth','dexterity'],['survival','wisdom'],['swim','strength'],['tinkering','intelligence'],['treat-wounds','wisdom']];
             const setattrs = {};
             skillList.forEach(([skill, attribute]) => {
                 setattrs[`${skill}_ability`] = `@{${attribute}}`;
             });
-            setattrs['sheetversion'] = currentVersion;
             setAttrs(setattrs);
             log("version 0.2.0 update check complete", "No further updates needed for version 0.2.0", r20color);
             skillList.forEach(([skill]) => { recalcSkill(skill); });
+            //force Defense Saves to recalculate
+            log("Forcing defense saves to recalculate with new formulas", "Triggering changes to level to force recalculation", r20color);
+            setAttrs({level: level + 1}); // since the save calculations depend on level, we can just trigger a change to level to force them to recalculate with the new formulas
+            setAttrs({level: level - 1}); // set level back to its original value after triggering the change
+            log("Damage Reduction recalculation", "DR to recalculate with new formulas", r20color);
+            calculateDR();
         }
-        else {
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.2.1', "Fix Armor Check Penalty", r20color);
+            //toggle Armor Worn to force a calculation update
+            let armorWorn = (parseInt(values.armor_worn) || 0) ^ 1;
+            setAttrs({armor_worn: armorWorn});
+            armorWorn ^= 1; // toggle it back to its original value
+            setAttrs({armor_worn: armorWorn});
+            const setattrs = {};
+            setattrs['sheetversion'] = currentVersion;
+            setAttrs(setattrs);
+            log("version 0.2.1 update complete", "Sheet version updated to 0.2.1 and Armor Check Penalty should now be fixed", r20color);
+        } else {
             log('Sheet version is up to date', "No updates needed", r20color);
         }
     });
@@ -3296,16 +3322,22 @@ on('change:armor_worn change:armor_dex_cap', function(eventInfo) {
         const armorWorn = parseInt(v.armor_worn) || 0;
         const armorDexCap = parseInt(v.armor_dex_cap);
         let cappedDexMod = !armorWorn || isNaN(armorDexCap) ? '1000' : armorDexCap;
-        setAttrs({ "capped_dex_mod": cappedDexMod });
+        setattrs = {};
+        setattrs['capped_dex_mod'] = cappedDexMod;
+        setattrs['dex_is_capped'] = !armorWorn ? 0 : isNaN(armorDexCap) ? 0 : 1;
+        setAttrs(setattrs);
     });
 });
 
 on('change:armor_class change:armor_proficient_multiplier change:armor_worn change:shield_class change:shield_proficient_multiplier change:shield_worn', function() {
     getAttrs(['armor_class', 'armor_proficient_multiplier', 'armor_worn', 'shield_class', 'shield_proficient_multiplier', 'shield_worn'], function(v) {
+        log("proficiencies", `armor proficient multiplier: ${v.armor_proficient_multiplier}, shield proficient multiplier: ${v.shield_proficient_multiplier}`, r20color);
+        
         const armorClass = v.armor_class;
         const shieldClass = v.shield_class;
         const armorClassPenalty = armorClass === 'light' ? -2 : armorClass === 'medium' ? -5 : armorClass === 'heavy' ? -10 : 0;
         const shieldClassPenalty = shieldClass === 'light' ? -2 : shieldClass === 'medium' ? -5 : shieldClass === 'heavy' ? -10 : 0;
+        log("Class Penalties", `armor class penalty: ${armorClassPenalty}, shield class penalty: ${shieldClassPenalty}`, r20color);
         const proficientMultiplier = parseInt(v.armor_proficient_multiplier) || 0;
         const shieldProficientMultiplier = parseInt(v.shield_proficient_multiplier) || 0;
         const armorWorn = parseInt(v.armor_worn) || 0;
@@ -3318,26 +3350,32 @@ on('change:armor_class change:armor_proficient_multiplier change:armor_worn chan
 });
 
 // Watch for Damage Reduction Changes
-on('change:armor_dr change:shield_dr change:armor_worn change:shield_worn', function() {
-    getAttrs(['armor_dr', 'shield_dr', 'armor_worn', 'shield_worn'], function(v) {
+function calculateDR() {
+    getAttrs(['armor_dr', 'shield_dr', 'armor_worn', 'shield_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier'], function(v) {
         const armorDR = parseInt(v.armor_dr) || 0;
         const shieldDR = parseInt(v.shield_dr) || 0;
         const armorWorn = parseInt(v.armor_worn) || 0;
         const shieldWorn = parseInt(v.shield_worn) || 0;
-        const totalDR = (armorDR * armorWorn) + (shieldDR * shieldWorn);
+        const armorProficientMultiplier = (parseInt(v.armor_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0
+        const shieldProficientMultiplier = (parseInt(v.shield_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0
+        const totalDR = (armorDR * armorWorn * armorProficientMultiplier) + (shieldDR * shieldWorn * shieldProficientMultiplier);
         setAttrs({ "total_dr": totalDR });
     });
+}
+
+on('change:armor_dr change:shield_dr change:armor_worn change:shield_worn change:armor_proficient_multiplier change:shield_proficient_multiplier', function() {
+    calculateDR();
 });
 
 // Watch for Defense Score Changes
 const saveList = ['fort', 'ref', 'will'];
-const fortFields = ['level', 'condition',  'armor_fort_defense','armor_worn', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const fortFields = ['level', 'condition',  'armor_fort_defense','armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
-const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const refWatch = `change:${refFields.join(' change:')}`;
 
-const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const willWatch = `change:${willFields.join(' change:')}`;
 
 const watchMap = {
@@ -3380,6 +3418,8 @@ saveList.forEach(save => {
             const armorLevel = parseInt(v.armor_level) || 0;
             const armorWillDefense = parseInt(v.armor_will_defense) || 0;
             const armorWorn = parseInt(v.armor_worn) || 0;
+            const armorProficientMultiplier = (parseInt(v.armor_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0, since a proficient multiplier of 1 means you take the full penalty, while a proficient multiplier of 0 means you ignore the penalty
+            const shieldProficientMultiplier = (parseInt(v.shield_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0, since a proficient multiplier of 1 means you take the full penalty, while a proficient multiplier of 0 means you ignore the penalty
             const shieldLevel = parseInt(v.shield_level) || 0;
             const shieldWillDefense = parseInt(v.shield_will_defense) || 0;
             const shieldFortDefense = parseInt(v.shield_fort_defense) || 0;
@@ -3429,7 +3469,7 @@ saveList.forEach(save => {
             }
             setAttrsObj[`${save}_ability_modifier`] = abilityModValue; // ensure ability mod is included in updates even if it didn't trigger the change
             if (armorWorn === 1 || shieldWorn === 1) {
-                levelOrArmorBonus = save === 'fort' ? Math.max(level, ((armorFortDefense * armorWorn) + (shieldFortDefense * shieldWorn))) : save === 'ref' ? Math.max(level, ((armorLevel * armorWorn) + (shieldLevel * shieldWorn))) : Math.max(level, ((armorWillDefense * armorWorn) + (shieldWillDefense * shieldWorn)));
+                levelOrArmorBonus = save === 'fort' ? level + (((armorFortDefense * armorProficientMultiplier) * armorWorn) + ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn)) : save === 'ref' ? Math.max(level, ((armorLevel * armorWorn) + (shieldLevel * shieldWorn))) : level + (((armorWillDefense * armorProficientMultiplier) * armorWorn) + ((shieldWillDefense * shieldProficientMultiplier) * shieldWorn));
             }
             else {
                 levelOrArmorBonus = level;
@@ -3550,6 +3590,7 @@ on('change:total_weight_carried change:total_ps', function () {
 function recalcSkill(skill) {
     const fields = [
         "half-level",
+        "capped_dex_mod",
         `${skill}_attribute`,
         `${skill}_trained`,
         `${skill}_focus`,
@@ -3571,19 +3612,27 @@ function recalcSkill(skill) {
         const focus = parseInt(values[`${skill}_focus`], 10) || 0;
         const misc = parseInt(values[`${skill}_misc`], 10) || 0;
         const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
-
+        const calcAbilityMod = attribute === "dexterity" ? Math.min(abilityMod, parseInt(values["capped_dex_mod"], 10) || 0) : abilityMod;
+        
         setAttrs({
-            [`${skill}_bonus`]: halfLevel + trained + focus + misc + abilityMod
+            [`${skill}_bonus`]: halfLevel + trained + focus + misc + calcAbilityMod
         });
     });
 }
 
 //Calculate Half-Level and Re-calculate Skills when Level changes
-on('change:level', function(eventInfo) {
+on('change:level change:capped_dex_mod', function(eventInfo) {
+
     const halfLevelValue = Math.floor((parseInt(eventInfo.newValue)/2 || 0));
     const previousHalfLevelValue = Math.floor((parseInt(eventInfo.previousValue)/2 || 0));
 
-    if (halfLevelValue === previousHalfLevelValue) {
+    if (eventInfo.sourceAttribute === "capped_dex_mod") {
+        log("Dexterity Modifier Updated", `New Half-Level Value: ${halfLevelValue}, Previous Half-Level Value: ${previousHalfLevelValue}`, derivedStatsColor);
+        listOfSklls.forEach(async (skill) => {
+            recalcSkill(skill);
+        });
+    }
+    else if (halfLevelValue === previousHalfLevelValue) {
         log("Level Updated", "No Change in Half-Level Value.", derivedStatsColor);
     }
     else {
