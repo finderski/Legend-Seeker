@@ -1,17 +1,17 @@
-// Necessary Mixins
+//- Necessary Mixins
 include ./mixins/_mixin_attributes.pug 
 include ./mixins/_mixin_corruption.pug
 include ./mixins/_mixin_buildSaves.pug
 include ./mixins/_mixin_skills.pug
 
 .maindiv
-    // Color Palette
+    //- Color Palette
         include _colors.pug
     // Hidden inputs for character sheet functionality
     input(type='hidden', name='attr_sheetversion', value='0.2.1')
     input(type='hidden', name='attr_shield_dr', value='0')
-    // Tab Styling in _tabSetup.scss
-    // buttonbar styles in the _buttonbarStyles.scss
+    //- Tab Styling in _tabSetup.scss
+    //- buttonbar styles in the _buttonbarStyles.scss
     input(type='hidden', class='selectedTab', name='attr_sheetTab', value="1")
     .sheetVersion 
         label(class="sheetVersionLabel", data-i18n='sheet-version') Sheet Version: 
