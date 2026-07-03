@@ -237,5 +237,7 @@
   "base-attack-abbr": "Base ATK",
   "base-attack-bonus-abbr": "BAB",
   "linked-attribute": "Linked Attribute",
-  "sheet-version": "Sheet Version: "
+  "sheet-version": "Sheet Version: ",
+  "armor-warden": "Armor Warden",
+  "dot-dot-dot-improved": "...Improved"
 }

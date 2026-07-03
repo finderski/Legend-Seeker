@@ -1008,6 +1008,14 @@
         <div class="armor">
           <h3 class="headerLabel left" data-i18n="armor-and-shield">Armor and Shield</h3>
           <input type="hidden" name="attr_armor_check_penalty" value="0"/>
+          <div class="armorWarden">
+            <label>
+              <input class="checkboxInput" type="checkbox" name="attr_armor_warden" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="armor-warden">Armor Warden</span>
+            </label>
+            <label>
+              <input class="checkboxInput" type="checkbox" name="attr_improved_armor_warden" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="dot-dot-dot-improved">...Improved</span>
+            </label>
+          </div>
           <div class="armorGroup">
             <div class="armorType"> 
               <label class="fieldLabelAbove" data-i18n="armor-type">Armor Type</label>
@@ -3226,40 +3234,18 @@ const checkDiceExpression = (expression) => {
     return dicePattern.test(expression);
 }
 
+//Update Attribute Modifiers when Core Attributes Change
 coreAttributes.forEach(attribute => {
     on(`change:${attribute}`, function (eventInfo) {
         const attScore = Math.floor((parseInt(eventInfo.newValue) || 0));
         let modScore;
-        modScore = attScore < 2 ? -5 :
-                   attScore < 4 ? -4 :
-                   attScore < 6 ? -3 :
-                   attScore < 8 ? -2 :
-                   attScore < 10 ? -1 :
-                   attScore < 12 ? 0 :
-                   attScore < 14 ? 1 :
-                   attScore < 16 ? 2 :
-                   attScore < 18 ? 3 :
-                   attScore < 20 ? 4 :
-                   attScore < 22 ? 5 :
-                   attScore < 24 ? 6 :
-                   attScore < 26 ? 7 :
-                   attScore < 28 ? 8 :
-                   attScore < 30 ? 9 : 10;
+        modScore = Math.floor((attScore - 10) / 2);
         log("Modifier", modScore, derivedStatsColor)
         const attrsToSet = {};
         attrsToSet[`${attribute}_modifier`] = modScore;
         setAttrs(attrsToSet);
     });
 });
-
-// Heroic Proficiency Bonus Calculation
-/*
-on('change:level', function(eventInfo) {
-    const level = parseInt(eventInfo.newValue) || 0;
-    let hpb = level < 5 ? 2 : level < 9 ? 3 : level < 13 ? 4 : level < 17 ? 5 : 6;
-    setAttrs({ "base_attack_bonus": hpb });
-});
-*/
 
 // Update Corruption
 on('change:wisdom change:corruption_0 change:corruption_1 change:corruption_2 change:corruption_3 change:corruption_4 change:corruption_5 change:corruption_6 change:corruption_7 change:corruption_8 change:corruption_9 change:corruption_10 change:corruption_11 change:corruption_12 change:corruption_13 change:corruption_14 change:corruption_15 change:corruption_16 change:corruption_17 change:corruption_18 change:corruption_19 change:corruption_20 change:corruption_21 change:corruption_22 change:corruption_23 change:corruption_24', function(eventInfo) {
@@ -3374,10 +3360,10 @@ on('change:armor_dr change:shield_dr change:armor_worn change:shield_worn change
 
 // Watch for Defense Score Changes
 const saveList = ['fort', 'ref', 'will'];
-const fortFields = ['level', 'condition',  'armor_fort_defense','armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const fortFields = ['level', 'condition',  'armor_fort_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
-const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const refWatch = `change:${refFields.join(' change:')}`;
 
 const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
@@ -3419,6 +3405,8 @@ saveList.forEach(save => {
             // Do The Calculations
             //Fields for Level or Armor
             const level = parseInt(v.level) || 0;
+            const armorWarden = parseInt(v.armor_warden) || 0;
+            const improvedArmorWarden = parseInt(v.improved_armor_warden) || 0;
             const armorFortDefense = parseInt(v.armor_fort_defense) || 0;
             const armorLevel = parseInt(v.armor_level) || 0;
             const armorWillDefense = parseInt(v.armor_will_defense) || 0;
@@ -3474,7 +3462,37 @@ saveList.forEach(save => {
             }
             setAttrsObj[`${save}_ability_modifier`] = abilityModValue; // ensure ability mod is included in updates even if it didn't trigger the change
             if (armorWorn === 1 || shieldWorn === 1) {
-                levelOrArmorBonus = save === 'fort' ? level + (((armorFortDefense * armorProficientMultiplier) * armorWorn) + ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn)) : save === 'ref' ? Math.max(level, ((armorLevel * armorWorn) + (shieldLevel * shieldWorn))) : level + (((armorWillDefense * armorProficientMultiplier) * armorWorn) + ((shieldWillDefense * shieldProficientMultiplier) * shieldWorn));
+                //levelOrArmorBonus = save === 'fort' ? level + (((armorFortDefense * armorProficientMultiplier) * armorWorn) + ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn)) : save === 'ref' ? Math.max(level, ((armorLevel * armorWorn) + (shieldLevel * shieldWorn))) : level + (((armorWillDefense * armorProficientMultiplier) * armorWorn) + ((shieldWillDefense * shieldProficientMultiplier) * shieldWorn));
+                if (save === 'fort') {
+                    levelOrArmorBonus =
+                        level +
+                        ((armorFortDefense * armorProficientMultiplier) * armorWorn) +
+                        ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn);
+
+                } else if (save === 'ref') {
+                    if (armorWarden === 1 && improvedArmorWarden === 0) {
+                        //Is Armor Warden, so take the higher of Level or Armor Bonus
+                        log("Armor Warden Detected", "Calculating Level or Armor Bonus for Reflex Save", "lime");
+                        levelOrArmorBonus = Math.max(
+                            level,
+                            (armorLevel * armorWorn) + (shieldLevel * shieldWorn)
+                        );
+                    } else if (improvedArmorWarden === 1) {
+                        //Is Improved Armor Warden, so take the higher of Level or Armor Bonus with half of Armor Bonus
+                        log("Improved Armor Warden Detected", "Calculating Level or Armor Bonus for Reflex Save", "lime");
+                        levelOrArmorBonus = 
+                            Math.max((armorLevel * armorWorn) + (shieldLevel * shieldWorn), level + Math.floor(((armorLevel * armorWorn) + (shieldLevel * shieldWorn))*.5));
+                    } else {
+                        // Wearing Armor and Not Armor Warden, so always just Armor Bonus
+                        levelOrArmorBonus = (armorLevel * armorWorn) + (shieldLevel * shieldWorn)
+                    }
+
+                } else {
+                    levelOrArmorBonus =
+                        level +
+                        ((armorWillDefense * armorProficientMultiplier) * armorWorn) +
+                        ((shieldWillDefense * shieldProficientMultiplier) * shieldWorn);
+                }
             }
             else {
                 levelOrArmorBonus = level;
@@ -4563,7 +4581,7 @@ on('clicked:use-legendary-points', function() {
         rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
         rollFormula += legendaryPoints > 0 ? `{{text=^{spends-alegendary-point-and-rolls}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
         const numDice = level >= 15 ? 3 : level >= 8 ? 2 : 1;
-        rollFormula += trueLegend ? `{{roll=[[${numDice}d8]]}}` : `{{roll=[[${numDice}d6]]}}`;
+        rollFormula += trueLegend ? `{{roll=[[${numDice}d8kh1]]}}` : `{{roll=[[${numDice}d6kh1]]}}`;
         log('Roll formula', rollFormula, derivedStatsColor);
         const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
         const roll_result = legendaryPoints > 0 ? rollFormula : noRollFormula;

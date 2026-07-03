@@ -2,6 +2,15 @@
 .armor
     h3(class='headerLabel left', data-i18n='armor-and-shield') Armor and Shield
     input(type="hidden", name="attr_armor_check_penalty", value="0")
+    .armorWarden
+        label(class="")
+            input(class="checkboxInput", type='checkbox', name='attr_armor_warden', value='1')
+            span(class="styledCheckbox")
+            span(class="styledCheckboxText", data-i18n='armor-warden') Armor Warden
+        label(class="")
+            input(class="checkboxInput", type='checkbox', name='attr_improved_armor_warden', value='1')
+            span(class="styledCheckbox")
+            span(class="styledCheckboxText", data-i18n='dot-dot-dot-improved') ...Improved
     .armorGroup
         .armorType 
             label(class="fieldLabelAbove", data-i18n='armor-type') Armor Type

@@ -75,6 +75,12 @@
                 padding: 3px;
                 border-radius: 0 8px;
                 margin-top: auto;
+                .armorWarden {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    column-gap: 5px;
+                    margin: 0 0 15px 0;
+                }
                 .armorGroup {
                     display: flex;
                     flex-flow: row wrap;

@@ -304,7 +304,7 @@ on('clicked:use-legendary-points', function() {
         rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
         rollFormula += legendaryPoints > 0 ? `{{text=^{spends-alegendary-point-and-rolls}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
         const numDice = level >= 15 ? 3 : level >= 8 ? 2 : 1;
-        rollFormula += trueLegend ? `{{roll=[[${numDice}d8]]}}` : `{{roll=[[${numDice}d6]]}}`;
+        rollFormula += trueLegend ? `{{roll=[[${numDice}d8kh1]]}}` : `{{roll=[[${numDice}d6kh1]]}}`;
         log('Roll formula', rollFormula, derivedStatsColor);
         const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
         const roll_result = legendaryPoints > 0 ? rollFormula : noRollFormula;

@@ -316,6 +316,39 @@ label.buttonStyle {
   align-self: center;
 }
 
+/* Styled Checkbox - default */
+.styledCheckbox {
+  display: inline-block;
+  font-family: "Pictos";
+  font-size: 1em;
+  line-height: 1;
+  margin: 0 5px 0 0;
+}
+
+.checkboxInput:not(:checked) + .styledCheckbox::before {
+  content: "d"; /*D*/
+}
+
+.checkboxInput:not(:checked) ~ .styledCheckboxText.replace {
+  display: none;
+}
+
+.checkboxInput:checked + .styledCheckbox::before {
+  content: "2"; /*2*/
+}
+
+.checkboxInput:checked ~ .styledCheckboxText.add {
+  display: none;
+}
+
+.styledCheckboxText {
+  display: inline-block;
+  color: var(--ink);
+  font-family: var(--title);
+  font-size: 1.2em;
+  text-transform: lowercase;
+}
+
 .maindiv {
   min-width: 840px;
   max-width: 840px;
@@ -1353,6 +1386,12 @@ label.buttonStyle {
   padding: 3px;
   border-radius: 0 8px;
   margin-top: auto;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorWarden {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+  margin: 0 0 15px 0;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup {
   display: flex;
