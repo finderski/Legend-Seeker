@@ -141,7 +141,7 @@ const runWeaponAttack = whisper => eventInfo => {
         `repeating_weapons_${rowId}_weapon`,
         `repeating_weapons_${rowId}_weapon-atk`,
         `repeating_weapons_${rowId}_weapon-crit`,
-        `repeating_weapons_${rowId}_weapon-attack-history`
+        `repeating_weapons_${rowId}_weapon-attack-history`,
     ];
 
     getAttrs(fields, values => {
@@ -202,7 +202,8 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
         `repeating_weapons_${rowId}_weapon-last-attack-raises`,
         `repeating_weapons_${rowId}_weapon-last-attack-total`,
         `repeating_weapons_${rowId}_weapon-last-attack-natural`,
-        `repeating_weapons_${rowId}_weapon-last-attack-target`
+        `repeating_weapons_${rowId}_weapon-last-attack-target`,
+        `repeating_weapons_${rowId}_weapon-double-crit`
     ];
 
     getAttrs(fields, values => {
@@ -216,6 +217,7 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
         const damageAttributeModValue = toInt(values[`repeating_weapons_${rowId}_damage-attribute-mod-value`]);
         const damageMiscMod = toInt(values[`repeating_weapons_${rowId}_weapon-damage-misc-mod`]);
         const halfLevel = toInt(values[`repeating_weapons_${rowId}_weapon-half-level`]);
+        const doubleCrit = toInt(values[`repeating_weapons_${rowId}_weapon-double-crit`]);
         const whisperPrefix = whisper ? '/w gm ' : '';
         const rollTerms = [];
 
@@ -234,6 +236,9 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
         }
         if (crit) {
             rollTerms.push('1d6! [Crit d6]');
+        }
+        if (crit && doubleCrit) {
+            rollTerms.push('1d6! [Double Crit d6]');
         }
         if (raises > 0) {
             rollTerms.push(`${raises}d6${crit ? '!' : ''} [Additional d6s per raise]`);

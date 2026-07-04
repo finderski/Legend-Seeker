@@ -60,7 +60,9 @@ function updateWeapons(fields, section, id) {
         const updateHeroicProficiencyBonus = values['base_attack_bonus'] || values['base_attack_bonus'] === '0' || values['base_attack_bonus'] === 0 ? parseInt(values['base_attack_bonus']) || 0 : 'skip';
         const heroicProficiencyBonus = values['base_attack_bonus'] || values['base_attack_bonus'] === '0' || values['base_attack_bonus'] === 0 ? parseInt(values['base_attack_bonus']) || 0 : parseInt(values[`repeating_weapons_${id}_weapon-base-attack-bonus`]) || 0;
         log("Base Attack Bonus Value After process", `Base Attack Bonus: ${heroicProficiencyBonus}, type: ${typeof(heroicProficiencyBonus)}`, r20color);
+        
         const setattrs = {};
+        setattrs[`repeating_weapons_${id}_double-crit-eligible`] = parseInt(values[`base_attack_bonus`]) >= 8 ? 1 : 0;
         switch(updateHalfLevel) {
             case 'skip':
                 break;
@@ -178,7 +180,7 @@ on('change:base_attack_bonus change:repeating_weapons:weapon-atk-bonus change:re
     // if hpb, then all weapons need to be updated, otherwise just the current weapon needs to be updated
     if (eventInfo.sourceAttribute === 'base_attack_bonus') {
         // Heroic Proficiency Trigger - must update ALL weapons
-        const fields = ['base_attack_bonus', ...atkFields, ...listOfAttributes];
+        const fields = ['base_attack_bonus', 'double-crit-eligible', ...atkFields, ...listOfAttributes];
         const section = 'atk';
         //const id = 'all';
         log("Base Attack Bonus Changed. Updating attack for all weapons.", r20color);

@@ -379,6 +379,14 @@
                             width: 100%;
                             white-space: nowrap;
                         }
+                        .doubleCrit {
+                            display: none;
+                        }
+                        .dblCritEligible[value="1"] + .doubleCrit {
+                            display: flex;
+                            align-items: center;
+                            column-gap: 5px;
+                        }
                     }
                 }
             }

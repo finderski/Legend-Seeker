@@ -93,6 +93,7 @@
   "tinkering" : "Tinkering",
   "damage-failed" : "Damage (Failed)",
   "critical-damage" : "Critical Damage",
+  "double-critical" : "Double Crit",
   "constitution-abbr" : "CON",
   "resource-name" : "Resource Name",
   "strength" : "Strength",

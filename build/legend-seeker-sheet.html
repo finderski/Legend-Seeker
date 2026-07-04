@@ -857,7 +857,7 @@
               <input type="hidden" name="attr_whisper_damage_button" value=""/>
               <!-- Damage-->
               <input type="hidden" name="attr_weapon-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{weapon}}} {{Roll=[[ @{weapon-damage} + [[?{Additional Damage Mod|0} [Additional Mod]]] + [[?{Additional # of damage dice|0}]]d6 ]]}}"/>
-              <input type="hidden" name="attr_weapon-crit-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{weapon}}} {{Roll=[[ @{weapon-damage-dice}! + [[?{Additional Damage Mod|0} [Additional Mod]]] + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{weapon-damage-attribute-mod} Mod] + @{weapon-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}"/>
+              <input type="hidden" name="attr_weapon-crit-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{weapon}}} {{Roll=[[ @{weapon-damage-dice}! + [[@{weapon-double-crit}]]d6 [Double Crit] + [[?{Additional Damage Mod|0} [Additional Mod]]] + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{weapon-damage-attribute-mod} Mod] + @{weapon-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}"/>
               <input type="hidden" name="attr_weapon-attack-history" value="[]"/>
               <input type="hidden" name="attr_weapon-last-attack-rollid" value=""/>
               <input type="hidden" name="attr_weapon-last-attack-success" value="0"/>
@@ -953,6 +953,10 @@
                 <input class="textField" type="text" name="attr_weapon-misc-mod" value="0"/>
               </div>
             </div>
+            <input class="dblCritEligible" type="hidden" name="attr_double-crit-eligible" value="0"/>
+            <label class="doubleCrit">
+              <input class="checkboxInput" type="checkbox" name="attr_weapon-double-crit" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="double-critical">Double Crit</span>
+            </label>
             <div class="notes"> 
               <textarea class="weaponNotes" name="attr_weapon-notes" data-i18n-placeholder="weapon-notes"></textarea>
             </div>
@@ -3752,7 +3756,9 @@ function updateWeapons(fields, section, id) {
         const updateHeroicProficiencyBonus = values['base_attack_bonus'] || values['base_attack_bonus'] === '0' || values['base_attack_bonus'] === 0 ? parseInt(values['base_attack_bonus']) || 0 : 'skip';
         const heroicProficiencyBonus = values['base_attack_bonus'] || values['base_attack_bonus'] === '0' || values['base_attack_bonus'] === 0 ? parseInt(values['base_attack_bonus']) || 0 : parseInt(values[`repeating_weapons_${id}_weapon-base-attack-bonus`]) || 0;
         log("Base Attack Bonus Value After process", `Base Attack Bonus: ${heroicProficiencyBonus}, type: ${typeof(heroicProficiencyBonus)}`, r20color);
+        
         const setattrs = {};
+        setattrs[`repeating_weapons_${id}_double-crit-eligible`] = parseInt(values[`base_attack_bonus`]) >= 8 ? 1 : 0;
         switch(updateHalfLevel) {
             case 'skip':
                 break;
@@ -3870,7 +3876,7 @@ on('change:base_attack_bonus change:repeating_weapons:weapon-atk-bonus change:re
     // if hpb, then all weapons need to be updated, otherwise just the current weapon needs to be updated
     if (eventInfo.sourceAttribute === 'base_attack_bonus') {
         // Heroic Proficiency Trigger - must update ALL weapons
-        const fields = ['base_attack_bonus', ...atkFields, ...listOfAttributes];
+        const fields = ['base_attack_bonus', 'double-crit-eligible', ...atkFields, ...listOfAttributes];
         const section = 'atk';
         //const id = 'all';
         log("Base Attack Bonus Changed. Updating attack for all weapons.", r20color);
@@ -4418,7 +4424,7 @@ const runWeaponAttack = whisper => eventInfo => {
         `repeating_weapons_${rowId}_weapon`,
         `repeating_weapons_${rowId}_weapon-atk`,
         `repeating_weapons_${rowId}_weapon-crit`,
-        `repeating_weapons_${rowId}_weapon-attack-history`
+        `repeating_weapons_${rowId}_weapon-attack-history`,
     ];
 
     getAttrs(fields, values => {
@@ -4479,7 +4485,8 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
         `repeating_weapons_${rowId}_weapon-last-attack-raises`,
         `repeating_weapons_${rowId}_weapon-last-attack-total`,
         `repeating_weapons_${rowId}_weapon-last-attack-natural`,
-        `repeating_weapons_${rowId}_weapon-last-attack-target`
+        `repeating_weapons_${rowId}_weapon-last-attack-target`,
+        `repeating_weapons_${rowId}_weapon-double-crit`
     ];
 
     getAttrs(fields, values => {
@@ -4493,6 +4500,7 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
         const damageAttributeModValue = toInt(values[`repeating_weapons_${rowId}_damage-attribute-mod-value`]);
         const damageMiscMod = toInt(values[`repeating_weapons_${rowId}_weapon-damage-misc-mod`]);
         const halfLevel = toInt(values[`repeating_weapons_${rowId}_weapon-half-level`]);
+        const doubleCrit = toInt(values[`repeating_weapons_${rowId}_weapon-double-crit`]);
         const whisperPrefix = whisper ? '/w gm ' : '';
         const rollTerms = [];
 
@@ -4511,6 +4519,9 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
         }
         if (crit) {
             rollTerms.push('1d6! [Crit d6]');
+        }
+        if (crit && doubleCrit) {
+            rollTerms.push('1d6! [Double Crit d6]');
         }
         if (raises > 0) {
             rollTerms.push(`${raises}d6${crit ? '!' : ''} [Additional d6s per raise]`);

@@ -27,7 +27,7 @@ fieldset(class="repeating_weapons")
             input(type='hidden', name='attr_whisper_damage_button', value='')
             // Damage
             input(type='hidden', name='attr_weapon-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{weapon}}} {{Roll=[[ @{weapon-damage} + [[?{Additional Damage Mod|0} [Additional Mod]]] + [[?{Additional # of damage dice|0}]]d6 ]]}}')
-            input(type='hidden', name='attr_weapon-crit-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{weapon}}} {{Roll=[[ @{weapon-damage-dice}! + [[?{Additional Damage Mod|0} [Additional Mod]]] + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{weapon-damage-attribute-mod} Mod] + @{weapon-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}')
+            input(type='hidden', name='attr_weapon-crit-damage-formula', value='&{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{weapon}}} {{Roll=[[ @{weapon-damage-dice}! + [[@{weapon-double-crit}]]d6 [Double Crit] + [[?{Additional Damage Mod|0} [Additional Mod]]] + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{weapon-damage-attribute-mod} Mod] + @{weapon-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}')
             input(type='hidden', name='attr_weapon-attack-history', value='[]')
             input(type='hidden', name='attr_weapon-last-attack-rollid', value='')
             input(type='hidden', name='attr_weapon-last-attack-success', value='0')
@@ -104,5 +104,10 @@ fieldset(class="repeating_weapons")
             .atkField
                 label(class="fieldLabelAbove", data-i18n='miscellaneous-modifier-abbr') Misc. Mod 
                 input(class='textField', type='text', name='attr_weapon-misc-mod', value='0')
+        input(class="dblCritEligible" type='hidden', name='attr_double-crit-eligible', value="0")
+        label(class="doubleCrit")
+            input(class="checkboxInput", type='checkbox', name='attr_weapon-double-crit', value='1')
+            span(class="styledCheckbox")
+            span(class="styledCheckboxText", data-i18n='double-critical') Double Crit
         .notes 
             textarea(class="weaponNotes", name='attr_weapon-notes', data-i18n-placeholder='weapon-notes')

@@ -2219,6 +2219,14 @@ label.buttonStyle {
   width: 100%;
   white-space: nowrap;
 }
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .doubleCrit {
+  display: none;
+}
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .dblCritEligible[value="1"] + .doubleCrit {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
 .ui-dialog .charactersheet .frontPage .combat .hiddenInput {
   display: none;
 }
