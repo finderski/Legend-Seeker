@@ -63,6 +63,11 @@ function updateWeapons(fields, section, id) {
         
         const setattrs = {};
         setattrs[`repeating_weapons_${id}_double-crit-eligible`] = parseInt(values[`base_attack_bonus`]) >= 8 ? 1 : 0;
+        // If Base Attack Bonus is 7 or lower, make sure weapon-double-crit is 0.
+        if (parseInt(values[`base_attack_bonus`]) <= 7) {
+            log("Remove Double Crit", `Base Attack Bonus is 7 or lower. Setting weapon-double-crit to 0 for weapon with id: ${id}`, r20color);
+            setattrs[`repeating_weapons_${id}_weapon-double-crit`] = 0;
+        }
         switch(updateHalfLevel) {
             case 'skip':
                 break;

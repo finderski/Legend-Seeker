@@ -211,8 +211,25 @@ function calculateDR() {
     });
 }
 
+function calculateSR() {
+    getAttrs(['armor_sr', 'shield_sr', 'armor_worn', 'shield_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier'], function(v) {
+        const armorSR = parseInt(v.armor_sr) || 0;
+        const shieldSR = parseInt(v.shield_sr) || 0;
+        const armorWorn = parseInt(v.armor_worn) || 0;
+        const shieldWorn = parseInt(v.shield_worn) || 0;
+        const armorProficientMultiplier = (parseInt(v.armor_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0
+        const shieldProficientMultiplier = (parseInt(v.shield_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0
+        const totalSR = (armorSR * armorWorn * armorProficientMultiplier) + (shieldSR * shieldWorn * shieldProficientMultiplier);
+        setAttrs({ "total_sr": totalSR });
+    });
+}
+
 on('change:armor_dr change:shield_dr change:armor_worn change:shield_worn change:armor_proficient_multiplier change:shield_proficient_multiplier', function() {
     calculateDR();
+});
+
+on('change:armor_sr change:shield_sr change:armor_worn change:shield_worn change:armor_proficient_multiplier change:shield_proficient_multiplier', function() {
+    calculateSR();
 });
 
 // Watch for Defense Score Changes

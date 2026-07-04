@@ -1204,7 +1204,7 @@ label.buttonStyle {
   font-family: "Cinzel", serif;
   font-size: 1.15em;
   font-weight: bold;
-  column-gap: 5px;
+  column-gap: 45px;
 }
 .ui-dialog .charactersheet .frontPage .damageReduction .subHeaderLabel {
   font-size: 1em;
@@ -1215,6 +1215,12 @@ label.buttonStyle {
   margin: 3px 0 0 5px;
   font-family: var(--mainBodyAlt);
   font-size: 1.2em;
+}
+.ui-dialog .charactersheet .frontPage .damageReduction .damageReduct,
+.ui-dialog .charactersheet .frontPage .damageReduction .spellReduct {
+  display: flex;
+  width: auto;
+  gap: 5px;
 }
 .ui-dialog .charactersheet .frontPage .damageReduction {
   font-synthesis: unset !important;
@@ -1508,7 +1514,7 @@ label.buttonStyle {
   top: -6px;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shieldClass {
-  width: 30%;
+  width: 49%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shieldClass select.ls-Dropdown {
   background-color: transparent;
@@ -1547,12 +1553,14 @@ label.buttonStyle {
   margin: 0;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldDamageReduction,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldSpellReduction,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .willDefense,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .fortDefense,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldLevel {
   width: 30%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldDamageReduction .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldSpellReduction .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .willDefense .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .fortDefense .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .shieldLevel .textField {
@@ -1562,7 +1570,7 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .proficient {
   display: flex;
   flex-flow: row wrap;
-  flex-basis: 30%;
+  flex-basis: 49%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .shield .shieldGroup .shield-config .proficient .ls-Dropdown {
   font-size: 1.2em;

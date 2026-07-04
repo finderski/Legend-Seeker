@@ -8,7 +8,7 @@
         font-family: 'Cinzel', serif;
         font-size: 1.15em;
         font-weight: bold;
-        column-gap: 5px;
+        column-gap: 45px;
         .subHeaderLabel {
             font-size: 1em;
             width: fit-content;
@@ -18,6 +18,12 @@
             margin: 3px 0 0 5px;
             font-family: var(--mainBodyAlt);
             font-size: 1.2em;
+        }
+        .damageReduct,
+        .spellReduct {
+            display: flex;
+            width: auto;
+            gap: 5px;
         }
     }
 }

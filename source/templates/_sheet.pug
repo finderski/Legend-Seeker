@@ -8,7 +8,7 @@ include ./mixins/_mixin_skills.pug
     //- Color Palette
         include _colors.pug
     // Hidden inputs for character sheet functionality
-    input(type='hidden', name='attr_sheetversion', value='0.2.1')
+    input(type='hidden', name='attr_sheetversion', value='0.2.2')
     input(type='hidden', name='attr_shield_dr', value='0')
     //- Tab Styling in _tabSetup.scss
     //- buttonbar styles in the _buttonbarStyles.scss
@@ -55,9 +55,15 @@ include ./mixins/_mixin_skills.pug
                     include _languages.pug
         .damageReduction 
             // Damage Reduction Section
-            input(type='hidden', name='attr_total_dr', value="0")
-            label(class="subHeaderLabel", data-i18n='total-damage-reduction-abbr') Total DR: 
-            span(name="attr_total_dr")
+            .damageReduct
+                input(type='hidden', name='attr_total_dr', value="0")
+                label(class="subHeaderLabel", data-i18n='total-damage-reduction-abbr', data-i18n-title='total-damage-reduction') Total DR: 
+                span(name="attr_total_dr")
+            // Spell Reduction Section
+            .spellReduct
+                input(type='hidden', name='attr_total_sr', value="0")
+                label(class="subHeaderLabel", data-i18n='total-spell-reduction-abbr', data-i18n-title='total-spell-reduction') Total SR: 
+                span(name="attr_total_sr")
         hr.sectionDivider
         .combat
             input(class="hideSection", type="hidden", name="attr_mana-tap_hider", value="0")

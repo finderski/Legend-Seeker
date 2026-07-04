@@ -191,7 +191,7 @@
                         top: -6px;
                     }
                     .shieldClass {
-                        width: 30%;
+                        width: 49%;
                         select.ls-Dropdown {
                             background-color: transparent;
                             border: none;
@@ -230,6 +230,7 @@
                         padding: 0;
                         margin: 0;
                         .shieldDamageReduction,
+                        .shieldSpellReduction,
                         .willDefense,
                         .fortDefense,
                         .shieldLevel {
@@ -242,7 +243,7 @@
                         .proficient {
                             display: flex;
                             flex-flow: row wrap;
-                            flex-basis: 30%;
+                            flex-basis: 49%;
                             .ls-Dropdown {
                                 font-size: 1.2em;
                             }

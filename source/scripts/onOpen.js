@@ -26,16 +26,17 @@ function compareVersions(a, b) {
     return 0;
 }
 
-const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn'];
+const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn','base_attack_bonus'];
 sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.2.1';
+        const currentVersion = '0.2.2';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
         const level = parseInt(values.level) || 1;
+        const bab = parseInt(values.base_attack_bonus) || 0;
         log("Sheet Version", sheetVersion, r20color);
         log("Current Version", currentVersion, r20color);
         log("Comparing Versions", `compareVersions(sheetVersion, currentVersion) = ${compareVersions(sheetVersion, currentVersion)}`, r20color);
@@ -87,7 +88,22 @@ on('sheet:opened', function() {
             setattrs['sheetversion'] = currentVersion;
             setAttrs(setattrs);
             log("version 0.2.1 update complete", "Sheet version updated to 0.2.1 and Armor Check Penalty should now be fixed", r20color);
-        } else {
+        } 
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.2.2', "Defense Score Calcs and Add Double Crit", r20color);
+            //force Defense Saves to recalculate
+            log("Forcing defense saves to recalculate with new formulas", "Triggering changes to level to force recalculation", r20color);
+            setAttrs({"level": level + 1}); // since the save calculations depend on level, we can just trigger a change to level to force them to recalculate with the new formulas
+            setAttrs({"level": level - 1}); // set level back to its original value after triggering the change
+            log("Double Crit Eligibility", "Force BAB Change and revert", r20color);
+            setAttrs({"base_attack_bonus": bab + 1});
+            setAttrs({"base_attack_bonus": bab - 1});
+            const setattrs = {};
+            setattrs['sheetversion'] = currentVersion;
+            setAttrs(setattrs);
+            log("version 0.2.2 update complete", "Sheet version updated to 0.2.2 and Defense Score Calcs and Double Crit should now be fixed", r20color);
+        }
+        else {
             log('Sheet version is up to date', "No updates needed", r20color);
         }
     });

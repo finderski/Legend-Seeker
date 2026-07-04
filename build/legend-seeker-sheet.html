@@ -1,7 +1,7 @@
 
 <div class="maindiv">
   <!-- Hidden inputs for character sheet functionality-->
-  <input type="hidden" name="attr_sheetversion" value="0.2.1"/>
+  <input type="hidden" name="attr_sheetversion" value="0.2.2"/>
   <input type="hidden" name="attr_shield_dr" value="0"/>
   <input class="selectedTab" type="hidden" name="attr_sheetTab" value="1"/>
   <div class="sheetVersion"> 
@@ -651,8 +651,15 @@
     </div>
     <div class="damageReduction"> 
       <!-- Damage Reduction Section-->
-      <input type="hidden" name="attr_total_dr" value="0"/>
-      <label class="subHeaderLabel" data-i18n="total-damage-reduction-abbr">Total DR: </label><span name="attr_total_dr"></span>
+      <div class="damageReduct">
+        <input type="hidden" name="attr_total_dr" value="0"/>
+        <label class="subHeaderLabel" data-i18n="total-damage-reduction-abbr" data-i18n-title="total-damage-reduction">Total DR: </label><span name="attr_total_dr"></span>
+      </div>
+      <!-- Spell Reduction Section-->
+      <div class="spellReduct">
+        <input type="hidden" name="attr_total_sr" value="0"/>
+        <label class="subHeaderLabel" data-i18n="total-spell-reduction-abbr" data-i18n-title="total-spell-reduction">Total SR: </label><span name="attr_total_sr"></span>
+      </div>
     </div>
     <hr class="sectionDivider"/>
     <div class="combat">
@@ -1092,11 +1099,11 @@
                 <input class="textField" type="text" name="attr_armor_dex_cap" value="" placeholder="1"/>
               </div>
               <div class="armorDamageReduction"> 
-                <label class="fieldLabelAbove" data-i18n="damage-reduction-abbr-caps">DR</label>
+                <label class="fieldLabelAbove" data-i18n="damage-reduction-abbr-caps" data-i18n-title="damage-reduction">DR</label>
                 <input class="textField" type="text" name="attr_armor_dr" value="" placeholder="1"/>
               </div>
               <div class="armorSpellReduction"> 
-                <label class="fieldLabelAbove" data-i18n="spell-reduction-abbr-caps">SR</label>
+                <label class="fieldLabelAbove" data-i18n="spell-reduction-abbr-caps" data-i18n-title="spell-reduction">SR</label>
                 <input class="textField" type="text" name="attr_armor_sr" value="" placeholder="1"/>
               </div>
             </div>
@@ -1153,11 +1160,11 @@
                 <input class="textField" type="text" name="attr_shield_will_defense" value="" placeholder="1"/>
               </div>
               <div class="shieldDamageReduction"> 
-                <label class="fieldLabelAbove" data-i18n="damage-reduction-abbr-caps">DR</label>
+                <label class="fieldLabelAbove" data-i18n="damage-reduction-abbr-caps" data-i18n-title="damage-reduction">DR</label>
                 <input class="textField" type="text" name="attr_shield_dr" value="" placeholder="1"/>
               </div>
               <div class="shieldSpellReduction"> 
-                <label class="fieldLabelAbove" data-i18n="spell-reduction-abbr-caps">SR</label>
+                <label class="fieldLabelAbove" data-i18n="spell-reduction-abbr-caps" data-i18n-title="spell-reduction">SR</label>
                 <input class="textField" type="text" name="attr_shield_sr" value="" placeholder="1"/>
               </div>
             </div>
@@ -3114,16 +3121,17 @@ function compareVersions(a, b) {
     return 0;
 }
 
-const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn'];
+const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn','base_attack_bonus'];
 sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.2.1';
+        const currentVersion = '0.2.2';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
         const level = parseInt(values.level) || 1;
+        const bab = parseInt(values.base_attack_bonus) || 0;
         log("Sheet Version", sheetVersion, r20color);
         log("Current Version", currentVersion, r20color);
         log("Comparing Versions", `compareVersions(sheetVersion, currentVersion) = ${compareVersions(sheetVersion, currentVersion)}`, r20color);
@@ -3175,7 +3183,22 @@ on('sheet:opened', function() {
             setattrs['sheetversion'] = currentVersion;
             setAttrs(setattrs);
             log("version 0.2.1 update complete", "Sheet version updated to 0.2.1 and Armor Check Penalty should now be fixed", r20color);
-        } else {
+        } 
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.2.2', "Defense Score Calcs and Add Double Crit", r20color);
+            //force Defense Saves to recalculate
+            log("Forcing defense saves to recalculate with new formulas", "Triggering changes to level to force recalculation", r20color);
+            setAttrs({"level": level + 1}); // since the save calculations depend on level, we can just trigger a change to level to force them to recalculate with the new formulas
+            setAttrs({"level": level - 1}); // set level back to its original value after triggering the change
+            log("Double Crit Eligibility", "Force BAB Change and revert", r20color);
+            setAttrs({"base_attack_bonus": bab + 1});
+            setAttrs({"base_attack_bonus": bab - 1});
+            const setattrs = {};
+            setattrs['sheetversion'] = currentVersion;
+            setAttrs(setattrs);
+            log("version 0.2.2 update complete", "Sheet version updated to 0.2.2 and Defense Score Calcs and Double Crit should now be fixed", r20color);
+        }
+        else {
             log('Sheet version is up to date', "No updates needed", r20color);
         }
     });
@@ -3409,8 +3432,25 @@ function calculateDR() {
     });
 }
 
+function calculateSR() {
+    getAttrs(['armor_sr', 'shield_sr', 'armor_worn', 'shield_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier'], function(v) {
+        const armorSR = parseInt(v.armor_sr) || 0;
+        const shieldSR = parseInt(v.shield_sr) || 0;
+        const armorWorn = parseInt(v.armor_worn) || 0;
+        const shieldWorn = parseInt(v.shield_worn) || 0;
+        const armorProficientMultiplier = (parseInt(v.armor_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0
+        const shieldProficientMultiplier = (parseInt(v.shield_proficient_multiplier) || 0) ^ 1; // if proficient multiplier is 0, treat it as 1, if it's 1, treat it as 0
+        const totalSR = (armorSR * armorWorn * armorProficientMultiplier) + (shieldSR * shieldWorn * shieldProficientMultiplier);
+        setAttrs({ "total_sr": totalSR });
+    });
+}
+
 on('change:armor_dr change:shield_dr change:armor_worn change:shield_worn change:armor_proficient_multiplier change:shield_proficient_multiplier', function() {
     calculateDR();
+});
+
+on('change:armor_sr change:shield_sr change:armor_worn change:shield_worn change:armor_proficient_multiplier change:shield_proficient_multiplier', function() {
+    calculateSR();
 });
 
 // Watch for Defense Score Changes
@@ -3825,6 +3865,11 @@ function updateWeapons(fields, section, id) {
         
         const setattrs = {};
         setattrs[`repeating_weapons_${id}_double-crit-eligible`] = parseInt(values[`base_attack_bonus`]) >= 8 ? 1 : 0;
+        // If Base Attack Bonus is 7 or lower, make sure weapon-double-crit is 0.
+        if (parseInt(values[`base_attack_bonus`]) <= 7) {
+            log("Remove Double Crit", `Base Attack Bonus is 7 or lower. Setting weapon-double-crit to 0 for weapon with id: ${id}`, r20color);
+            setattrs[`repeating_weapons_${id}_weapon-double-crit`] = 0;
+        }
         switch(updateHalfLevel) {
             case 'skip':
                 break;
