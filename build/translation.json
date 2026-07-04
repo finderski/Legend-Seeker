@@ -18,6 +18,7 @@
   "equipment" : "Equipment",
   "enchantment" : "Enchantment",
   "strength-x2-mod" : "STR x2 Mod",
+  "spell-reduction-abbr-caps" : "SR",
   "number-of-copies-abbr" : "# of Copies",
   "dexterity-minus-first-three" : "terity",
   "languages" : "Languages",
@@ -25,6 +26,7 @@
   "special-trait" : "Special Trait",
   "dice" : "Dice",
   "multi-action-penalty" : "Multi-Action Penalty",
+  "gold" : "Gold",
   "constitution-mod" : "CON Mod",
   "wisdom-mod" : "WIS Mod",
   "initiative" : "Initiative",
@@ -92,6 +94,7 @@
   "proficient" : "Proficient",
   "tinkering" : "Tinkering",
   "damage-failed" : "Damage (Failed)",
+  "copper" : "Copper",
   "critical-damage" : "Critical Damage",
   "double-critical" : "Double Crit",
   "constitution-abbr" : "CON",
@@ -164,6 +167,7 @@
   "special-rt" : "<strong>Special<\/strong>: {{0}}",
   "talent-details" : "Talent Details...",
   "true-legend" : "True Legend",
+  "silver" : "Silver",
   "failure" : "Failure",
   "endurance" : "Endurance",
   "half-level" : "Half-Level",
@@ -240,5 +244,6 @@
   "modifier" : "Modifier",
   "strength-minus-first-three" : "ength",
   "dexterity" : "Dexterity",
+  "platinum" : "Platinum",
   "yes" : "Yes"
 }

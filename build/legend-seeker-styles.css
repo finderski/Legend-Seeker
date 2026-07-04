@@ -1314,6 +1314,13 @@ label.buttonStyle {
   flex-flow: column;
   row-gap: 5px;
 }
+.ui-dialog .charactersheet .backPage .topContainer .equipment .currency {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+  width: 100%;
+  margin: 0 0 15px 0;
+}
 .ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList {
   display: flex;
@@ -1343,9 +1350,9 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .textField {
   width: 100%;
 }
-.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .carried,
-.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .carried {
-  font-size: 1.4em;
+.ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .carried > label > span,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .carried > label > span {
+  font-size: 2em;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .quantity .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .headerRow .weight .textField,
@@ -1393,6 +1400,16 @@ label.buttonStyle {
   column-gap: 5px;
   margin: 0 0 15px 0;
 }
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorWarden label {
+  width: fit-content;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorWarden label:last-child {
+  margin-left: auto;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorWarden .styledCheckboxText {
+  font-size: 1em;
+  font-weight: 600;
+}
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup {
   display: flex;
   flex-flow: row wrap;
@@ -1407,7 +1424,7 @@ label.buttonStyle {
   top: -6px;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armorClass {
-  width: 30%;
+  width: 49%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armorClass select.ls-Dropdown {
   background-color: transparent;
@@ -1446,6 +1463,7 @@ label.buttonStyle {
   margin: 0;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorDamageReduction,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorSpellReduction,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .willDefense,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .fortDefense,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorLevel,
@@ -1453,6 +1471,7 @@ label.buttonStyle {
   width: 30%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorDamageReduction .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorSpellReduction .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .willDefense .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .fortDefense .textField,
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .armorLevel .textField,
@@ -1463,7 +1482,7 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .proficient {
   display: flex;
   flex-flow: row wrap;
-  flex-basis: 30%;
+  flex-basis: 49%;
 }
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor .armorGroup .armor-config .proficient .ls-Dropdown {
   font-size: 1.2em;

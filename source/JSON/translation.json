@@ -206,6 +206,7 @@
   "medium": "Medium",
   "heavy": "Heavy",
   "damage-reduction-abbr-caps": "DR",
+  "spell-reduction-abbr-caps": "SR",
   "is-carried": "Is Carried",
   "armor-level": "Armor Level",
   "will-defense": "Will Defense",
@@ -240,5 +241,9 @@
   "sheet-version": "Sheet Version: ",
   "armor-warden": "Armor Warden",
   "dot-dot-dot-improved": "...Improved",
-  "double-critical": "Double Crit"
+  "double-critical": "Double Crit",
+  "copper": "Copper",
+  "silver": "Silver",
+  "gold": "Gold",
+  "platinum": "Platinum"
 }

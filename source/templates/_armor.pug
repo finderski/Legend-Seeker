@@ -1,6 +1,6 @@
 // stying found in _equipmentAndSkills.scss
 .armor
-    h3(class='headerLabel left', data-i18n='armor-and-shield') Armor and Shield
+    h3(class='headerLabel center', data-i18n='armor-and-shield') Armor and Shield
     input(type="hidden", name="attr_armor_check_penalty", value="0")
     .armorWarden
         label(class="")
@@ -39,9 +39,6 @@
                 select(class="ls-Dropdown", name="attr_armor_proficient_multiplier")
                     option(value="1", data-i18n='no' selected) No
                     option(value="0", data-i18n='yes') Yes
-            .armorDamageReduction 
-                label(class="fieldLabelAbove", data-i18n='damage-reduction-abbr-caps') DR
-                input(class="textField", type="text", name="attr_armor_dr", value="", placeholder="1")
             .armorLevel 
                 //Used for REF Defense (or Level, whichever is higher)
                 label(class="fieldLabelAbove", data-i18n='armor-level') Armor Level
@@ -55,6 +52,12 @@
             .dexCap 
                 label(class="fieldLabelAbove", data-i18n='dexterity-cap-abbr') Dex Cap
                 input(class="textField", type="text", name="attr_armor_dex_cap", value="", placeholder="1")
+            .armorDamageReduction 
+                label(class="fieldLabelAbove", data-i18n='damage-reduction-abbr-caps') DR
+                input(class="textField", type="text", name="attr_armor_dr", value="", placeholder="1")
+            .armorSpellReduction 
+                label(class="fieldLabelAbove", data-i18n='spell-reduction-abbr-caps') SR
+                input(class="textField", type="text", name="attr_armor_sr", value="", placeholder="1")
 .shield
     // h3(class='headerLabel left', data-i18n='shield') Shield
     .shieldGroup
@@ -85,9 +88,6 @@
                 select(class="ls-Dropdown", name="attr_shield_proficient_multiplier")
                     option(value="1", data-i18n='no' selected) No
                     option(value="0", data-i18n='yes') Yes
-            .shieldDamageReduction 
-                label(class="fieldLabelAbove", data-i18n='damage-reduction-abbr-caps') DR
-                input(class="textField", type="text", name="attr_shield_dr", value="", placeholder="1")
             .shieldLevel 
                 //Used for REF Defense (or Level, whichever is higher)
                 label(class="fieldLabelAbove", data-i18n='shield-level') Shield Level
@@ -98,4 +98,10 @@
             .willDefense 
                 label(class="fieldLabelAbove", data-i18n='will-defense') Will Defense
                 input(class="textField", type="text", name="attr_shield_will_defense", value="", placeholder="1")
+            .shieldDamageReduction 
+                label(class="fieldLabelAbove", data-i18n='damage-reduction-abbr-caps') DR
+                input(class="textField", type="text", name="attr_shield_dr", value="", placeholder="1")
+            .shieldSpellReduction 
+                label(class="fieldLabelAbove", data-i18n='spell-reduction-abbr-caps') SR
+                input(class="textField", type="text", name="attr_shield_sr", value="", placeholder="1")
             

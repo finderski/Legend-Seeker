@@ -32,15 +32,30 @@ on('change:repeating_equipment:item_total_weight change:repeating_equipment:item
     );
 });
 
+on('change:copper change:silver change:gold change:platinum', function () {
+    getAttrs(['copper', 'silver', 'gold', 'platinum'], function (values) {
+        const copper = parseFloat(values['copper']) || 0;
+        const silver = parseFloat(values['silver']) || 0;
+        const gold = parseFloat(values['gold']) || 0;
+        const platinum = parseFloat(values['platinum']) || 0;
+        const totalCoins = copper + silver + gold + platinum;
+        const totalCoinWeight = Math.floor(totalCoins / 25) / 2; // Assuming 50 coins weigh 1 lb, and we want to round down to the nearest half pound
+
+        setAttrs({ total_coin_weight: totalCoinWeight });
+    });
+});
+
 //Tally Total Weight Carried
-on('change:total_weapon_weight change:total_equipment_weight', function () {
-    getAttrs(['total_weapon_weight', 'total_equipment_weight'], function (values) {
+on('change:total_weapon_weight change:total_equipment_weight change:total_coin_weight', function () {
+    getAttrs(['total_weapon_weight', 'total_equipment_weight', 'total_coin_weight'], function (values) {
         let weaponWeight = parseFloat(values['total_weapon_weight']) || 0;
         let equipmentWeight = parseFloat(values['total_equipment_weight']) || 0;
+        let coinWeight = parseFloat(values['total_coin_weight']) || 0;
         log("total equipment weight", equipmentWeight, "orange");
         log("total weapon weight", weaponWeight, "orange");
+        log("total coin weight", coinWeight, "orange");
 
-        let totalCarriedWeight = weaponWeight + equipmentWeight;
+        let totalCarriedWeight = weaponWeight + equipmentWeight + coinWeight;
 
         let attrsToSet = {};
         log('total weight carried', JSON.stringify(attrsToSet['total_weight_carried']),'pink');
@@ -51,7 +66,7 @@ on('change:total_weapon_weight change:total_equipment_weight', function () {
 
 // Calculate Encumbrance Level
 on('change:total_weight_carried change:total_ps', function () {
-    getAttrs(['total_weight', 'total_ps'], function (values) {
+    getAttrs(['total_weight_carried', 'total_ps'], function (values) {
         let totalWeight = parseFloat(values['total_weight']) || 0;
         let totalPS = parseFloat(values['total_ps']) || 0;
 

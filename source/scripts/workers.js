@@ -140,6 +140,30 @@ on('change:condition', function(eventInfo) {
 });
 
 // Watch for Armor Changes
+on('change:armor_warden change:improved_armor_warden', function(eventInfo) {
+    log("Armor Warden Watch Detected Change", eventInfo, r20color);
+    getAttrs(['armor_warden', 'improved_armor_warden'], function(v) {
+        const armorWarden = parseInt(v.armor_warden) || 0;
+        const improvedArmorWarden = parseInt(v.improved_armor_warden) || 0;
+        const setattrs = {};
+        if (eventInfo.sourceAttribute === 'improved_armor_warden') {
+            // Make sure the armor warden is checked...if it's not, don't allow improved armor warden to be checked
+            if (improvedArmorWarden === 1 && armorWarden === 0) {
+                log("Improved Armor Warden Detected Without Armor Warden", "Unchecking Improved Armor Warden", "red");
+                setattrs['improved_armor_warden'] = 0;
+                setAttrs(setattrs);
+            }
+        } else {
+            // Armor Warden was changed...
+            if (eventInfo.newValue === '0' && improvedArmorWarden === 1) {
+                log("Armor Warden Unchecked While Improved Armor Warden is Checked", "Unchecking Improved Armor Warden", "red");
+                setattrs['improved_armor_warden'] = 0;
+                setAttrs(setattrs);
+            }
+        }
+    });
+});
+
 on('change:armor_worn change:armor_dex_cap', function(eventInfo) {
     log("Armor Watch Detected Change", eventInfo, r20color);
     getAttrs(['armor_worn', 'armor_dex_cap'], function(v) {

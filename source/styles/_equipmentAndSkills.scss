@@ -11,6 +11,13 @@
             display: flex;
             flex-flow: column;
             row-gap: 5px;
+            .currency {
+                display: flex;
+                flex-flow: row nowrap;
+                column-gap: 5px;
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
             .headerRow,
             .equipmentList {
                 display: flex;
@@ -34,8 +41,8 @@
                 .textField {
                     width: 100%;
                 }
-                .carried {
-                    font-size: 1.4em;
+                .carried > label > span {
+                    font-size: 2em;
                 }
                 .quantity .textField,
                 .weight .textField {
@@ -80,6 +87,16 @@
                     flex-flow: row nowrap;
                     column-gap: 5px;
                     margin: 0 0 15px 0;
+                    label {
+                        width: fit-content;
+                    }
+                    label:last-child {
+                        margin-left: auto;
+                    }
+                    .styledCheckboxText {
+                        font-size: 1em;
+                        font-weight: 600;
+                    }
                 }
                 .armorGroup {
                     display: flex;
@@ -94,7 +111,7 @@
                         top: -6px;
                     }
                     .armorClass {
-                        width: 30%;
+                        width: 49%;
                         select.ls-Dropdown {
                             background-color: transparent;
                             border: none;
@@ -133,6 +150,7 @@
                         padding: 0;
                         margin: 0;
                         .armorDamageReduction,
+                        .armorSpellReduction,
                         .willDefense,
                         .fortDefense,
                         .armorLevel,
@@ -146,7 +164,7 @@
                         .proficient {
                             display: flex;
                             flex-flow: row wrap;
-                            flex-basis: 30%;
+                            flex-basis: 49%;
                             .ls-Dropdown {
                                 font-size: 1.2em;
                             }

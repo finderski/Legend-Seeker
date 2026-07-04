@@ -1,5 +1,19 @@
 // stying found in _equipmentAndSkills.scss
-h3(class='headerLabel left', data-i18n='equipment') Equipment
+h2(class='headerLabel left', data-i18n='equipment') Equipment
+.currency 
+    .copper 
+        label(class="fieldLabelAbove", data-i18n='copper') Copper
+        input(class="textField", type="number", name="attr_copper", value="0")
+    .silver 
+        label(class="fieldLabelAbove", data-i18n='silver') Silver
+        input(class="textField", type="number", name="attr_silver", value="0")
+    .gold 
+        label(class="fieldLabelAbove", data-i18n='gold') Gold
+        input(class="textField", type="number", name="attr_gold", value="0")
+    .platinum
+        label(class="fieldLabelAbove", data-i18n='platinum') Platinum
+        input(class="textField", type="number", name="attr_platinum", value="0")
+    input(class="hidden", type="number", name="attr_total_coin_weight", value="0")
 .headerRow 
     .item 
         label(class="fieldLabel", data-i18n='item') Item
