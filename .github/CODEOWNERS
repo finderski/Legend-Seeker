@@ -1,0 +1,19 @@
+# Default owner for everything in the repository
+* @finderski
+
+# Protect repo configuration
+/.github/ @finderski
+
+# Source files for the Roll20 sheet
+/source/ @finderski
+
+# Compiled Roll20 upload files
+/build/ @finderski
+
+# Images and visual assets
+/images/ @finderski
+
+# Project metadata
+/sheet.json @finderski
+/translation.json @finderski
+/README.md @finderski
