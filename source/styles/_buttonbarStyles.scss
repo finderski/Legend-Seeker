@@ -6,6 +6,9 @@
     display: flex;
     margin-bottom: 20px;
     align-items: flex-end;
+    button[type='action'].topButton {
+        width: 120px;
+    }
     .showViewButton:not([value="4"]) ~ .viewButtons.monView,
     .showViewButton:not([value="1"]) ~ .viewButtons.charView {
         display: none;
@@ -27,7 +30,7 @@
     }
     .viewButtons:hover .changeView {
         display: inline-block;
-        width: 85px;
+        /*width: 85px;*/
         height: 40px;
         position: absolute;
         background-color: var(--parchment);
@@ -42,7 +45,7 @@
 
     button[type='action'].monsterView {
         padding: 0 5px;
-        width: 94px;
+        /*width: 94px;*/
         height: 35px;
         font-family: 'Noto Emoji';
         font-size: 2em;
