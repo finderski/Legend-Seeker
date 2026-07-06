@@ -3,7 +3,7 @@ const buttonlist = [
     'frontsheet_1',
     'backsheet_2',
     'settings_3',
-    'concise_4'
+    'monster_4'
 ];
 
 buttonlist.forEach(button => {
@@ -15,6 +15,7 @@ buttonlist.forEach(button => {
         //radioval = radioval.slice(-1);
         radioval = radioval.split('_');
         setattr['sheetTab'] = radioval[1];
+        setattr['current_chararcter_type'] = radioval[1];
         setAttrs(setattr);
     });
 });

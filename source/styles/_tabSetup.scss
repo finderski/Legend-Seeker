@@ -2,7 +2,8 @@
 
 .selectedTab[value="1"] ~ .frontPage,
 .selectedTab[value="2"] ~ .backPage,
-.selectedTab[value="3"] ~ .sheetSettings {
+.selectedTab[value="3"] ~ .sheetSettings,
+.selectedTab[value="4"] ~ .npcView {
     @include sheet-scope {
         display: flex;
         flex-direction: column;
@@ -16,7 +17,8 @@
 .frontPage,
 .backPage,
 .sheetSettings,
-.concise {
+.concise,
+.npcView {
      @include sheet-scope {
         display: none;
      }

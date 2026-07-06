@@ -172,7 +172,8 @@ input:not(:checked)+.isCarried::before {
 .ui-dialog .charactersheet .charsheet button.textButton[type=action]:before,
 .charsheet button.labelButton[type=roll]:before,
 .charsheet button.sendToChat[type=roll]:before,
-.charsheet button.whisperToChat[type=roll]:before {
+.charsheet button.whisperToChat[type=roll]:before,
+.charsheet button.sheetToggle[type=roll]:before {
     content: '';
     color: var(--ink);
 }

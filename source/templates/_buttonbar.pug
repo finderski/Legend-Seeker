@@ -1,16 +1,19 @@
 //
     1 = Character
     2 = Resources
-    4 = Concise Sheet
+    4 = Monster/NPC Sheet
     3 = Settings
-button(class='topButton characterSheet' type='action', name="act_frontsheet_1" data-i18n-title='character', data-i18n='character') Character
-button(class='topButton resourcesSheet' type='action', name="act_backsheet_2" data-i18n-title='resources', data-i18n='resources') Resources
+input(type='hidden', class='showViewButton', name='attr_current_chararcter_type', value="1")
+div.viewButtons.charView
+    button(class="topButton characterSheet defaultView", type="action", name="act_frontsheet_1", data-i18n-title="character", data-i18n="character") Character
+    .changeView 
+        button(class="topButton monsterSheet monsterView", type="action", name="act_monster_4", data-i18n-title="monster")
+            != '&#x1F409;'
+div.viewButtons.monView
+    button(class="topButton monsterSheet defaultView", type="action", name="act_monster_4", data-i18n-title="monster", data-i18n="monster") NPC/Monster
+    .changeView 
+        button(class="topButton characterSheet monsterView", type="action", name="act_frontsheet_1", data-i18n-title="character")
+            != '&#x1F464;'
+button(class="topButton resourcesSheet", type="action", name="act_backsheet_2", data-i18n-title="resources", data-i18n="resources") Resources
 // button(class='topButton conciseSheet' type='action', name="act_concise_4" data-i18n-title='concise', data-i18n='concise') Concise
-button(class='topButton settingsSheet' type='action', name="act_settings_3" data-i18n-title='settings', data-i18n='settings') Settings
-//
-    .numberOfActions 
-        label(class="sideLabel", data-i18n='number-of-actions') Actions
-        select(class="ls-Dropdown actionCount", name="attr_multi-action-penalty")
-            option(value="0", selected) 1
-            option(value="-4") 2
-            option(value="-8") 3
+button(class="topButton settingsSheet", type="action", name="act_settings_3", data-i18n-title="settings", data-i18n="settings") Settings

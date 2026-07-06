@@ -12,21 +12,27 @@
     <!--
     1 = Character
     2 = Resources
-    4 = Concise Sheet
+    4 = Monster/NPC Sheet
     3 = Settings
     -->
-    <button class="topButton characterSheet" type="action" name="act_frontsheet_1" data-i18n-title="character" data-i18n="character">Character</button>
+    <input class="showViewButton" type="hidden" name="attr_current_chararcter_type" value="1"/>
+    <div class="viewButtons charView">
+      <button class="topButton characterSheet defaultView" type="action" name="act_frontsheet_1" data-i18n-title="character" data-i18n="character">Character</button>
+      <div class="changeView"> 
+        <button class="topButton monsterSheet monsterView" type="action" name="act_monster_4" data-i18n-title="monster">&#x1F409;
+        </button>
+      </div>
+    </div>
+    <div class="viewButtons monView">
+      <button class="topButton monsterSheet defaultView" type="action" name="act_monster_4" data-i18n-title="monster" data-i18n="monster">NPC/Monster</button>
+      <div class="changeView"> 
+        <button class="topButton characterSheet monsterView" type="action" name="act_frontsheet_1" data-i18n-title="character">&#x1F464;
+        </button>
+      </div>
+    </div>
     <button class="topButton resourcesSheet" type="action" name="act_backsheet_2" data-i18n-title="resources" data-i18n="resources">Resources</button>
     <!-- button(class='topButton conciseSheet' type='action', name="act_concise_4" data-i18n-title='concise', data-i18n='concise') Concise-->
     <button class="topButton settingsSheet" type="action" name="act_settings_3" data-i18n-title="settings" data-i18n="settings">Settings</button>
-    <!--
-    .numberOfActions 
-        label(class="sideLabel", data-i18n='number-of-actions') Actions
-        select(class="ls-Dropdown actionCount", name="attr_multi-action-penalty")
-            option(value="0", selected) 1
-            option(value="-4") 2
-            option(value="-8") 3
-    -->
   </div>
   <div class="frontPage">
     <h1 class="sheetTitle" data-i18n="character-score-sheet">Character Score Sheet</h1>
@@ -970,6 +976,12 @@
           </div>
         </fieldset>
       </div>
+    </div>
+  </div>
+  <div class="npcView"> 
+    <h1 class="headerLabel" data-i18n="npc-view">NPC View</h1>
+    <div class="npcViewSection">
+      <!-- include _npcView.pug-->
     </div>
   </div>
   <div class="backPage">
@@ -3612,7 +3624,7 @@ const buttonlist = [
     'frontsheet_1',
     'backsheet_2',
     'settings_3',
-    'concise_4'
+    'monster_4'
 ];
 
 buttonlist.forEach(button => {
@@ -3624,6 +3636,7 @@ buttonlist.forEach(button => {
         //radioval = radioval.slice(-1);
         radioval = radioval.split('_');
         setattr['sheetTab'] = radioval[1];
+        setattr['current_chararcter_type'] = radioval[1];
         setAttrs(setattr);
     });
 });// Calculate Weapon Weight

@@ -1,23 +1,58 @@
 @use './mixins/sheet-scope' as *;
 
+
+
 .buttonbar {
     display: flex;
     margin-bottom: 20px;
-    .numberOfActions {
-        display: flex;
-        flex-flow: row nowrap;
-        margin-left: auto;
-        white-space: nowrap;
-        font-size: 1.3em;
-        .actionCount {
-            margin: -6px 0 0 10px;
+    align-items: flex-end;
+    .showViewButton:not([value="4"]) ~ .viewButtons.monView,
+    .showViewButton:not([value="1"]) ~ .viewButtons.charView {
+        display: none;
+    }
+    .viewButtons {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding-top: 45px;
+        margin-top: -45px;
+        .defaultView:hover,
+        .defaultView:hover > span {
+            background-color: var(--ink);
+            color: var(--parchment);
         }
+    }
+    .changeView {
+        display: none;
+    }
+    .viewButtons:hover .changeView {
+        display: inline-block;
+        width: 85px;
+        height: 40px;
+        position: absolute;
+        background-color: var(--parchment);
+        color: var(--ink);
+        top: 5px;
+        :hover,
+        :hover > span {
+            background-color: var(--ink);
+            color: var(--parchment);
+        }
+    }
+
+    button[type='action'].monsterView {
+        padding: 0 5px;
+        width: 94px;
+        height: 35px;
+        font-family: 'Noto Emoji';
+        font-size: 2em;
     }
 }
 
 .maindiv .selectedTab[value="1"] + .buttonbar > button[type="action"].characterSheet,
 .maindiv .selectedTab[value="2"] + .buttonbar > button[type="action"].resourcesSheet,
-.maindiv .selectedTab[value="3"] + .buttonbar > button[type="action"].settingsSheet {
+.maindiv .selectedTab[value="3"] + .buttonbar > button[type="action"].settingsSheet,
+.maindiv .selectedTab[value="4"] + .buttonbar > button[type="action"].monsterSheet {
         background-color: var(--ink);
         color: var(--parchment);
 }

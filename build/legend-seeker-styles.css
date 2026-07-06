@@ -176,7 +176,8 @@ input:not(:checked) + .isCarried::before {
 .ui-dialog .charactersheet .charsheet button.textButton[type=action]:before,
 .charsheet button.labelButton[type=roll]:before,
 .charsheet button.sendToChat[type=roll]:before,
-.charsheet button.whisperToChat[type=roll]:before {
+.charsheet button.whisperToChat[type=roll]:before,
+.charsheet button.sheetToggle[type=roll]:before {
   content: "";
   color: var(--ink);
 }
@@ -450,28 +451,61 @@ label.buttonStyle {
 .buttonbar {
   display: flex;
   margin-bottom: 20px;
+  align-items: flex-end;
 }
-.buttonbar .numberOfActions {
-  display: flex;
-  flex-flow: row nowrap;
-  margin-left: auto;
-  white-space: nowrap;
-  font-size: 1.3em;
+.buttonbar .showViewButton:not([value="4"]) ~ .viewButtons.monView,
+.buttonbar .showViewButton:not([value="1"]) ~ .viewButtons.charView {
+  display: none;
 }
-.buttonbar .numberOfActions .actionCount {
-  margin: -6px 0 0 10px;
+.buttonbar .viewButtons {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-top: 45px;
+  margin-top: -45px;
+}
+.buttonbar .viewButtons .defaultView:hover,
+.buttonbar .viewButtons .defaultView:hover > span {
+  background-color: var(--ink);
+  color: var(--parchment);
+}
+.buttonbar .changeView {
+  display: none;
+}
+.buttonbar .viewButtons:hover .changeView {
+  display: inline-block;
+  width: 85px;
+  height: 40px;
+  position: absolute;
+  background-color: var(--parchment);
+  color: var(--ink);
+  top: 5px;
+}
+.buttonbar .viewButtons:hover .changeView :hover,
+.buttonbar .viewButtons:hover .changeView :hover > span {
+  background-color: var(--ink);
+  color: var(--parchment);
+}
+.buttonbar button[type=action].monsterView {
+  padding: 0 5px;
+  width: 94px;
+  height: 35px;
+  font-family: "Noto Emoji";
+  font-size: 2em;
 }
 
 .maindiv .selectedTab[value="1"] + .buttonbar > button[type=action].characterSheet,
 .maindiv .selectedTab[value="2"] + .buttonbar > button[type=action].resourcesSheet,
-.maindiv .selectedTab[value="3"] + .buttonbar > button[type=action].settingsSheet {
+.maindiv .selectedTab[value="3"] + .buttonbar > button[type=action].settingsSheet,
+.maindiv .selectedTab[value="4"] + .buttonbar > button[type=action].monsterSheet {
   background-color: var(--ink);
   color: var(--parchment);
 }
 
 .ui-dialog .charactersheet .selectedTab[value="1"] ~ .frontPage,
 .ui-dialog .charactersheet .selectedTab[value="2"] ~ .backPage,
-.ui-dialog .charactersheet .selectedTab[value="3"] ~ .sheetSettings {
+.ui-dialog .charactersheet .selectedTab[value="3"] ~ .sheetSettings,
+.ui-dialog .charactersheet .selectedTab[value="4"] ~ .npcView {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -485,7 +519,8 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage,
 .ui-dialog .charactersheet .backPage,
 .ui-dialog .charactersheet .sheetSettings,
-.ui-dialog .charactersheet .concise {
+.ui-dialog .charactersheet .concise,
+.ui-dialog .charactersheet .npcView {
   display: none;
   font-synthesis: unset !important;
 }
