@@ -114,6 +114,10 @@
                 </div>
               </div>
               <input type="hidden" name="attr_capped_dex_mod" value="1000"/>
+              <!--
+              -
+                  const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
+              -->
               <div class="attribute-row">
                 <div class="attribute-field">
                   <div class="chatButtons">
@@ -462,6 +466,11 @@
                   <label class="headerLabel" data-i18n="miscellaneous-abbr">Misc</label>
                 </div>
               </div>
+              <!--
+              -
+                  const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
+                  const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+              -->
               <div class="saveRow">
                 <div class="saveButton">
                   <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
@@ -1050,6 +1059,575 @@
         <div class="speed"> 
           <label class="smallCaps" data-i18n="speed">Speed</label>
           <input class="text-field" type="text" name="attr_speed" value="" placeholder="5"/>
+        </div>
+      </div>
+    </div>
+    <div class="middleSection"> 
+      <div class="twoByOne"> 
+        <div class="firstCol">
+          <div class="threeBythree">
+            <div class="attributesSection">
+              <!-- Attributes Section-->
+              <!-- Styles are found in _middleSection-attributes.scss-->
+              <div class="headerRow"> 
+                <div class="attribute-field">
+                  <label class="headerLabel" data-i18n="core-attributes">Core Attributes</label>
+                </div>
+                <div class="score-field">
+                  <label class="headerLabel" data-i18n="score">Score</label>
+                </div>
+                <div class="modifier-field">
+                  <label class="headerLabel" data-i18n="modifier">Modifier</label>
+                </div>
+              </div>
+              <input type="hidden" name="attr_capped_dex_mod" value="1000"/>
+              <!--
+              -
+                  const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
+              -->
+              <div class="attribute-row">
+                <div class="attribute-field">
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_strength_check" value="@{strength_check_formula}"><span class="allcaps" data-i18n="strength-abbr">STR</span><span class="smallcaps" data-i18n="strength-minus-first-three">ength</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_strength_check" value="/w gm @{strength_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_strength_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{strength}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{strength_modifier}[strength modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+                </div>
+                <div class="score-field">
+                  <input class="attributeInput" type="text" name="attr_strength" placeholder="3"/>
+                </div>
+                <div class="modifier-field">
+                  <input class="attributeInput readOnly" type="text" name="attr_strength_modifier" placeholder="0" readonly="readonly"/>
+                </div>
+              </div>
+              <div class="attribute-row">
+                <div class="attribute-field">
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_dexterity_check" value="@{dexterity_check_formula}"><span class="allcaps" data-i18n="dexterity-abbr">DEX</span><span class="smallcaps" data-i18n="dexterity-minus-first-three">terity</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_dexterity_check" value="/w gm @{dexterity_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+                </div>
+                <div class="score-field">
+                  <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
+                </div>
+                <div class="modifier-field">
+                  <input class="attributeInput readOnly" type="text" name="attr_dexterity_modifier" placeholder="0" readonly="readonly"/>
+                </div>
+                <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
+                <div class="cappedMod"> 
+                  <div class="shieldIcon"><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/armor_worn.png" data-i18n-alt="capped-dex-mod"/></div>
+                </div>
+              </div>
+              <div class="attribute-row">
+                <div class="attribute-field">
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_constitution_check" value="@{constitution_check_formula}"><span class="allcaps" data-i18n="constitution-abbr">CON</span><span class="smallcaps" data-i18n="constitution-minus-first-three">stitution</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_constitution_check" value="/w gm @{constitution_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_constitution_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{constitution}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{constitution_modifier}[constitution modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+                </div>
+                <div class="score-field">
+                  <input class="attributeInput" type="text" name="attr_constitution" placeholder="3"/>
+                </div>
+                <div class="modifier-field">
+                  <input class="attributeInput readOnly" type="text" name="attr_constitution_modifier" placeholder="0" readonly="readonly"/>
+                </div>
+              </div>
+              <div class="attribute-row">
+                <div class="attribute-field">
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_intelligence_check" value="@{intelligence_check_formula}"><span class="allcaps" data-i18n="intelligence-abbr">INT</span><span class="smallcaps" data-i18n="intelligence-minus-first-three">elligence</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_intelligence_check" value="/w gm @{intelligence_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_intelligence_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{intelligence}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{intelligence_modifier}[intelligence modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+                </div>
+                <div class="score-field">
+                  <input class="attributeInput" type="text" name="attr_intelligence" placeholder="3"/>
+                </div>
+                <div class="modifier-field">
+                  <input class="attributeInput readOnly" type="text" name="attr_intelligence_modifier" placeholder="0" readonly="readonly"/>
+                </div>
+              </div>
+              <div class="attribute-row">
+                <div class="attribute-field">
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_wisdom_check" value="@{wisdom_check_formula}"><span class="allcaps" data-i18n="wisdom-abbr">WIS</span><span class="smallcaps" data-i18n="wisdom-minus-first-three">dom</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_wisdom_check" value="/w gm @{wisdom_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_wisdom_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{wisdom}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{wisdom_modifier}[wisdom modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+                </div>
+                <div class="score-field">
+                  <input class="attributeInput" type="text" name="attr_wisdom" placeholder="3"/>
+                </div>
+                <div class="modifier-field">
+                  <input class="attributeInput readOnly" type="text" name="attr_wisdom_modifier" placeholder="0" readonly="readonly"/>
+                </div>
+              </div>
+              <div class="attribute-row">
+                <div class="attribute-field">
+                  <div class="chatButtons">
+                    <button class="labelButton sendToChat" type="roll" name="roll_charisma_check" value="@{charisma_check_formula}"><span class="allcaps" data-i18n="charisma-abbr">CHA</span><span class="smallcaps" data-i18n="charisma-minus-first-three">risma</span></button>
+                    <div class="whisperButton"> 
+                      <button class="whisperToChat" type="roll" name="roll_whisper_charisma_check" value="/w gm @{charisma_check_formula}"><span class="iconButton">w</span></button>
+                    </div>
+                  </div>
+                  <input type="hidden" name="attr_charisma_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{charisma}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{charisma_modifier}[charisma modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+                </div>
+                <div class="score-field">
+                  <input class="attributeInput" type="text" name="attr_charisma" placeholder="3"/>
+                </div>
+                <div class="modifier-field">
+                  <input class="attributeInput readOnly" type="text" name="attr_charisma_modifier" placeholder="0" readonly="readonly"/>
+                </div>
+              </div>
+            </div>
+            <div class="stamina"> 
+              <!-- Staminia Section-->
+              <!-- Styles found _middleSection-stamina.scss-->
+              <h3 class="headerLabel" data-i18n="stamina-points">Stamina Points</h3>
+              <div class="fieldLabel"> 
+                <label data-i18n="temporarary-abbr">Temp</label>
+              </div>
+              <input class="xPointInput" type="text" name="attr_stamina_temp" placeholder="0"/>
+              <div class="fieldLabel">
+                <label data-i18n="total">Total </label>
+              </div>
+              <input class="xPointInput" type="text" name="attr_stamina_max" placeholder="0"/>
+              <div class="fieldLabel">
+                <label data-i18n="current">Current</label>
+              </div>
+              <input class="xPointInput" type="text" name="attr_stamina" placeholder="0"/>
+              <div class="calculation">
+                <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+                <div class="fortDef readOnly"> 
+                  <label class="fieldLabelAbove" data-i18n="fortitude-defense">Fort Def</label>
+                  <input class="xPointInput" type="text" name="attr_stamina_fortDef" placeholder="0" readonly="readonly"/>
+                </div>
+                <div class="symbol"> 
+                  <p>+</p>
+                </div>
+                <div class="MiscBonus"> 
+                  <label class="fieldLabelAbove" data-i18n="misc-bonus">Misc Bonus</label>
+                  <input class="xPointInput" type="text" name="attr_stamina_miscBonus" placeholder="0"/>
+                </div>
+                <div class="symbol"> 
+                  <p>=</p>
+                </div>
+                <div class="damageThreshold readOnly">
+                  <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
+                  <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
+                </div>
+              </div>
+              <button class="labelButton secondWind" type="action" name="act_secondwind" data-i18n="second-wind">Second Wind</button>
+            </div>
+            <div class="hitPoints"> 
+              <!-- Hit Point Section-->
+              <!-- Styling for hit points, speed, initiative, heroic proficiency bonus, and legendary points are in _middleSection-stamina.scss. -->
+              <h3 class="headerLabel" data-i18n="hit-points">Hit Points</h3>
+              <div class="fieldLabel">
+                <label data-i18n="total">Total </label>
+              </div>
+              <input class="xPointInput" type="text" name="attr_hitpoints_max" placeholder="0"/>
+              <div class="fieldLabel">
+                <label data-i18n="current">Current</label>
+              </div>
+              <input class="xPointInput" type="text" name="attr_hitpoints" placeholder="0"/>
+              <div class="speed">
+                <label class="fieldLabelAbove" data-i18n="speed">Speed</label>
+                <input class="xPointInput" type="text" name="attr_speed" placeholder="0"/>
+              </div>
+              <div class="initiative">
+                <button class="textButton" type="roll" name="roll_initiative" value="@{initiative_formula}">
+                  <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
+                  <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
+                </button>
+              </div>
+              <div class="hpb readOnly">
+                <label class="fieldLabelAbove" data-i18n="base-attack-bonus">Base Attack Bonus</label>
+                <!-- input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)-->
+                <input class="xPointInput" type="text" name="attr_base_attack_bonus" value="2"/>
+              </div>
+              <div class="legendaryPoints"> 
+                <button class="textButton" type="action" name="act_use-legendary-points">
+                  <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
+                </button>
+                <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
+              </div>
+              <div class="numberOfActions"> 
+                <label class="fieldLabelAbove" data-i18n="number-of-actions">Number of Actions</label>
+                <input class="actionCounter" type="hidden" name="attr_multi-action-penalty" value="0"/>
+                <label class="selectorLabel">
+                  <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="0" checked="checked"/><span class="one-action">I </span>
+                </label>
+                <label class="selectorLabel">
+                  <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="-4"/><span class="two-actions">II</span>
+                </label>
+                <label class="selectorLabel">
+                  <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="-8"/><span class="three-actions">III</span>
+                </label>
+              </div>
+            </div>
+            <div class="corruption">
+              <!-- Corruption Section-->
+              <div class="headerRow"> 
+                <h3 class="headerLabel" data-i18n="corruption">Corruption</h3>
+              </div>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_0" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_0"/>
+                <div class="corruptionNumber">0</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_1" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_1"/>
+                <div class="corruptionNumber">1</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_2" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_2"/>
+                <div class="corruptionNumber">2</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_3" value="show"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_3"/>
+                <div class="corruptionNumber">3</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_4" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_4"/>
+                <div class="corruptionNumber">4</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_5" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_5"/>
+                <div class="corruptionNumber">5</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_6" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_6"/>
+                <div class="corruptionNumber">6</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_7" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_7"/>
+                <div class="corruptionNumber">7</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_8" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_8"/>
+                <div class="corruptionNumber">8</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_9" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_9"/>
+                <div class="corruptionNumber">9</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_10" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_10"/>
+                <div class="corruptionNumber">10</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_11" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_11"/>
+                <div class="corruptionNumber">11</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_12" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_12"/>
+                <div class="corruptionNumber">12</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_13" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_13"/>
+                <div class="corruptionNumber">13</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_14" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_14"/>
+                <div class="corruptionNumber">14</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_15" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_15"/>
+                <div class="corruptionNumber">15</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_16" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_16"/>
+                <div class="corruptionNumber">16</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_17" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_17"/>
+                <div class="corruptionNumber">17</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_18" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_18"/>
+                <div class="corruptionNumber">18</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_19" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_19"/>
+                <div class="corruptionNumber">19</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_20" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_20"/>
+                <div class="corruptionNumber">20</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_21" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_21"/>
+                <div class="corruptionNumber">21</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_22" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_22"/>
+                <div class="corruptionNumber">22</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_23" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_23"/>
+                <div class="corruptionNumber">23</div>
+              </label>
+              <input class="hideCorruption" type="hidden" name="attr_corruption_lock_24" value="hide"/>
+              <label class="corruptionCell">
+                <input class="corruptionInput" type="checkbox" name="attr_corruption_24"/>
+                <div class="corruptionNumber">24</div>
+              </label>
+            </div>
+            <div class="defensiveSaves">
+              <!--Defensive Saves Section-->
+              <!-- styling found in _middleSection-saves.scss-->
+              <div class="saveRow"> 
+                <div class="saveButton">
+                  <h3 class="headerLabel" data-i18n="defensive-scores">Defensive Scores</h3>
+                </div>
+                <div class="saveTotal">
+                  <label class="headerLabel" data-i18n="total">Total</label>
+                </div>
+                <div class="saveCalc">&nbsp;</div>
+                <div class="saveLvlOrArmor"> 
+                  <label class="headerLabel" data-i18n="level-or-armor">Level/Armor</label>
+                </div>
+                <div class="saveClassBonus"> 
+                  <label class="headerLabel" data-i18n="class-bonus">Class Bonus</label>
+                </div>
+                <div class="saveAbilityMod"> 
+                  <label class="headerLabel" data-i18n="ability-mod">Ability Modifier</label>
+                </div>
+                <div class="saveMisc">
+                  <label class="headerLabel" data-i18n="miscellaneous-abbr">Misc</label>
+                </div>
+              </div>
+              <!--
+              -
+                  const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
+                  const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+              -->
+              <div class="saveRow">
+                <div class="saveButton">
+                  <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
+                </div>
+                <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+                <div class="saveTotal">
+                  <input class="attributeInput readOnly" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
+                  <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
+                </div>
+                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+                <div class="saveLvlOrArmor">
+                  <input class="attributeInput readOnly" type="text" name="attr_fort_level_or_armor" placeholder="0" readonly="readonly"/>
+                </div>
+                <div class="saveClassBonus">
+                  <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
+                </div>
+                <div class="saveAbilityMod">
+                  <input class="showWatermark" type="hidden" name="attr_fort_ability_mod" value="constitution"/>
+                  <input class="attributeInput" type="text" name="attr_fort_ability_modifier" readonly="readonly"/><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+                </div>
+                <div class="config"> 
+                  <label class="cog">
+                    <input class="hiddenInput" type="checkbox" name="attr_fort_save_toggle"/><span class="configIcon">y</span>
+                  </label>
+                </div>
+                <div class="saveMisc">
+                  <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
+                </div>
+                <input class="hideSection" type="hidden" name="attr_fort_save_toggle" value="0"/>
+                <div class="abilityConfig"> 
+                  <div class="shim-left"></div>
+                  <select class="ls-Dropdown" name="attr_fort_ability_mod">
+                    <option value="strength" data-i18n="strength-abbr">STR</option>
+                    <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
+                    <option value="constitution" data-i18n="constitution-abbr" selected="selected">CON</option>
+                    <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                    <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
+                    <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+                  </select>
+                  <div class="shim-right"></div>
+                </div>
+              </div>
+              <div class="saveRow">
+                <div class="saveButton">
+                  <button class="labelButton nonClickable" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
+                </div>
+                <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+                <div class="saveTotal">
+                  <input class="attributeInput readOnly" type="text" name="attr_ref_total" readonly="readonly" placeholder="10"/>
+                  <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
+                </div>
+                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+                <div class="saveLvlOrArmor">
+                  <input class="attributeInput readOnly" type="text" name="attr_ref_level_or_armor" placeholder="0" readonly="readonly"/>
+                </div>
+                <div class="saveClassBonus">
+                  <input class="attributeInput" type="text" name="attr_ref_class_bonus" placeholder="0"/>
+                </div>
+                <div class="saveAbilityMod">
+                  <input class="showWatermark" type="hidden" name="attr_ref_ability_mod" value="dexterity"/>
+                  <input class="attributeInput" type="text" name="attr_ref_ability_modifier" readonly="readonly"/><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+                </div>
+                <div class="config"> 
+                  <label class="cog">
+                    <input class="hiddenInput" type="checkbox" name="attr_ref_save_toggle"/><span class="configIcon">y</span>
+                  </label>
+                </div>
+                <div class="saveMisc">
+                  <input class="attributeInput" type="text" name="attr_ref_misc_save_mod" placeholder="0"/>
+                </div>
+                <input class="hideSection" type="hidden" name="attr_ref_save_toggle" value="0"/>
+                <div class="abilityConfig"> 
+                  <div class="shim-left"></div>
+                  <select class="ls-Dropdown" name="attr_ref_ability_mod">
+                    <option value="strength" data-i18n="strength-abbr">STR</option>
+                    <option value="dexterity" data-i18n="dexterity-abbr" selected="selected">DEX</option>
+                    <option value="constitution" data-i18n="constitution-abbr">CON</option>
+                    <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                    <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
+                    <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+                  </select>
+                  <div class="shim-right"></div>
+                </div>
+              </div>
+              <div class="saveRow">
+                <div class="saveButton">
+                  <button class="labelButton nonClickable" type="roll" name="roll_WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{WILL-check}}} {{Roll=[[1d20 + @{WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr">WILL</span></button>
+                </div>
+                <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+                <div class="saveTotal">
+                  <input class="attributeInput readOnly" type="text" name="attr_will_total" readonly="readonly" placeholder="10"/>
+                  <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
+                </div>
+                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+                <div class="saveLvlOrArmor">
+                  <input class="attributeInput readOnly" type="text" name="attr_will_level_or_armor" placeholder="0" readonly="readonly"/>
+                </div>
+                <div class="saveClassBonus">
+                  <input class="attributeInput" type="text" name="attr_will_class_bonus" placeholder="0"/>
+                </div>
+                <div class="saveAbilityMod">
+                  <input class="showWatermark" type="hidden" name="attr_will_ability_mod" value="wisdom"/>
+                  <input class="attributeInput" type="text" name="attr_will_ability_modifier" readonly="readonly"/><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+                </div>
+                <div class="config"> 
+                  <label class="cog">
+                    <input class="hiddenInput" type="checkbox" name="attr_will_save_toggle"/><span class="configIcon">y</span>
+                  </label>
+                </div>
+                <div class="saveMisc">
+                  <input class="attributeInput" type="text" name="attr_will_misc_save_mod" placeholder="0"/>
+                </div>
+                <input class="hideSection" type="hidden" name="attr_will_save_toggle" value="0"/>
+                <div class="abilityConfig"> 
+                  <div class="shim-left"></div>
+                  <select class="ls-Dropdown" name="attr_will_ability_mod">
+                    <option value="strength" data-i18n="strength-abbr">STR</option>
+                    <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
+                    <option value="constitution" data-i18n="constitution-abbr">CON</option>
+                    <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                    <option value="wisdom" data-i18n="wisdom-abbr" selected="selected">WIS</option>
+                    <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+                  </select>
+                  <div class="shim-right"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="secondCol">
+          <h3 class="headerLabel" data-i18n="conditions">CONDITIONS</h3>
+          <!-- Conditions Section-->
+          <input class="conditionToggle" type="hidden" name="attr_condition_selected" value="0 [Normal]"/>
+          <label class="condition zero"> 
+            <div class="normal" data-i18n="normal">Normal </div>
+            <div class="conditionSelector"> 
+              <input class="conditionRadio" type="radio" name="attr_condition" value="0 [Normal]" checked="checked"/>
+            </div>
+          </label>
+          <label class="condition minusOne">
+            <div class="penalty">—1</div>
+            <div class="description">
+              <p data-i18n="condition-1-2">To all defenses, attacks, skill & ability checks.</p>
+            </div>
+            <div class="conditionSelector"> 
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-1 [Condition: -1]"/>
+            </div>
+          </label>
+          <label class="condition minusTwo"> 
+            <div class="penalty">—2</div>
+            <div class="description">
+              <p data-i18n="condition-1-2">To all defenses, attacks, skill & ability checks.</p>
+            </div>
+            <div class="conditionSelector"> 
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-2 [Condition: -2]"/>
+            </div>
+          </label>
+          <label class="condition minusSix"> 
+            <div class="penalty">—6</div>
+            <div class="description">
+              <p data-i18n="condition-6-10">To all defenses, attacks, skill & ability checks. Move at half speed.</p>
+            </div>
+            <div class="conditionSelector"> 
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-6 [Condition: -6]"/>
+            </div>
+          </label>
+          <label class="condition minusTen"> 
+            <div class="penalty">—10</div>
+            <div class="description">
+              <p data-i18n="condition-6-10">To all defenses, attacks, skill & ability checks. Move at half speed.</p>
+            </div>
+            <div class="conditionSelector"> 
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-10 [Condition: -10]"/>
+            </div>
+          </label>
+          <label class="condition uod">
+            <div class="out" data-i18n="unconscious-or-deceased">Unconscious or Deceased </div>
+            <div class="conditionSelector"> 
+              <input class="conditionRadio" type="radio" name="attr_condition" value="-10 [Unconscious or Deceased]"/>
+            </div>
+          </label>
+          <div class="momentum"> 
+            <h3 class="headerLabel">Momentum</h3>
+            <input class="momentumInput" type="number" name="attr_momentum"/><span>/</span>
+            <input class="momentumInput" type="number" name="attr_momentum_max"/>
+          </div>
+          <div class="languages"> 
+            <h3 class="headerLabel" data-i18n="languages">LANGUAGES</h3>
+            <textarea class="languagesInput" name="attr_languages" data-i18n-placeholder="enter-known-languages-here" placeholder="Enter known languages here..."></textarea>
+          </div>
         </div>
       </div>
     </div>

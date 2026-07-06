@@ -11,7 +11,7 @@ mixin attribute(attr)
                     span(class="allcaps", data-i18n=translationLabel) #{shortName}
                     span(class="smallcaps", data-i18n=`${longName}-minus-first-three`) #{lastPart}
                 .whisperButton 
-                    button(class="whisperToChat", type="roll" name=`roll_whisper_${longName}_check`, value=`/w gm @{${longName}_check_formula}`)
+                    button(class="whisperToChat", type="roll", name=`roll_whisper_${longName}_check`, value=`/w gm @{${longName}_check_formula}`)
                         span.iconButton w
             input(type='hidden', name=`attr_${longName}_check_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${longName}}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{${longName}_modifier}[${longName} modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}`)
         .score-field

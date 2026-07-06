@@ -700,45 +700,57 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection {
+.ui-dialog .charactersheet .frontPage .middleSection,
+.ui-dialog .charactersheet .npcView .middleSection {
   display: flex;
   width: 100%;
   margin: 0;
   padding: 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne {
   display: grid;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol {
   display: grid;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
   display: grid;
 }
-.ui-dialog .charactersheet .frontPage .middleSection {
+.ui-dialog .charactersheet .frontPage .middleSection,
+.ui-dialog .charactersheet .npcView .middleSection {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne {
   grid-template-columns: [column-3x3] 75% [conditions-column] 25%;
   gap: 5px;
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
   grid-template-columns: [attributes] 49.5% [stamina] 24.5% [hit-points] 24.5%;
   grid-template-rows: [row-1 stamina hit-points] auto [row-2 corruption] auto [row-3 saves] auto;
   gap: 5px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow .headerLabel,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .headerLabel,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .headerRow .headerLabel,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attribute-row .headerLabel,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput {
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .headerRow {
   padding: 0 0 15px 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection {
   display: flex;
   flex-flow: row wrap;
   grid-column-start: attributes;
@@ -748,18 +760,24 @@ label.buttonStyle {
   row-gap: 10px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
   column-gap: 5px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedMod,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedMod {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedMod,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedMod,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedMod {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedDexMod[value="1"] + .cappedMod,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedDexMod[value="1"] + .cappedMod,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod {
   display: flex;
   width: 17px;
   position: relative;
@@ -767,62 +785,78 @@ label.buttonStyle {
   /*left: 36.5%;*/
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton {
   width: 100%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .allcaps,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .allcaps {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .allcaps,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .allcaps,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .allcaps {
   font-family: "Eagle Lake";
   text-transform: uppercase;
   /*color: var(--ink);*/
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .smallcaps,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .smallcaps {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .smallcaps,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .smallcaps,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .smallcaps {
   font-family: "Cinzel";
   text-transform: lowercase;
   font-size: 0.75em;
   /*color: var(--ink);*/
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput {
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field {
   width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons {
   width: 100%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons .sendToChat {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons .sendToChat,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons .sendToChat {
   width: 100%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons:hover .whisperButton {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons:hover .whisperButton,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons:hover .whisperButton {
   left: calc(100% - 10px);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .score-field {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .score-field,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .score-field {
   width: 23%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .modifier-field {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .modifier-field,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .modifier-field {
   width: 23%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
   grid-column-start: attributes;
   grid-column-end: 4;
   grid-row-start: saves;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina {
   grid-column-start: stamina;
   grid-column-end: hit-points;
   grid-row-start: row-1;
@@ -837,7 +871,8 @@ label.buttonStyle {
   border: 0.25px solid var(--ink);
   padding: 0 0 5px 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -845,10 +880,12 @@ label.buttonStyle {
   align-items: center;
   column-gap: 5px;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol {
   width: 16%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol > p {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol > p,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol > p {
   font-family: "Smooch", cursive;
   font-size: 1.5em;
   font-weight: bold;
@@ -860,17 +897,23 @@ label.buttonStyle {
   position: relative;
   top: 10px;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef {
   background-color: var(--dragon-wing);
   color: var(--condition);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove + input.xPointInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove + input.xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove + input.xPointInput {
   color: var(--condition);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -878,29 +921,38 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus .xPointInput,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold .xPointInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold .xPointInput {
   width: 100%;
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
   width: 52%;
   margin: 5px 0 0 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus {
   width: 35%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fieldLabelAbove {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fieldLabelAbove,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fieldLabelAbove {
   font-family: "Cinzel", serif;
   font-size: 0.6em;
   font-weight: bold;
   width: 100%;
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .secondWind {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .secondWind,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .secondWind {
   margin: 5px 0 -20px 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints {
   grid-column-start: hit-points;
   grid-row-start: row-1;
   grid-row-end: row-2;
@@ -916,7 +968,11 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -926,14 +982,22 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb .xPointInput,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints .xPointInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints .xPointInput {
   width: 100%;
   text-align: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed button[type=action].textButton,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed button[type=action].textButton,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton {
   border: none;
   padding: 0;
   margin: 0;
@@ -941,19 +1005,27 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton:hover > label.fieldLabelAbove:hover,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover {
   cursor: pointer;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative {
   background-color: var(--read-only);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .textButton > .xPointInput:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .textButton > .xPointInput:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .textButton > .xPointInput:hover {
   cursor: pointer;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
   align-self: flex-end;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -961,10 +1033,12 @@ label.buttonStyle {
   align-items: center;
   column-gap: 5px;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCount {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCount,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCount {
   display: none;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel {
   flex: 1 1 30%;
   align-self: center;
   align-items: center;
@@ -974,81 +1048,107 @@ label.buttonStyle {
   text-align: center;
   margin: 10px 0 0 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel:hover {
   cursor: pointer;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action {
   color: var(--ink);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action:hover {
   color: var(--dragon-wing);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions {
   color: var(--gold);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions:hover {
   color: var(--dragon-wing);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions {
   color: var(--gold);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions:hover {
   color: var(--dragon-wing);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action {
   color: var(--gold);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action:hover {
   color: var(--dragon-wing);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions {
   color: var(--ink);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions:hover {
   color: var(--dragon-wing);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions {
   color: var(--gold);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions:hover {
   color: var(--dragon-wing);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action {
   color: var(--gold);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action:hover {
   color: var(--dragon-wing);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions {
   color: var(--gold);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions:hover {
   color: var(--dragon-wing);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions {
   color: var(--ink);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions:hover {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions:hover,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel {
   width: 35%;
   display: inline;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel > label,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel > label {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel > label,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel > label,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel > label {
   width: 100%;
   font-family: "Cinzel", serif;
   font-size: 1em;
   font-weight: bold;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .xPointInput,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .xPointInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .xPointInput {
   width: 35%;
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .fieldLabelAbove {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .fieldLabelAbove,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .fieldLabelAbove {
   font-family: "Cinzel", serif;
   font-size: 0.6em;
   font-weight: bold;
@@ -1056,11 +1156,13 @@ label.buttonStyle {
   text-align: center;
   line-height: 1.25;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption {
   grid-column-start: stamina;
   grid-column-end: 4;
   grid-row-start: corruption;
@@ -1072,32 +1174,38 @@ label.buttonStyle {
   column-gap: 5px;
   justify-content: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow {
   width: 100%;
   padding: 10px 0 0 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow .headerLabel {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow .headerLabel,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow .headerLabel {
   line-height: 1;
   color: black;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .corruptionCell {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .corruptionCell,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .corruptionCell {
   display: none;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell {
   display: inline-block;
   width: 30px;
   height: 30px;
   border: 1px solid black;
   color: black;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput {
   width: 100%;
   height: 100%;
   text-align: center;
   opacity: 0;
   cursor: pointer;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionNumber {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionNumber,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionNumber {
   width: 30px;
   height: 30px;
   line-height: 30px;
@@ -1108,15 +1216,18 @@ label.buttonStyle {
   font-size: 1.2em;
   font-weight: bold;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput:checked + .corruptionNumber {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput:checked + .corruptionNumber,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput:checked + .corruptionNumber {
   background-color: black;
   color: silver;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol {
   display: flex;
   flex-flow: column nowrap;
   row-gap: 10px;
@@ -1129,7 +1240,13 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Normal]"] ~ .zero,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod {
   background-color: var(--ink);
   color: var(--parchment);
 }
@@ -1138,10 +1255,17 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo .penalty,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Normal]"] ~ .zero .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty {
   border-color: var(--parchment);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition {
   display: flex;
   flex-flow: row nowrap;
   font-family: "Cinzel";
@@ -1152,12 +1276,15 @@ label.buttonStyle {
   height: 50px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .normal,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .out {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .out,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .normal,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .out {
   width: 95%;
   text-align: center;
   font-size: 2em;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .penalty {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .penalty {
   width: 35px;
   height: 35px;
   text-align: center;
@@ -1167,36 +1294,43 @@ label.buttonStyle {
   justify-content: center;
   align-items: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .description {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .description,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .description {
   width: 77%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .description > p {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .description > p,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .description > p {
   font-size: 0.9em;
   font-family: "Cinzel";
   margin: 0;
   padding: 0;
   line-height: 1.2em;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .conditionRadio {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .conditionRadio,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .conditionRadio {
   display: none;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .momentum {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   background-color: var(--gold);
   padding: 0 0 5px 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum .momentumInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum .momentumInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .momentum .momentumInput {
   border-bottom: 1px solid var(--ink);
   text-align: center;
   width: 43%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum > span {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum > span,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .momentum > span {
   font-family: var(--calculations);
   font-size: 1.5em;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol {
   font-synthesis: unset !important;
 }
 
@@ -1218,26 +1352,30 @@ label.buttonStyle {
   font-family: var(--mainBody);
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow {
   display: inline-block;
   width: 100%;
   padding: 5px;
   position: relative;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveButton {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveButton,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveButton {
   display: inline-flex;
   flex-flow: row wrap;
   column-gap: 5px;
   width: 20%;
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput {
   background-color: var(--dragon-wing);
   color: var(--condition);
 }
@@ -1246,30 +1384,41 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveLvlOrArmor,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveClassBonus,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveMisc {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveMisc,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveTotal,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveCalc,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveLvlOrArmor,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveClassBonus,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveMisc {
   display: inline-block;
   width: 12.5%;
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .config {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .config,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .config {
   position: absolute;
   left: 84%;
   top: -30%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .attributeInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .attributeInput,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .attributeInput {
   width: 100%;
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .headerLabel {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .headerLabel,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .headerLabel {
   width: 100%;
   text-align: center;
   line-height: 1.2;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .calcFormula {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .calcFormula,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .calcFormula {
   font-size: 1.5em;
   font-family: var(--calculations);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .labelButton {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .labelButton,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .labelButton {
   font-family: var(--decorative);
   text-transform: uppercase;
   width: 100%;
@@ -1277,10 +1426,12 @@ label.buttonStyle {
   color: var(--parchment);
   border-radius: 0 8px 0 8px;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod {
   position: relative;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
   font-family: var(--decorative);
   font-size: 1.2em;
   color: var(--ink);
@@ -1292,7 +1443,8 @@ label.buttonStyle {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=strength] ~ .abilityWatermark.strength,
@@ -1300,10 +1452,17 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=constitution] ~ .abilityWatermark.constitution,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=intelligence] ~ .abilityWatermark.intelligence,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=wisdom] ~ .abilityWatermark.wisdom,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=strength] ~ .abilityWatermark.strength,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=dexterity] ~ .abilityWatermark.dexterity,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=constitution] ~ .abilityWatermark.constitution,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=intelligence] ~ .abilityWatermark.intelligence,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=wisdom] ~ .abilityWatermark.wisdom,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma {
   display: inline;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .abilityConfig {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .abilityConfig,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .abilityConfig {
   position: absolute;
   transform: translateX(-50%);
   z-index: 20;
@@ -1318,7 +1477,8 @@ label.buttonStyle {
   left: 79%;
   top: -10px;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves,
+.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
   font-synthesis: unset !important;
 }
 

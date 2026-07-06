@@ -1,6 +1,7 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage .middleSection .twoByOne .firstCol .threeBythree {
+.frontPage .middleSection .twoByOne .firstCol .threeBythree,
+.npcView .middleSection .twoByOne .firstCol .threeBythree {
     @include sheet-scope {
         .corruption {
             grid-column-start: stamina;

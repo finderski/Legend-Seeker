@@ -14,8 +14,9 @@
         label(class="headerLabel", data-i18n='ability-mod') Ability Modifier
     .saveMisc
         label(class="headerLabel", data-i18n='miscellaneous-abbr') Misc
--
-    const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
-    const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+//
+    -
+        const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
+        const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
 each save in saveList
     +savingthrow(save)
