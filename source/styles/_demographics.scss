@@ -63,3 +63,38 @@
         }
     }
 }
+
+.npcView .topSection .demographics {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: row wrap;
+        column-gap: 5px;
+        row-gap: 15px;
+        font-size: 0.9em;
+        flex-grow: 3;
+        flex-basis: auto;
+        padding: 0;
+        align-items: flex-end;
+        align-content: end;
+        margin: 10px 0 15px 0;
+        .class,
+        .level,
+        .alignment {
+            .text-field {
+                width: 100%;
+            }
+        }
+        .class {
+            width: 25%;
+        }
+        .level {
+            width: 14%;
+        }
+        .speed {
+            flex-basis: 8%;
+        }
+        .alignment {
+            width: 20%;
+        }
+    }
+}

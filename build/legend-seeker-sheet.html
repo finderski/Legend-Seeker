@@ -979,9 +979,79 @@
     </div>
   </div>
   <div class="npcView"> 
-    <h1 class="headerLabel" data-i18n="npc-view">NPC View</h1>
-    <div class="npcViewSection">
-      <!-- include _npcView.pug-->
+    <h1 class="npcViewHeader"> 
+      <div class="logo"> 
+        <!-- Logo Section--><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/lengend-seeker-logo.png" alt="Legend Seeker Logo"/>
+      </div>
+      <div class="npcMainFields">
+        <input class="npcHeader npcName text-field" type="text" name="attr_character_name" data-i18n-placeholder="name"/>
+        <div class="challengeLevel"><span class="npcHeader" data-i18n="challenge-level-abbr-caps" data-i18n-title="challenge-level">CL:</span>
+          <input type="hidden" name="attr_challenge_level" value="0"/><span class="npcHeader" name="attr_challenge_level" value="0"></span>
+        </div>
+        <div class="type"> 
+          <select class="ls-Dropdown" name="attr_monster_type">
+            <option value=""> </option>
+            <option value="Aberration" data-i18n="aberration">Aberration</option>
+            <option value="Beast" data-i18n="beast">Beast</option>
+            <option value="Construct" data-i18n="construct">Construct</option>
+            <option value="Dragon" data-i18n="dragon">Dragon</option>
+            <option value="Elemental" data-i18n="elemental">Elemental</option>
+            <option value="Fey" data-i18n="fey">Fey</option>
+            <option value="Giant" data-i18n="giant">Giant</option>
+            <option value="Magical Beast" data-i18n="magical-beast">Magical Beast</option>
+            <option value="Monstrous Humanoid" data-i18n="monstrous-humanoid">Monstrous Humanoid</option>
+            <option value="Ooze" data-i18n="ooze">Ooze</option>
+            <option value="Outsider" data-i18n="outsider">Outsider</option>
+            <option value="Plant" data-i18n="plant">Plant</option>
+            <option value="Undead" data-i18n="undead">Undead</option>
+          </select>
+        </div>
+        <div class="size"> 
+          <select class="ls-Dropdown" name="attr_monster_size">
+            <option value=""> </option>
+            <option value="Fine" data-i18n="fine">Fine</option>
+            <option value="Diminutive" data-i18n="diminutive">Diminutive</option>
+            <option value="Tiny" data-i18n="tiny">Tiny</option>
+            <option value="Small" data-i18n="small">Small</option>
+            <option value="Medium" data-i18n="medium" selected="selected">Medium</option>
+            <option value="Large" data-i18n="large">Large</option>
+            <option value="Huge" data-i18n="huge">Huge</option>
+            <option value="Gargantuan" data-i18n="gargantuan">Gargantuan</option>
+            <option value="Colossal" data-i18n="colossal">Colossal</option>
+          </select>
+        </div>
+      </div>
+    </h1>
+    <div class="topSection">
+      <div class="demographics"> 
+        <!-- Character Sheet (including NPC sheet)-->
+        <!-- Styles are in _demographics.scss-->
+        <div class="alignment"> 
+          <label class="smallCaps" data-i18n="alignment">Alignment</label>
+          <input class="text-field" type="text" name="attr_alignment" value="" data-i18n-placeholder="alignment"/>
+        </div>
+        <div class="class"> 
+          <label class="smallCaps" data-i18n="class">Class</label>
+          <input class="text-field" type="text" name="attr_class" value="" data-i18n-placeholder="class"/>
+        </div>
+        <div class="level"> 
+          <label class="smallCaps" data-i18n="level">Level</label>
+          <input class="text-field" type="text" name="attr_level" value="" data-i18n-placeholder="level"/>
+          <input type="hidden" name="attr_half-level" value="0"/>
+        </div>
+        <div class="level"> 
+          <label class="smallCaps" data-i18n="minion-level">Minion Level</label>
+          <input class="text-field" type="text" name="attr_minion_level" value="" data-i18n-placeholder="minion-level"/>
+        </div>
+        <div class="level"> 
+          <label class="smallCaps" data-i18n="monster-level">Monster Level</label>
+          <input class="text-field" type="text" name="attr_monster_level" value="" data-i18n-placeholder="monster-level"/>
+        </div>
+        <div class="speed"> 
+          <label class="smallCaps" data-i18n="speed">Speed</label>
+          <input class="text-field" type="text" name="attr_speed" value="" placeholder="5"/>
+        </div>
+      </div>
     </div>
   </div>
   <div class="backPage">
@@ -3613,6 +3683,25 @@ saveList.forEach(save => {
     });
 });
 
+/* ---- Calculate Challenge Level ---- */
+on('change:level change:minion_level change:monster_level', function(eventInfo) {
+    log("Challenge Level Watch Detected Change", eventInfo, r20color);
+    getAttrs(['level', 'minion_level', 'monster_level', 'current_chararcter_type'], function(v) {
+        const currentCharacterType = parseInt(v.current_chararcter_type) || 0;
+        const level = parseInt(v.level) || 0;
+        const minionLevel = parseInt(v.minion_level) || 0;
+        const monsterLevel = parseInt(v.monster_level) || 1;
+        if (currentCharacterType === 1) {
+            log("Player Character", "Current Character Type is not an NPC/Monster", r20color);
+            return; // exit early if the current character type is a player character
+        }
+        else {
+            const challengeLevel = Math.floor(minionLevel / 4) + (monsterLevel - 1) + level;
+            log("Challenge Level Calculation", `minion level: ${minionLevel}, monster level: ${monsterLevel}, level: ${level}, challenge level: ${challengeLevel}`, r20color);
+            setAttrs({'challenge_level': challengeLevel < 0 ? 0 : challengeLevel});
+        }
+    });
+});
 
 
 
@@ -3629,7 +3718,6 @@ const buttonlist = [
 
 buttonlist.forEach(button => {
     on(`clicked:${button}`, function () {
-
         let setattr = {};
         log('Button Bar Button', `${button} button was clicked!!`, buttonClick);
         let radioval = `${button}`;

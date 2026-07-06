@@ -72,9 +72,48 @@ include ./mixins/_mixin_skills.pug
             .weapons 
                 include _weapons.pug
     .npcView 
-        h1.headerLabel(data-i18n="npc-view") NPC View
-        .npcViewSection
-            // include _npcView.pug
+        h1.npcViewHeader 
+            .logo 
+                // Logo Section
+                img(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/lengend-seeker-logo.png', alt='Legend Seeker Logo')
+            .npcMainFields
+                input(class='npcHeader npcName text-field', type='text', name='attr_character_name', data-i18n-placeholder='name')
+                .challengeLevel
+                    span(class='npcHeader', data-i18n='challenge-level-abbr-caps', data-i18n-title='challenge-level') CL:
+                    input(type="hidden", name="attr_challenge_level", value="0")
+                    span(class="npcHeader", name="attr_challenge_level", value="0")
+                .type 
+                    select(class='ls-Dropdown', name='attr_monster_type')
+                        option(value='') 
+                        option(value='Aberration', data-i18n='aberration') Aberration
+                        option(value='Beast', data-i18n='beast') Beast
+                        option(value='Construct', data-i18n='construct') Construct
+                        option(value='Dragon', data-i18n='dragon') Dragon
+                        option(value='Elemental', data-i18n='elemental') Elemental
+                        option(value='Fey', data-i18n='fey') Fey
+                        option(value='Giant', data-i18n='giant') Giant
+                        option(value='Magical Beast', data-i18n='magical-beast') Magical Beast
+                        option(value='Monstrous Humanoid', data-i18n='monstrous-humanoid') Monstrous Humanoid
+                        option(value='Ooze', data-i18n='ooze') Ooze
+                        option(value='Outsider', data-i18n='outsider') Outsider
+                        option(value='Plant', data-i18n='plant') Plant
+                        option(value='Undead', data-i18n='undead') Undead
+                .size 
+                    select(class='ls-Dropdown', name='attr_monster_size')
+                        option(value='') 
+                        option(value='Fine', data-i18n='fine') Fine
+                        option(value='Diminutive', data-i18n='diminutive') Diminutive
+                        option(value='Tiny', data-i18n='tiny') Tiny
+                        option(value='Small', data-i18n='small') Small
+                        option(value='Medium', data-i18n='medium' selected) Medium
+                        option(value='Large', data-i18n='large') Large
+                        option(value='Huge', data-i18n='huge') Huge
+                        option(value='Gargantuan', data-i18n='gargantuan') Gargantuan
+                        option(value='Colossal', data-i18n='colossal') Colossal
+        .topSection
+            .demographics 
+                // Character Sheet (including NPC sheet)
+                include _demographicsNPC.pug
     .backPage
         .topContainer
             .equipment 

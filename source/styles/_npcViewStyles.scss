@@ -1,0 +1,54 @@
+@use './mixins/sheet-scope' as *;
+
+.npcView {
+    @include sheet-scope {
+        .npcViewHeader {
+            display: flex;
+            background-color: var(--ink);
+            padding: 20px;
+            gap: 20px;
+            width: 100%;
+            margin: 0;
+            .logo {
+                display: inline-block;
+                width: 20%;
+                margin: 0 -5px 0 0;
+            }
+            .npcMainFields {
+                display: flex;
+                flex-flow: row wrap;
+                column-gap: 20px;
+                width: 85%;
+                .npcHeader.npcName.text-field {
+                    display: inline-block;
+                    color: var(--parchment);
+                    flex-basis: 80%;
+                }
+                .challengeLevel {
+                    display: inline-block;
+                    color: var(--parchment);
+                    align-self: center;
+                    span.npcHeader {
+                        color: var(--parchment);
+                        margin-right: auto;
+                        align-self: center;
+                    }
+                }
+                .type,
+                .size {
+                    display: inline-block;
+                    color: var(--light-gold);
+                    select.ls-Dropdown {
+                        border-bottom: 1px solid var(--gold);
+                        align-self: flex-end;
+                        margin: 0;
+                        font-size: 2rem;
+                        font-style: italic;
+                        color: var(--light-gold);
+                    }
+                }
+            }
+            
+        }
+    }
+}

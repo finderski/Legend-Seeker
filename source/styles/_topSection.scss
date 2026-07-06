@@ -1,6 +1,7 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage .topSection {
+.frontPage .topSection,
+.npcView .topSection {
     @include sheet-scope {
         display: flex;
         width: 100%;

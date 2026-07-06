@@ -8,7 +8,6 @@ const buttonlist = [
 
 buttonlist.forEach(button => {
     on(`clicked:${button}`, function () {
-
         let setattr = {};
         log('Button Bar Button', `${button} button was clicked!!`, buttonClick);
         let radioval = `${button}`;

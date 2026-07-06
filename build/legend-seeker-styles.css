@@ -505,6 +505,15 @@ label.buttonStyle {
   color: var(--parchment);
 }
 
+.ui-dialog .charactersheet .frontPage,
+.ui-dialog .charactersheet .backPage,
+.ui-dialog .charactersheet .sheetSettings,
+.ui-dialog .charactersheet .concise,
+.ui-dialog .charactersheet .npcView {
+  display: none;
+  font-synthesis: unset !important;
+}
+
 .ui-dialog .charactersheet .selectedTab[value="1"] ~ .frontPage,
 .ui-dialog .charactersheet .selectedTab[value="2"] ~ .backPage,
 .ui-dialog .charactersheet .selectedTab[value="3"] ~ .sheetSettings,
@@ -519,16 +528,8 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage,
-.ui-dialog .charactersheet .backPage,
-.ui-dialog .charactersheet .sheetSettings,
-.ui-dialog .charactersheet .concise,
-.ui-dialog .charactersheet .npcView {
-  display: none;
-  font-synthesis: unset !important;
-}
-
-.ui-dialog .charactersheet .frontPage .topSection {
+.ui-dialog .charactersheet .frontPage .topSection,
+.ui-dialog .charactersheet .npcView .topSection {
   display: flex;
   width: 100%;
   margin: 0;
@@ -599,6 +600,40 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
+.ui-dialog .charactersheet .npcView .topSection .demographics {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  row-gap: 15px;
+  font-size: 0.9em;
+  flex-grow: 3;
+  flex-basis: auto;
+  padding: 0;
+  align-items: flex-end;
+  align-content: end;
+  margin: 10px 0 15px 0;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .class .text-field,
+.ui-dialog .charactersheet .npcView .topSection .demographics .level .text-field,
+.ui-dialog .charactersheet .npcView .topSection .demographics .alignment .text-field {
+  width: 100%;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .class {
+  width: 25%;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .level {
+  width: 14%;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .speed {
+  flex-basis: 8%;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .alignment {
+  width: 20%;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics {
+  font-synthesis: unset !important;
+}
+
 .ui-dialog .charactersheet .frontPage .topSection .logo {
   display: flex;
   justify-content: center;
@@ -610,6 +645,58 @@ label.buttonStyle {
   height: auto;
 }
 .ui-dialog .charactersheet .frontPage .topSection .logo {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .npcView .npcViewHeader {
+  display: flex;
+  background-color: var(--ink);
+  padding: 20px;
+  gap: 20px;
+  width: 100%;
+  margin: 0;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .logo {
+  display: inline-block;
+  width: 20%;
+  margin: 0 -5px 0 0;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 20px;
+  width: 85%;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .npcHeader.npcName.text-field {
+  display: inline-block;
+  color: var(--parchment);
+  flex-basis: 80%;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .challengeLevel {
+  display: inline-block;
+  color: var(--parchment);
+  align-self: center;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .challengeLevel span.npcHeader {
+  color: var(--parchment);
+  margin-right: auto;
+  align-self: center;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .type,
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .size {
+  display: inline-block;
+  color: var(--light-gold);
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .type select.ls-Dropdown,
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .size select.ls-Dropdown {
+  border-bottom: 1px solid var(--gold);
+  align-self: flex-end;
+  margin: 0;
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--light-gold);
+}
+.ui-dialog .charactersheet .npcView {
   font-synthesis: unset !important;
 }
 

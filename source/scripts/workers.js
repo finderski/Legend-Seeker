@@ -380,6 +380,25 @@ saveList.forEach(save => {
     });
 });
 
+/* ---- Calculate Challenge Level ---- */
+on('change:level change:minion_level change:monster_level', function(eventInfo) {
+    log("Challenge Level Watch Detected Change", eventInfo, r20color);
+    getAttrs(['level', 'minion_level', 'monster_level', 'current_chararcter_type'], function(v) {
+        const currentCharacterType = parseInt(v.current_chararcter_type) || 0;
+        const level = parseInt(v.level) || 0;
+        const minionLevel = parseInt(v.minion_level) || 0;
+        const monsterLevel = parseInt(v.monster_level) || 1;
+        if (currentCharacterType === 1) {
+            log("Player Character", "Current Character Type is not an NPC/Monster", r20color);
+            return; // exit early if the current character type is a player character
+        }
+        else {
+            const challengeLevel = Math.floor(minionLevel / 4) + (monsterLevel - 1) + level;
+            log("Challenge Level Calculation", `minion level: ${minionLevel}, monster level: ${monsterLevel}, level: ${level}, challenge level: ${challengeLevel}`, r20color);
+            setAttrs({'challenge_level': challengeLevel < 0 ? 0 : challengeLevel});
+        }
+    });
+});
 
 
 
