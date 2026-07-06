@@ -1,19 +1,20 @@
-# Default owner for everything in the repository
+# .github/CODEOWNERS
+
+# Default owner
 * @finderski
 
-# Protect repo configuration
+# Protect GitHub configuration and ownership rules
 /.github/ @finderski
 
-# Source files for the Roll20 sheet
+# Legend Seeker sheet source
 /source/ @finderski
 
-# Compiled Roll20 upload files
+# Roll20 upload/build output
 /build/ @finderski
 
-# Images and visual assets
+# Art and image assets
 /images/ @finderski
 
-# Project metadata
+# Roll20 metadata
 /sheet.json @finderski
 /translation.json @finderski
-/README.md @finderski

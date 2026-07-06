@@ -1,4 +1,5 @@
 
 !.gitignore
 ._*
-.DS_StoreI
+.DS_Store
+/build/.github/
