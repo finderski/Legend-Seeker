@@ -1304,11 +1304,17 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption {
   grid-column-start: stamina;
   grid-column-end: 4;
   grid-row-start: corruption;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .corruption {
   background-color: silver;
   display: flex;
   flex-flow: row wrap;
@@ -1318,21 +1324,21 @@ label.buttonStyle {
   justify-content: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .corruption .headerRow {
   width: 100%;
   padding: 10px 0 0 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow .headerLabel,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .headerRow .headerLabel {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .corruption .headerRow .headerLabel {
   line-height: 1;
   color: black;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .corruptionCell,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .corruptionCell {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .corruption .corruptionCell {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .corruption .hideCorruption[value=show] + .corruptionCell {
   display: inline-block;
   width: 30px;
   height: 30px;
@@ -1340,7 +1346,7 @@ label.buttonStyle {
   color: black;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -1348,7 +1354,7 @@ label.buttonStyle {
   cursor: pointer;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionNumber,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionNumber {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .corruption .hideCorruption[value=show] + .corruptionCell .corruptionNumber {
   width: 30px;
   height: 30px;
   line-height: 30px;
@@ -1360,12 +1366,12 @@ label.buttonStyle {
   font-weight: bold;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput:checked + .corruptionNumber,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput:checked + .corruptionNumber {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .corruption .hideCorruption[value=show] + .corruptionCell .corruptionInput:checked + .corruptionNumber {
   background-color: black;
   color: silver;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption {
   font-synthesis: unset !important;
 }
 
@@ -1496,21 +1502,21 @@ label.buttonStyle {
 }
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow {
   display: inline-block;
   width: 100%;
   padding: 5px;
   position: relative;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveButton,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveButton {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveButton {
   display: inline-flex;
   flex-flow: row wrap;
   column-gap: 5px;
@@ -1518,7 +1524,7 @@ label.buttonStyle {
   text-align: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput {
   background-color: var(--dragon-wing);
   color: var(--condition);
 }
@@ -1528,40 +1534,40 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveClassBonus,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveMisc,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveTotal,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveCalc,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveLvlOrArmor,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveClassBonus,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveMisc {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveTotal,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveCalc,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveLvlOrArmor,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveClassBonus,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveMisc {
   display: inline-block;
   width: 12.5%;
   text-align: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .config,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .config {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .config {
   position: absolute;
   left: 84%;
   top: -30%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .attributeInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .attributeInput {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .attributeInput {
   width: 100%;
   text-align: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .headerLabel,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .headerLabel {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .headerLabel {
   width: 100%;
   text-align: center;
   line-height: 1.2;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .calcFormula,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .calcFormula {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .calcFormula {
   font-size: 1.5em;
   font-family: var(--calculations);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .labelButton,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .labelButton {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .labelButton {
   font-family: var(--decorative);
   text-transform: uppercase;
   width: 100%;
@@ -1570,11 +1576,11 @@ label.buttonStyle {
   border-radius: 0 8px 0 8px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod {
   position: relative;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
   font-family: var(--decorative);
   font-size: 1.2em;
   color: var(--ink);
@@ -1587,7 +1593,7 @@ label.buttonStyle {
   transform: translate(-50%, -50%);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .abilityWatermark {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=strength] ~ .abilityWatermark.strength,
@@ -1596,16 +1602,16 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=intelligence] ~ .abilityWatermark.intelligence,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=wisdom] ~ .abilityWatermark.wisdom,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=strength] ~ .abilityWatermark.strength,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=dexterity] ~ .abilityWatermark.dexterity,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=constitution] ~ .abilityWatermark.constitution,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=intelligence] ~ .abilityWatermark.intelligence,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=wisdom] ~ .abilityWatermark.wisdom,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=strength] ~ .abilityWatermark.strength,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=dexterity] ~ .abilityWatermark.dexterity,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=constitution] ~ .abilityWatermark.constitution,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=intelligence] ~ .abilityWatermark.intelligence,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=wisdom] ~ .abilityWatermark.wisdom,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma {
   display: inline;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .abilityConfig,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .abilityConfig {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .abilityConfig {
   position: absolute;
   transform: translateX(-50%);
   z-index: 20;
@@ -1621,7 +1627,7 @@ label.buttonStyle {
   top: -10px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves {
   font-synthesis: unset !important;
 }
 

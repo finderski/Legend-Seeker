@@ -1454,6 +1454,162 @@
             </label>
           </div>
         </div>
+        <div class="defensiveSaves">
+          <!--Defensive Saves Section-->
+          <!-- styling found in _middleSection-saves.scss-->
+          <div class="saveRow"> 
+            <div class="saveButton">
+              <h3 class="headerLabel" data-i18n="defensive-scores">Defensive Scores</h3>
+            </div>
+            <div class="saveTotal">
+              <label class="headerLabel" data-i18n="total">Total</label>
+            </div>
+            <div class="saveCalc">&nbsp;</div>
+            <div class="saveLvlOrArmor"> 
+              <label class="headerLabel" data-i18n="level-or-armor">Level/Armor</label>
+            </div>
+            <div class="saveClassBonus"> 
+              <label class="headerLabel" data-i18n="class-bonus">Class Bonus</label>
+            </div>
+            <div class="saveAbilityMod"> 
+              <label class="headerLabel" data-i18n="ability-mod">Ability Modifier</label>
+            </div>
+            <div class="saveMisc">
+              <label class="headerLabel" data-i18n="miscellaneous-abbr">Misc</label>
+            </div>
+          </div>
+          <!--
+          -
+              const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
+              const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+          -->
+          <div class="saveRow">
+            <div class="saveButton">
+              <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
+            </div>
+            <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+            <div class="saveTotal">
+              <input class="attributeInput readOnly" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
+              <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
+            </div>
+            <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+            <div class="saveLvlOrArmor">
+              <input class="attributeInput readOnly" type="text" name="attr_fort_level_or_armor" placeholder="0" readonly="readonly"/>
+            </div>
+            <div class="saveClassBonus">
+              <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
+            </div>
+            <div class="saveAbilityMod">
+              <input class="showWatermark" type="hidden" name="attr_fort_ability_mod" value="constitution"/>
+              <input class="attributeInput" type="text" name="attr_fort_ability_modifier" readonly="readonly"/><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_fort_save_toggle"/><span class="configIcon">y</span>
+              </label>
+            </div>
+            <div class="saveMisc">
+              <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_fort_save_toggle" value="0"/>
+            <div class="abilityConfig"> 
+              <div class="shim-left"></div>
+              <select class="ls-Dropdown" name="attr_fort_ability_mod">
+                <option value="strength" data-i18n="strength-abbr">STR</option>
+                <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
+                <option value="constitution" data-i18n="constitution-abbr" selected="selected">CON</option>
+                <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
+                <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+              </select>
+              <div class="shim-right"></div>
+            </div>
+          </div>
+          <div class="saveRow">
+            <div class="saveButton">
+              <button class="labelButton nonClickable" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
+            </div>
+            <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+            <div class="saveTotal">
+              <input class="attributeInput readOnly" type="text" name="attr_ref_total" readonly="readonly" placeholder="10"/>
+              <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
+            </div>
+            <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+            <div class="saveLvlOrArmor">
+              <input class="attributeInput readOnly" type="text" name="attr_ref_level_or_armor" placeholder="0" readonly="readonly"/>
+            </div>
+            <div class="saveClassBonus">
+              <input class="attributeInput" type="text" name="attr_ref_class_bonus" placeholder="0"/>
+            </div>
+            <div class="saveAbilityMod">
+              <input class="showWatermark" type="hidden" name="attr_ref_ability_mod" value="dexterity"/>
+              <input class="attributeInput" type="text" name="attr_ref_ability_modifier" readonly="readonly"/><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_ref_save_toggle"/><span class="configIcon">y</span>
+              </label>
+            </div>
+            <div class="saveMisc">
+              <input class="attributeInput" type="text" name="attr_ref_misc_save_mod" placeholder="0"/>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_ref_save_toggle" value="0"/>
+            <div class="abilityConfig"> 
+              <div class="shim-left"></div>
+              <select class="ls-Dropdown" name="attr_ref_ability_mod">
+                <option value="strength" data-i18n="strength-abbr">STR</option>
+                <option value="dexterity" data-i18n="dexterity-abbr" selected="selected">DEX</option>
+                <option value="constitution" data-i18n="constitution-abbr">CON</option>
+                <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
+                <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+              </select>
+              <div class="shim-right"></div>
+            </div>
+          </div>
+          <div class="saveRow">
+            <div class="saveButton">
+              <button class="labelButton nonClickable" type="roll" name="roll_WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{WILL-check}}} {{Roll=[[1d20 + @{WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr">WILL</span></button>
+            </div>
+            <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+            <div class="saveTotal">
+              <input class="attributeInput readOnly" type="text" name="attr_will_total" readonly="readonly" placeholder="10"/>
+              <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
+            </div>
+            <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+            <div class="saveLvlOrArmor">
+              <input class="attributeInput readOnly" type="text" name="attr_will_level_or_armor" placeholder="0" readonly="readonly"/>
+            </div>
+            <div class="saveClassBonus">
+              <input class="attributeInput" type="text" name="attr_will_class_bonus" placeholder="0"/>
+            </div>
+            <div class="saveAbilityMod">
+              <input class="showWatermark" type="hidden" name="attr_will_ability_mod" value="wisdom"/>
+              <input class="attributeInput" type="text" name="attr_will_ability_modifier" readonly="readonly"/><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_will_save_toggle"/><span class="configIcon">y</span>
+              </label>
+            </div>
+            <div class="saveMisc">
+              <input class="attributeInput" type="text" name="attr_will_misc_save_mod" placeholder="0"/>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_will_save_toggle" value="0"/>
+            <div class="abilityConfig"> 
+              <div class="shim-left"></div>
+              <select class="ls-Dropdown" name="attr_will_ability_mod">
+                <option value="strength" data-i18n="strength-abbr">STR</option>
+                <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
+                <option value="constitution" data-i18n="constitution-abbr">CON</option>
+                <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                <option value="wisdom" data-i18n="wisdom-abbr" selected="selected">WIS</option>
+                <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+              </select>
+              <div class="shim-right"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="conditionsCol">
         <h3 class="headerLabel" data-i18n="conditions">CONDITIONS</h3>
@@ -1515,162 +1671,6 @@
         <div class="languages"> 
           <h3 class="headerLabel" data-i18n="languages">LANGUAGES</h3>
           <textarea class="languagesInput" name="attr_languages" data-i18n-placeholder="enter-known-languages-here" placeholder="Enter known languages here..."></textarea>
-        </div>
-      </div>
-      <div class="defensiveSaves">
-        <!--Defensive Saves Section-->
-        <!-- styling found in _middleSection-saves.scss-->
-        <div class="saveRow"> 
-          <div class="saveButton">
-            <h3 class="headerLabel" data-i18n="defensive-scores">Defensive Scores</h3>
-          </div>
-          <div class="saveTotal">
-            <label class="headerLabel" data-i18n="total">Total</label>
-          </div>
-          <div class="saveCalc">&nbsp;</div>
-          <div class="saveLvlOrArmor"> 
-            <label class="headerLabel" data-i18n="level-or-armor">Level/Armor</label>
-          </div>
-          <div class="saveClassBonus"> 
-            <label class="headerLabel" data-i18n="class-bonus">Class Bonus</label>
-          </div>
-          <div class="saveAbilityMod"> 
-            <label class="headerLabel" data-i18n="ability-mod">Ability Modifier</label>
-          </div>
-          <div class="saveMisc">
-            <label class="headerLabel" data-i18n="miscellaneous-abbr">Misc</label>
-          </div>
-        </div>
-        <!--
-        -
-            const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
-            const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
-        -->
-        <div class="saveRow">
-          <div class="saveButton">
-            <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
-          </div>
-          <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
-          <div class="saveTotal">
-            <input class="attributeInput readOnly" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
-            <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
-          </div>
-          <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
-          <div class="saveLvlOrArmor">
-            <input class="attributeInput readOnly" type="text" name="attr_fort_level_or_armor" placeholder="0" readonly="readonly"/>
-          </div>
-          <div class="saveClassBonus">
-            <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
-          </div>
-          <div class="saveAbilityMod">
-            <input class="showWatermark" type="hidden" name="attr_fort_ability_mod" value="constitution"/>
-            <input class="attributeInput" type="text" name="attr_fort_ability_modifier" readonly="readonly"/><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
-          </div>
-          <div class="config"> 
-            <label class="cog">
-              <input class="hiddenInput" type="checkbox" name="attr_fort_save_toggle"/><span class="configIcon">y</span>
-            </label>
-          </div>
-          <div class="saveMisc">
-            <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
-          </div>
-          <input class="hideSection" type="hidden" name="attr_fort_save_toggle" value="0"/>
-          <div class="abilityConfig"> 
-            <div class="shim-left"></div>
-            <select class="ls-Dropdown" name="attr_fort_ability_mod">
-              <option value="strength" data-i18n="strength-abbr">STR</option>
-              <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
-              <option value="constitution" data-i18n="constitution-abbr" selected="selected">CON</option>
-              <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
-              <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
-              <option value="charisma" data-i18n="charisma-abbr">CHA</option>
-            </select>
-            <div class="shim-right"></div>
-          </div>
-        </div>
-        <div class="saveRow">
-          <div class="saveButton">
-            <button class="labelButton nonClickable" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
-          </div>
-          <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
-          <div class="saveTotal">
-            <input class="attributeInput readOnly" type="text" name="attr_ref_total" readonly="readonly" placeholder="10"/>
-            <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
-          </div>
-          <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
-          <div class="saveLvlOrArmor">
-            <input class="attributeInput readOnly" type="text" name="attr_ref_level_or_armor" placeholder="0" readonly="readonly"/>
-          </div>
-          <div class="saveClassBonus">
-            <input class="attributeInput" type="text" name="attr_ref_class_bonus" placeholder="0"/>
-          </div>
-          <div class="saveAbilityMod">
-            <input class="showWatermark" type="hidden" name="attr_ref_ability_mod" value="dexterity"/>
-            <input class="attributeInput" type="text" name="attr_ref_ability_modifier" readonly="readonly"/><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
-          </div>
-          <div class="config"> 
-            <label class="cog">
-              <input class="hiddenInput" type="checkbox" name="attr_ref_save_toggle"/><span class="configIcon">y</span>
-            </label>
-          </div>
-          <div class="saveMisc">
-            <input class="attributeInput" type="text" name="attr_ref_misc_save_mod" placeholder="0"/>
-          </div>
-          <input class="hideSection" type="hidden" name="attr_ref_save_toggle" value="0"/>
-          <div class="abilityConfig"> 
-            <div class="shim-left"></div>
-            <select class="ls-Dropdown" name="attr_ref_ability_mod">
-              <option value="strength" data-i18n="strength-abbr">STR</option>
-              <option value="dexterity" data-i18n="dexterity-abbr" selected="selected">DEX</option>
-              <option value="constitution" data-i18n="constitution-abbr">CON</option>
-              <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
-              <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
-              <option value="charisma" data-i18n="charisma-abbr">CHA</option>
-            </select>
-            <div class="shim-right"></div>
-          </div>
-        </div>
-        <div class="saveRow">
-          <div class="saveButton">
-            <button class="labelButton nonClickable" type="roll" name="roll_WILL_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{WILL-check}}} {{Roll=[[1d20 + @{WILL_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="willpower-abbr">WILL</span></button>
-          </div>
-          <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
-          <div class="saveTotal">
-            <input class="attributeInput readOnly" type="text" name="attr_will_total" readonly="readonly" placeholder="10"/>
-            <!-- span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)-->
-          </div>
-          <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
-          <div class="saveLvlOrArmor">
-            <input class="attributeInput readOnly" type="text" name="attr_will_level_or_armor" placeholder="0" readonly="readonly"/>
-          </div>
-          <div class="saveClassBonus">
-            <input class="attributeInput" type="text" name="attr_will_class_bonus" placeholder="0"/>
-          </div>
-          <div class="saveAbilityMod">
-            <input class="showWatermark" type="hidden" name="attr_will_ability_mod" value="wisdom"/>
-            <input class="attributeInput" type="text" name="attr_will_ability_modifier" readonly="readonly"/><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
-          </div>
-          <div class="config"> 
-            <label class="cog">
-              <input class="hiddenInput" type="checkbox" name="attr_will_save_toggle"/><span class="configIcon">y</span>
-            </label>
-          </div>
-          <div class="saveMisc">
-            <input class="attributeInput" type="text" name="attr_will_misc_save_mod" placeholder="0"/>
-          </div>
-          <input class="hideSection" type="hidden" name="attr_will_save_toggle" value="0"/>
-          <div class="abilityConfig"> 
-            <div class="shim-left"></div>
-            <select class="ls-Dropdown" name="attr_will_ability_mod">
-              <option value="strength" data-i18n="strength-abbr">STR</option>
-              <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
-              <option value="constitution" data-i18n="constitution-abbr">CON</option>
-              <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
-              <option value="wisdom" data-i18n="wisdom-abbr" selected="selected">WIS</option>
-              <option value="charisma" data-i18n="charisma-abbr">CHA</option>
-            </select>
-            <div class="shim-right"></div>
-          </div>
         </div>
       </div>
     </div>
