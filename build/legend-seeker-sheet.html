@@ -15,7 +15,7 @@
     4 = Monster/NPC Sheet
     3 = Settings
     -->
-    <input class="showViewButton" type="hidden" name="attr_current_chararcter_type" value="1"/>
+    <input class="showViewButton" type="hidden" name="attr_current_character_type" value="1"/>
     <div class="viewButtons charView">
       <button class="topButton characterSheet defaultView" type="action" name="act_frontsheet_1" data-i18n-title="character" data-i18n="character">Character</button>
       <div class="changeView"> 
@@ -110,7 +110,7 @@
                   <label class="headerLabel" data-i18n="score">Score</label>
                 </div>
                 <!-- The Adjusted Field should only show up when the character is an NPC/Monster.-->
-                <input class="showAdjustedField" type="hidden" name="attr_current_chararcter_type" value="1"/>
+                <input class="showAdjustedField" type="hidden" name="attr_current_character_type" value="1"/>
                 <div class="adjusted-field">
                   <label class="headerLabel" data-i18n="adjusted">Adjusted</label>
                 </div>
@@ -1080,7 +1080,7 @@
               <label class="headerLabel" data-i18n="score">Score</label>
             </div>
             <!-- The Adjusted Field should only show up when the character is an NPC/Monster.-->
-            <input class="showAdjustedField" type="hidden" name="attr_current_chararcter_type" value="1"/>
+            <input class="showAdjustedField" type="hidden" name="attr_current_character_type" value="1"/>
             <div class="adjusted-field">
               <label class="headerLabel" data-i18n="adjusted">Adjusted</label>
             </div>
@@ -1165,7 +1165,7 @@
               <label class="headerLabel" data-i18n="score">Score</label>
             </div>
             <!-- The Adjusted Field should only show up when the character is an NPC/Monster.-->
-            <input class="showAdjustedField" type="hidden" name="attr_current_chararcter_type" value="1"/>
+            <input class="showAdjustedField" type="hidden" name="attr_current_character_type" value="1"/>
             <div class="adjusted-field">
               <label class="headerLabel" data-i18n="adjusted">Adjusted</label>
             </div>
@@ -1235,222 +1235,224 @@
           </div>
         </div>
         <input class="showNPCStamina" type="hidden" name="attr_show_npc_stamina" value="0"/>
-        <div class="stamina"> 
-          <!-- Staminia Section-->
-          <!-- Styles found _middleSection-stamina.scss-->
-          <h3 class="headerLabel" data-i18n="stamina-points">Stamina Points</h3>
-          <div class="fieldLabel"> 
-            <label data-i18n="temporarary-abbr">Temp</label>
-          </div>
-          <input class="xPointInput" type="text" name="attr_stamina_temp" placeholder="0"/>
-          <div class="fieldLabel">
-            <label data-i18n="total">Total </label>
-          </div>
-          <input class="xPointInput" type="text" name="attr_stamina_max" placeholder="0"/>
-          <div class="fieldLabel">
-            <label data-i18n="current">Current</label>
-          </div>
-          <input class="xPointInput" type="text" name="attr_stamina" placeholder="0"/>
-          <div class="calculation">
-            <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
-            <div class="fortDef readOnly"> 
-              <label class="fieldLabelAbove" data-i18n="fortitude-defense">Fort Def</label>
-              <input class="xPointInput" type="text" name="attr_stamina_fortDef" placeholder="0" readonly="readonly"/>
+        <div class="staminaHpCorruption">
+          <div class="stamina"> 
+            <!-- Staminia Section-->
+            <!-- Styles found _middleSection-stamina.scss-->
+            <h3 class="headerLabel" data-i18n="stamina-points">Stamina Points</h3>
+            <div class="fieldLabel"> 
+              <label data-i18n="temporarary-abbr">Temp</label>
             </div>
-            <div class="symbol"> 
-              <p>+</p>
+            <input class="xPointInput" type="text" name="attr_stamina_temp" placeholder="0"/>
+            <div class="fieldLabel">
+              <label data-i18n="total">Total </label>
             </div>
-            <div class="MiscBonus"> 
-              <label class="fieldLabelAbove" data-i18n="misc-bonus">Misc Bonus</label>
-              <input class="xPointInput" type="text" name="attr_stamina_miscBonus" placeholder="0"/>
+            <input class="xPointInput" type="text" name="attr_stamina_max" placeholder="0"/>
+            <div class="fieldLabel">
+              <label data-i18n="current">Current</label>
             </div>
-            <div class="symbol"> 
-              <p>=</p>
+            <input class="xPointInput" type="text" name="attr_stamina" placeholder="0"/>
+            <div class="calculation">
+              <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+              <div class="fortDef readOnly"> 
+                <label class="fieldLabelAbove" data-i18n="fortitude-defense">Fort Def</label>
+                <input class="xPointInput" type="text" name="attr_stamina_fortDef" placeholder="0" readonly="readonly"/>
+              </div>
+              <div class="symbol"> 
+                <p>+</p>
+              </div>
+              <div class="MiscBonus"> 
+                <label class="fieldLabelAbove" data-i18n="misc-bonus">Misc Bonus</label>
+                <input class="xPointInput" type="text" name="attr_stamina_miscBonus" placeholder="0"/>
+              </div>
+              <div class="symbol"> 
+                <p>=</p>
+              </div>
+              <div class="damageThreshold readOnly">
+                <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
+                <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
+              </div>
             </div>
-            <div class="damageThreshold readOnly">
-              <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
-              <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
+            <button class="labelButton secondWind" type="action" name="act_secondwind" data-i18n="second-wind">Second Wind</button>
+          </div>
+          <div class="hitPoints"> 
+            <!-- Hit Point Section-->
+            <!-- Styling for hit points, speed, initiative, heroic proficiency bonus, and legendary points are in _middleSection-stamina.scss. -->
+            <h3 class="headerLabel" data-i18n="hit-points">Hit Points</h3>
+            <div class="fieldLabel">
+              <label data-i18n="total">Total </label>
+            </div>
+            <input class="xPointInput" type="text" name="attr_hitpoints_max" placeholder="0"/>
+            <div class="fieldLabel">
+              <label data-i18n="current">Current</label>
+            </div>
+            <input class="xPointInput" type="text" name="attr_hitpoints" placeholder="0"/>
+            <div class="speed">
+              <label class="fieldLabelAbove" data-i18n="speed">Speed</label>
+              <input class="xPointInput" type="text" name="attr_speed" placeholder="0"/>
+            </div>
+            <div class="initiative">
+              <button class="textButton" type="roll" name="roll_initiative" value="@{initiative_formula}">
+                <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
+                <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
+              </button>
+            </div>
+            <div class="hpb readOnly">
+              <label class="fieldLabelAbove" data-i18n="base-attack-bonus">Base Attack Bonus</label>
+              <!-- input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)-->
+              <input class="xPointInput" type="text" name="attr_base_attack_bonus" value="2"/>
+            </div>
+            <div class="legendaryPoints"> 
+              <button class="textButton" type="action" name="act_use-legendary-points">
+                <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
+              </button>
+              <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
+            </div>
+            <div class="numberOfActions"> 
+              <label class="fieldLabelAbove" data-i18n="number-of-actions">Number of Actions</label>
+              <input class="actionCounter" type="hidden" name="attr_multi-action-penalty" value="0"/>
+              <label class="selectorLabel">
+                <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="0" checked="checked"/><span class="one-action">I </span>
+              </label>
+              <label class="selectorLabel">
+                <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="-4"/><span class="two-actions">II</span>
+              </label>
+              <label class="selectorLabel">
+                <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="-8"/><span class="three-actions">III</span>
+              </label>
             </div>
           </div>
-          <button class="labelButton secondWind" type="action" name="act_secondwind" data-i18n="second-wind">Second Wind</button>
-        </div>
-        <div class="hitPoints"> 
-          <!-- Hit Point Section-->
-          <!-- Styling for hit points, speed, initiative, heroic proficiency bonus, and legendary points are in _middleSection-stamina.scss. -->
-          <h3 class="headerLabel" data-i18n="hit-points">Hit Points</h3>
-          <div class="fieldLabel">
-            <label data-i18n="total">Total </label>
-          </div>
-          <input class="xPointInput" type="text" name="attr_hitpoints_max" placeholder="0"/>
-          <div class="fieldLabel">
-            <label data-i18n="current">Current</label>
-          </div>
-          <input class="xPointInput" type="text" name="attr_hitpoints" placeholder="0"/>
-          <div class="speed">
-            <label class="fieldLabelAbove" data-i18n="speed">Speed</label>
-            <input class="xPointInput" type="text" name="attr_speed" placeholder="0"/>
-          </div>
-          <div class="initiative">
-            <button class="textButton" type="roll" name="roll_initiative" value="@{initiative_formula}">
-              <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
-              <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
-            </button>
-          </div>
-          <div class="hpb readOnly">
-            <label class="fieldLabelAbove" data-i18n="base-attack-bonus">Base Attack Bonus</label>
-            <!-- input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)-->
-            <input class="xPointInput" type="text" name="attr_base_attack_bonus" value="2"/>
-          </div>
-          <div class="legendaryPoints"> 
-            <button class="textButton" type="action" name="act_use-legendary-points">
-              <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
-            </button>
-            <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
-          </div>
-          <div class="numberOfActions"> 
-            <label class="fieldLabelAbove" data-i18n="number-of-actions">Number of Actions</label>
-            <input class="actionCounter" type="hidden" name="attr_multi-action-penalty" value="0"/>
-            <label class="selectorLabel">
-              <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="0" checked="checked"/><span class="one-action">I </span>
+          <div class="corruption">
+            <!-- Corruption Section-->
+            <div class="headerRow"> 
+              <h3 class="headerLabel" data-i18n="corruption">Corruption</h3>
+            </div>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_0" value="show"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_0"/>
+              <div class="corruptionNumber">0</div>
             </label>
-            <label class="selectorLabel">
-              <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="-4"/><span class="two-actions">II</span>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_1" value="show"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_1"/>
+              <div class="corruptionNumber">1</div>
             </label>
-            <label class="selectorLabel">
-              <input class="actionCount" type="radio" name="attr_multi-action-penalty" value="-8"/><span class="three-actions">III</span>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_2" value="show"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_2"/>
+              <div class="corruptionNumber">2</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_3" value="show"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_3"/>
+              <div class="corruptionNumber">3</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_4" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_4"/>
+              <div class="corruptionNumber">4</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_5" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_5"/>
+              <div class="corruptionNumber">5</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_6" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_6"/>
+              <div class="corruptionNumber">6</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_7" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_7"/>
+              <div class="corruptionNumber">7</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_8" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_8"/>
+              <div class="corruptionNumber">8</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_9" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_9"/>
+              <div class="corruptionNumber">9</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_10" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_10"/>
+              <div class="corruptionNumber">10</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_11" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_11"/>
+              <div class="corruptionNumber">11</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_12" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_12"/>
+              <div class="corruptionNumber">12</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_13" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_13"/>
+              <div class="corruptionNumber">13</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_14" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_14"/>
+              <div class="corruptionNumber">14</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_15" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_15"/>
+              <div class="corruptionNumber">15</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_16" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_16"/>
+              <div class="corruptionNumber">16</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_17" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_17"/>
+              <div class="corruptionNumber">17</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_18" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_18"/>
+              <div class="corruptionNumber">18</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_19" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_19"/>
+              <div class="corruptionNumber">19</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_20" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_20"/>
+              <div class="corruptionNumber">20</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_21" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_21"/>
+              <div class="corruptionNumber">21</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_22" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_22"/>
+              <div class="corruptionNumber">22</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_23" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_23"/>
+              <div class="corruptionNumber">23</div>
+            </label>
+            <input class="hideCorruption" type="hidden" name="attr_corruption_lock_24" value="hide"/>
+            <label class="corruptionCell">
+              <input class="corruptionInput" type="checkbox" name="attr_corruption_24"/>
+              <div class="corruptionNumber">24</div>
             </label>
           </div>
-        </div>
-        <div class="corruption">
-          <!-- Corruption Section-->
-          <div class="headerRow"> 
-            <h3 class="headerLabel" data-i18n="corruption">Corruption</h3>
-          </div>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_0" value="show"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_0"/>
-            <div class="corruptionNumber">0</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_1" value="show"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_1"/>
-            <div class="corruptionNumber">1</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_2" value="show"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_2"/>
-            <div class="corruptionNumber">2</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_3" value="show"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_3"/>
-            <div class="corruptionNumber">3</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_4" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_4"/>
-            <div class="corruptionNumber">4</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_5" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_5"/>
-            <div class="corruptionNumber">5</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_6" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_6"/>
-            <div class="corruptionNumber">6</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_7" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_7"/>
-            <div class="corruptionNumber">7</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_8" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_8"/>
-            <div class="corruptionNumber">8</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_9" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_9"/>
-            <div class="corruptionNumber">9</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_10" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_10"/>
-            <div class="corruptionNumber">10</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_11" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_11"/>
-            <div class="corruptionNumber">11</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_12" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_12"/>
-            <div class="corruptionNumber">12</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_13" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_13"/>
-            <div class="corruptionNumber">13</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_14" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_14"/>
-            <div class="corruptionNumber">14</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_15" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_15"/>
-            <div class="corruptionNumber">15</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_16" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_16"/>
-            <div class="corruptionNumber">16</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_17" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_17"/>
-            <div class="corruptionNumber">17</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_18" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_18"/>
-            <div class="corruptionNumber">18</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_19" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_19"/>
-            <div class="corruptionNumber">19</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_20" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_20"/>
-            <div class="corruptionNumber">20</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_21" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_21"/>
-            <div class="corruptionNumber">21</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_22" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_22"/>
-            <div class="corruptionNumber">22</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_23" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_23"/>
-            <div class="corruptionNumber">23</div>
-          </label>
-          <input class="hideCorruption" type="hidden" name="attr_corruption_lock_24" value="hide"/>
-          <label class="corruptionCell">
-            <input class="corruptionInput" type="checkbox" name="attr_corruption_24"/>
-            <div class="corruptionNumber">24</div>
-          </label>
         </div>
       </div>
       <div class="conditionsCol">
@@ -3785,6 +3787,7 @@ const derivedStatsColor = 'Salmon';
 // Core Attributes
 const coreAttributes = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
 const listOfAttributes = ['strength_modifier', 'dexterity_modifier', 'constitution_modifier', 'intelligence_modifier', 'wisdom_modifier', 'charisma_modifier'];
+const adjustedAttributes = ['strength_adjusted', 'dexterity_adjusted', 'constitution_adjusted', 'intelligence_adjusted', 'wisdom_adjusted', 'charisma_adjusted'];
 
 // List of all skills
 const listOfSklls = ['acrobatics','climb','craft','deception','endurance','gather-information','initiative','invoke-arcana','jump','lore-arcana','lore-architecture','lore-dungeoneering','lore-geography','lore-history','lore-keepers','lore-nature','lore-nobility','lore-planes','lore-religion','lore-streetwise','notice','persuasion','ride','sense-motive','stealth','survival','swim','tinkering','treat-wounds','mana-tap'];
@@ -3793,7 +3796,153 @@ const listOfSklls = ['acrobatics','climb','craft','deception','endurance','gathe
 const damageFields = ["repeating_weapons_weapon-half-level", "repeating_weapons_weapon-damage-dice", "repeating_weapons_weapon-damage-attribute-mod", "repeating_weapons_damage-attribute-mod-value", "repeating_weapons_weapon-damage-misc-mod"];
 const atkFields = ["repeating_weapons_weapon-base-attack-bonus", "repeating_weapons_weapon-atk-bonus", "repeating_weapons_weapon-misc-mod"];
 
-
+// Size Modifiers
+const sizeModifiers = {
+    fine: {
+        label: "Fine",
+        attributeMods: {
+            strengthMod: -8,
+            constitutionMod: 0,
+            dexterityMod: 8,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: 10,
+        stealthMod: 20,
+        damageThresholdMod: 0,
+        carryingCapacityMultiplier: 0.1,
+        heightLength: "0.1 m or less"
+    },
+    diminutive: {
+        label: "Diminutive",
+        attributeMods: {
+            strengthMod: -6,
+            constitutionMod: 0,
+            dexterityMod: 6,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: 5,
+        stealthMod: 15,
+        damageThresholdMod: 0,
+        carryingCapacityMultiplier: 0.25,
+        heightLength: "0.2-0.3 m"
+    },
+    tiny: {
+        label: "Tiny",
+        attributeMods: {
+            strengthMod: -4,
+            constitutionMod: 0,
+            dexterityMod: 4,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: 2,
+        stealthMod: 10,
+        damageThresholdMod: 0,
+        carryingCapacityMultiplier: 0.5,
+        heightLength: "0.4-0.6 m"
+    },
+    small: {
+        label: "Small",
+        attributeMods: {
+            strengthMod: -2,
+            constitutionMod: 0,
+            dexterityMod: 2,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: 1,
+        stealthMod: 5,
+        damageThresholdMod: 0,
+        carryingCapacityMultiplier: 0.75,
+        heightLength: "0.7-1.2 m"
+    },
+    medium: {
+        label: "Medium",
+        attributeMods: {
+            strengthMod: 0,
+            constitutionMod: 0,
+            dexterityMod: 0,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: 0,
+        stealthMod: 0,
+        damageThresholdMod: 0,
+        carryingCapacityMultiplier: 1,
+        heightLength: "1.3-2.4 m"
+    },
+    large: {
+        label: "Large",
+        attributeMods: {
+            strengthMod: 8,
+            constitutionMod: 8,
+            dexterityMod: -2,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: -1,
+        stealthMod: -5,
+        damageThresholdMod: 5,
+        carryingCapacityMultiplier: 2,
+        heightLength: "2.5-4.8 m"
+    },
+    huge: {
+        label: "Huge",
+        attributeMods: {
+            strengthMod: 16,
+            constitutionMod: 16,
+            dexterityMod: -4,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: -2,
+        stealthMod: -10,
+        damageThresholdMod: 10,
+        carryingCapacityMultiplier: 5,
+        heightLength: "4.9-9.6 m"
+    },
+    gargantuan: {
+        label: "Gargantuan",
+        attributeMods: {
+            strengthMod: 24,
+            constitutionMod: 24,
+            dexterityMod: -4,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: -5,
+        stealthMod: -15,
+        damageThresholdMod: 20,
+        carryingCapacityMultiplier: 10,
+        heightLength: "9.7-19.2 m"
+    },
+    colossal: {
+        label: "Colossal",
+        attributeMods: {
+            strengthMod: 32,
+            constitutionMod: 32,
+            dexterityMod: -4,
+            intelligenceMod: 0,
+            wisdomMod: 0,
+            charismaMod: 0
+        },
+        defenseMod: -10,
+        stealthMod: -20,
+        damageThresholdMod: 50,
+        carryingCapacityMultiplier: 20,
+        heightLength: "19.3 m+"
+    }
+};
   function damageThreshold () {
     getAttrs(['fort_total', 'stamina_miscBonus'], function(v) {
         const fortTotal = parseInt(v.fort_total) || 0;
@@ -3989,16 +4138,62 @@ const checkDiceExpression = (expression) => {
     return dicePattern.test(expression);
 }
 
+//If the character type is changed, we need to make sure the attribute modifiers are applied properly.
+//Type === 1, no adjustments to the score, so need to undo any adjustments that were made due to size
+//Type === 4, we need to apply the size adjustments to the attribute scores and recalculate the modifiers
+on('change:current_character_type change:monster_size', function() {
+    getAttrs(['current_character_type','monster_size', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'], function(v) {
+        const monsterSize = v.monster_size.toLowerCase() || 'medium';
+        log("Character Type Change Detected", `Character Type: ${v.current_character_type}, Monster Size: ${monsterSize}`, derivedStatsColor);
+        const newType = parseInt(v.current_character_type);
+        const setattrs = {};
+        if (newType === 1) {
+            // recalculate the modifiers
+            log("Character Type Change Detected", "Recalculating Attribute Modifiers for Player Character", derivedStatsColor);
+            coreAttributes.forEach(attribute => {
+                const attScore = Math.floor((parseInt(v[attribute]) || 0));
+                const modScore = Math.floor(((attScore < 0 ? 0 : attScore) - 10) / 2);
+                setattrs[`${attribute}_modifier`] = modScore;
+            });
+        } else if (newType === 4) {
+            // apply the size adjustments to the attribute scores and recalculate the modifiers
+            log("Character Type Change Detected", "Recalculating Attribute Modifiers for NPC/Monster", derivedStatsColor);
+            coreAttributes.forEach(attribute => {
+                const attScore = Math.floor((parseInt(v[attribute]) || 0));
+                const sizeModifier = sizeModifiers[monsterSize]["attributeMods"][`${attribute}Mod`];
+                const adjustedAttributeScore = (attScore < 0 ? 0 : attScore) + sizeModifier;
+                const modScore = Math.floor((adjustedAttributeScore - 10) / 2);
+                setattrs[`${attribute}_adjusted`] = adjustedAttributeScore;
+                setattrs[`${attribute}_modifier`] = modScore;
+            });
+        }
+        setAttrs(setattrs);
+    });
+});
+
+//Size Change means we need to recalculate the adjusted attribute scores for NPCs/Monsters
+
+
 //Update Attribute Modifiers when Core Attributes Change
 coreAttributes.forEach(attribute => {
     on(`change:${attribute}`, function (eventInfo) {
         const attScore = Math.floor((parseInt(eventInfo.newValue) || 0));
-        let modScore;
-        modScore = Math.floor((attScore - 10) / 2);
-        log("Modifier", modScore, derivedStatsColor)
-        const attrsToSet = {};
-        attrsToSet[`${attribute}_modifier`] = modScore;
-        setAttrs(attrsToSet);
+        getAttrs(['current_character_type','monster_size'], function(v) {
+            const currentCharacterType = parseInt(v.current_character_type) || 1;
+            const attrsToSet = {};
+            if (currentCharacterType === 4) {
+                // if the character is an NPC, we need to get the sizeModifiers for the monster size and calculate the adjusted attribute score
+                const monsterSize = v.monster_size || 'medium';
+                const sizeModifier = sizeModifiers[monsterSize.toLowerCase()]["attributeMods"][`${attribute}Mod`];
+                const adjustedAttributeScore = (attScore < 0 ? 0 : attScore) + sizeModifier;
+                attrsToSet[`${attribute}_adjusted`] = adjustedAttributeScore;
+            }
+            // Once we have the "actual" attribute score, we can calculate the mod.
+            let modScore;
+            modScore = currentCharacterType === 4 ? Math.floor((attrsToSet[`${attribute}_adjusted`] - 10) / 2) : Math.floor((attScore - 10) / 2);
+            attrsToSet[`${attribute}_modifier`] = modScore;
+            setAttrs(attrsToSet);
+        });
     });
 });
 
@@ -4305,8 +4500,8 @@ saveList.forEach(save => {
 /* ---- Calculate Challenge Level ---- */
 on('change:level change:minion_level change:monster_level', function(eventInfo) {
     log("Challenge Level Watch Detected Change", eventInfo, r20color);
-    getAttrs(['level', 'minion_level', 'monster_level', 'current_chararcter_type'], function(v) {
-        const currentCharacterType = parseInt(v.current_chararcter_type) || 0;
+    getAttrs(['level', 'minion_level', 'monster_level', 'current_character_type'], function(v) {
+        const currentCharacterType = parseInt(v.current_character_type) || 0;
         const level = parseInt(v.level) || 0;
         const minionLevel = parseInt(v.minion_level) || 0;
         const monsterLevel = parseInt(v.monster_level) || 1;
@@ -4344,7 +4539,7 @@ buttonlist.forEach(button => {
         radioval = radioval.split('_');
         setattr['sheetTab'] = radioval[1];
         if(radioval[1] === '1' || radioval[1] === '4') {
-            setattr['current_chararcter_type'] = radioval[1];
+            setattr['current_character_type'] = radioval[1];
         }
         
         setAttrs(setattr);

@@ -62,7 +62,13 @@
                 flex-flow: row wrap;
                 flex: 1 1 73%;
                 gap: 20px;
-
+                .staminaHpCorruption {
+                    display: flex;
+                    flex-flow: row wrap;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
             }
             .conditionsCol {
                 display: flex;

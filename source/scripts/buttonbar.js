@@ -15,7 +15,7 @@ buttonlist.forEach(button => {
         radioval = radioval.split('_');
         setattr['sheetTab'] = radioval[1];
         if(radioval[1] === '1' || radioval[1] === '4') {
-            setattr['current_chararcter_type'] = radioval[1];
+            setattr['current_character_type'] = radioval[1];
         }
         
         setAttrs(setattr);

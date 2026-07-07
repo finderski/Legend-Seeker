@@ -67,16 +67,62 @@ const checkDiceExpression = (expression) => {
     return dicePattern.test(expression);
 }
 
+//If the character type is changed, we need to make sure the attribute modifiers are applied properly.
+//Type === 1, no adjustments to the score, so need to undo any adjustments that were made due to size
+//Type === 4, we need to apply the size adjustments to the attribute scores and recalculate the modifiers
+on('change:current_character_type change:monster_size', function() {
+    getAttrs(['current_character_type','monster_size', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'], function(v) {
+        const monsterSize = v.monster_size.toLowerCase() || 'medium';
+        log("Character Type Change Detected", `Character Type: ${v.current_character_type}, Monster Size: ${monsterSize}`, derivedStatsColor);
+        const newType = parseInt(v.current_character_type);
+        const setattrs = {};
+        if (newType === 1) {
+            // recalculate the modifiers
+            log("Character Type Change Detected", "Recalculating Attribute Modifiers for Player Character", derivedStatsColor);
+            coreAttributes.forEach(attribute => {
+                const attScore = Math.floor((parseInt(v[attribute]) || 0));
+                const modScore = Math.floor(((attScore < 0 ? 0 : attScore) - 10) / 2);
+                setattrs[`${attribute}_modifier`] = modScore;
+            });
+        } else if (newType === 4) {
+            // apply the size adjustments to the attribute scores and recalculate the modifiers
+            log("Character Type Change Detected", "Recalculating Attribute Modifiers for NPC/Monster", derivedStatsColor);
+            coreAttributes.forEach(attribute => {
+                const attScore = Math.floor((parseInt(v[attribute]) || 0));
+                const sizeModifier = sizeModifiers[monsterSize]["attributeMods"][`${attribute}Mod`];
+                const adjustedAttributeScore = (attScore < 0 ? 0 : attScore) + sizeModifier;
+                const modScore = Math.floor((adjustedAttributeScore - 10) / 2);
+                setattrs[`${attribute}_adjusted`] = adjustedAttributeScore;
+                setattrs[`${attribute}_modifier`] = modScore;
+            });
+        }
+        setAttrs(setattrs);
+    });
+});
+
+//Size Change means we need to recalculate the adjusted attribute scores for NPCs/Monsters
+
+
 //Update Attribute Modifiers when Core Attributes Change
 coreAttributes.forEach(attribute => {
     on(`change:${attribute}`, function (eventInfo) {
         const attScore = Math.floor((parseInt(eventInfo.newValue) || 0));
-        let modScore;
-        modScore = Math.floor((attScore - 10) / 2);
-        log("Modifier", modScore, derivedStatsColor)
-        const attrsToSet = {};
-        attrsToSet[`${attribute}_modifier`] = modScore;
-        setAttrs(attrsToSet);
+        getAttrs(['current_character_type','monster_size'], function(v) {
+            const currentCharacterType = parseInt(v.current_character_type) || 1;
+            const attrsToSet = {};
+            if (currentCharacterType === 4) {
+                // if the character is an NPC, we need to get the sizeModifiers for the monster size and calculate the adjusted attribute score
+                const monsterSize = v.monster_size || 'medium';
+                const sizeModifier = sizeModifiers[monsterSize.toLowerCase()]["attributeMods"][`${attribute}Mod`];
+                const adjustedAttributeScore = (attScore < 0 ? 0 : attScore) + sizeModifier;
+                attrsToSet[`${attribute}_adjusted`] = adjustedAttributeScore;
+            }
+            // Once we have the "actual" attribute score, we can calculate the mod.
+            let modScore;
+            modScore = currentCharacterType === 4 ? Math.floor((attrsToSet[`${attribute}_adjusted`] - 10) / 2) : Math.floor((attScore - 10) / 2);
+            attrsToSet[`${attribute}_modifier`] = modScore;
+            setAttrs(attrsToSet);
+        });
     });
 });
 
@@ -383,8 +429,8 @@ saveList.forEach(save => {
 /* ---- Calculate Challenge Level ---- */
 on('change:level change:minion_level change:monster_level', function(eventInfo) {
     log("Challenge Level Watch Detected Change", eventInfo, r20color);
-    getAttrs(['level', 'minion_level', 'monster_level', 'current_chararcter_type'], function(v) {
-        const currentCharacterType = parseInt(v.current_chararcter_type) || 0;
+    getAttrs(['level', 'minion_level', 'monster_level', 'current_character_type'], function(v) {
+        const currentCharacterType = parseInt(v.current_character_type) || 0;
         const level = parseInt(v.level) || 0;
         const minionLevel = parseInt(v.minion_level) || 0;
         const monsterLevel = parseInt(v.monster_level) || 1;

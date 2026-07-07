@@ -710,6 +710,13 @@ label.buttonStyle {
   flex: 1 1 73%;
   gap: 20px;
 }
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 .ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
   display: flex;
   flex-flow: column nowrap;
@@ -917,8 +924,7 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina {
   grid-column-start: stamina;
   grid-column-end: hit-points;
   grid-row-start: row-1;
@@ -933,8 +939,7 @@ label.buttonStyle {
   border: 0.25px solid var(--ink);
   padding: 0 0 5px 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -942,12 +947,10 @@ label.buttonStyle {
   align-items: center;
   column-gap: 5px;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol {
   width: 16%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol > p,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol > p {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .symbol > p {
   font-family: "Smooch", cursive;
   font-size: 1.5em;
   font-weight: bold;
@@ -959,23 +962,17 @@ label.buttonStyle {
   position: relative;
   top: 10px;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef {
   background-color: var(--dragon-wing);
   color: var(--condition);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove + input.xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove + input.xPointInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove + input.xPointInput {
   color: var(--condition);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -983,38 +980,26 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus .xPointInput,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold .xPointInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold .xPointInput {
   width: 100%;
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .damageThreshold {
   width: 52%;
   margin: 5px 0 0 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fortDef,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .MiscBonus {
   width: 35%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fieldLabelAbove,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fieldLabelAbove {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .calculation .fieldLabelAbove {
   font-family: "Cinzel", serif;
   font-size: 0.6em;
   font-weight: bold;
   width: 100%;
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .secondWind,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .secondWind {
-  margin: 5px 0 -20px 0;
-}
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints {
   grid-column-start: hit-points;
   grid-row-start: row-1;
   grid-row-end: row-2;
@@ -1027,14 +1012,109 @@ label.buttonStyle {
   align-items: center;
   border: 0.5px solid var(--ink);
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 5px;
+  row-gap: 5px;
+  justify-content: space-evenly;
+  align-content: flex-start;
+  align-items: center;
+  border: 0.25px solid var(--ink);
+  padding: 0 0 20px 0;
+  width: 50%;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .symbol {
+  width: 5%;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .symbol > p {
+  font-family: "Smooch", cursive;
+  font-size: 1.5em;
+  font-weight: bold;
+  width: 100%;
+  align-self: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .modifiedByCondition[value="1"] + .fortDef {
+  background-color: var(--dragon-wing);
+  color: var(--condition);
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .modifiedByCondition[value="1"] + .fortDef .fieldLabelAbove + input.xPointInput {
+  color: var(--condition);
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .fortDef,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .MiscBonus,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .damageThreshold {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .fortDef .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .MiscBonus .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .damageThreshold .xPointInput {
+  width: 100%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .damageThreshold {
+  width: 30%;
+  margin: 5px 0 0 0;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .fortDef,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .MiscBonus {
+  width: 20%;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .fieldLabelAbove {
+  font-family: "Cinzel", serif;
+  font-size: 0.6em;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina {
+  position: relative;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .secondWind,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .secondWind {
+  margin: 15px 0;
+  position: absolute;
+  bottom: -10px;
+}
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .speed,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .hpb,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -1045,10 +1125,10 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints .xPointInput {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .speed .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .hpb .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints .xPointInput {
   width: 100%;
   text-align: center;
 }
@@ -1056,10 +1136,10 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed button[type=action].textButton,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .speed button[type=action].textButton,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative button[type=action].textButton,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .hpb button[type=action].textButton,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints button[type=action].textButton {
   border: none;
   padding: 0;
   margin: 0;
@@ -1068,39 +1148,40 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed button[type=action].textButton:hover > label.fieldLabelAbove:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton:hover > label.fieldLabelAbove:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton:hover > label.fieldLabelAbove:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .speed button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .hpb button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover {
   cursor: pointer;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative {
   background-color: var(--read-only);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .textButton > .xPointInput:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .textButton > .xPointInput:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative .textButton > .xPointInput:hover {
   cursor: pointer;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints {
   align-self: flex-end;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   column-gap: 5px;
+  margin: 10px 0 -10px 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCount,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCount {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCount {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .selectorLabel {
   flex: 1 1 30%;
   align-self: center;
   align-items: center;
@@ -1111,92 +1192,92 @@ label.buttonStyle {
   margin: 10px 0 0 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .selectorLabel:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .selectorLabel:hover {
   cursor: pointer;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action {
   color: var(--ink);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .one-action:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions {
   color: var(--gold);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .two-actions:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions {
   color: var(--gold);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="0"] ~ .selectorLabel > .three-actions:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action {
   color: var(--gold);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .one-action:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions {
   color: var(--ink);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .two-actions:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions {
   color: var(--gold);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-4"] ~ .selectorLabel > .three-actions:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action {
   color: var(--gold);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .one-action:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions {
   color: var(--gold);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .two-actions:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions {
   color: var(--ink);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions:hover,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions:hover {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .numberOfActions .actionCounter[value="-8"] ~ .selectorLabel > .three-actions:hover {
   color: var(--dragon-wing);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .fieldLabel,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .fieldLabel {
   width: 35%;
   display: inline;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel > label,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel > label,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .fieldLabel > label,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .fieldLabel > label {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .fieldLabel > label,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .fieldLabel > label {
   width: 100%;
   font-family: "Cinzel", serif;
   font-size: 1em;
@@ -1204,13 +1285,13 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .stamina .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .stamina .xPointInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .hitPoints .xPointInput {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .xPointInput {
   width: 35%;
   text-align: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .fieldLabelAbove,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .fieldLabelAbove {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .fieldLabelAbove {
   font-family: "Cinzel", serif;
   font-size: 0.6em;
   font-weight: bold;
@@ -1219,7 +1300,7 @@ label.buttonStyle {
   line-height: 1.25;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption {
   font-synthesis: unset !important;
 }
 
