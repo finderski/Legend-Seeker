@@ -4,6 +4,10 @@
         label(class="headerLabel", data-i18n='core-attributes') Core Attributes
     .score-field
         label(class="headerLabel", data-i18n='score') Score
+    // The Adjusted Field should only show up when the character is an NPC/Monster.
+    input(type='hidden', class='showAdjustedField', name='attr_current_chararcter_type', value="1")
+    .adjusted-field
+        label(class="headerLabel", data-i18n='adjusted') Adjusted
     .modifier-field
         label(class="headerLabel", data-i18n='modifier') Modifier
 input(type="hidden", name="attr_capped_dex_mod", value="1000")
@@ -11,4 +15,4 @@ input(type="hidden", name="attr_capped_dex_mod", value="1000")
     -
         const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
 each attribute in attributeList
-    +attribute(attribute)
+    +attribute(attribute, sheetType)

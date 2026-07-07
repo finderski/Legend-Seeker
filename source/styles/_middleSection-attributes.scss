@@ -1,7 +1,6 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage .middleSection .twoByOne .firstCol .threeBythree,
-.npcView .middleSection .twoByOne .firstCol .threeBythree {
+.frontPage .middleSection .twoByOne .firstCol .threeBythree {
     @include sheet-scope {
         grid-template-columns: [attributes] 49.5% [stamina] 24.5% [hit-points] 24.5%;
         // grid-template-rows: [row-1 stamina hit-points] 45% [row-2 corruption] 22% [row-3 saves] 33%;
@@ -14,6 +13,9 @@
         }
         .headerRow {
             padding: 0 0 15px 0;
+            .adjusted-field {
+                display: none;
+            }
         }
         .attributesSection {
             display: flex;

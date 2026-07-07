@@ -466,6 +466,19 @@
       "oS" : 1,
       "pg" : 0
     },
+    "\/source\/styles\/_middleSection-attributesNPC.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_middleSection-attributesNPC.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_middleSection-conditions.scss" : {
       "aP" : 0,
       "bl" : 0,

@@ -696,31 +696,48 @@ label.buttonStyle {
   font-style: italic;
   color: var(--light-gold);
 }
+.ui-dialog .charactersheet .npcView .middleSection {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+  width: 100%;
+  padding: 0;
+  margin: 20px 0 0 0;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1 1 73%;
+  gap: 20px;
+}
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
+  display: flex;
+  flex-flow: column nowrap;
+  flex: 1 1 24%;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
 .ui-dialog .charactersheet .npcView {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection,
-.ui-dialog .charactersheet .npcView .middleSection {
+.ui-dialog .charactersheet .frontPage .middleSection {
   display: flex;
   width: 100%;
   margin: 0;
   padding: 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne {
   display: grid;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol {
   display: grid;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
   display: grid;
 }
-.ui-dialog .charactersheet .frontPage .middleSection,
-.ui-dialog .charactersheet .npcView .middleSection {
+.ui-dialog .charactersheet .frontPage .middleSection {
   font-synthesis: unset !important;
 }
 
@@ -731,26 +748,23 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
   grid-template-columns: [attributes] 49.5% [stamina] 24.5% [hit-points] 24.5%;
   grid-template-rows: [row-1 stamina hit-points] auto [row-2 corruption] auto [row-3 saves] auto;
   gap: 5px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow .headerLabel,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .headerLabel,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .headerRow .headerLabel,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attribute-row .headerLabel,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attribute-row .attributeInput {
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .headerRow {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow {
   padding: 0 0 15px 0;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .headerRow .adjusted-field {
+  display: none;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection {
   display: flex;
   flex-flow: row wrap;
   grid-column-start: attributes;
@@ -760,24 +774,18 @@ label.buttonStyle {
   row-gap: 10px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
   column-gap: 5px;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedMod,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedMod,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedMod,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedMod {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedMod {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedDexMod[value="1"] + .cappedMod,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .headerRow .cappedDexMod[value="1"] + .cappedMod,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod {
   display: flex;
   width: 17px;
   position: relative;
@@ -785,73 +793,127 @@ label.buttonStyle {
   /*left: 36.5%;*/
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton {
   width: 100%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .allcaps,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .allcaps,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .allcaps,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .allcaps {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .allcaps {
   font-family: "Eagle Lake";
   text-transform: uppercase;
   /*color: var(--ink);*/
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .smallcaps,
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .smallcaps,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput .smallcaps,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .smallcaps {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .labelButton .smallcaps {
   font-family: "Cinzel";
   text-transform: lowercase;
   font-size: 0.75em;
   /*color: var(--ink);*/
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-row .attributeInput {
   text-align: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field {
   width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons {
   width: 100%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons .sendToChat,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons .sendToChat {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons .sendToChat {
   width: 100%;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons:hover .whisperButton,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons:hover .whisperButton {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .attribute-field .chatButtons:hover .whisperButton {
   left: calc(100% - 10px);
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .score-field,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .score-field {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .score-field {
   width: 23%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .modifier-field,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .attributesSection .modifier-field {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .attributesSection .modifier-field {
   width: 23%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves {
   grid-column-start: attributes;
   grid-column-end: 4;
   grid-row-start: saves;
 }
-.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .firstCol .threeBythree {
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+  height: 130px;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .headerRow,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row {
+  width: 48%;
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .headerRow .attribute-field,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .attribute-field {
+  width: 35%;
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .headerRow .score-field,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .headerRow .adjusted-field,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .headerRow .modifier-field,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .score-field,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .adjusted-field,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .modifier-field {
+  width: 20%;
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .headerRow .attributeInput,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .attributeInput {
+  text-align: center;
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .headerRow .cappedMod,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .cappedMod {
+  display: none;
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .headerRow .cappedDexMod[value="1"] + .cappedMod,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .cappedDexMod[value="1"] + .cappedMod {
+  display: flex;
+  width: 17px;
+  position: relative;
+  margin-left: -18px;
+  /*left: 36.5%;*/
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .attributeInput,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .labelButton,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .chatButtons {
+  width: 100%;
+  margin: 0;
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .attributeInput .allcaps,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .labelButton .allcaps,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .chatButtons .allcaps {
+  font-family: "Eagle Lake";
+  text-transform: uppercase;
+  /*color: var(--ink);*/
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .attributeInput .smallcaps,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .labelButton .smallcaps,
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection .attribute-row .chatButtons .smallcaps {
+  font-family: "Cinzel";
+  text-transform: lowercase;
+  font-size: 0.75em;
+  /*color: var(--ink);*/
+}
+.ui-dialog .charactersheet .middleSection .attributesEtc .attributesSection {
   font-synthesis: unset !important;
 }
 
@@ -1227,7 +1289,7 @@ label.buttonStyle {
 }
 
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
   display: flex;
   flex-flow: column nowrap;
   row-gap: 10px;
@@ -1241,12 +1303,12 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Normal]"] ~ .zero,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="0 [Normal]"] ~ .zero,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod {
   background-color: var(--ink);
   color: var(--parchment);
 }
@@ -1256,16 +1318,16 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="0 [Normal]"] ~ .zero .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="0 [Normal]"] ~ .zero .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty {
   border-color: var(--parchment);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition {
   display: flex;
   flex-flow: row nowrap;
   font-family: "Cinzel";
@@ -1277,14 +1339,14 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .normal,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .out,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .normal,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .out {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .normal,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .out {
   width: 95%;
   text-align: center;
   font-size: 2em;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .penalty {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .penalty {
   width: 35px;
   height: 35px;
   text-align: center;
@@ -1295,11 +1357,11 @@ label.buttonStyle {
   align-items: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .description,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .description {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .description {
   width: 77%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .description > p,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .description > p {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .description > p {
   font-size: 0.9em;
   font-family: "Cinzel";
   margin: 0;
@@ -1307,11 +1369,11 @@ label.buttonStyle {
   line-height: 1.2em;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .conditionRadio,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .condition .conditionRadio {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .conditionRadio {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .momentum {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .momentum {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -1319,18 +1381,18 @@ label.buttonStyle {
   padding: 0 0 5px 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum .momentumInput,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .momentum .momentumInput {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .momentum .momentumInput {
   border-bottom: 1px solid var(--ink);
   text-align: center;
   width: 43%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum > span,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol .momentum > span {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .momentum > span {
   font-family: var(--calculations);
   font-size: 1.5em;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol,
-.ui-dialog .charactersheet .npcView .middleSection .twoByOne .secondCol {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
   font-synthesis: unset !important;
 }
 

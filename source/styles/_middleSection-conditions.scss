@@ -1,7 +1,7 @@
 @use './mixins/sheet-scope' as *;
 
 .frontPage .middleSection .twoByOne .secondCol,
-.npcView .middleSection .twoByOne .secondCol {
+.npcView .middleSection .conditionsCol {
     @include sheet-scope {
         display: flex;
         flex-flow: column nowrap;

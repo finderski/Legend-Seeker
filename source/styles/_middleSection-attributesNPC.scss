@@ -1,0 +1,59 @@
+@use './mixins/sheet-scope' as *;
+
+.middleSection .attributesEtc .attributesSection {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: column wrap;
+        gap: 10px;
+        height: 130px;
+        width: 100%;
+        justify-content:flex-end;
+        align-items: flex-end;
+        .headerRow,
+        .attribute-row {
+            width: 48%;
+            display: flex;
+            flex-flow: row nowrap;
+            column-gap: 5px;
+            .attribute-field {
+                width: 35%;
+            }
+            .score-field,
+            .adjusted-field,
+            .modifier-field {
+                width: 20%;
+            }
+            .attributeInput {
+                text-align: center;
+            }
+            .cappedMod {
+                display: none;
+            }
+            .cappedDexMod[value="1"] + .cappedMod {
+                display: flex;
+                width: 17px;
+                position: relative;
+                margin-left: -18px;
+                /*left: 36.5%;*/
+            }
+        }
+        .attribute-row .attributeInput,
+        .attribute-row .labelButton,
+        .attribute-row .chatButtons {
+            width: 100%;
+            margin: 0;
+            .allcaps {
+                font-family: 'Eagle Lake';
+                text-transform: uppercase;
+                /*color: var(--ink);*/
+            }
+            .smallcaps {
+                font-family: 'Cinzel';
+                text-transform: lowercase;
+                font-size: .75em;
+                /*color: var(--ink);*/
+
+            }
+        }
+    } 
+}

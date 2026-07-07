@@ -5,6 +5,7 @@ include ./mixins/_mixin_buildSaves.pug
 include ./mixins/_mixin_skills.pug
 -
     const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
+    let sheetType = "character";
     const maxCorruption = 24;
     const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
     const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
@@ -120,29 +121,31 @@ include ./mixins/_mixin_skills.pug
                 // Character Sheet (including NPC sheet)
                 include _demographicsNPC.pug
         .middleSection 
-            .twoByOne 
-                .firstCol
-                    .threeBythree
-                        .attributesSection
-                            // Attributes Section
-                            include _attributes.pug
-                        .stamina 
-                            // Staminia Section
-                            include _stamina.pug
-                        .hitPoints 
-                            // Hit Point Section
-                            include _hitPoints.pug
-                        .corruption
-                            // Corruption Section
-                            include _corruption.pug
-                        .defensiveSaves
-                            //Defensive Saves Section
-                            include _saves.pug
-                .secondCol
-                    h3.headerLabel(data-i18n="conditions") CONDITIONS
-                    // Conditions Section
-                    include _conditions.pug
-                    include _languages.pug
+            .attributesEtc
+                .attributesSection
+                    // Attributes Section
+                    -
+                        sheetType = "npc";
+                    include _attributes.pug
+                input(class='showNPCStamina',type='hidden', name='attr_show_npc_stamina', value="0")
+                .stamina 
+                    // Staminia Section
+                    include _stamina.pug
+                .hitPoints 
+                    // Hit Point Section
+                    include _hitPoints.pug
+                .corruption
+                    // Corruption Section
+                    include _corruption.pug
+            .conditionsCol
+                h3.headerLabel(data-i18n="conditions") CONDITIONS
+                // Conditions Section
+                include _conditions.pug
+                include _languages.pug
+            .defensiveSaves
+                //Defensive Saves Section
+                include _saves.pug
+                
     .backPage
         .topContainer
             .equipment 

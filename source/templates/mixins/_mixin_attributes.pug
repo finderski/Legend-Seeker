@@ -1,9 +1,22 @@
-mixin attribute(attr)
+mixin attribute(attr, sheetType = "character")
     - const [shortName, longName] = attr;
     - const fieldName = `attr_${longName}`;
     - const translationLabel = `${longName}-abbr`;
     - const lastPart = longName.slice(3);
     
+      if sheetType === "npc"
+        if longName === "intelligence"
+            .headerRow 
+                .attribute-field
+                    label(class="headerLabel", data-i18n='core-attributes') Core Attributes
+                .score-field
+                    label(class="headerLabel", data-i18n='score') Score
+                // The Adjusted Field should only show up when the character is an NPC/Monster.
+                input(type='hidden', class='showAdjustedField', name='attr_current_chararcter_type', value="1")
+                .adjusted-field
+                    label(class="headerLabel", data-i18n='adjusted') Adjusted
+                .modifier-field
+                    label(class="headerLabel", data-i18n='modifier') Modifier
       .attribute-row
         .attribute-field
             .chatButtons
@@ -16,6 +29,9 @@ mixin attribute(attr)
             input(type='hidden', name=`attr_${longName}_check_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${longName}}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{${longName}_modifier}[${longName} modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}`)
         .score-field
             input(class="attributeInput", type="text", name=fieldName, placeholder="3")
+        if sheetType === "npc"
+            .adjusted-field
+                input(class="attributeInput readOnly", type="text", name=`${fieldName}_adjusted`, placeholder="0", readonly)
         .modifier-field
             input(class="attributeInput readOnly", type="text", name=`${fieldName}_modifier`, placeholder="0", readonly)
         if longName === "dexterity"
