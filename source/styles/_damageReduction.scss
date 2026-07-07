@@ -1,6 +1,7 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage .damageReduction {
+.frontPage .damageReduction,
+.npcView .damageReduction {
     @include sheet-scope {
         display: flex;
         align-items: center;

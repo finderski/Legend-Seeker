@@ -1,6 +1,7 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage .combat {
+.frontPage .combat,
+.npcView .combat {
     @include sheet-scope {
         display: flex;
         flex-flow: row nowrap;

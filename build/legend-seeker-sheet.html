@@ -1674,6 +1674,328 @@
         </div>
       </div>
     </div>
+    <div class="damageReduction"> 
+      <!-- Damage Reduction Section-->
+      <div class="damageReduct">
+        <input type="hidden" name="attr_total_dr" value="0"/>
+        <label class="subHeaderLabel" data-i18n="total-damage-reduction-abbr" data-i18n-title="total-damage-reduction">Total DR: </label><span name="attr_total_dr"></span>
+      </div>
+      <!-- Spell Reduction Section-->
+      <div class="spellReduct">
+        <input type="hidden" name="attr_total_sr" value="0"/>
+        <label class="subHeaderLabel" data-i18n="total-spell-reduction-abbr" data-i18n-title="total-spell-reduction">Total SR: </label><span name="attr_total_sr"></span>
+      </div>
+    </div>
+    <hr class="sectionDivider"/>
+    <div class="combat">
+      <input class="hideSection" type="hidden" name="attr_mana-tap_hider" value="0"/>
+      <div class="spells"> 
+        <!-- Styles are in _spellsAndWeapons.scss-->
+        <h2 class="headerLabel" data-i18n="spells">Spells</h2>
+        <fieldset class="repeating_spells">
+          <div class="spellContainer">
+            <div class="button"> 
+              <div class="chatButtons">
+                <button class="labelButton sendToChat" type="action" name="act_spellcast" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="cast">Cast</span></button>
+                <div class="whisperButton"> 
+                  <button class="whisperToChat" type="action" name="act_whisper_spellcast" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                </div>
+              </div>
+              <!-- Action Buttons for Custom Roll Parsing-->
+              <button class="hidden" type="action" name="act_spelldamage"></button>
+              <button class="hidden" type="action" name="act_spellaltdamage"></button>
+              <button class="hidden" type="action" name="act_whisper_spelldamage"></button>
+              <button class="hidden" type="action" name="act_whisper_spellaltdamage"></button>
+              <input type="hidden" name="attr_spell-action-call" value="&amp;{template:roll} {{spellcast=roll}} {{name=@{character_name}}} {{title=@{spell}}} {{school=^{@{spell-school}}}} {{tier=@{spell-tier}}} {{castingtime=@{spell-casting-time}}} {{range=@{spell-range}}} {{duration=@{spell-duration}}} {{roll=[[1d20cs20cf1 + @{mana-tap_bonus}[^{mana-tap}] + @{condition} + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{success=[[0]]}} {{resolveddc=[[0]]}} {{legendary-point=?{Spend a Legendary Point|No,[[0]]|Yes,[[1]]}}} {{effect1=@{spell-effect}}} {{effect2=@{spell-effect2}}} {{effect3=@{spell-effect3}}} {{special=@{spell-special}}} {{dc1=[[@{spell-dc1}]]}} {{dc2=[[@{spell-dc2}]]}} {{dc3=[[@{spell-dc3}]]}} "/>
+              <input type="hidden" name="attr_spell-cast-history" value="[]"/>
+              <input type="hidden" name="attr_spell-last-cast-rollid" value=""/>
+            </div>
+            <div class="spell">
+              <label class="fieldLabelAbove" data-i18n="spell-name">Spell Memory</label>
+              <input class="textField spellName" type="text" name="attr_spell" value="" data-i18n-placeholder="spell-name"/>
+            </div>
+            <div class="slots"> 
+              <label class="fieldLabelAbove" data-i18n="spell-memory">Slots</label>
+              <input class="textField spellSlots" type="text" name="attr_spell-slot" value="" placeholder="1"/><span class="slotDivider">/</span>
+              <input class="textField spellSlots" type="text" name="attr_spell-slot_max" value="" placeholder="1"/>
+            </div>
+            <div class="school"> 
+              <label class="fieldLabelAbove" data-i18n="school">School</label>
+              <select class="ls-Dropdown spellSchoolDropdown" name="attr_spell-school">
+                <option value="abjuration" data-i18n="abjuration">Abjuration</option>
+                <option value="conjuration" data-i18n="conjuration">Conjuration</option>
+                <option value="divination" data-i18n="divination">Divination</option>
+                <option value="enchantment" data-i18n="enchantment">Enchantment</option>
+                <option value="evocation" data-i18n="evocation">Evocation</option>
+                <option value="illusion" data-i18n="illusion">Illusion</option>
+                <option value="necromancy" data-i18n="necromancy">Necromancy</option>
+                <option value="transmutation" data-i18n="transmutation">Transmutation</option>
+              </select>
+            </div>
+            <div class="copies"> 
+              <label class="fieldLabelAbove" data-i18n="number-of-copies-abbr"># of Copies</label>
+              <input class="textField spellTier" type="text" name="attr_spell-copies" value="1"/>
+            </div>
+            <div class="tier"> 
+              <label class="fieldLabelAbove" data-i18n="tier">Tier</label>
+              <input class="textField spellTier" type="text" name="attr_spell-tier" value="" data-i18n-placeholder="cantrip"/>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_spell_config_toggle"/><span class="configIcon">y</span>
+              </label>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_spell_config_toggle" value="0"/>
+            <div class="spell-config">
+              <div class="castingTime"> 
+                <label class="fieldLabelAbove" data-i18n="casting-time">Casting Time</label>
+                <input class="textField spellCastingTime" type="text" name="attr_spell-casting-time" value="" data-i18n-placeholder="casting-time"/>
+              </div>
+              <div class="range"> 
+                <label class="fieldLabelAbove" data-i18n="range">Range</label>
+                <input class="textField spellRange" type="text" name="attr_spell-range" value="" data-i18n-placeholder="range"/>
+              </div>
+              <div class="components"> 
+                <label class="fieldLabelAbove" data-i18n="components">Components</label>
+                <input class="textField spellComponents" type="text" name="attr_spell-components" value="" data-i18n-placeholder="components"/>
+              </div>
+              <div class="duration"> 
+                <label class="fieldLabelAbove" data-i18n="duration">Duration</label>
+                <input class="textField spellDuration" type="text" name="attr_spell-duration" value="" data-i18n-placeholder="duration"/>
+              </div>
+              <div class="description"> 
+                <label class="fieldLabelAbove" data-i18n="description">Description</label>
+                <textarea class="spellArea spellDescription" name="attr_spell-description" data-i18n-placeholder="description"></textarea>
+              </div>
+              <div class="dcs"> 
+                <div class="row header">
+                  <div class="dcColumn"> 
+                    <h3 class="headerLabel" data-i18n="difficulty-class-abbr">DC </h3>
+                  </div>
+                  <div class="damageColumn"> 
+                    <h3 class="headerLabel" data-i18n="damage">Damage</h3>
+                  </div>
+                  <!--
+                  .damageColumn 
+                      h3.headerLabel(data-i18n='failure-damage-abbr') Failure Damage
+                  -->
+                  <div class="damageColumn"> 
+                    <h3 class="headerLabel" data-i18n="special-damage-abbr">Special Dmg</h3>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="dcColumn"> 
+                    <input class="textField spellDC1" type="text" name="attr_spell-dc1" value="10"/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc1-damage" value=""/>
+                  </div>
+                  <!--
+                  .damageColumn
+                      input(class='textField spellDamage', type='text', name='attr_dc1-alt-damage', value='')
+                  -->
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc1-special-damage" value=""/>
+                    <label class="fieldLabelAbove">
+                      <input class="checkboxInput" type="checkbox" name="attr_dc1-special-replace" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText replace" data-i18n="replace">Replace</span><span class="styledCheckboxText add" data-i18n="add">Add</span>
+                    </label>
+                  </div>
+                  <div class="effect"> 
+                    <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
+                    <textarea class="spellArea spellEffect" name="attr_spell-effect" data-i18n-placeholder="effect"></textarea>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="dcColumn"> 
+                    <input class="textField spellDC2" type="text" name="attr_spell-dc2" value="15"/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellCritDamage" type="text" name="attr_dc2-damage" value=""/>
+                  </div>
+                  <!--
+                  .damageColumn
+                      input(class='textField spellDamage', type='text', name='attr_dc2-alt-damage', value='')
+                  -->
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc2-special-damage" value=""/>
+                    <label class="fieldLabelAbove">
+                      <input class="checkboxInput" type="checkbox" name="attr_dc2-special-replace" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText replace" data-i18n="replace">Replace</span><span class="styledCheckboxText add" data-i18n="add">Add</span>
+                    </label>
+                  </div>
+                  <div class="effect"> 
+                    <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
+                    <textarea class="spellArea spellEffect" name="attr_spell-effect2" data-i18n-placeholder="effect"></textarea>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="dcColumn"> 
+                    <input class="textField spellDC3" type="text" name="attr_spell-dc3" value="20"/>
+                  </div>
+                  <div class="damageColumn">
+                    <input class="textField spellCritDamage" type="text" name="attr_dc3-damage" value=""/>
+                  </div>
+                  <!--
+                  .damageColumn
+                      input(class='textField spellDamage', type='text', name='attr_dc3-alt-damage', value='')
+                  -->
+                  <div class="damageColumn">
+                    <input class="textField spellDamage" type="text" name="attr_dc3-special-damage" value=""/>
+                    <label class="fieldLabelAbove">
+                      <input class="checkboxInput" type="checkbox" name="attr_dc3-special-replace" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText replace" data-i18n="replace">Replace</span><span class="styledCheckboxText add" data-i18n="add">Add</span>
+                    </label>
+                  </div>
+                  <div class="effect"> 
+                    <label class="fieldLabelAbove" data-i18n="effect">Effect</label>
+                    <textarea class="spellArea spellEffect" name="attr_spell-effect3" data-i18n-placeholder="effect"></textarea>
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="special"> 
+                    <label class="fieldLabelAbove" data-i18n="special">Special</label>
+                    <textarea class="spellArea spellSpecial" name="attr_spell-special" data-i18n-placeholder="special"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="weapons"> 
+        <!-- Styles are in _spellsAndWeapons.scss-->
+        <h2 class="headerLabel left" data-i18n="weapons">Weapons</h2>
+        <fieldset class="repeating_weapons">
+          <div class="weaponContainer">
+            <div class="button"> 
+              <div class="chatButtons">
+                <button class="labelButton sendToChat" type="roll" name="roll_attack_to_chat" value="@{weapon-attack-action-call}" data-18n-title="send-to-chat"><span class="allcaps" data-i18n="attack">Attack</span></button>
+                <div class="whisperButton"> 
+                  <button class="whisperToChat" type="roll" name="roll_whisper_attack" value="@{weapon-whisper-attack-action-call}" data-i18n-title="whisper-to-chat"><span class="iconButton">w</span></button>
+                </div>
+              </div>
+              <!--button(class="labelButton", type='roll', value="@{attack_formula}", data-i18n='attack-roll') Attack-->
+              <!-- Action Buttons for Custom Roll Parsing-->
+              <button class="hidden" type="action" name="act_weaponattack"></button>
+              <button class="hidden" type="action" name="act_weaponwhisperattack"></button>
+              <button class="hidden" type="action" name="act_weapondamage"></button>
+              <button class="hidden" type="action" name="act_weaponcriticaldamage"></button>
+              <button class="hidden" type="action" name="act_weaponwhisperdamage"></button>
+              <button class="hidden" type="action" name="act_weaponwhispercriticaldamage"></button>
+              <input type="hidden" name="attr_weapon-attack-action-call" value=""/>
+              <input type="hidden" name="attr_weapon-whisper-attack-action-call" value=""/>
+              <!-- Attack Formulae-->
+              <input type="hidden" name="attr_attack_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=@{weapon}}} {{roll=[[1d20cs&gt;@{weapon-crit}cf1 + @{weapon-atk}[ATK]+@{condition}+?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} "/>
+              <!-- Damage Button Template Includes-->
+              <input type="hidden" name="attr_damage_button" value=""/>
+              <input type="hidden" name="attr_whisper_damage_button" value=""/>
+              <!-- Damage-->
+              <input type="hidden" name="attr_weapon-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{damage} with @{weapon}}} {{Roll=[[ @{weapon-damage} + [[?{Additional Damage Mod|0} [Additional Mod]]] + [[?{Additional # of damage dice|0}]]d6 ]]}}"/>
+              <input type="hidden" name="attr_weapon-crit-damage-formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{critical-damage} with @{weapon}}} {{Roll=[[ @{weapon-damage-dice}! + [[@{weapon-double-crit}]]d6 [Double Crit] + [[?{Additional Damage Mod|0} [Additional Mod]]] + @{half-level} [half-level] + @{damage-attribute-mod-value} [@{weapon-damage-attribute-mod} Mod] + @{weapon-damage-misc-mod} [Misc Mod] + 1d6! [Crit d6] + [[?{Additional # of damage dice|0}]]d6! [Additional d6s per raise] ]]}}"/>
+              <input type="hidden" name="attr_weapon-attack-history" value="[]"/>
+              <input type="hidden" name="attr_weapon-last-attack-rollid" value=""/>
+              <input type="hidden" name="attr_weapon-last-attack-success" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-crit" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-raises" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-total" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-natural" value="0"/>
+              <input type="hidden" name="attr_weapon-last-attack-target" value="0"/>
+            </div>
+            <div class="weapon">
+              <label class="fieldLabelAbove" data-i18n="weapon">Weapon</label>
+              <input class="textField" type="text" name="attr_weapon" value="" data-i18n-placeholder="weapon"/>
+            </div>
+            <div class="type">
+              <label class="fieldLabelAbove" data-i18n="type">Type</label>
+              <select class="weaponTypeDropdown" name="attr_weapon-type">
+                <option value="melee" data-i18n="melee">Melee</option>
+                <option value="ranged" data-i18n="ranged">Ranged</option>
+              </select>
+            </div>
+            <div class="damage"> 
+              <label class="fieldLabelAbove" data-i18n="damage"> </label>
+              <input class="textField" type="text" name="attr_weapon-damage" value="" readonly="readonly"/>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_weapon_damage_config_toggle"/><span class="configIcon">y</span>
+              </label>
+            </div>
+            <div class="crit"> 
+              <label class="fieldLabelAbove" data-i18n="critical-abbr">Crit</label>
+              <input class="textField" type="text" name="attr_weapon-crit" value="20" data-i18n-placeholder="20"/>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_weapon_damage_config_toggle" value="0"/>
+            <div class="damage-config">
+              <div class="dice"> 
+                <label class="fieldLabelAbove" data-i18n="dice">Dice</label>
+                <input class="textField" type="text" name="attr_weapon-damage-dice" value="" data-i18n-placeholder="1d6"/>
+              </div>
+              <div class="addition"></div>
+              <div class="halfLevel"> 
+                <label class="fieldLabelAbove" data-i18n="half-level-abbr">1/2 Level</label>
+                <input class="textField" type="text" name="attr_weapon-half-level" readonly="readonly"/>
+              </div>
+              <div class="addition"></div>
+              <div class="attributeMod"> 
+                <label class="fieldLabelAbove" data-i18n="attribute-abbr-modifier-abbr">Att Mod</label>
+                <select class="weaponTypeDropdown" name="attr_weapon-damage-attribute-mod">
+                  <option value="strength_modifier" data-i18n="strength-abbr">STR</option>
+                  <option value="strength_modifier_x2" data-i18n="strength-x2-abbr">STR x2</option>
+                  <option value="dexterity_modifier" data-i18n="dexterity-abbr">DEX</option>
+                  <option value="dexterity_modifier_x2" data-i18n="dexterity-x2-abbr">DEX x2</option>
+                  <option value="constitution_modifier" data-i18n="constitution-abbr">CON</option>
+                  <option value="intelligence_modifier" data-i18n="intelligence-abbr">INT</option>
+                  <option value="wisdom_modifier" data-i18n="wisdom-abbr">WIS</option>
+                  <option value="charisma_modifier" data-i18n="charisma-abbr">CHA</option>
+                  <option value="0" data-i18n="not-applicable-abbr">N/A</option>
+                </select>
+                <input type="hidden" name="attr_damage-attribute-mod-value"/>
+              </div>
+              <div class="addition"> </div>
+              <div class="miscMod"> 
+                <label class="fieldLabelAbove" data-i18n="miscellaneous-modifier-abbr">Misc. Mod</label>
+                <input class="textField" type="text" name="attr_weapon-damage-misc-mod" value="0"/>
+              </div>
+            </div>
+            <div class="atk">
+              <div class="atkField">
+                <label class="fieldLabelAbove" data-i18n="attack-abbr">Atk</label>
+                <input class="textField" type="text" name="attr_weapon-atk" readonly="readonly"/>
+              </div>
+              <div class="equals"> </div>
+              <div class="hpb"> 
+                <label class="fieldLabelAbove" data-i18n="base-attack-bonus-abbr" data-i18n-title="base-attack-bonus">BAB</label>
+                <input class="textField" type="text" name="attr_weapon-base-attack-bonus" readonly="readonly" data-i18n-title="base-attack-bonus"/>
+              </div>
+              <div class="addition"> </div>
+              <div class="attributeMod"> 
+                <label class="fieldLabelAbove" data-i18n="attribute-abbr-modifier-abbr">Att Mod</label>
+                <select class="weaponTypeDropdown" name="attr_weapon-atk-bonus">
+                  <option value="strength_modifier" data-i18n="strength-abbr">STR</option>
+                  <option value="dexterity_modifier" data-i18n="dexterity-abbr">DEX</option>
+                  <option value="constitution_modifier" data-i18n="constitution-abbr">CON</option>
+                  <option value="intelligence_modifier" data-i18n="intelligence-abbr">INT</option>
+                  <option value="wisdom_modifier" data-i18n="wisdom-abbr">WIS</option>
+                  <option value="charisma_modifier" data-i18n="charisma-abbr">CHA</option>
+                  <option value="none" data-i18n="not-applicable-abbr">N/A</option>
+                </select>
+              </div>
+              <div class="addition"></div>
+              <div class="atkField">
+                <label class="fieldLabelAbove" data-i18n="miscellaneous-modifier-abbr">Misc. Mod </label>
+                <input class="textField" type="text" name="attr_weapon-misc-mod" value="0"/>
+              </div>
+            </div>
+            <input class="dblCritEligible" type="hidden" name="attr_double-crit-eligible" value="0"/>
+            <label class="doubleCrit">
+              <input class="checkboxInput" type="checkbox" name="attr_weapon-double-crit" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="double-critical">Double Crit</span>
+            </label>
+            <div class="notes"> 
+              <textarea class="weaponNotes" name="attr_weapon-notes" data-i18n-placeholder="weapon-notes"></textarea>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
   </div>
   <div class="backPage">
     <div class="topContainer">

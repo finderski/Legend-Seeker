@@ -146,7 +146,24 @@ include ./mixins/_mixin_skills.pug
                 // Conditions Section
                 include _conditions.pug
                 include _languages.pug
-            
+        .damageReduction 
+            // Damage Reduction Section
+            .damageReduct
+                input(type='hidden', name='attr_total_dr', value="0")
+                label(class="subHeaderLabel", data-i18n='total-damage-reduction-abbr', data-i18n-title='total-damage-reduction') Total DR: 
+                span(name="attr_total_dr")
+            // Spell Reduction Section
+            .spellReduct
+                input(type='hidden', name='attr_total_sr', value="0")
+                label(class="subHeaderLabel", data-i18n='total-spell-reduction-abbr', data-i18n-title='total-spell-reduction') Total SR: 
+                span(name="attr_total_sr")
+        hr.sectionDivider
+        .combat
+            input(class="hideSection", type="hidden", name="attr_mana-tap_hider", value="0")
+            .spells 
+                include _spells.pug
+            .weapons 
+                include _weapons.pug
                 
     .backPage
         .topContainer
