@@ -91,6 +91,18 @@ include ./mixins/_mixin_npc_skills.pug
                     span(class='npcHeader', data-i18n='challenge-level-abbr-caps', data-i18n-title='challenge-level') CL:
                     input(type="hidden", name="attr_challenge_level", value="0")
                     span(class="npcHeader", name="attr_challenge_level", value="0")
+                .size 
+                    select(class='ls-Dropdown', name='attr_monster_size')
+                        option(value='') 
+                        option(value='Fine', data-i18n='fine') Fine
+                        option(value='Diminutive', data-i18n='diminutive') Diminutive
+                        option(value='Tiny', data-i18n='tiny') Tiny
+                        option(value='Small', data-i18n='small') Small
+                        option(value='Medium', data-i18n='medium' selected) Medium
+                        option(value='Large', data-i18n='large') Large
+                        option(value='Huge', data-i18n='huge') Huge
+                        option(value='Gargantuan', data-i18n='gargantuan') Gargantuan
+                        option(value='Colossal', data-i18n='colossal') Colossal
                 .type 
                     select(class='ls-Dropdown', name='attr_monster_type')
                         option(value='') 
@@ -107,18 +119,6 @@ include ./mixins/_mixin_npc_skills.pug
                         option(value='Outsider', data-i18n='outsider') Outsider
                         option(value='Plant', data-i18n='plant') Plant
                         option(value='Undead', data-i18n='undead') Undead
-                .size 
-                    select(class='ls-Dropdown', name='attr_monster_size')
-                        option(value='') 
-                        option(value='Fine', data-i18n='fine') Fine
-                        option(value='Diminutive', data-i18n='diminutive') Diminutive
-                        option(value='Tiny', data-i18n='tiny') Tiny
-                        option(value='Small', data-i18n='small') Small
-                        option(value='Medium', data-i18n='medium' selected) Medium
-                        option(value='Large', data-i18n='large') Large
-                        option(value='Huge', data-i18n='huge') Huge
-                        option(value='Gargantuan', data-i18n='gargantuan') Gargantuan
-                        option(value='Colossal', data-i18n='colossal') Colossal
         .topSection
             .demographics 
                 // Character Sheet (including NPC sheet)
