@@ -446,8 +446,11 @@ on('change:level change:minion_level change:monster_level', function(eventInfo) 
     });
 });
 
-
-
+/* ---- Show/Hide Stamina for NPCs ---- */
+on('change:level', function(eventInfo) {
+    const npcLevel = parseInt(eventInfo.newValue) || 0;
+    setAttrs({'show_npc_stamina': npcLevel > 0 ? '1' : '0'});
+});
 
 
 

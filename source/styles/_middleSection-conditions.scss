@@ -1,7 +1,6 @@
 @use './mixins/sheet-scope' as *;
 
-.frontPage .middleSection .twoByOne .secondCol,
-.npcView .middleSection .conditionsCol {
+.frontPage .middleSection .twoByOne .secondCol {
     @include sheet-scope {
         display: flex;
         flex-flow: column nowrap;
@@ -9,6 +8,21 @@
         width: 100%;
         margin: 0;
         padding: 0;
+    }
+}
+.npcView .middleSection .conditionsCol {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: column nowrap;
+        flex: 0 1 24%;
+        gap: 20px;
+        padding: 0;
+        margin: 0;
+    }
+}
+.frontPage .middleSection .twoByOne .secondCol,
+.npcView .middleSection .conditionsCol {
+    @include sheet-scope {
         .conditionToggle[value="0 [Normal]"] ~ .zero,
         .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne,
         .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,

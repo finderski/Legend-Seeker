@@ -1234,8 +1234,8 @@
             </div>
           </div>
         </div>
-        <input class="showNPCStamina" type="hidden" name="attr_show_npc_stamina" value="0"/>
         <div class="staminaHpCorruption">
+          <input class="showNPCStamina" type="hidden" name="attr_show_npc_stamina" value="0"/>
           <div class="stamina"> 
             <!-- Staminia Section-->
             <!-- Styles found _middleSection-stamina.scss-->
@@ -1684,6 +1684,471 @@
       <div class="spellReduct">
         <input type="hidden" name="attr_total_sr" value="0"/>
         <label class="subHeaderLabel" data-i18n="total-spell-reduction-abbr" data-i18n-title="total-spell-reduction">Total SR: </label><span name="attr_total_sr"></span>
+      </div>
+    </div>
+    <hr class="sectionDivider"/>
+    <!-- Pick List on main page for NPCs/Monsters-->
+    <div class="npcSkills"> 
+      <h3 class="headerLabel" data-i18n="skills">Skills</h3>
+      <div class="config"> 
+        <label class="cog">
+          <input class="hiddenInput" type="checkbox" name="attr_npc_skill_config_toggle" value="1"/><span class="configIcon">y</span>
+        </label>
+      </div>
+      <input class="showConfig" type="hidden" name="attr_npc_skill_config_toggle" value="1"/>
+      <div class="configSkills"> 
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_acrobatics" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="acrobatics"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_climb" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="climb"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_deception" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="deception"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_endurance" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="endurance"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_gather-information" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="gather-information"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_initiative" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="initiative"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_invoke-arcana" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="invoke-arcana"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_jump" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="jump"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-arcana" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-arcana"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-architecture" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-architecture"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-dungeoneering" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-dungeoneering"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-geography" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-geography"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-history" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-history"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-keepers" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-keepers"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-nature" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-nature"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-nobility" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-nobility"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-planes" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-planes"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-religion" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-religion"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_lore-streetwise" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="lore-streetwise"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_notice" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="notice"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_persuasion" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="persuasion"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_ride" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="ride"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_sense-motive" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="sense-motive"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_stealth" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="stealth"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_survival" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="survival"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_swim" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="swim"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_tinkering" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="tinkering"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_treat-wounds" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="treat-wounds"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_mana-tap" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="mana-tap"> </span>
+        </label>
+      </div>
+      <div class="skillButtons"> 
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_acrobatics"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_acrobatics_check" value="@{acrobatics_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="acrobatics"> Acrobatics</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{acrobatics_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{acrobatics}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{acrobatics_bonus}[Acrobatics} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_climb"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_climb_check" value="@{climb_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="climb"> Climb</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{climb_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_climb_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{climb}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{climb_bonus}[Climb} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft_check" value="@{craft_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft"> Craft</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft_bonus}[Craft} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_deception"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_deception_check" value="@{deception_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="deception"> Deception</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{deception_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_deception_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{deception}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{deception_bonus}[Deception} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_endurance"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_endurance_check" value="@{endurance_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="endurance"> Endurance</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{endurance_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_endurance_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{endurance}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{endurance_bonus}[Endurance} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_gather-information"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_gather-information_check" value="@{gather-information_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="gather-information"> Gather Information</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{gather-information_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_gather-information_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{gather-information}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{gather-information_bonus}[Gather Information} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_initiative"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_initiative_check" value="@{initiative_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="initiative"> Initiative</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{initiative_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{initiative_bonus}[Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_invoke-arcana"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_invoke-arcana_check" value="@{invoke-arcana_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="invoke-arcana"> Invoke Arcana</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{invoke-arcana_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_invoke-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{invoke-arcana}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{invoke-arcana_bonus}[Invoke Arcana} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_jump"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_jump_check" value="@{jump_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="jump"> Jump</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{jump_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_jump_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{jump}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{jump_bonus}[Jump} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-arcana"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-arcana_check" value="@{lore-arcana_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-arcana"> Lore Arcana</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-arcana_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-arcana}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-arcana_bonus}[Lore Arcana} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-architecture"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-architecture_check" value="@{lore-architecture_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-architecture"> Lore Architecture</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-architecture_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-architecture_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-architecture}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-architecture_bonus}[Lore Architecture} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-dungeoneering"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton smaller" type="roll" name="roll_lore-dungeoneering_check" value="@{lore-dungeoneering_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-dungeoneering"> Lore Dungeoneering</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-dungeoneering_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-dungeoneering_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-dungeoneering}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-dungeoneering_bonus}[Lore Dungeoneering} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-geography"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-geography_check" value="@{lore-geography_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-geography"> Lore Geography</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-geography_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-geography_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-geography}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-geography_bonus}[Lore Geography} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-history"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-history_check" value="@{lore-history_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-history"> Lore History</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-history_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-history_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-history}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-history_bonus}[Lore History} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-keepers"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-keepers_check" value="@{lore-keepers_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-keepers"> Lore Keepers</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-keepers_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-keepers_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-keepers}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-keepers_bonus}[Lore Keepers} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-nature"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-nature_check" value="@{lore-nature_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-nature"> Lore Nature</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-nature_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-nature_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-nature}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-nature_bonus}[Lore Nature} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-nobility"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-nobility_check" value="@{lore-nobility_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-nobility"> Lore Nobility</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-nobility_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-nobility_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-nobility}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-nobility_bonus}[Lore Nobility} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-planes"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-planes_check" value="@{lore-planes_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-planes"> Lore Planes</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-planes_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-planes_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-planes}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-planes_bonus}[Lore Planes} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-religion"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-religion_check" value="@{lore-religion_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-religion"> Lore Religion</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-religion_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-religion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-religion}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-religion_bonus}[Lore Religion} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_lore-streetwise"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_lore-streetwise_check" value="@{lore-streetwise_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="lore-streetwise"> Lore Streetwise</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-streetwise_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_lore-streetwise_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-streetwise}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-streetwise_bonus}[Lore Streetwise} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_notice"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_notice_check" value="@{notice_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="notice"> Notice</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{notice_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_notice_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{notice}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{notice_bonus}[Notice} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_persuasion"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_persuasion_check" value="@{persuasion_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="persuasion"> Persuasion</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{persuasion_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_persuasion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{persuasion}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{persuasion_bonus}[Persuasion} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_ride"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_ride_check" value="@{ride_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="ride"> Ride</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{ride_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_ride_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{ride}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{ride_bonus}[Ride} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_sense-motive"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_sense-motive_check" value="@{sense-motive_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="sense-motive"> Sense Motive</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{sense-motive_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_sense-motive_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{sense-motive}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{sense-motive_bonus}[Sense Motive} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_stealth"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_stealth_check" value="@{stealth_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="stealth"> Stealth</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{stealth_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{stealth_bonus}[Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_survival"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_survival_check" value="@{survival_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="survival"> Survival</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{survival_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_survival_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{survival}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{survival_bonus}[Survival} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_swim"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_swim_check" value="@{swim_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="swim"> Swim</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{swim_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_swim_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{swim}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{swim_bonus}[Swim} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_tinkering"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_tinkering_check" value="@{tinkering_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="tinkering"> Tinkering</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{tinkering_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_tinkering_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{tinkering}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{tinkering_bonus}[Tinkering} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_treat-wounds"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_treat-wounds_check" value="@{treat-wounds_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="treat-wounds"> Treat Wounds</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{treat-wounds_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_treat-wounds_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{treat-wounds}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{treat-wounds_bonus}[Treat Wounds} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_mana-tap"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_mana-tap_check" value="@{mana-tap_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="mana-tap"> Mana Tap</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{mana-tap_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_mana-tap_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{mana-tap}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{mana-tap_bonus}[Mana Tap} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
       </div>
     </div>
     <hr class="sectionDivider"/>
@@ -2219,6 +2684,7 @@
       <div class="skills"> 
         <!-- stying found in _equipmentAndSkills.scss-->
         <h2 class="headerLabel" data-i18n="skills">Skills</h2>
+        <input class="npcSkills" type="hidden" name="attr_current_character_type" value="1"/>
         <div class="skill">
           <div class="skillName">&nbsp;</div>
           <div class="skillBonus"> 
@@ -4839,8 +5305,11 @@ on('change:level change:minion_level change:monster_level', function(eventInfo) 
     });
 });
 
-
-
+/* ---- Show/Hide Stamina for NPCs ---- */
+on('change:level', function(eventInfo) {
+    const npcLevel = parseInt(eventInfo.newValue) || 0;
+    setAttrs({'show_npc_stamina': npcLevel > 0 ? '1' : '0'});
+});
 
 
 

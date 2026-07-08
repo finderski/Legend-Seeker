@@ -841,6 +841,16 @@
       "oF" : 0,
       "oS" : 1
     },
+    "\/source\/templates\/_skillsNPC.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_skillsNPC.html",
+      "oF" : 0,
+      "oS" : 1
+    },
     "\/source\/templates\/_specialTraits.pug" : {
       "cB" : 0,
       "cOD" : 1,
@@ -918,6 +928,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/mixins\/_mixin_corruption.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/mixins\/_mixin_npc_skills.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/mixins\/_mixin_npc_skills.html",
       "oF" : 0,
       "oS" : 1
     },

@@ -1,0 +1,14 @@
+// Pick List on main page for NPCs/Monsters
+.npcSkills 
+    h3.headerLabel(data-i18n='skills') Skills
+    .config 
+        label.cog
+            input(class='hiddenInput', type='checkbox', name='attr_npc_skill_config_toggle' value="1")
+            span.configIcon y
+    input(class='showConfig', type='hidden', name='attr_npc_skill_config_toggle' value="1")
+    .configSkills 
+        each skill in skillList
+            +npcSkills(skill, 1)
+    .skillButtons 
+        each skill in skillList
+            +npcSkills(skill, 2)

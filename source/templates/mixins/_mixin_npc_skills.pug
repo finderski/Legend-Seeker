@@ -1,0 +1,29 @@
+mixin npcSkills(skill, step)
+    // ['skill name', 'attribute', 'na|some|trained', 'yes|no']
+    - const [skillName, attributeName, training, armorCheck] = skill;
+    - const fieldName = `attr_${skillName}`;
+    - const capitalizeWords = str => str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    - const capitalizedSkillName = capitalizeWords(skillName);
+    - const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+    - const isManaTap = skillName === 'mana-tap';
+
+        if step === 1
+            label(class="npcSkillsConfigLabel")
+                input(class="checkboxInput", type="checkbox", name=`attr_show_${skillName}`, value="1")
+                span(class="styledCheckbox")
+                span(class="styledCheckboxText", data-i18n=`${skillName}`) 
+        else
+            input(class="showSkill", type="hidden", name=`attr_show_${skillName}`)
+            .skillName
+                .chatButtons
+                    button(class=["sendToChat", "labelButton", { smaller: skillName === 'lore-dungeoneering' }], type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")
+                        span(class="allcaps", data-i18n=skillName) 
+                            | #{capitalizedSkillName}
+                    .whisperButton 
+                        button(class="whisperToChat", type="roll", name="roll_whisper_edge", value=`/w gm @{${skillName}_formula}`)
+                            span.iconButton w
+                    if armorCheck === 'yes'
+                        input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
+                    else
+                        input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
+        

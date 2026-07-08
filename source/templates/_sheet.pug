@@ -3,12 +3,15 @@ include ./mixins/_mixin_attributes.pug
 include ./mixins/_mixin_corruption.pug
 include ./mixins/_mixin_buildSaves.pug
 include ./mixins/_mixin_skills.pug
+include ./mixins/_mixin_npc_skills.pug
 -
     const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
     let sheetType = "character";
     const maxCorruption = 24;
     const saveList = [['FORT', 'fortitude', 'constitution'], ['REF', 'reflex', 'dexterity'], ['WILL', 'willpower', 'wisdom']];
     const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+    // list of skills with associated attribute ['skill name', 'attribute', 'training:na|some|trained', 'armorCheck:yes|no']
+    const skillList = [['acrobatics','dexterity','some','yes'],['climb', 'strength','na','yes'],['craft', 'wisdom','na','no'],['deception', 'charisma','some','no'],  ['endurance', 'constitution','na','yes'],['gather-information','charisma','na','no'],['initiative','dexterity','na','yes'],['invoke-arcana','intelligence','trained','no'],['jump','strength','na','yes'],['lore-arcana','intelligence','na','no'],['lore-architecture','intelligence','na','no'],['lore-dungeoneering','intelligence','na','no'],['lore-geography','intelligence','na','no'],['lore-history','intelligence','na','no'],['lore-keepers','intelligence','na','no'],['lore-nature','intelligence','na','no'],['lore-nobility','intelligence','na','no'],['lore-planes','intelligence','na','no'],['lore-religion','intelligence','na','no'],['lore-streetwise','intelligence','na','no'],['notice','wisdom','na','yes'],['persuasion','charisma','na','no'],['ride','dexterity','na','yes'],['sense-motive','wisdom','na','no'],['stealth','dexterity','na','yes'],['survival','wisdom','na','no'],['swim','strength','na','yes'],['tinkering','intelligence','trained','yes'],['treat-wounds','wisdom','some','no'],['mana-tap','charisma','some','no']];
 
 .maindiv
     //- Color Palette
@@ -127,8 +130,8 @@ include ./mixins/_mixin_skills.pug
                     -
                         sheetType = "npc";
                     include _attributes.pug
-                input(class='showNPCStamina',type='hidden', name='attr_show_npc_stamina', value="0")
                 .staminaHpCorruption
+                    input(class='showNPCStamina',type='hidden', name='attr_show_npc_stamina', value="0")
                     .stamina 
                         // Staminia Section
                         include _stamina.pug
@@ -157,6 +160,8 @@ include ./mixins/_mixin_skills.pug
                 input(type='hidden', name='attr_total_sr', value="0")
                 label(class="subHeaderLabel", data-i18n='total-spell-reduction-abbr', data-i18n-title='total-spell-reduction') Total SR: 
                 span(name="attr_total_sr")
+        hr.sectionDivider
+        include _skillsNPC.pug
         hr.sectionDivider
         .combat
             input(class="hideSection", type="hidden", name="attr_mana-tap_hider", value="0")
