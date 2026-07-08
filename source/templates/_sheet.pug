@@ -119,6 +119,9 @@ include ./mixins/_mixin_npc_skills.pug
                         option(value='Outsider', data-i18n='outsider') Outsider
                         option(value='Plant', data-i18n='plant') Plant
                         option(value='Undead', data-i18n='undead') Undead
+                .level 
+                    input(class='text-field', type='text', name='attr_monster_level', value="", data-i18n-placeholder='monster-level')
+                    label(class='smallCaps', data-i18n='level') Level
         .topSection
             .demographics 
                 // Character Sheet (including NPC sheet)
@@ -145,9 +148,10 @@ include ./mixins/_mixin_npc_skills.pug
                     //Defensive Saves Section
                     include _saves.pug
             .conditionsCol
-                h3.headerLabel(data-i18n="conditions") CONDITIONS
                 // Conditions Section
-                include _conditions.pug
+                .conditions
+                    h3.headerLabel(data-i18n="conditions") CONDITIONS
+                    include _conditions.pug
                 include _languages.pug
         .damageReduction 
             // Damage Reduction Section

@@ -10,18 +10,17 @@
         padding: 0;
     }
 }
-.npcView .middleSection .conditionsCol {
+.npcView .middleSection .conditionsCol .conditions {
     @include sheet-scope {
         display: flex;
-        flex-flow: column nowrap;
-        flex: 0 1 24%;
-        gap: 20px;
+        flex-flow: column;
+        row-gap: 10px;
         padding: 0;
         margin: 0;
     }
 }
 .frontPage .middleSection .twoByOne .secondCol,
-.npcView .middleSection .conditionsCol {
+.npcView .middleSection .conditionsCol .conditions {
     @include sheet-scope {
         .conditionToggle[value="0 [Normal]"] ~ .zero,
         .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne,

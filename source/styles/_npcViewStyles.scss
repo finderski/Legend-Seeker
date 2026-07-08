@@ -47,6 +47,22 @@
                         color: var(--light-gold);
                     }
                 }
+                .level {
+                    color: var(--gold);
+                    display:flex;
+                    flex-flow: column nowrap;
+                    width: 100px;
+                    font-size: 2rem;
+                    input.text-field {
+                        color: var(--gold);
+                        border-bottom: 1px solid var(--gold);
+                        padding: 0 0 0 10px;
+                    }
+                    label.smallCaps {
+                        color: var(--gold);
+                        padding: 0 0 0 10px;
+                    }
+                }
             }
             
         }
@@ -70,6 +86,14 @@
                     margin: 0;
                     padding: 0;
                 }
+            }
+            .conditionsCol {
+                display: flex;
+                flex-flow: column;
+                gap: 20px;
+                flex: 0 1 24%;
+                margin: 0;
+                padding: 0;
             }
         }
         .npcSkills {

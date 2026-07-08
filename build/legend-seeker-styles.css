@@ -696,6 +696,22 @@ label.buttonStyle {
   font-style: italic;
   color: var(--light-gold);
 }
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .level {
+  color: var(--gold);
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100px;
+  font-size: 2rem;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .level input.text-field {
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding: 0 0 0 10px;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .level label.smallCaps {
+  color: var(--gold);
+  padding: 0 0 0 10px;
+}
 .ui-dialog .charactersheet .npcView .middleSection {
   display: flex;
   flex-flow: row wrap;
@@ -715,6 +731,14 @@ label.buttonStyle {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+  flex: 0 1 24%;
   margin: 0;
   padding: 0;
 }
@@ -1434,11 +1458,10 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions {
   display: flex;
-  flex-flow: column nowrap;
-  flex: 0 1 24%;
-  gap: 20px;
+  flex-flow: column;
+  row-gap: 10px;
   padding: 0;
   margin: 0;
   font-synthesis: unset !important;
@@ -1450,12 +1473,12 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="0 [Normal]"] ~ .zero,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="0 [Normal]"] ~ .zero,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod {
   background-color: var(--ink);
   color: var(--parchment);
 }
@@ -1465,16 +1488,16 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="0 [Normal]"] ~ .zero .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="0 [Normal]"] ~ .zero .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-1 [Condition: -1]"] ~ .minusOne .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-2 [Condition: -2]"] ~ .minusTwo .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-6 [Condition: -6]"] ~ .minusSix .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-10 [Condition: -10]"] ~ .minusTen .penalty,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .conditionToggle[value="-10 [Unconscious or Deceased]"] ~ .uod .penalty {
   border-color: var(--parchment);
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .condition {
   display: flex;
   flex-flow: row nowrap;
   font-family: "Cinzel";
@@ -1486,14 +1509,14 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .normal,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .out,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .normal,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .out {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .condition .normal,
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .condition .out {
   width: 95%;
   text-align: center;
   font-size: 2em;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .penalty,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .penalty {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .condition .penalty {
   width: 35px;
   height: 35px;
   text-align: center;
@@ -1504,11 +1527,11 @@ label.buttonStyle {
   align-items: center;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .description,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .description {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .condition .description {
   width: 77%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .description > p,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .description > p {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .condition .description > p {
   font-size: 0.9em;
   font-family: "Cinzel";
   margin: 0;
@@ -1516,11 +1539,11 @@ label.buttonStyle {
   line-height: 1.2em;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .condition .conditionRadio,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .condition .conditionRadio {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .condition .conditionRadio {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .momentum {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .momentum {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -1528,18 +1551,18 @@ label.buttonStyle {
   padding: 0 0 5px 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum .momentumInput,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .momentum .momentumInput {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .momentum .momentumInput {
   border-bottom: 1px solid var(--ink);
   text-align: center;
   width: 43%;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol .momentum > span,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .momentum > span {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions .momentum > span {
   font-family: var(--calculations);
   font-size: 1.5em;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .secondCol,
-.ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
+.ui-dialog .charactersheet .npcView .middleSection .conditionsCol .conditions {
   font-synthesis: unset !important;
 }
 
