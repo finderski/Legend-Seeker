@@ -706,11 +706,14 @@ label.buttonStyle {
 .ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .level input.text-field {
   color: var(--gold);
   border-bottom: 1px solid var(--gold);
-  padding: 0 0 0 10px;
+  padding: 0 0 4px 10px;
 }
 .ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .level label.smallCaps {
   color: var(--gold);
   padding: 0 0 0 10px;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields select.ls-Dropdown {
+  padding: 0 3px;
 }
 .ui-dialog .charactersheet .npcView .middleSection {
   display: flex;

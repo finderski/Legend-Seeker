@@ -5026,7 +5026,7 @@ on('change:wisdom change:corruption_0 change:corruption_1 change:corruption_2 ch
 });
 
 // Watch for changes for Stamina Damage Threshold
-on('change:fort_total change:stamina_miscbonus', function(eventInfo) {
+on('change:fort_total change:stamina_miscbonus change:monster_size', function(eventInfo) {
     log("Threshold Watch Detected Change", eventInfo, r20color);
     damageThreshold();
     /*
@@ -5145,13 +5145,13 @@ on('change:armor_sr change:shield_sr change:armor_worn change:shield_worn change
 
 // Watch for Defense Score Changes
 const saveList = ['fort', 'ref', 'will'];
-const fortFields = ['level', 'condition',  'armor_fort_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const fortFields = ['level', 'condition',  'armor_fort_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'monster_size', 'capped_dex_mod', ...listOfAttributes, ...adjustedAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
-const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'monster_size', 'capped_dex_mod', ...listOfAttributes, ...adjustedAttributes];
 const refWatch = `change:${refFields.join(' change:')}`;
 
-const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'monster_size', 'capped_dex_mod', ...listOfAttributes, ...adjustedAttributes];
 const willWatch = `change:${willFields.join(' change:')}`;
 
 const watchMap = {
