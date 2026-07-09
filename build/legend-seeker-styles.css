@@ -1717,6 +1717,62 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
+.ui-dialog .charactersheet .npcView .npcTalents,
+.ui-dialog .charactersheet .npcView .npcEdges,
+.ui-dialog .charactersheet .npcView .npcSpecialTraits {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ui-dialog .charactersheet .npcView .npcTalents h3.headerLabel,
+.ui-dialog .charactersheet .npcView .npcEdges h3.headerLabel,
+.ui-dialog .charactersheet .npcView .npcSpecialTraits h3.headerLabel {
+  display: inline-block;
+  width: max-content;
+  margin: 10px 15px 0 0;
+}
+.ui-dialog .charactersheet .npcView .npcTalents .repcontainer,
+.ui-dialog .charactersheet .npcView .npcEdges .repcontainer,
+.ui-dialog .charactersheet .npcView .npcSpecialTraits .repcontainer {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  font-size: 0.8em;
+}
+.ui-dialog .charactersheet .npcView .npcTalents .repcontainer .repitem,
+.ui-dialog .charactersheet .npcView .npcEdges .repcontainer .repitem,
+.ui-dialog .charactersheet .npcView .npcSpecialTraits .repcontainer .repitem {
+  display: inline-flex;
+}
+.ui-dialog .charactersheet .npcView .npcTalents .repcontainer .repitem .chatButtons button.sendToChat,
+.ui-dialog .charactersheet .npcView .npcEdges .repcontainer .repitem .chatButtons button.sendToChat,
+.ui-dialog .charactersheet .npcView .npcSpecialTraits .repcontainer .repitem .chatButtons button.sendToChat {
+  width: max-content;
+  background-color: var(--ink);
+  color: var(--parchment);
+  padding: 3px 6px;
+  border-radius: 50px;
+}
+.ui-dialog .charactersheet .npcView .npcTalents .repcontainer .repitem .chatButtons:hover button.sendToChat,
+.ui-dialog .charactersheet .npcView .npcEdges .repcontainer .repitem .chatButtons:hover button.sendToChat,
+.ui-dialog .charactersheet .npcView .npcSpecialTraits .repcontainer .repitem .chatButtons:hover button.sendToChat {
+  margin-right: 30px;
+}
+.ui-dialog .charactersheet .npcView .npcTalents .repcontainer .repitem .chatButtons:hover button.whisperToChat,
+.ui-dialog .charactersheet .npcView .npcEdges .repcontainer .repitem .chatButtons:hover button.whisperToChat,
+.ui-dialog .charactersheet .npcView .npcSpecialTraits .repcontainer .repitem .chatButtons:hover button.whisperToChat {
+  margin-left: -30px;
+}
+.ui-dialog .charactersheet .npcView .npcTalents .repcontrol[data-groupname^=repeating_],
+.ui-dialog .charactersheet .npcView .npcEdges .repcontrol[data-groupname^=repeating_],
+.ui-dialog .charactersheet .npcView .npcSpecialTraits .repcontrol[data-groupname^=repeating_] {
+  display: none;
+}
+.ui-dialog .charactersheet .npcView {
+  font-synthesis: unset !important;
+}
+
 .ui-dialog .charactersheet .frontPage .damageReduction,
 .ui-dialog .charactersheet .npcView .damageReduction {
   display: flex;

@@ -570,6 +570,19 @@
       "oS" : 1,
       "pg" : 0
     },
+    "\/source\/styles\/_npcTalentsEdgesSpecTraits.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/styles\/_npcTalentsEdgesSpecTraits.css",
+      "oF" : 0,
+      "oS" : 1,
+      "pg" : 0
+    },
     "\/source\/styles\/_npcViewStyles.scss" : {
       "aP" : 0,
       "bl" : 0,
@@ -888,6 +901,16 @@
       "hM" : 0,
       "oA" : 1,
       "oAP" : "\/build\/templates\/_talents.html",
+      "oF" : 0,
+      "oS" : 1
+    },
+    "\/source\/templates\/_talentsEdgesStNPC.pug" : {
+      "cB" : 0,
+      "cOD" : 1,
+      "ft" : 512,
+      "hM" : 0,
+      "oA" : 1,
+      "oAP" : "\/build\/templates\/_talentsEdgesStNPC.html",
       "oF" : 0,
       "oS" : 1
     },
