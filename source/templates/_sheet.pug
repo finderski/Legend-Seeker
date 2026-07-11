@@ -119,9 +119,9 @@ include ./mixins/_mixin_npc_skills.pug
                         option(value='Outsider', data-i18n='outsider') Outsider
                         option(value='Plant', data-i18n='plant') Plant
                         option(value='Undead', data-i18n='undead') Undead
-                .level 
-                    input(class='text-field', type='text', name='attr_monster_level', value="", data-i18n-placeholder='monster-level')
-                    label(class='smallCaps', data-i18n='level') Level
+                .alignment 
+                    input(class='text-field', type='text', name='attr_alignment', value="", data-i18n-placeholder='alignment')
+                    label(class='smallCaps', data-i18n='alignment') Alignment
         .topSection
             .demographics 
                 // Character Sheet (including NPC sheet)

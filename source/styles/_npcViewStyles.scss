@@ -19,6 +19,7 @@
                 flex-flow: row wrap;
                 column-gap: 20px;
                 width: 85%;
+                align-items: flex-end;
                 .npcHeader.npcName.text-field {
                     display: inline-block;
                     color: var(--parchment);
@@ -41,22 +42,27 @@
                     select.ls-Dropdown {
                         border-bottom: 1px solid var(--gold);
                         align-self: flex-end;
-                        margin: 0;
+                        margin: 0 0 10px 0;;
                         font-size: 2rem;
                         font-style: italic;
                         color: var(--light-gold);
                     }
                 }
-                .level {
+                .alignment {
                     color: var(--gold);
                     display:flex;
                     flex-flow: column nowrap;
-                    width: 100px;
+                    width: 200px;
                     font-size: 2rem;
                     input.text-field {
                         color: var(--gold);
                         border-bottom: 1px solid var(--gold);
                         padding: 0 0 4px 10px;
+                        font-family: var(--mainBody);
+                        font-size: 2rem;
+                        font-style: italic;
+                        width: 100%;
+
                     }
                     label.smallCaps {
                         color: var(--gold);
@@ -88,6 +94,9 @@
                     width: 100%;
                     margin: 0;
                     padding: 0;
+                    .fieldLabelAbove {
+                        margin: 2px 0 2px 0;
+                    }
                 }
             }
             .conditionsCol {

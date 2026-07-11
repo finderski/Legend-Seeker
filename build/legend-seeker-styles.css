@@ -666,6 +666,7 @@ label.buttonStyle {
   flex-flow: row wrap;
   column-gap: 20px;
   width: 85%;
+  align-items: flex-end;
 }
 .ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .npcHeader.npcName.text-field {
   display: inline-block;
@@ -691,24 +692,28 @@ label.buttonStyle {
 .ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .size select.ls-Dropdown {
   border-bottom: 1px solid var(--gold);
   align-self: flex-end;
-  margin: 0;
+  margin: 0 0 10px 0;
   font-size: 2rem;
   font-style: italic;
   color: var(--light-gold);
 }
-.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .level {
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .alignment {
   color: var(--gold);
   display: flex;
   flex-flow: column nowrap;
-  width: 100px;
+  width: 200px;
   font-size: 2rem;
 }
-.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .level input.text-field {
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .alignment input.text-field {
   color: var(--gold);
   border-bottom: 1px solid var(--gold);
   padding: 0 0 4px 10px;
+  font-family: var(--mainBody);
+  font-size: 2rem;
+  font-style: italic;
+  width: 100%;
 }
-.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .level label.smallCaps {
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .alignment label.smallCaps {
   color: var(--gold);
   padding: 0 0 0 10px;
 }
@@ -736,6 +741,9 @@ label.buttonStyle {
   width: 100%;
   margin: 0;
   padding: 0;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .fieldLabelAbove {
+  margin: 2px 0 2px 0;
 }
 .ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
   display: flex;
@@ -1195,6 +1203,7 @@ label.buttonStyle {
   justify-content: center;
   align-items: center;
   width: 45%;
+  align-self: flex-end;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .xPointInput,
