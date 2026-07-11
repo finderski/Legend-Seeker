@@ -621,14 +621,22 @@ label.buttonStyle {
 .ui-dialog .charactersheet .npcView .topSection .demographics .class {
   width: 25%;
 }
-.ui-dialog .charactersheet .npcView .topSection .demographics .level {
-  width: 14%;
+.ui-dialog .charactersheet .npcView .topSection .demographics .level,
+.ui-dialog .charactersheet .npcView .topSection .demographics .woundCap {
+  width: 13%;
 }
 .ui-dialog .charactersheet .npcView .topSection .demographics .speed {
-  flex-basis: 8%;
+  flex-basis: 6%;
 }
 .ui-dialog .charactersheet .npcView .topSection .demographics .alignment {
   width: 20%;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .level,
+.ui-dialog .charactersheet .npcView .topSection .demographics .woundCap {
+  flex: 1 1 auto;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .isLegendaryMonster[value="0"] + .woundCap {
+  display: none;
 }
 .ui-dialog .charactersheet .npcView .topSection .demographics {
   font-synthesis: unset !important;
@@ -668,10 +676,34 @@ label.buttonStyle {
   width: 85%;
   align-items: flex-end;
 }
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields label.legendaryMonster {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  position: relative;
+  top: -60px;
+  margin: 0 -20px;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields label.legendaryMonster input.isLegendaryMonster {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields label.legendaryMonster span.legendaryMonster {
+  font-family: "Noto Emoji";
+  font-size: 3rem;
+  color: var(--gold);
+}
+.ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields label.legendaryMonster .isLegendaryMonster:checked + .legendaryMonster {
+  color: var(--parchment);
+}
 .ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .npcHeader.npcName.text-field {
   display: inline-block;
   color: var(--parchment);
-  flex-basis: 80%;
+  flex-basis: 76%;
 }
 .ui-dialog .charactersheet .npcView .npcViewHeader .npcMainFields .challengeLevel {
   display: inline-block;

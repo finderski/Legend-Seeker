@@ -87,14 +87,22 @@
         .class {
             width: 25%;
         }
-        .level {
-            width: 14%;
+        .level,
+        .woundCap {
+            width: 13%;
         }
         .speed {
-            flex-basis: 8%;
+            flex-basis: 6%;
         }
         .alignment {
             width: 20%;
+        }
+        .level,
+        .woundCap {
+            flex: 1 1 auto;
+        }
+        .isLegendaryMonster[value="0"] + .woundCap {
+            display: none;
         }
     }
 }

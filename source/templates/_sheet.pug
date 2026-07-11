@@ -86,6 +86,10 @@ include ./mixins/_mixin_npc_skills.pug
                 // Logo Section
                 img(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/lengend-seeker-logo.png', alt='Legend Seeker Logo')
             .npcMainFields
+                label(class="legendaryMonster")
+                    input(class='isLegendaryMonster', type='checkbox', value="1", name='attr_isLegendaryMonster')
+                    span.legendaryMonster
+                        != '&#x1F409;'
                 input(class='npcHeader npcName text-field', type='text', name='attr_character_name', data-i18n-placeholder='name')
                 .challengeLevel
                     span(class='npcHeader', data-i18n='challenge-level-abbr-caps', data-i18n-title='challenge-level') CL:

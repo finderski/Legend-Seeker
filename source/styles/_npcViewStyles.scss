@@ -20,10 +20,34 @@
                 column-gap: 20px;
                 width: 85%;
                 align-items: flex-end;
+                label.legendaryMonster {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    gap: 5px;
+                    width: max-content;
+                    position: relative;
+                    top: -60px;
+                    margin: 0 -20px;
+                    input.isLegendaryMonster {
+                        width: 0;
+                        height: 0;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    span.legendaryMonster {
+                        font-family: 'Noto Emoji';
+                        font-size: 3rem;
+                        color: var(--gold);
+                    }
+                    .isLegendaryMonster:checked + .legendaryMonster {
+                        color: var(--parchment);
+                    }
+                }
                 .npcHeader.npcName.text-field {
                     display: inline-block;
                     color: var(--parchment);
-                    flex-basis: 80%;
+                    flex-basis: 76%;
                 }
                 .challengeLevel {
                     display: inline-block;

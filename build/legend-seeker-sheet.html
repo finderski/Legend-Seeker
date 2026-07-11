@@ -998,6 +998,9 @@
         <!-- Logo Section--><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/lengend-seeker-logo.png" alt="Legend Seeker Logo"/>
       </div>
       <div class="npcMainFields">
+        <label class="legendaryMonster">
+          <input class="isLegendaryMonster" type="checkbox" value="1" name="attr_isLegendaryMonster"/><span class="legendaryMonster">&#x1F409;</span>
+        </label>
         <input class="npcHeader npcName text-field" type="text" name="attr_character_name" data-i18n-placeholder="name"/>
         <div class="challengeLevel"><span class="npcHeader" data-i18n="challenge-level-abbr-caps" data-i18n-title="challenge-level">CL:</span>
           <input type="hidden" name="attr_challenge_level" value="0"/><span class="npcHeader" name="attr_challenge_level" value="0"></span>
@@ -1068,6 +1071,11 @@
         <div class="speed"> 
           <label class="smallCaps" data-i18n="speed">Speed</label>
           <input class="text-field" type="text" name="attr_speed" value="" placeholder="5"/>
+        </div>
+        <input class="isLegendaryMonster" type="hidden" value="0" name="attr_isLegendaryMonster"/>
+        <div class="woundCap readOnly"> 
+          <label class="smallCaps" data-i18n="wound-cap">Wound Cap</label>
+          <input class="text-field" type="text" name="attr_wound_cap" placeholder="0" readonly="readonly"/>
         </div>
       </div>
     </div>
