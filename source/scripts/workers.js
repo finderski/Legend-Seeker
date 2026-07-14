@@ -82,7 +82,16 @@ on('change:current_character_type change:monster_size', function() {
             coreAttributes.forEach(attribute => {
                 const attScore = Math.floor((parseInt(v[attribute]) || 0));
                 const modScore = Math.floor(((attScore < 0 ? 0 : attScore) - 10) / 2);
+                setattrs[`size_penalty`] = 0;
                 setattrs[`${attribute}_modifier`] = modScore;
+                //Unset Defense Mod
+                setattrs["monsterous_mod"] = 0;
+                //Unset Stealth Mod
+                setattrs["size_penalty"] = sizeModifiers[`${monsterSize}`]["stealthMod"];
+                //Unset Damage Threshold Mod
+                setattrs["damage_threshold_mod"] = 0;
+                //Unset Carry Capacity Multiplier
+                setattrs["carry_capacity_multiplier"] = 1;
             });
         } else if (newType === 4) {
             // apply the size adjustments to the attribute scores and recalculate the modifiers
@@ -94,7 +103,16 @@ on('change:current_character_type change:monster_size', function() {
                 const modScore = Math.floor((adjustedAttributeScore - 10) / 2);
                 setattrs[`${attribute}_adjusted`] = adjustedAttributeScore;
                 setattrs[`${attribute}_modifier`] = modScore;
+                setattrs[`size_penalty`] = sizeModifiers[`${monsterSize}`]["stealthMod"];
             });
+            //Set Defense Mod
+            setattrs["monsterous_mod"] = sizeModifiers[`${monsterSize}`]["defenseMod"];
+            //Set Steal Mod
+            setattrs["size_penalty"] = sizeModifiers[`${monsterSize}`]["stealthMod"];
+            //Set Damage Threshold Mod
+            setattrs["damage_threshold_mod"] = sizeModifiers[`${monsterSize}`]["damageThresholdMod"];
+            //Set Carry Capacity Multiplier
+            setattrs["carry_capacity_multiplier"] = sizeModifiers[`${monsterSize}`]["carryingCapacityMultiplier"];
         }
         setAttrs(setattrs);
     });
@@ -283,7 +301,7 @@ const saveList = ['fort', 'ref', 'will'];
 const fortFields = ['level', 'condition',  'armor_fort_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
-const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', ...listOfAttributes];
+const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', 'monsterous_mod', ...listOfAttributes];
 const refWatch = `change:${refFields.join(' change:')}`;
 
 const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
@@ -334,6 +352,7 @@ saveList.forEach(save => {
             //Field for Misc Mod
             const miscSaveMod = parseInt(v[`${save}_misc_save_mod`]) || 0;
             const abilityMod = parseInt(v[`${save}_ability_mod`]) || 0;
+            const monsterMod = parseInt(v.monsterous_mod) || 0;
             //Condition
             const conditionMod = parseInt(v.condition) || 0;
             //prep for updates
@@ -400,7 +419,8 @@ saveList.forEach(save => {
                 levelOrArmorBonus = level;
             }
             setAttrsObj[`${save}_level_or_armor`] = levelOrArmorBonus; // ensure level or armor bonus is included in updates even if it didn't trigger the change
-            const saveTotal = 10 + conditionMod + levelOrArmorBonus + classBonus + abilityModValue + miscSaveMod;
+            let saveTotal = 10 + conditionMod + levelOrArmorBonus + classBonus + abilityModValue + miscSaveMod;
+            saveTotal = save === 'ref' ? saveTotal + monsterMod : saveTotal; // add monster mod to reflex save only
             setAttrsObj[`${save}_total`] = saveTotal; // ensure save total is included in updates even if it didn't trigger the change
             setAttrsObj["modified_by_condition"] = Math.abs(conditionMod) > 0 ? 1 : 0;
             //setAttrs(setAttrsObj,{silent: true});

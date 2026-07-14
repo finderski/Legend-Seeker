@@ -33,6 +33,20 @@
                 width: 12.5%;
                 text-align: center;
             }
+            .saveTotal {
+                .showMonsterousMod[value="0"] + .monsterousMod {
+                    display: none;
+                }
+                .showMonsterousMod:not([value="0"]) + .monsterousMod {
+                        display: inline-flex;
+                        color: var(--dark-dragon-wing);
+                        font-family: var(--decorative);
+                        font-size: .8em;
+                        position: absolute;
+                        top: 0px;
+                        left: 31%;
+                }
+            }
             .config {
                 position: absolute;
                 left: 84%;

@@ -35,7 +35,10 @@ mixin skills(skill)
                             span.iconButton w
                     if armorCheck === 'yes'
                         if ["acrobatics", "climb", "endurance", "initiative", "jump", "stealth", "swim"].includes(skillName)
-                            input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
+                            if skillName === 'stealth'
+                                input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{size_penalty}[Size Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
+                            else
+                                input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
                         else
                             input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
                     else

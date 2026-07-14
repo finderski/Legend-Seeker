@@ -11,7 +11,9 @@ mixin savingthrow(save)
         input(class="modifiedByCondition" type='hidden' value='0' name='attr_modified_by_condition')
         .saveTotal
             input(class="attributeInput readOnly", type="text", name=`attr_${fieldShortName}_total` readonly placeholder="10")
-            // span(class="attributeInput readOnly", name=`attr_${fieldShortName}_total`)
+            if shortName === 'REF'
+                input(class="showMonsterousMod", type="hidden", name="attr_monsterous_mod", value="0")
+                span(class="monsterousMod", name="attr_monsterous_mod")
         .saveCalc
             span(class="calcFormula")
                 | = 10 + 
