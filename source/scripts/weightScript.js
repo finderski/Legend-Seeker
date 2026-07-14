@@ -1,3 +1,37 @@
+function calculateEncumbrance() {
+    getAttrs(['total_weight_carried', 'strength', 'strength_adjusted', 'current_character_type', 'monster_size', 'speed','ignore-encumbrance'], function (values) {
+        const totalWeight = parseFloat(values['total_weight_carried']) || 0;
+        const characterStrength = parseFloat(values['strength']) || 0;
+        const characterStrengthAdjusted = parseFloat(values['strength_adjusted']) || 0;
+        const characterType = parseInt(values['current_character_type'], 10) || 1;
+        const monsterSize = values['monster_size'].toLowerCase() || 'medium';
+        const characterSpeed = parseFloat(values['speed']) || 0;
+        const ignoreEncumbrance = parseInt(values['ignore-encumbrance'], 10) || 0;
+
+        // Heavy Load: > (characterStrength/2)^2
+        let loadCalc = Math.pow(characterStrength / 2, 2);
+        const monsterLoadCalc = Math.pow(characterStrengthAdjusted / 2, 2);
+        log("Initial Encumbrance Calculation", `Strength: ${characterStrength}, Adjusted Strength: ${characterStrengthAdjusted}, Half Strength: ${characterStrength / 2}, Squared: ${loadCalc}, Half Adjusted: ${characterStrengthAdjusted / 2}, Squared: ${monsterLoadCalc}`, derivedStatsColor);
+        loadCalc = characterType === 4 ? monsterLoadCalc * (sizeModifiers[`${monsterSize}`]?.carryingCapacityMultiplier || 0) : loadCalc;
+        log("Adjusted Encumbrance Calculation", `Character Type: ${characterType}, Monster Size: ${monsterSize}, Multiplier: ${sizeModifiers[`${monsterSize}`]?.carryingCapacityMultiplier || 0},   Load Calc: ${loadCalc}`, derivedStatsColor);
+        const encumbrancePenalty = totalWeight >= loadCalc ? -10 : 0;
+        log("Encumbrance Calculation", `Total Weight: ${totalWeight}, Load Calc: ${loadCalc}, Encumbrance Penalty: ${encumbrancePenalty}`, derivedStatsColor);
+        const adjustedSpeed = encumbrancePenalty === -10 ? Math.floor(characterSpeed*0.75) : characterSpeed;
+        const carryCapacity = loadCalc - 0.1; // Subtracting 0.1 to ensure that the character is not considered encumbered when at the exact threshold
+        let attrsToSet = {};
+        if (ignoreEncumbrance) {
+            log("Encumbrance Calculation", "Encumbrance is ignored due to settings.", derivedStatsColor);
+            attrsToSet['encumbrance_penalty'] = 0;
+            attrsToSet['adjusted_speed'] = characterSpeed;
+        }
+        else {
+            attrsToSet['encumbrance_penalty'] = encumbrancePenalty;
+            attrsToSet['adjusted_speed'] = adjustedSpeed;
+        }
+        attrsToSet['carry_capacity'] = carryCapacity.toFixed(1);
+        setAttrs(attrsToSet);
+    });
+}
 // Calculate Weapon Weight
 on('change:repeating_weapons:weapon_weight change:repeating_weapons:weapon_carried remove:repeating_weapons', function (eventInfo) {
     repeatingSimpleSumWCheck(
@@ -65,24 +99,6 @@ on('change:total_weapon_weight change:total_equipment_weight change:total_coin_w
 });
 
 // Calculate Encumbrance
-on('change:total_weight_carried change:strength change:current_character_type change:monster_size', function () {
-    getAttrs(['total_weight_carried', 'strength', 'current_character_type', 'monster_size', 'speed'], function (values) {
-        const totalWeight = parseFloat(values['total_weight']) || 0;
-        const characterStrength = parseFloat(values['strength']) || 0;
-        const characterType = parseInt(values['current_character_type'], 10) || 1;
-        const monsterSize = values['monster_size'].toLowerCase() || 'medium';
-        const characterSpeed = parseFloat(values['speed']) || 0;
-
-        // Heavy Load: > (characterStrength/2)^2
-        let loadCalc = Math.pow(characterStrength / 2, 2);
-        loadCalc = characterType === 4 ? loadCalc * (sizeModifiers[`${monsterSize}`]?.carryingCapacityMultiplier || 0) : loadCalc;
-        const encumbrancePenalty = totalWeight >= loadCalc ? -10 : 0;
-        const adjustedSpeed = encumbrancePenalty === -10 ? Math.floor(characterSpeed*0.75) : characterSpeed;
-
-        let attrsToSet = {};
-        attrsToSet['carry_capacity'] = loadCalc - 0.1; // Subtracting 0.1 to ensure that the character is not considered encumbered when at the exact threshold
-        attrsToSet['encumbrance_penalty'] = encumbrancePenalty;
-        attrsToSet['adjusted_speed'] = adjustedSpeed;
-        setAttrs(attrsToSet);
-    });
+on('change:total_weight_carried change:strength change:strength_adjusted change:current_character_type change:monster_size', function () {
+    calculateEncumbrance();
 });

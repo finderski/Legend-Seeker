@@ -49,12 +49,13 @@
                     text-align: center;
                 }
             }
-            .weights {
+            .weights,
+            .capacity {
                 display: flex;
                 flex-flow: row nowrap;
                 column-gap: 5px;
                 width: 100%;
-                margin: 10px 0 10px 0;
+                margin: 0;
                 align-items: center;
                 label.fieldLabel {
                     width: 65%;
@@ -62,7 +63,8 @@
                     text-align: left;
                     font-size: 1em;
                 }
-                .totalWeight {
+                .totalWeight,
+                .carryCapacity {
                     width: 35%;
                     display: flex;
                     align-items: center;
@@ -307,6 +309,15 @@
             row-gap: 5px;
             h2.headerLabel {
                 font-family: var(--title);
+                .encumbranceIcon {
+                    display: none;
+                }
+                .isEncumbered[value="-10"] + .encumbranceIcon {
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 5px;
+                }
             }
             .skill {
                 display: flex;

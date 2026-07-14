@@ -281,5 +281,8 @@
   "size": "Size",
   "adjusted": "Adjusted",
   "momentum": "Momentum",
-  "wound-cap": "Wound Cap"
+  "wound-cap": "Wound Cap",
+  "carry-capacity": "Carry Capacity",
+  "adjusted-speed": "Adjusted Speed",
+  "ignore-encumbrance": "Ignore Encumbrance"
 }

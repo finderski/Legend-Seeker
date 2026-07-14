@@ -2003,21 +2003,26 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .equipmentList .weight .textField {
   text-align: center;
 }
-.ui-dialog .charactersheet .backPage .topContainer .equipment .weights {
+.ui-dialog .charactersheet .backPage .topContainer .equipment .weights,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .capacity {
   display: flex;
   flex-flow: row nowrap;
   column-gap: 5px;
   width: 100%;
-  margin: 10px 0 10px 0;
+  margin: 0;
   align-items: center;
 }
-.ui-dialog .charactersheet .backPage .topContainer .equipment .weights label.fieldLabel {
+.ui-dialog .charactersheet .backPage .topContainer .equipment .weights label.fieldLabel,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .capacity label.fieldLabel {
   width: 65%;
   display: inline-block;
   text-align: left;
   font-size: 1em;
 }
-.ui-dialog .charactersheet .backPage .topContainer .equipment .weights .totalWeight {
+.ui-dialog .charactersheet .backPage .topContainer .equipment .weights .totalWeight,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .weights .carryCapacity,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .capacity .totalWeight,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .capacity .carryCapacity {
   width: 35%;
   display: flex;
   align-items: center;
@@ -2269,6 +2274,15 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills h2.headerLabel {
   font-family: var(--title);
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills h2.headerLabel .encumbranceIcon {
+  display: none;
+}
+.ui-dialog .charactersheet .backPage .topContainer .skills h2.headerLabel .isEncumbered[value="-10"] + .encumbranceIcon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
 }
 .ui-dialog .charactersheet .backPage .topContainer .skills .skill {
   display: flex;
