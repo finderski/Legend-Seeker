@@ -636,6 +636,21 @@ label.buttonStyle {
 .ui-dialog .charactersheet .npcView .topSection .demographics .woundCap {
   flex: 1 1 auto;
 }
+.ui-dialog .charactersheet .npcView .topSection .demographics .level {
+  position: relative;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .level .showMonsterousMod[value="0"] + .monsterousMod {
+  display: none;
+}
+.ui-dialog .charactersheet .npcView .topSection .demographics .level .showMonsterousMod:not([value="0"]) + .monsterousMod {
+  display: inline-flex;
+  color: var(--dark-dragon-wing);
+  font-family: var(--decorative);
+  font-size: 0.8em;
+  position: absolute;
+  top: 12px;
+  left: 18%;
+}
 .ui-dialog .charactersheet .npcView .topSection .demographics .isLegendaryMonster[value="0"] + .woundCap {
   display: none;
 }
@@ -777,6 +792,21 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .fieldLabelAbove {
   margin: 2px 0 2px 0;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .damageThreshold {
+  position: relative;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .damageThreshold .showMonsterousMod[value="0"] + .monsterousMod {
+  display: none;
+}
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .stamina .calculation .damageThreshold .showMonsterousMod:not([value="0"]) + .monsterousMod {
+  display: inline-flex;
+  color: var(--dark-dragon-wing);
+  font-family: var(--decorative);
+  font-size: 0.8em;
+  position: absolute;
+  top: 10px;
+  left: 70%;
 }
 .ui-dialog .charactersheet .npcView .middleSection .conditionsCol {
   display: flex;
@@ -1225,19 +1255,23 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .adjustedSpeed,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showAdjustedSpeed[value="-10"] + .speed,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints.mlp,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .adjustedSpeed,
-.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showAdjustedSpeed[value="-10"] + .speed {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showAdjustedSpeed[value="-10"] + .speed,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints.mlp {
   display: none;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .speed,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .hpb,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints {
   display: flex;
   flex-flow: column nowrap;
@@ -1250,11 +1284,13 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb .xPointInput,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp .xPointInput,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints .xPointInput,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .speed .xPointInput,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed .xPointInput,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative .xPointInput,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .hpb .xPointInput,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp .xPointInput,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints .xPointInput {
   width: 100%;
   text-align: center;
@@ -1263,11 +1299,13 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed button[type=action].textButton,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp button[type=action].textButton,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .speed button[type=action].textButton,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed button[type=action].textButton,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative button[type=action].textButton,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .hpb button[type=action].textButton,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp button[type=action].textButton,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints button[type=action].textButton {
   border: none;
   padding: 0;
@@ -1277,13 +1315,33 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .hpb button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .speed button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .hpb button[type=action].textButton:hover > label.fieldLabelAbove:hover,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp button[type=action].textButton:hover > label.fieldLabelAbove:hover,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints button[type=action].textButton:hover > label.fieldLabelAbove:hover {
   cursor: pointer;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .babAndLP,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .babAndLP {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  column-gap: 15px;
+  padding: 0 10px;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .babAndLP .hpb,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .babAndLP .legendaryPoints,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .babAndLP .hpb,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .babAndLP .legendaryPoints {
+  flex: 0 1 45%;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showMLP[value="0"] + .babAndLP,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .showMLP[value="0"] + .babAndLP {
+  padding: 0;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .initiative {

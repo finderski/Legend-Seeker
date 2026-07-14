@@ -284,5 +284,7 @@
   "wound-cap": "Wound Cap",
   "carry-capacity": "Carry Capacity",
   "adjusted-speed": "Adjusted Speed",
-  "ignore-encumbrance": "Ignore Encumbrance"
+  "ignore-encumbrance": "Ignore Encumbrance",
+  "monster-legendary-points-abbr-caps": "MLP",
+  "monster-legendary-points": "Monster Legendary Points"
 }

@@ -4,13 +4,13 @@
   <input type="hidden" name="attr_sheetversion" value="0.2.2"/>
   <input type="hidden" name="attr_shield_dr" value="0"/>
   <!-- size_penalty is the stealth modifier based on the size of the character/monster.-->
-  <input type="hidden" name="size_penalty" value="0"/>
+  <input type="hidden" name="attr_size_penalty" value="0"/>
   <!-- REF Defense Score Modifier based on the size of the character/monster.-->
-  <input type="hidden" name="monsterous_mod" value="0"/>
+  <input type="hidden" name="attr_monsterous_mod" value="0"/>
   <!-- Damage Threshold Modifier based on the size of the character/monster.-->
-  <input type="hidden" name="damage_threshold_mod" value="0"/>
+  <input type="hidden" name="attr_damage_threshold_mod" value="0"/>
   <!-- Carry Capacity Multiplier based on the size of the character/monster.-->
-  <input type="hidden" name="carry_capacity_multiplier" value="1"/>
+  <input type="hidden" name="attr_carry_capacity_multiplier" value="1"/>
   <input class="selectedTab" type="hidden" name="attr_sheetTab" value="1"/>
   <div class="sheetVersion"> 
     <label class="sheetVersionLabel" data-i18n="sheet-version">Sheet Version: </label><span name="attr_sheetversion"></span>
@@ -273,6 +273,7 @@
                 <div class="damageThreshold readOnly">
                   <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
                   <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
+                  <input class="showMonsterousMod" type="hidden" name="attr_damage_threshold_mod" value="0"/><span class="monsterousMod" name="attr_damage_threshold_mod"></span>
                 </div>
               </div>
               <button class="labelButton secondWind" type="action" name="act_secondwind" data-i18n="second-wind">Second Wind</button>
@@ -304,16 +305,25 @@
                   <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
                 </button>
               </div>
-              <div class="hpb readOnly">
-                <label class="fieldLabelAbove" data-i18n="base-attack-bonus">Base Attack Bonus</label>
-                <!-- input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)-->
-                <input class="xPointInput" type="text" name="attr_base_attack_bonus" value="2"/>
-              </div>
-              <div class="legendaryPoints"> 
-                <button class="textButton" type="action" name="act_use-legendary-points">
-                  <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
-                </button>
-                <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
+              <input class="showMLP" type="hidden" name="attr_isLegendaryMonster"/>
+              <div class="babAndLP">
+                <div class="hpb readOnly">
+                  <label class="fieldLabelAbove" data-i18n="base-attack-bonus">Base Attack Bonus</label>
+                  <!-- input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)-->
+                  <input class="xPointInput" type="text" name="attr_base_attack_bonus" value="2"/>
+                </div>
+                <div class="legendaryPoints"> 
+                  <button class="textButton" type="action" name="act_use-legendary-points">
+                    <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
+                  </button>
+                  <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
+                </div>
+                <div class="legendaryPoints mlp"> 
+                  <button class="textButton" type="action" name="act_use-monster-legendary-points">
+                    <label class="fieldLabelAbove" data-i18n="monster-legendary-points-abbr-caps" data-i18n-title="monster-legendary-points">MLP</label>
+                  </button>
+                  <input class="xPointInput" type="text" name="attr_monster_legendary_points" placeholder="0"/>
+                </div>
               </div>
               <div class="numberOfActions"> 
                 <label class="fieldLabelAbove" data-i18n="number-of-actions">Number of Actions</label>
@@ -1078,6 +1088,7 @@
         <div class="level readOnly">
           <label class="smallCaps" data-i18n="damage-threshold">Damage Threshold</label>
           <input class="text-field" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
+          <input class="showMonsterousMod" type="hidden" name="attr_damage_threshold_mod" value="0"/><span class="monsterousMod" name="attr_damage_threshold_mod"></span>
         </div>
         <div class="speed"> 
           <label class="smallCaps" data-i18n="speed">Speed</label>
@@ -1294,6 +1305,7 @@
               <div class="damageThreshold readOnly">
                 <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
                 <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
+                <input class="showMonsterousMod" type="hidden" name="attr_damage_threshold_mod" value="0"/><span class="monsterousMod" name="attr_damage_threshold_mod"></span>
               </div>
             </div>
             <button class="labelButton secondWind" type="action" name="act_secondwind" data-i18n="second-wind">Second Wind</button>
@@ -1325,16 +1337,25 @@
                 <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
               </button>
             </div>
-            <div class="hpb readOnly">
-              <label class="fieldLabelAbove" data-i18n="base-attack-bonus">Base Attack Bonus</label>
-              <!-- input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)-->
-              <input class="xPointInput" type="text" name="attr_base_attack_bonus" value="2"/>
-            </div>
-            <div class="legendaryPoints"> 
-              <button class="textButton" type="action" name="act_use-legendary-points">
-                <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
-              </button>
-              <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
+            <input class="showMLP" type="hidden" name="attr_isLegendaryMonster"/>
+            <div class="babAndLP">
+              <div class="hpb readOnly">
+                <label class="fieldLabelAbove" data-i18n="base-attack-bonus">Base Attack Bonus</label>
+                <!-- input(class="xPointInput", type='text', name='attr_heroic_proficiency_bonus', value="2" readonly)-->
+                <input class="xPointInput" type="text" name="attr_base_attack_bonus" value="2"/>
+              </div>
+              <div class="legendaryPoints"> 
+                <button class="textButton" type="action" name="act_use-legendary-points">
+                  <label class="fieldLabelAbove" data-i18n="legendary-points">Legendary Points</label>
+                </button>
+                <input class="xPointInput" type="text" name="attr_legendary_points" placeholder="0"/>
+              </div>
+              <div class="legendaryPoints mlp"> 
+                <button class="textButton" type="action" name="act_use-monster-legendary-points">
+                  <label class="fieldLabelAbove" data-i18n="monster-legendary-points-abbr-caps" data-i18n-title="monster-legendary-points">MLP</label>
+                </button>
+                <input class="xPointInput" type="text" name="attr_monster_legendary_points" placeholder="0"/>
+              </div>
             </div>
             <div class="numberOfActions"> 
               <label class="fieldLabelAbove" data-i18n="number-of-actions">Number of Actions</label>
@@ -6522,12 +6543,45 @@ on('clicked:secondwind', function() {
 });
 
 // Spending a Legendary Point
-on('clicked:use-legendary-points', function() {
+on('clicked:use-legendary-points', function(eventInfo) {
     getAttrs(['character_name', 'character_avatar', 'character_token', 'legendary_points', 'true-legend', 'level'], values => {
         log('Avatar info', values.character_avatar, derivedStatsColor);
         log('Token info', values.character_token, derivedStatsColor);
         const characterName = values.character_name || 'Character';
         const legendaryPoints = parseInt(values.legendary_points) || 0;
+        const trueLegend = parseInt(values['true-legend']) || 0;
+        const level = parseInt(values.level) || 1;
+        let avatarURL = 'https://app.roll20.net/images/character.png';
+        if (values.character_avatar) {
+            avatarURL = values.character_avatar.split('?')[0]; // Remove any query parameters for Roll20 hosted images
+        } else if (values.character_token) {
+            avatarURL = values.character_token.split('?')[0]; // Remove any query parameters for Roll20 hosted images
+        }
+        let rollFormula = `&{template:emote} {{name=${characterName}}} `
+        // rollFormula += `{{avatar=${avatarURL}}} `;
+        rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
+        rollFormula += legendaryPoints > 0 ? `{{text=^{spends-alegendary-point-and-rolls}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
+        const numDice = level >= 15 ? 3 : level >= 8 ? 2 : 1;
+        rollFormula += trueLegend ? `{{roll=[[${numDice}d8kh1]]}}` : `{{roll=[[${numDice}d6kh1]]}}`;
+        log('Roll formula', rollFormula, derivedStatsColor);
+        const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
+        const roll_result = legendaryPoints > 0 ? rollFormula : noRollFormula;
+        const newLegendaryPoints = legendaryPoints - 1;
+        if(newLegendaryPoints >= 0) {
+            setAttrs({ legendary_points: newLegendaryPoints });
+        }
+        // const roll_result = `/w gm &{template:roll} {{name=${characterName}}} {{title=Legendary Point Spent}} {{legendarypoint=1}} {{legendarypointsleft=${newLegendaryPoints}}}`;
+        startRoll(roll_result, results => finishRoll(results.rollId));
+    });
+});
+
+// Spending a Monster Legendary Point
+on('clicked:use-monster-legendary-points', function(eventInfo) {
+    getAttrs(['character_name', 'character_avatar', 'character_token', 'monster_legendary_points', 'true-legend', 'level'], values => {
+        log('Avatar info', values.character_avatar, derivedStatsColor);
+        log('Token info', values.character_token, derivedStatsColor);
+        const characterName = values.character_name || 'Character';
+        const legendaryPoints = parseInt(values.monster_legendary_points) || 0;
         const trueLegend = parseInt(values['true-legend']) || 0;
         const level = parseInt(values.level) || 1;
         let avatarURL = 'https://app.roll20.net/images/character.png';

@@ -24,4 +24,6 @@ input(class="xPointInput", type='text', name='attr_stamina', placeholder="0")
     .damageThreshold.readOnly
         label(class="fieldLabelAbove", data-i18n='damage-threshold') Damage Threshold
         input(class="xPointInput", type='text', name='attr_stamina_damageThreshold', placeholder="0" readonly)
+        input(class="showMonsterousMod", type="hidden", name="attr_damage_threshold_mod", value="0")
+        span(class="monsterousMod", name="attr_damage_threshold_mod")
 button(class="labelButton secondWind", type="action", name="act_secondwind", data-i18n='second-wind') Second Wind

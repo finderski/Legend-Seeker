@@ -121,6 +121,25 @@
                     .fieldLabelAbove {
                         margin: 2px 0 2px 0;
                     }
+                    .stamina {
+                        .calculation {
+                            .damageThreshold {
+                                position: relative;
+                                .showMonsterousMod[value="0"] + .monsterousMod {
+                                    display: none;
+                                }
+                                .showMonsterousMod:not([value="0"]) + .monsterousMod {
+                                    display: inline-flex;
+                                    color: var(--dark-dragon-wing);
+                                    font-family: var(--decorative);
+                                    font-size: .8em;
+                                    position: absolute;
+                                    top: 10px;
+                                    left: 70%;
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .conditionsCol {

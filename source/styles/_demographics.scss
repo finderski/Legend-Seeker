@@ -101,6 +101,21 @@
         .woundCap {
             flex: 1 1 auto;
         }
+        .level {
+            position: relative;
+            .showMonsterousMod[value="0"] + .monsterousMod {
+                display: none;
+            }
+            .showMonsterousMod:not([value="0"]) + .monsterousMod {
+                display: inline-flex;
+                color: var(--dark-dragon-wing);
+                font-family: var(--decorative);
+                font-size: .8em;
+                position: absolute;
+                top: 12px;
+                left: 18%;
+            }
+        }
         .isLegendaryMonster[value="0"] + .woundCap {
             display: none;
         }

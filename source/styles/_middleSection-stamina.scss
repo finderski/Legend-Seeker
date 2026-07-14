@@ -189,13 +189,15 @@
         }
         .hitPoints {
             .adjustedSpeed,
-            .showAdjustedSpeed[value="-10"] + .speed {
+            .showAdjustedSpeed[value="-10"] + .speed,
+            .legendaryPoints.mlp {
                 display: none;
             }
             .speed,
             .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed,
             .initiative,
             .hpb,
+            .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp,
             .legendaryPoints {
                 display: flex;
                 flex-flow: column nowrap;
@@ -215,6 +217,20 @@
                         cursor: pointer;
                     }
                 }
+            }
+            .babAndLP {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                column-gap: 15px;
+                padding: 0 10px;
+                .hpb,
+                .legendaryPoints {
+                    flex: 0 1 45%;
+                }
+            }
+            .showMLP[value="0"] + .babAndLP {
+                padding: 0;
             }
             .initiative {
                 background-color: var(--read-only);
