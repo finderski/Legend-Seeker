@@ -1,14 +1,31 @@
 function damageThreshold () {
-    getAttrs(['fort_total', 'stamina_miscBonus'], function(v) {
+    getAttrs(['fort_total', 'stamina_miscBonus', 'current_character_type','monster_size'], function(v) {
         const fortTotal = parseInt(v.fort_total) || 0;
         const staminaMiscBonus = parseInt(v.stamina_miscBonus) || 0;
-        const staminaDamageThreshold = fortTotal + staminaMiscBonus;
+        const sizeAdjustment = (parseInt(v.current_character_type, 10) || 1) === 4
+            ? (sizeModifiers[(v.monster_size || "medium").toLowerCase()]?.damageThresholdMod || 0)
+            : 0;
+        const staminaDamageThreshold = fortTotal + staminaMiscBonus + sizeAdjustment;
         const setattrs = {};
         setattrs['stamina_fortDef'] = fortTotal;
         setattrs['stamina_damageThreshold'] = staminaDamageThreshold
         setAttrs(setattrs);
     });
 };
+
+function updateWeaponsBabHalfLevel() {
+    getSectionIDs('repeating_weapons', function(ids) {
+        getAttrs(['base_attack_bonus','half-level'], function(values) {
+            // Update Weapons stuff
+            ids.forEach(function(id) {
+                const attrsToSet = {};
+                attrsToSet[`repeating_weapons_${id}_weapon-half-level`] = values['half-level'] || 0;
+                attrsToSet[`repeating_weapons_${id}_weapon-base-attack-bonus`] = values['base_attack_bonus'] || 0;
+                setAttrs(attrsToSet);
+            });
+        });
+    });
+}
 
 function compareVersions(a, b) {
     const aParts = a.split('.').map(Number);
@@ -113,6 +130,8 @@ on('sheet:opened', function() {
 on('sheet:opened', function() {
     log('Sheet Opened',"Updating weapon attributes to ensure calculations work", r20color);
     damageThreshold();
+    updateWeaponsBabHalfLevel();
+    /*
     getSectionIDs('repeating_weapons', function(ids) {
         getAttrs(['base_attack_bonus','half-level'], function(values) {
             // Update Weapons stuff
@@ -124,4 +143,5 @@ on('sheet:opened', function() {
             });
         });
     });
+    */
 });

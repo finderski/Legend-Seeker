@@ -6,9 +6,13 @@ input(class="xPointInput", type='text', name='attr_hitpoints_max', placeholder="
 .fieldLabel
     label(data-i18n='current') Current
 input(class="xPointInput", type='text', name='attr_hitpoints', placeholder="0")
+input(class="showAdjustedSpeed", type='hidden', name='attr_encumbrance_penalty', value="0")
 .speed
     label(class="fieldLabelAbove", data-i18n='speed') Speed
     input(class="xPointInput", type='text', name='attr_speed', placeholder="0")
+.adjustedSpeed 
+    label(class="fieldLabelAbove", data-i18n='adjusted-speed') Adjusted Speed
+    input(class="xPointInput", type='text', name='attr_adjusted_speed', readonly="readonly")
 .initiative
     button(class="textButton", type="roll", name="roll_initiative", value=`@{initiative_formula}`)
         label(class="fieldLabelAbove", data-i18n='initiative') Initiative

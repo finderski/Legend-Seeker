@@ -164,6 +164,19 @@
       "q" : 90,
       "rq" : 75
     },
+    "\/images\/weight.png" : {
+      "ft" : 32768,
+      "iS" : 13906,
+      "oA" : 0,
+      "oAP" : "\/build\/images\/weight.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 1,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/source\/html\/rolltemplate.html" : {
       "cB" : 0,
       "ft" : 8192,

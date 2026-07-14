@@ -188,7 +188,12 @@
             }
         }
         .hitPoints {
+            .adjustedSpeed,
+            .showAdjustedSpeed[value="-10"] + .speed {
+                display: none;
+            }
             .speed,
+            .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed,
             .initiative,
             .hpb,
             .legendaryPoints {

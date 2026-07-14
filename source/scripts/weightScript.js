@@ -64,26 +64,25 @@ on('change:total_weapon_weight change:total_equipment_weight change:total_coin_w
     });
 });
 
-// Calculate Encumbrance Level
-on('change:total_weight_carried change:total_ps', function () {
-    getAttrs(['total_weight_carried', 'total_ps'], function (values) {
-        let totalWeight = parseFloat(values['total_weight']) || 0;
-        let totalPS = parseFloat(values['total_ps']) || 0;
+// Calculate Encumbrance
+on('change:total_weight_carried change:strength change:current_character_type change:monster_size', function () {
+    getAttrs(['total_weight_carried', 'strength', 'current_character_type', 'monster_size', 'speed'], function (values) {
+        const totalWeight = parseFloat(values['total_weight']) || 0;
+        const characterStrength = parseFloat(values['strength']) || 0;
+        const characterType = parseInt(values['current_character_type'], 10) || 1;
+        const monsterSize = values['monster_size'].toLowerCase() || 'medium';
+        const characterSpeed = parseFloat(values['speed']) || 0;
 
-        // Unburdened: >= total_ps
-        // Burdened: > total_ps and <= total_ps * 2
-        // Heavily Burdened: > total_ps * 2
-
-        let encumbranceLevel = 1; // Default to Unburdened
-
-        if (totalWeight > totalPS * 2) {
-            encumbranceLevel = 3; // Heavily Burdened
-        } else if (totalWeight > totalPS) {
-            encumbranceLevel = 2; // Burdened
-        }
+        // Heavy Load: > (characterStrength/2)^2
+        let loadCalc = Math.pow(characterStrength / 2, 2);
+        loadCalc = characterType === 4 ? loadCalc * (sizeModifiers[`${monsterSize}`]?.carryingCapacityMultiplier || 0) : loadCalc;
+        const encumbrancePenalty = totalWeight >= loadCalc ? -10 : 0;
+        const adjustedSpeed = encumbrancePenalty === -10 ? Math.floor(characterSpeed*0.75) : characterSpeed;
 
         let attrsToSet = {};
-        attrsToSet['encumbrance_level'] = encumbranceLevel;
+        attrsToSet['carry_capacity'] = loadCalc - 0.1; // Subtracting 0.1 to ensure that the character is not considered encumbered when at the exact threshold
+        attrsToSet['encumbrance_penalty'] = encumbrancePenalty;
+        attrsToSet['adjusted_speed'] = adjustedSpeed;
         setAttrs(attrsToSet);
     });
 });

@@ -37,30 +37,35 @@ function recalcSkill(skill) {
 }
 
 //Calculate Half-Level and Re-calculate Skills when Level changes
-on('change:level change:capped_dex_mod', function(eventInfo) {
+on('change:level change:minion_level change:monster_level change:capped_dex_mod', function(eventInfo) {
+    getAttrs(['level', 'minion_level', 'monster_level', 'capped_dex_mod', 'half-level'], function(values) {
+        const seekerLevel = parseInt(values.level, 10) || 0;
+        const minionLevel = parseInt(values.minion_level, 10) || 0;
+        const monsterLevel = parseInt(values.monster_level, 10) || 0;
+        const totalLevels = seekerLevel + minionLevel + monsterLevel;
+        const halfLevelValue = Math.floor(totalLevels / 2);
+        const previousHalfLevelValue = parseInt(values['half-level']) || 0;
 
-    const halfLevelValue = Math.floor((parseInt(eventInfo.newValue)/2 || 0));
-    const previousHalfLevelValue = Math.floor((parseInt(eventInfo.previousValue)/2 || 0));
-
-    if (eventInfo.sourceAttribute === "capped_dex_mod") {
-        log("Dexterity Modifier Updated", `New Half-Level Value: ${halfLevelValue}, Previous Half-Level Value: ${previousHalfLevelValue}`, derivedStatsColor);
-        listOfSklls.forEach(async (skill) => {
-            recalcSkill(skill);
-        });
-    }
-    else if (halfLevelValue === previousHalfLevelValue) {
-        log("Level Updated", "No Change in Half-Level Value.", derivedStatsColor);
-    }
-    else {
-        
-        const setattrs = {};
-        setattrs['half-level'] = halfLevelValue;
-        setAttrs(setattrs,{silent:true});
-        //re-calculate all skills
-        listOfSklls.forEach(async (skill) => {
-            recalcSkill(skill);
-        });
-    }
+        if (eventInfo.sourceAttribute === "capped_dex_mod") {
+            log("Dexterity Modifier Updated", `New Half-Level Value: ${halfLevelValue}, Previous Half-Level Value: ${previousHalfLevelValue}`, derivedStatsColor);
+            listOfSklls.forEach(async (skill) => {
+                recalcSkill(skill);
+            });
+        }
+        else if (halfLevelValue === previousHalfLevelValue) {
+            log("Level Updated", "No Change in Half-Level Value.", derivedStatsColor);
+        }
+        else { //Half-Level Changed updated Half-level, then realculate all skills and weapons
+            const setattrs = {};
+            setattrs['half-level'] = halfLevelValue;
+            setAttrs(setattrs,{silent:true});
+            //re-calculate all skills
+            listOfSklls.forEach(async (skill) => {
+                recalcSkill(skill);
+            });
+            updateWeaponsBabHalfLevel();
+        }
+    });
 });
 
 // When a skill's Trained, Focus or Misc fields change, re-calculate the skill bonus
