@@ -324,13 +324,11 @@ on('clicked:use-legendary-points', function(eventInfo) {
 
 // Spending a Monster Legendary Point
 on('clicked:use-monster-legendary-points', function(eventInfo) {
-    getAttrs(['character_name', 'character_avatar', 'character_token', 'monster_legendary_points', 'true-legend', 'level'], values => {
+    getAttrs(['character_name', 'character_avatar', 'character_token', 'monster_legendary_points'], values => {
         log('Avatar info', values.character_avatar, derivedStatsColor);
         log('Token info', values.character_token, derivedStatsColor);
         const characterName = values.character_name || 'Character';
         const legendaryPoints = parseInt(values.monster_legendary_points) || 0;
-        const trueLegend = parseInt(values['true-legend']) || 0;
-        const level = parseInt(values.level) || 1;
         let avatarURL = 'https://app.roll20.net/images/character.png';
         if (values.character_avatar) {
             avatarURL = values.character_avatar.split('?')[0]; // Remove any query parameters for Roll20 hosted images
@@ -340,17 +338,14 @@ on('clicked:use-monster-legendary-points', function(eventInfo) {
         let rollFormula = `&{template:emote} {{name=${characterName}}} `
         // rollFormula += `{{avatar=${avatarURL}}} `;
         rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
-        rollFormula += legendaryPoints > 0 ? `{{text=^{spends-alegendary-point-and-rolls}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
+        rollFormula += legendaryPoints > 0 ? `{{text=^{spends-legendary-points}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
         const numDice = level >= 15 ? 3 : level >= 8 ? 2 : 1;
-        rollFormula += trueLegend ? `{{roll=[[${numDice}d8kh1]]}}` : `{{roll=[[${numDice}d6kh1]]}}`;
+        rollFormula += `{{MLPs=[[${legendaryPoints}]]}}{{spend=[[?{Number of Points to Spend|1}]]}} {{effect=[[?{Effect|Activate Legendary Ability, Boost Defense Score}]]}}`;
         log('Roll formula', rollFormula, derivedStatsColor);
         const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
-        const roll_result = legendaryPoints > 0 ? rollFormula : noRollFormula;
-        const newLegendaryPoints = legendaryPoints - 1;
-        if(newLegendaryPoints >= 0) {
-            setAttrs({ legendary_points: newLegendaryPoints });
-        }
-        // const roll_result = `/w gm &{template:roll} {{name=${characterName}}} {{title=Legendary Point Spent}} {{legendarypoint=1}} {{legendarypointsleft=${newLegendaryPoints}}}`;
-        startRoll(roll_result, results => finishRoll(results.rollId));
+        startRoll(rollFormula, (results) => {
+            log("results", results.JSON.stringify(), derivedStatsColor);
+            finishRoll(results.rollId)
+        });
     });
 });
