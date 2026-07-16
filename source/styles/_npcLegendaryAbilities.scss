@@ -59,6 +59,58 @@
                 flex-flow: row wrap;
                 justify-content: flex-start;
                 align-items: center;
+                width: 100%;
+                .repcontainer {
+                    display: flex;
+                    flex-flow: row wrap;
+                    gap: 10px;
+                    justify-content: space-between;
+                    .repitem {
+                        display: flex;
+                        flex-flow: row wrap;
+                        gap: 10px;
+                        width: 100%;
+                        flex: 1 1 30%;
+                        min-width: 30%;
+                        max-width: 45%;
+                        .legendaryAbility {
+                            display: flex;
+                            flex-flow: row wrap;
+                            gap: 10px;
+                            width: 100%;
+                            justify-content: space-between;
+                            .chatButtons {
+                                display: none;
+                            }
+                            .legendaryAbilityName,
+                            .details {
+                                width: 100%;
+                            }
+                            .pointCost,
+                            .pageNumber {
+                                width: 45%;
+                                .textField {
+                                    width: 100%;
+                                }
+                            }
+                            .detailsInput {
+                                max-width: 100%;
+                                width: 100%;
+                                resize: vertical;
+                                background-color: transparent;
+                                color: var(--ink);
+                                font-family: var(--mainBody);
+                                font-size: 1.15em;
+                                border: none;
+                                height: 6rem;
+                                min-height: 3rem;
+                            }
+                        }
+                    }
+                }
+                .repcontrol {
+                    width: 100%;
+                }
             }
             
         }

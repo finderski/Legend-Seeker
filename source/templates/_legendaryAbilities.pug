@@ -8,7 +8,7 @@ input(class="showLegendaryAbilities", type="hidden", name="attr_isLegendaryMonst
     input(class='showConfig', type='hidden', name='attr_legendary_abilities_config_toggle')
     .condensed
         fieldset(class="repeating_legendary-abilities")
-            .specialTrait
+            .legendaryAbility
                 .chatButtons
                     button(class="sendToChat", type="roll" name="roll_whisper_legendary_ability", value="/w gm @{character_name} has the legendary_ability: @{legendary_ability_name}, which does @{legendary_ability_details}", data-i18n-title="whisper-to-chat")
                         span(name="attr_legendary_ability_name")
@@ -16,17 +16,27 @@ input(class="showLegendaryAbilities", type="hidden", name="attr_isLegendaryMonst
                         button(class="whisperToChat", type="roll" name="roll_legendary_ability_to_chat", value="/em has the : @{legendary_ability_name} (@{legendary_ability_page}), which does @{legendary_ability_details}", data-18n-title="send-to-chat")
                             span.iconButton q 
                 input(class="hidden", type="text", name="attr_legendary_ability_name", value="", data-i18n-placeholder="legendary-ability")
+                input(type="hidden", name="attr_legendary_ability_cost", value="", data-i18n-placeholder="point-cost")
                 input(class="hidden", type="text", name="attr_legendary_ability_page", value="")
                 textarea(class="hidden", name="attr_legendary_ability_details", data-i18n-placeholder="legendary-ability-details")
     .configure 
         fieldset(class="repeating_legendary-abilities")
-            .specialTrait
+            .legendaryAbility
                 .chatButtons
                     button(class="sendToChat", type="roll" name="roll_whisper_legendary_ability", value="/w gm @{character_name} has the legendary_ability: @{legendary_ability_name}, which does @{legendary_ability_details}", data-i18n-title="whisper-to-chat")
                         span(name="attr_legendary_ability_name")
                     .whisperButton 
                         button(class="whisperToChat", type="roll" name="roll_legendary_ability_to_chat", value="/em has the : @{legendary_ability_name} (@{legendary_ability_page}), which does @{legendary_ability_details}", data-18n-title="send-to-chat")
                             span.iconButton q 
-                input(type="text", name="attr_legendary_ability_name", value="", data-i18n-placeholder="legendary-ability")
-                input(type="text", name="attr_legendary_ability_page", value="")
-                textarea(name="attr_legendary_ability_details", data-i18n-placeholder="legendary-ability-details")
+                .legendaryAbilityName 
+                    label(class="fieldLabelAbove", data-i18n='legendary-ability-name') Legendary Ability
+                    input(class="textField", type="text", name="attr_legendary_ability_name", value="", data-i18n-placeholder="legendary-ability")
+                .pointCost 
+                    label(class="fieldLabelAbove", data-i18n='point-cost') Point Cost
+                    input(class="textField", type="number", name="attr_legendary_ability_cost", value="", data-i18n-placeholder="point-cost")
+                .pageNumber 
+                    label(class="fieldLabelAbove", data-i18n='page-number-abbr') Pg. #
+                    input(class="textField", type="text", name="attr_legendary_ability_page", value="")
+                .details
+                    label(class="fieldLabelAbove", data-i18n='legendary-ability-details') Details
+                    textarea(class="detailsInput", name="attr_legendary_ability_details", data-i18n-placeholder="legendary-ability-details")

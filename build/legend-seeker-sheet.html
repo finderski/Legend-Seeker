@@ -2259,7 +2259,7 @@
       <input class="showConfig" type="hidden" name="attr_legendary_abilities_config_toggle"/>
       <div class="condensed">
         <fieldset class="repeating_legendary-abilities">
-          <div class="specialTrait">
+          <div class="legendaryAbility">
             <div class="chatButtons">
               <button class="sendToChat" type="roll" name="roll_whisper_legendary_ability" value="/w gm @{character_name} has the legendary_ability: @{legendary_ability_name}, which does @{legendary_ability_details}" data-i18n-title="whisper-to-chat"><span name="attr_legendary_ability_name"></span></button>
               <div class="whisperButton"> 
@@ -2267,6 +2267,7 @@
               </div>
             </div>
             <input class="hidden" type="text" name="attr_legendary_ability_name" value="" data-i18n-placeholder="legendary-ability"/>
+            <input type="hidden" name="attr_legendary_ability_cost" value="" data-i18n-placeholder="point-cost"/>
             <input class="hidden" type="text" name="attr_legendary_ability_page" value=""/>
             <textarea class="hidden" name="attr_legendary_ability_details" data-i18n-placeholder="legendary-ability-details"></textarea>
           </div>
@@ -2274,16 +2275,29 @@
       </div>
       <div class="configure"> 
         <fieldset class="repeating_legendary-abilities">
-          <div class="specialTrait">
+          <div class="legendaryAbility">
             <div class="chatButtons">
               <button class="sendToChat" type="roll" name="roll_whisper_legendary_ability" value="/w gm @{character_name} has the legendary_ability: @{legendary_ability_name}, which does @{legendary_ability_details}" data-i18n-title="whisper-to-chat"><span name="attr_legendary_ability_name"></span></button>
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_legendary_ability_to_chat" value="/em has the : @{legendary_ability_name} (@{legendary_ability_page}), which does @{legendary_ability_details}" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
               </div>
             </div>
-            <input type="text" name="attr_legendary_ability_name" value="" data-i18n-placeholder="legendary-ability"/>
-            <input type="text" name="attr_legendary_ability_page" value=""/>
-            <textarea name="attr_legendary_ability_details" data-i18n-placeholder="legendary-ability-details"></textarea>
+            <div class="legendaryAbilityName"> 
+              <label class="fieldLabelAbove" data-i18n="legendary-ability-name">Legendary Ability</label>
+              <input class="textField" type="text" name="attr_legendary_ability_name" value="" data-i18n-placeholder="legendary-ability"/>
+            </div>
+            <div class="pointCost"> 
+              <label class="fieldLabelAbove" data-i18n="point-cost">Point Cost</label>
+              <input class="textField" type="number" name="attr_legendary_ability_cost" value="" data-i18n-placeholder="point-cost"/>
+            </div>
+            <div class="pageNumber"> 
+              <label class="fieldLabelAbove" data-i18n="page-number-abbr">Pg. #</label>
+              <input class="textField" type="text" name="attr_legendary_ability_page" value=""/>
+            </div>
+            <div class="details">
+              <label class="fieldLabelAbove" data-i18n="legendary-ability-details">Details</label>
+              <textarea class="detailsInput" name="attr_legendary_ability_details" data-i18n-placeholder="legendary-ability-details"></textarea>
+            </div>
           </div>
         </fieldset>
       </div>
@@ -4487,7 +4501,7 @@
               </div>
             </div>
             <div class="talentName"> 
-              <label class="fieldLabelAbove" data-i18n="talent">Misc Bonus</label>
+              <label class="fieldLabelAbove" data-i18n="talent">Talent</label>
               <input class="textField" type="text" name="attr_talent_name" value="" data-i18n-placeholder="talent"/>
             </div>
             <div class="pageNumber"> 

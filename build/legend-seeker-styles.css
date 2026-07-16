@@ -1959,6 +1959,59 @@ label.buttonStyle {
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  width: 100%;
+  flex: 1 1 30%;
+  min-width: 30%;
+  max-width: 45%;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility .chatButtons {
+  display: none;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility .legendaryAbilityName,
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility .details {
+  width: 100%;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility .pointCost,
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility .pageNumber {
+  width: 45%;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility .pointCost .textField,
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility .pageNumber .textField {
+  width: 100%;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontainer .repitem .legendaryAbility .detailsInput {
+  max-width: 100%;
+  width: 100%;
+  resize: vertical;
+  background-color: transparent;
+  color: var(--ink);
+  font-family: var(--mainBody);
+  font-size: 1.15em;
+  border: none;
+  height: 6rem;
+  min-height: 3rem;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure .repcontrol {
+  width: 100%;
 }
 .ui-dialog .charactersheet .npcView {
   font-synthesis: unset !important;

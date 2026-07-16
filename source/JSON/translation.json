@@ -290,5 +290,8 @@
   "spends-legendary-points": "spends a Legendary Point and rolls...",
   "spends-monstrous-legendary-points-1": "spends Monstrous Legendary Points to activate a Legendary Ability.",
   "spends-monstrous-legendary-points-2": "spends Monstrous Legendary Points to boost their defense score.",
-  "legendary-abilities": "Legendary Abilities"
+  "legendary-abilities": "Legendary Abilities",
+  "legendary-ability-name": "Legendary Ability Name",
+  "point-cost": "Point Cost",
+  "legendary-ability-details": "Legendary Ability Details..."
 }
