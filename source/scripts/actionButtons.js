@@ -335,16 +335,36 @@ on('clicked:use-monster-legendary-points', function(eventInfo) {
         } else if (values.character_token) {
             avatarURL = values.character_token.split('?')[0]; // Remove any query parameters for Roll20 hosted images
         }
-        let rollFormula = `&{template:emote} {{name=${characterName}}} `
+        let rollFormula = `! &{template:emote} {{name=${characterName}}} `
         // rollFormula += `{{avatar=${avatarURL}}} `;
-        rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
+        //rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
         rollFormula += legendaryPoints > 0 ? `{{text=^{spends-legendary-points}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
-        const numDice = level >= 15 ? 3 : level >= 8 ? 2 : 1;
-        rollFormula += `{{MLPs=[[${legendaryPoints}]]}}{{spend=[[?{Number of Points to Spend|1}]]}} {{effect=[[?{Effect|Activate Legendary Ability, Boost Defense Score}]]}}`;
+        rollFormula += `{{MLPs=[[${legendaryPoints}]]}}{{spend=[[?{Number of Points to Spend|1}]]}} {{effect=[[?{Effect|Activate Legendary Ability,1|Boost Defense Score,2}]]}}`;
         log('Roll formula', rollFormula, derivedStatsColor);
         const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
         startRoll(rollFormula, (results) => {
-            log("results", results.JSON.stringify(), derivedStatsColor);
+            log("results", JSON.stringify(results), derivedStatsColor);
+            let totalAvailableMLPs = results.results.MLPs.result || 0;
+            let totalSpentMLPs = results.results.spend.result || 0;
+            let effectChoice = results.results.effect.result || 0;
+            if (totalSpentMLPs > totalAvailableMLPs) {
+                log("Not enough Legendary Points", `Tried to spend ${totalSpentMLPs} Legendary Points, but only had ${totalAvailableMLPs} available.`, derivedStatsColor);
+                const noRollFormula = `! &{template:emote} {{pop-up=?{Not Enough Legendary Points Message|ok}}}`
+                startRoll(noRollFormula, (noActionResults) => {
+                    finishRoll(noActionResults.rollId)
+                });
+                return;
+            }
+            else {
+                log("Spending Legendary Points", `Spending ${totalSpentMLPs} Legendary Points, ${totalAvailableMLPs - totalSpentMLPs} remaining.`, derivedStatsColor);
+                // {{effect=?{Effect|Activate Legendary Ability|Boost Defense Score}}}
+                let newRollFormula = `&{template:emote} {{name=${characterName}}} {{avatar=[${characterName}](${avatarURL})}} {{text=^{spends-monstrous-legendary-points-${effectChoice}}}}`;
+                startRoll(newRollFormula, (mlpResults) => {
+                    finishRoll(mlpResults.rollId)
+                });
+            }
+            const newLegendaryPoints = totalAvailableMLPs - totalSpentMLPs;
+            setAttrs({ monster_legendary_points: newLegendaryPoints });
             finishRoll(results.rollId)
         });
     });

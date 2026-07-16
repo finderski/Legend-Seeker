@@ -2248,6 +2248,46 @@
         </div>
       </fieldset>
     </div>
+    <input class="showLegendaryAbilities" type="hidden" name="attr_isLegendaryMonster"/>
+    <div class="npcLegendaryAbilities">
+      <h3 class="headerLabel" data-i18n="legendary-abilities">LEGENDARY ABILITIES</h3>
+      <div class="config"> 
+        <label class="cog">
+          <input class="hiddenInput" type="checkbox" name="attr_legendary_abilities_config_toggle" value="1"/><span class="configIcon">y</span>
+        </label>
+      </div>
+      <input class="showConfig" type="hidden" name="attr_legendary_abilities_config_toggle"/>
+      <div class="condensed">
+        <fieldset class="repeating_legendary-abilities">
+          <div class="specialTrait">
+            <div class="chatButtons">
+              <button class="sendToChat" type="roll" name="roll_whisper_legendary_ability" value="/w gm @{character_name} has the legendary_ability: @{legendary_ability_name}, which does @{legendary_ability_details}" data-i18n-title="whisper-to-chat"><span name="attr_legendary_ability_name"></span></button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_legendary_ability_to_chat" value="/em has the : @{legendary_ability_name} (@{legendary_ability_page}), which does @{legendary_ability_details}" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
+              </div>
+            </div>
+            <input class="hidden" type="text" name="attr_legendary_ability_name" value="" data-i18n-placeholder="legendary-ability"/>
+            <input class="hidden" type="text" name="attr_legendary_ability_page" value=""/>
+            <textarea class="hidden" name="attr_legendary_ability_details" data-i18n-placeholder="legendary-ability-details"></textarea>
+          </div>
+        </fieldset>
+      </div>
+      <div class="configure"> 
+        <fieldset class="repeating_legendary-abilities">
+          <div class="specialTrait">
+            <div class="chatButtons">
+              <button class="sendToChat" type="roll" name="roll_whisper_legendary_ability" value="/w gm @{character_name} has the legendary_ability: @{legendary_ability_name}, which does @{legendary_ability_details}" data-i18n-title="whisper-to-chat"><span name="attr_legendary_ability_name"></span></button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_legendary_ability_to_chat" value="/em has the : @{legendary_ability_name} (@{legendary_ability_page}), which does @{legendary_ability_details}" data-18n-title="send-to-chat"><span class="iconButton">q </span></button>
+              </div>
+            </div>
+            <input type="text" name="attr_legendary_ability_name" value="" data-i18n-placeholder="legendary-ability"/>
+            <input type="text" name="attr_legendary_ability_page" value=""/>
+            <textarea name="attr_legendary_ability_details" data-i18n-placeholder="legendary-ability-details"></textarea>
+          </div>
+        </fieldset>
+      </div>
+    </div>
     <hr class="sectionDivider"/>
     <div class="combat">
       <input class="hideSection" type="hidden" name="attr_mana-tap_hider" value="0"/>
@@ -6588,16 +6628,36 @@ on('clicked:use-monster-legendary-points', function(eventInfo) {
         } else if (values.character_token) {
             avatarURL = values.character_token.split('?')[0]; // Remove any query parameters for Roll20 hosted images
         }
-        let rollFormula = `&{template:emote} {{name=${characterName}}} `
+        let rollFormula = `! &{template:emote} {{name=${characterName}}} `
         // rollFormula += `{{avatar=${avatarURL}}} `;
-        rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
+        //rollFormula += `{{avatar=[${characterName}](${avatarURL})}} `;
         rollFormula += legendaryPoints > 0 ? `{{text=^{spends-legendary-points}}} ` : '{{text=tries to spend a Legendary Point, but has none left...}} ';
-        const numDice = level >= 15 ? 3 : level >= 8 ? 2 : 1;
-        rollFormula += `{{MLPs=[[${legendaryPoints}]]}}{{spend=[[?{Number of Points to Spend|1}]]}} {{effect=[[?{Effect|Activate Legendary Ability, Boost Defense Score}]]}}`;
+        rollFormula += `{{MLPs=[[${legendaryPoints}]]}}{{spend=[[?{Number of Points to Spend|1}]]}} {{effect=[[?{Effect|Activate Legendary Ability,1|Boost Defense Score,2}]]}}`;
         log('Roll formula', rollFormula, derivedStatsColor);
         const noRollFormula = `! &{template:emote} {{pop-up=?{No Legendary Points Left Message|ok}}}`
         startRoll(rollFormula, (results) => {
-            log("results", results.JSON.stringify(), derivedStatsColor);
+            log("results", JSON.stringify(results), derivedStatsColor);
+            let totalAvailableMLPs = results.results.MLPs.result || 0;
+            let totalSpentMLPs = results.results.spend.result || 0;
+            let effectChoice = results.results.effect.result || 0;
+            if (totalSpentMLPs > totalAvailableMLPs) {
+                log("Not enough Legendary Points", `Tried to spend ${totalSpentMLPs} Legendary Points, but only had ${totalAvailableMLPs} available.`, derivedStatsColor);
+                const noRollFormula = `! &{template:emote} {{pop-up=?{Not Enough Legendary Points Message|ok}}}`
+                startRoll(noRollFormula, (noActionResults) => {
+                    finishRoll(noActionResults.rollId)
+                });
+                return;
+            }
+            else {
+                log("Spending Legendary Points", `Spending ${totalSpentMLPs} Legendary Points, ${totalAvailableMLPs - totalSpentMLPs} remaining.`, derivedStatsColor);
+                // {{effect=?{Effect|Activate Legendary Ability|Boost Defense Score}}}
+                let newRollFormula = `&{template:emote} {{name=${characterName}}} {{avatar=[${characterName}](${avatarURL})}} {{text=^{spends-monstrous-legendary-points-${effectChoice}}}}`;
+                startRoll(newRollFormula, (mlpResults) => {
+                    finishRoll(mlpResults.rollId)
+                });
+            }
+            const newLegendaryPoints = totalAvailableMLPs - totalSpentMLPs;
+            setAttrs({ monster_legendary_points: newLegendaryPoints });
             finishRoll(results.rollId)
         });
     });

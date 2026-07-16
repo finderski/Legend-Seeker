@@ -1901,6 +1901,69 @@ label.buttonStyle {
   font-synthesis: unset !important;
 }
 
+.ui-dialog .charactersheet .npcView .npcLegendaryAbilities {
+  display: none;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities h3.headerLabel {
+  display: inline-block;
+  width: max-content;
+  margin: 10px 15px 0 0;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .config {
+  left: -20px;
+  top: -10px;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .condensed,
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .configure {
+  display: none;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="0"] + .condensed {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="0"] + .condensed .repcontainer {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  font-size: 0.8em;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="0"] + .condensed .repcontainer .repitem {
+  display: inline-flex;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="0"] + .condensed .repcontainer .repitem .chatButtons button.sendToChat {
+  width: max-content;
+  background-color: var(--ink);
+  color: var(--parchment);
+  padding: 3px 6px;
+  border-radius: 50px;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="0"] + .condensed .repcontainer .repitem .chatButtons:hover button.sendToChat {
+  margin-right: 30px;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="0"] + .condensed .repcontainer .repitem .chatButtons:hover button.whisperToChat {
+  margin-left: -30px;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="0"] + .condensed .repcontrol[data-groupname^=repeating_] {
+  display: none;
+}
+.ui-dialog .charactersheet .npcView .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities .showConfig[value="1"] ~ .configure {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ui-dialog .charactersheet .npcView {
+  font-synthesis: unset !important;
+}
+
 .ui-dialog .charactersheet .frontPage .damageReduction,
 .ui-dialog .charactersheet .npcView .damageReduction {
   display: flex;

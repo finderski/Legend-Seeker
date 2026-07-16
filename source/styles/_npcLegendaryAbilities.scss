@@ -1,0 +1,66 @@
+@use './mixins/sheet-scope' as *;
+
+.npcView {
+    @include sheet-scope {
+        .npcLegendaryAbilities {
+            display: none;
+        }
+        .showLegendaryAbilities[value="1"] + .npcLegendaryAbilities {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            align-items: center;
+            h3.headerLabel {
+                display: inline-block;
+                width: max-content;
+                margin: 10px 15px 0 0;
+            }
+            .config {
+                left: -20px;
+                top: -10px;
+            }
+            .condensed,
+            .configure {
+                display: none;
+            }
+            .showConfig[value="0"] + .condensed {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-start;
+                align-items: center;
+                .repcontainer {
+                    display: flex;
+                    flex-flow: row wrap;
+                    gap: 10px;
+                    font-size: .8em;
+                    .repitem {
+                        display: inline-flex;
+                        .chatButtons button.sendToChat {
+                            width: max-content;
+                            background-color: var(--ink);
+                            color: var(--parchment);
+                            padding: 3px 6px;
+                            border-radius: 50px;
+                        }
+                        .chatButtons:hover button.sendToChat {
+                            margin-right: 30px;
+                        }
+                        .chatButtons:hover button.whisperToChat {
+                            margin-left: -30px;
+                        }
+                    }
+                }
+                .repcontrol[data-groupname^="repeating_"] {
+                    display: none;
+                }
+            }
+            .showConfig[value="1"] ~ .configure {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            
+        }
+    }
+}
