@@ -3030,7 +3030,7 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage,
 .ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .damage {
-  width: 28%;
+  width: 40%;
 }
 .ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .attributeMod,
 .ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .attributeMod {
@@ -3083,7 +3083,7 @@ label.buttonStyle {
 }
 .ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .crit,
 .ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .crit {
-  width: 29%;
+  width: 20%;
 }
 .ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk,
 .ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .atk {
