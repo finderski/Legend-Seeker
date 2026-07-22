@@ -1756,7 +1756,43 @@
         </label>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
         <label class="npcSkillsConfigLabel">
-          <input class="checkboxInput" type="checkbox" name="attr_show_craft" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft"> </span>
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-alchemy" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-alchemy"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-armorsmithing" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-armorsmithing"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-art" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-art"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-bowyer" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-bowyer"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-carpentry" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-carpentry"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-leatherworking" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-leatherworking"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-poisonmaking" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-poisonmaking"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-stonemasonry" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-stonemasonry"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-trapmaking" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-trapmaking"> </span>
+        </label>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <label class="npcSkillsConfigLabel">
+          <input class="checkboxInput" type="checkbox" name="attr_show_craft-weaponsmithing" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="craft-weaponsmithing"> </span>
         </label>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
         <label class="npcSkillsConfigLabel">
@@ -1891,14 +1927,113 @@
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
-        <input class="showSkill" type="hidden" name="attr_show_craft"/>
+        <input class="showSkill" type="hidden" name="attr_show_craft-alchemy"/>
         <div class="skillName">
           <div class="chatButtons">
-            <button class="sendToChat labelButton" type="roll" name="roll_craft_check" value="@{craft_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft"> Craft</span></button>
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-alchemy_check" value="@{craft-alchemy_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-alchemy"> Craft Alchemy</span></button>
             <div class="whisperButton"> 
-              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft_formula}"><span class="iconButton">w</span></button>
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-alchemy_formula}"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_craft_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft_bonus}[Craft} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_craft-alchemy_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-alchemy}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-alchemy_bonus}[Craft Alchemy} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-armorsmithing"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-armorsmithing_check" value="@{craft-armorsmithing_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-armorsmithing"> Craft Armorsmithing</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-armorsmithing_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-armorsmithing_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-armorsmithing}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-armorsmithing_bonus}[Craft Armorsmithing} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-art"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-art_check" value="@{craft-art_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-art"> Craft Art</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-art_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-art_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-art}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-art_bonus}[Craft Art} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-bowyer"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-bowyer_check" value="@{craft-bowyer_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-bowyer"> Craft Bowyer</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-bowyer_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-bowyer_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-bowyer}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-bowyer_bonus}[Craft Bowyer} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-carpentry"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-carpentry_check" value="@{craft-carpentry_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-carpentry"> Craft Carpentry</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-carpentry_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-carpentry_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-carpentry}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-carpentry_bonus}[Craft Carpentry} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-leatherworking"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-leatherworking_check" value="@{craft-leatherworking_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-leatherworking"> Craft Leatherworking</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-leatherworking_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-leatherworking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-leatherworking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-leatherworking_bonus}[Craft Leatherworking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-poisonmaking"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-poisonmaking_check" value="@{craft-poisonmaking_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-poisonmaking"> Craft Poisonmaking</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-poisonmaking_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-poisonmaking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-poisonmaking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-poisonmaking_bonus}[Craft Poisonmaking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-stonemasonry"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-stonemasonry_check" value="@{craft-stonemasonry_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-stonemasonry"> Craft Stonemasonry</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-stonemasonry_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-stonemasonry_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-stonemasonry}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-stonemasonry_bonus}[Craft Stonemasonry} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-trapmaking"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-trapmaking_check" value="@{craft-trapmaking_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-trapmaking"> Craft Trapmaking</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-trapmaking_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-trapmaking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-trapmaking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-trapmaking_bonus}[Craft Trapmaking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+          </div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <input class="showSkill" type="hidden" name="attr_show_craft-weaponsmithing"/>
+        <div class="skillName">
+          <div class="chatButtons">
+            <button class="sendToChat labelButton" type="roll" name="roll_craft-weaponsmithing_check" value="@{craft-weaponsmithing_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-weaponsmithing"> Craft Weaponsmithing</span></button>
+            <div class="whisperButton"> 
+              <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-weaponsmithing_formula}"><span class="iconButton">w</span></button>
+            </div>
+            <input type="hidden" name="attr_craft-weaponsmithing_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-weaponsmithing}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-weaponsmithing_bonus}[Craft Weaponsmithing} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -2984,49 +3119,526 @@
           <div class="skillName">
             <div class="chatButtons">
               <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
-              <button class="sendToChat labelButton" type="roll" name="roll_craft_check" value="@{craft_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft"> Craft</span>
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-alchemy_check" value="@{craft-alchemy_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-alchemy"> Craft Alchemy</span>
               </button>
               <div class="whisperButton"> 
-                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft_formula}"><span class="iconButton">w</span></button>
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-alchemy_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft_bonus}[Craft} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-alchemy_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-alchemy}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-alchemy_bonus}[Craft Alchemy} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
           <div class="skillBonus"> 
-            <input class="attributeInput readOnly" type="text" name="attr_craft_bonus" readonly="readonly"/>
+            <input class="attributeInput readOnly" type="text" name="attr_craft-alchemy_bonus" readonly="readonly"/>
           </div>
           <div class="equals"></div>
           <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-alchemy_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_craft_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-alchemy_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="skillFocus">
             <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
             <label>
-              <input class="hiddenInput" type="checkbox" name="attr_craft_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-alchemy_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
             </label>
           </div>
           <div class="addition"></div>
           <div class="miscMod">
-            <input class="attributeInput" type="text" name="attr_craft_misc" value="0"/>
+            <input class="attributeInput" type="text" name="attr_craft-alchemy_misc" value="0"/>
           </div>
         </div>
-        <input class="skillConfig" type="hidden" name="attr_craft_config_toggle"/>
+        <input class="skillConfig" type="hidden" name="attr_craft-alchemy_config_toggle"/>
         <div class="skillConfigSection">
           <div class="spacer">&nbsp;</div>
           <div class="abilityModSelector">
             <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
-            <select class="ls-Dropdown" name="attr_craft_ability">
+            <select class="ls-Dropdown" name="attr_craft-alchemy_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-armorsmithing_check" value="@{craft-armorsmithing_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-armorsmithing"> Craft Armorsmithing</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-armorsmithing_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-armorsmithing_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-armorsmithing}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-armorsmithing_bonus}[Craft Armorsmithing} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-armorsmithing_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-armorsmithing_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-armorsmithing_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-armorsmithing_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-armorsmithing_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-armorsmithing_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-armorsmithing_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-art_check" value="@{craft-art_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-art"> Craft Art</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-art_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-art_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-art}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-art_bonus}[Craft Art} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-art_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-art_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-art_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-art_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-art_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-art_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-art_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-bowyer_check" value="@{craft-bowyer_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-bowyer"> Craft Bowyer</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-bowyer_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-bowyer_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-bowyer}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-bowyer_bonus}[Craft Bowyer} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-bowyer_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-bowyer_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-bowyer_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-bowyer_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-bowyer_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-bowyer_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-bowyer_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-carpentry_check" value="@{craft-carpentry_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-carpentry"> Craft Carpentry</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-carpentry_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-carpentry_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-carpentry}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-carpentry_bonus}[Craft Carpentry} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-carpentry_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-carpentry_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-carpentry_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-carpentry_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-carpentry_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-carpentry_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-carpentry_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-leatherworking_check" value="@{craft-leatherworking_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-leatherworking"> Craft Leatherworking</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-leatherworking_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-leatherworking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-leatherworking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-leatherworking_bonus}[Craft Leatherworking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-leatherworking_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-leatherworking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-leatherworking_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-leatherworking_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-leatherworking_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-leatherworking_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-leatherworking_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-poisonmaking_check" value="@{craft-poisonmaking_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-poisonmaking"> Craft Poisonmaking</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-poisonmaking_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-poisonmaking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-poisonmaking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-poisonmaking_bonus}[Craft Poisonmaking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-poisonmaking_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-poisonmaking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-poisonmaking_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-poisonmaking_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-poisonmaking_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-poisonmaking_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-poisonmaking_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-stonemasonry_check" value="@{craft-stonemasonry_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-stonemasonry"> Craft Stonemasonry</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-stonemasonry_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-stonemasonry_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-stonemasonry}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-stonemasonry_bonus}[Craft Stonemasonry} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-stonemasonry_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-stonemasonry_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-stonemasonry_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-stonemasonry_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-stonemasonry_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-stonemasonry_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-stonemasonry_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-trapmaking_check" value="@{craft-trapmaking_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-trapmaking"> Craft Trapmaking</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-trapmaking_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-trapmaking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-trapmaking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-trapmaking_bonus}[Craft Trapmaking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-trapmaking_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-trapmaking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-trapmaking_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-trapmaking_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-trapmaking_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-trapmaking_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-trapmaking_ability">
+              <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
+            </select>
+          </div>
+          <div class="endSpacer">&nbsp;</div>
+        </div>
+        <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
+        <div class="skill">
+          <div class="skillName">
+            <div class="chatButtons">
+              <!-- button(class="sendToChat labelButton", type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")-->
+              <button class="sendToChat labelButton" type="roll" name="roll_craft-weaponsmithing_check" value="@{craft-weaponsmithing_formula}" data-i18n-title="roll-skill-check"><span class="allcaps" data-i18n="craft-weaponsmithing"> Craft Weaponsmithing</span>
+              </button>
+              <div class="whisperButton"> 
+                <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-weaponsmithing_formula}"><span class="iconButton">w</span></button>
+              </div>
+              <input type="hidden" name="attr_craft-weaponsmithing_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-weaponsmithing}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-weaponsmithing_bonus}[Craft Weaponsmithing} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            </div>
+          </div>
+          <div class="skillDetails"></div>
+          <div class="skillBonus"> 
+            <input class="attributeInput readOnly" type="text" name="attr_craft-weaponsmithing_bonus" readonly="readonly"/>
+          </div>
+          <div class="equals"></div>
+          <div class="halfLevel"><span class="attributeInput readOnly" type="text" name="attr_half-level"></span></div>
+          <div class="addition"></div>
+          <div class="abilityMod"> 
+            <!-- If statement used to be here...-->
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-weaponsmithing_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+          </div>
+          <div class="addition"></div>
+          <div class="trained">
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-weaponsmithing_trained" value="5"/><span class="trained">5</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="skillFocus">
+            <!-- input(class="attributeInput", type="text", name=`attr_${skillName}_focus`, value="0")-->
+            <label>
+              <input class="hiddenInput" type="checkbox" name="attr_craft-weaponsmithing_focus" value="3"/><span class="trained">3</span><span class="untrained">0</span>
+            </label>
+          </div>
+          <div class="addition"></div>
+          <div class="miscMod">
+            <input class="attributeInput" type="text" name="attr_craft-weaponsmithing_misc" value="0"/>
+          </div>
+        </div>
+        <input class="skillConfig" type="hidden" name="attr_craft-weaponsmithing_config_toggle"/>
+        <div class="skillConfigSection">
+          <div class="spacer">&nbsp;</div>
+          <div class="abilityModSelector">
+            <label class="fieldLabelAbove" data-i18n="linked-attribute">Linked Attribute</label>
+            <select class="ls-Dropdown" name="attr_craft-weaponsmithing_ability">
               <option value="@{wisdom}" selected="selected" data-i18n="wisdom">Wisdom</option>
             </select>
           </div>
@@ -4164,7 +4776,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{stealth_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{size_penalty}[Size Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{stealth_bonus}[Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{stealth_bonus}[Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4739,7 +5351,7 @@ const listOfAttributes = ['strength_modifier', 'dexterity_modifier', 'constituti
 const adjustedAttributes = ['strength_adjusted', 'dexterity_adjusted', 'constitution_adjusted', 'intelligence_adjusted', 'wisdom_adjusted', 'charisma_adjusted'];
 
 // List of all skills
-const listOfSklls = ['acrobatics','climb','craft','deception','endurance','gather-information','initiative','invoke-arcana','jump','lore-arcana','lore-architecture','lore-dungeoneering','lore-geography','lore-history','lore-keepers','lore-nature','lore-nobility','lore-planes','lore-religion','lore-streetwise','notice','persuasion','ride','sense-motive','stealth','survival','swim','tinkering','treat-wounds','mana-tap'];
+const listOfSklls = ['acrobatics','climb','craft-alchemy','craft-armorsmithing','craft-art','craft-bowyer','craft-carpentry','craft-leatherworking','craft-poisonmaking','craft-stonemasonry','craft-trapmaking','craft-weaponsmithing','deception','endurance','gather-information','initiative','invoke-arcana','jump','lore-arcana','lore-architecture','lore-dungeoneering','lore-geography','lore-history','lore-keepers','lore-nature','lore-nobility','lore-planes','lore-religion','lore-streetwise','notice','persuasion','ride','sense-motive','stealth','survival','swim','tinkering','treat-wounds','mana-tap'];
 
 // For Weapons
 const damageFields = ["repeating_weapons_weapon-half-level", "repeating_weapons_weapon-damage-dice", "repeating_weapons_weapon-damage-attribute-mod", "repeating_weapons_damage-attribute-mod-value", "repeating_weapons_weapon-damage-misc-mod"];
@@ -5127,7 +5739,7 @@ on('change:current_character_type change:monster_size', function() {
                 //Unset Defense Mod
                 setattrs["monsterous_mod"] = 0;
                 //Unset Stealth Mod
-                setattrs["size_penalty"] = sizeModifiers[`${monsterSize}`]["stealthMod"];
+                setattrs["size_penalty"] = 0;
                 //Unset Damage Threshold Mod
                 setattrs["damage_threshold_mod"] = 0;
                 //Unset Carry Capacity Multiplier
@@ -5155,6 +5767,11 @@ on('change:current_character_type change:monster_size', function() {
             setattrs["carry_capacity_multiplier"] = sizeModifiers[`${monsterSize}`]["carryingCapacityMultiplier"];
         }
         setAttrs(setattrs);
+        listOfSklls.forEach(skill => {
+            on(`change:${skill}_trained change:${skill}_focus change:${skill}_misc change:${skill}_ability`, () => {
+                recalcSkill(skill);
+            });
+        });
     });
 });
 
@@ -5636,7 +6253,9 @@ function recalcSkill(skill) {
         `${skill}_trained`,
         `${skill}_focus`,
         `${skill}_misc`,
-        `${skill}_ability`
+        `${skill}_ability`,
+        "current_character_type",
+        "size_penalty"
     ];
 
     const allFields = [...fields, ...listOfAttributes];
@@ -5654,9 +6273,16 @@ function recalcSkill(skill) {
         const misc = parseInt(values[`${skill}_misc`], 10) || 0;
         const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
         const calcAbilityMod = attribute === "dexterity" ? Math.min(abilityMod, parseInt(values["capped_dex_mod"], 10) || 0) : abilityMod;
-        
+        const sizePenalty = parseInt(values["size_penalty"], 10) || 0;
+        const currentCharacterType = parseInt(values["current_character_type"], 10) || 1;
+        let skillBonusTotal = 0;
+        if (currentCharacterType === 1) {
+            skillBonusTotal = halfLevel + trained + focus + misc + calcAbilityMod;
+        } else {
+            skillBonusTotal = skill === 'stealth' ? halfLevel + trained + focus + misc + calcAbilityMod + sizePenalty : halfLevel + trained + focus + misc + calcAbilityMod;
+        }
         setAttrs({
-            [`${skill}_bonus`]: halfLevel + trained + focus + misc + calcAbilityMod
+            [`${skill}_bonus`]: skillBonusTotal
         });
     });
 }
@@ -5713,6 +6339,11 @@ listOfAttributes.forEach(attribute => {
             });
         });
     });
+});
+
+// when the size penalty changes, re-calculate stealth
+on('change:size_penalty', function() {
+    recalcSkill('stealth');
 });// Sheet Workers for Weapons
 //--------------------------
 //rereating_weapons_weapon = Weapon Name

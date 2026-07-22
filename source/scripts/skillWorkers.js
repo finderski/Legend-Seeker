@@ -11,7 +11,9 @@ function recalcSkill(skill) {
         `${skill}_trained`,
         `${skill}_focus`,
         `${skill}_misc`,
-        `${skill}_ability`
+        `${skill}_ability`,
+        "current_character_type",
+        "size_penalty"
     ];
 
     const allFields = [...fields, ...listOfAttributes];
@@ -29,9 +31,16 @@ function recalcSkill(skill) {
         const misc = parseInt(values[`${skill}_misc`], 10) || 0;
         const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
         const calcAbilityMod = attribute === "dexterity" ? Math.min(abilityMod, parseInt(values["capped_dex_mod"], 10) || 0) : abilityMod;
-        
+        const sizePenalty = parseInt(values["size_penalty"], 10) || 0;
+        const currentCharacterType = parseInt(values["current_character_type"], 10) || 1;
+        let skillBonusTotal = 0;
+        if (currentCharacterType === 1) {
+            skillBonusTotal = halfLevel + trained + focus + misc + calcAbilityMod;
+        } else {
+            skillBonusTotal = skill === 'stealth' ? halfLevel + trained + focus + misc + calcAbilityMod + sizePenalty : halfLevel + trained + focus + misc + calcAbilityMod;
+        }
         setAttrs({
-            [`${skill}_bonus`]: halfLevel + trained + focus + misc + calcAbilityMod
+            [`${skill}_bonus`]: skillBonusTotal
         });
     });
 }
@@ -88,4 +97,9 @@ listOfAttributes.forEach(attribute => {
             });
         });
     });
+});
+
+// when the size penalty changes, re-calculate stealth
+on('change:size_penalty', function() {
+    recalcSkill('stealth');
 });

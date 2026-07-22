@@ -11,7 +11,7 @@ const listOfAttributes = ['strength_modifier', 'dexterity_modifier', 'constituti
 const adjustedAttributes = ['strength_adjusted', 'dexterity_adjusted', 'constitution_adjusted', 'intelligence_adjusted', 'wisdom_adjusted', 'charisma_adjusted'];
 
 // List of all skills
-const listOfSklls = ['acrobatics','climb','craft','deception','endurance','gather-information','initiative','invoke-arcana','jump','lore-arcana','lore-architecture','lore-dungeoneering','lore-geography','lore-history','lore-keepers','lore-nature','lore-nobility','lore-planes','lore-religion','lore-streetwise','notice','persuasion','ride','sense-motive','stealth','survival','swim','tinkering','treat-wounds','mana-tap'];
+const listOfSklls = ['acrobatics','climb','craft-alchemy','craft-armorsmithing','craft-art','craft-bowyer','craft-carpentry','craft-leatherworking','craft-poisonmaking','craft-stonemasonry','craft-trapmaking','craft-weaponsmithing','deception','endurance','gather-information','initiative','invoke-arcana','jump','lore-arcana','lore-architecture','lore-dungeoneering','lore-geography','lore-history','lore-keepers','lore-nature','lore-nobility','lore-planes','lore-religion','lore-streetwise','notice','persuasion','ride','sense-motive','stealth','survival','swim','tinkering','treat-wounds','mana-tap'];
 
 // For Weapons
 const damageFields = ["repeating_weapons_weapon-half-level", "repeating_weapons_weapon-damage-dice", "repeating_weapons_weapon-damage-attribute-mod", "repeating_weapons_damage-attribute-mod-value", "repeating_weapons_weapon-damage-misc-mod"];

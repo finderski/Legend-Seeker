@@ -87,7 +87,7 @@ on('change:current_character_type change:monster_size', function() {
                 //Unset Defense Mod
                 setattrs["monsterous_mod"] = 0;
                 //Unset Stealth Mod
-                setattrs["size_penalty"] = sizeModifiers[`${monsterSize}`]["stealthMod"];
+                setattrs["size_penalty"] = 0;
                 //Unset Damage Threshold Mod
                 setattrs["damage_threshold_mod"] = 0;
                 //Unset Carry Capacity Multiplier
@@ -115,6 +115,11 @@ on('change:current_character_type change:monster_size', function() {
             setattrs["carry_capacity_multiplier"] = sizeModifiers[`${monsterSize}`]["carryingCapacityMultiplier"];
         }
         setAttrs(setattrs);
+        listOfSklls.forEach(skill => {
+            on(`change:${skill}_trained change:${skill}_focus change:${skill}_misc change:${skill}_ability`, () => {
+                recalcSkill(skill);
+            });
+        });
     });
 });
 
