@@ -43,17 +43,25 @@ function compareVersions(a, b) {
     return 0;
 }
 
-const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn','base_attack_bonus'];
+const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn','base_attack_bonus','current_character_type'];
 sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.2.2';
+        const currentVersion = '0.2.3';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
         const level = parseInt(values.level) || 1;
         const bab = parseInt(values.base_attack_bonus) || 0;
+        const currStr = parseInt(values.strength) || 0;
+        const currDex = parseInt(values.dexterity) || 0;
+        const currCon = parseInt(values.constitution) || 0;
+        const currInt = parseInt(values.intelligence) || 0;
+        const currWis = parseInt(values.wisdom) || 0;
+        const currCha = parseInt(values.charisma) || 0; 
+        const currentCharacterType = parseInt(values.current_character_type, 10) || 1;
+
         log("Sheet Version", sheetVersion, r20color);
         log("Current Version", currentVersion, r20color);
         log("Comparing Versions", `compareVersions(sheetVersion, currentVersion) = ${compareVersions(sheetVersion, currentVersion)}`, r20color);
@@ -119,6 +127,14 @@ on('sheet:opened', function() {
             setattrs['sheetversion'] = currentVersion;
             setAttrs(setattrs);
             log("version 0.2.2 update complete", "Sheet version updated to 0.2.2 and Defense Score Calcs and Double Crit should now be fixed", r20color);
+        }
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.2.3', "Fix Stealth Skill Calculation", r20color);
+            listOfSklls.forEach(skill => { recalcSkill(skill); });
+            const setattrs = {};
+            setattrs['sheetversion'] = currentVersion;
+            setAttrs(setattrs);
+            log("version 0.2.3 update complete", "Sheet version updated to 0.2.3 and Stealth Skill Calculation should now be fixed", r20color);
         }
         else {
             log('Sheet version is up to date', "No updates needed", r20color);

@@ -62,7 +62,8 @@ function repeatingSimpleSumWCheck(
 }
 
 const checkDiceExpression = (expression) => {
-    const dicePattern = /^\d+(d\d+)?([+-]\d+)?$/i;
+    // const dicePattern = /^\d+(d\d+)?([+-]\d+)?$/i;
+    const dicePattern = /^\s*\d+(d\d+)?(\[[^\]]+\])?(\s*[+-]\s*\d+(d\d+)?(\[[^\]]+\])?)*\s*$/i;
     log("Dice Expression Check", dicePattern.test(expression), deltaColor);
     return dicePattern.test(expression);
 }
