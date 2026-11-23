@@ -152,6 +152,20 @@
     .inlinerollresult.fullfail {
         color: var(--dragon-wing);
     }
+    .sheet-custom-d20-result {
+        .inlinerollresult,
+        .inlinerollresult.fullcrit,
+        .inlinerollresult.fullfail,
+        .inlinerollresult.importantroll {
+            color: var(--ink) !important;
+        }
+        &.sheet-crit .inlinerollresult {
+            color: var(--critical) !important;
+        }
+        &.sheet-fumble .inlinerollresult {
+            color: var(--dragon-wing) !important;
+        }
+    }
 }
 
 .sheet-rolltemplate-emote {

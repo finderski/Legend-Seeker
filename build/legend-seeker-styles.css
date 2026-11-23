@@ -176,8 +176,11 @@ input:not(:checked) + .isCarried::before {
 .charsheet button.textButton[type=roll]:before,
 .ui-dialog .charactersheet .charsheet button.textButton[type=action]:before,
 .charsheet button.labelButton[type=roll]:before,
+.charsheet button.labelButton[type=action]:before,
 .charsheet button.sendToChat[type=roll]:before,
+.charsheet button.sendToChat[type=action]:before,
 .charsheet button.whisperToChat[type=roll]:before,
+.charsheet button.whisperToChat[type=action]:before,
 .charsheet button.sheetToggle[type=roll]:before {
   content: "";
   color: var(--ink);
@@ -266,7 +269,8 @@ input:not(:checked) + .isCarried::before {
   font-size: 1.2em;
 }
 
-.ui-dialog .charactersheet button[type=roll].whisperToChat {
+.ui-dialog .charactersheet button[type=roll].whisperToChat,
+.ui-dialog .charactersheet button[type=action].whisperToChat {
   padding: 0 5px;
   width: 30px;
   min-width: 30px;
@@ -3415,6 +3419,18 @@ label.buttonStyle {
 }
 .sheet-rolltemplate-roll .inlinerollresult.fullfail {
   color: var(--dragon-wing);
+}
+.sheet-rolltemplate-roll .sheet-custom-d20-result .inlinerollresult,
+.sheet-rolltemplate-roll .sheet-custom-d20-result .inlinerollresult.fullcrit,
+.sheet-rolltemplate-roll .sheet-custom-d20-result .inlinerollresult.fullfail,
+.sheet-rolltemplate-roll .sheet-custom-d20-result .inlinerollresult.importantroll {
+  color: var(--ink) !important;
+}
+.sheet-rolltemplate-roll .sheet-custom-d20-result.sheet-crit .inlinerollresult {
+  color: var(--critical) !important;
+}
+.sheet-rolltemplate-roll .sheet-custom-d20-result.sheet-fumble .inlinerollresult {
+  color: var(--dragon-wing) !important;
 }
 
 .sheet-rolltemplate-emote {

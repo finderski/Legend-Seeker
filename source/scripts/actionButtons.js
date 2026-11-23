@@ -30,6 +30,118 @@ const parseSignedValue = value => {
     return parseInt(String(value).split(' ')[0], 10) || 0;
 };
 
+const ARMOR_CHECK_SKILLS = new Set([
+    'acrobatics',
+    'climb',
+    'endurance',
+    'initiative',
+    'jump',
+    'notice',
+    'ride',
+    'stealth',
+    'swim',
+    'tinkering'
+]);
+
+const ENCUMBRANCE_SKILLS = new Set([
+    'acrobatics',
+    'climb',
+    'endurance',
+    'initiative',
+    'jump',
+    'stealth',
+    'swim'
+]);
+
+const buildStandardD20Template = ({ characterName, title, terms, whisper = false, tracker = false }) => {
+    const whisperPrefix = whisper ? '/w gm ' : '';
+    const trackerFlag = tracker ? ' &{tracker}' : '';
+    return `${whisperPrefix}&{template:roll} {{customd20=1}} {{name=${characterName}}} {{title=${title}}} {{roll=[[${terms.join(' + ')}${trackerFlag}]]}} {{critical-success=[[0]]}} {{critical-failure=[[0]]}}`;
+};
+
+const syncStandardD20ActionCalls = () => {
+    getAttrs(['character_name'], values => {
+        const characterName = values.character_name || 'character_name';
+        const setattrs = {};
+        listOfSklls.forEach(skillName => {
+            setattrs[`${skillName}_formula`] = `%{${characterName}|${skillName}_check}`;
+        });
+        coreAttributes.forEach(attributeName => {
+            setattrs[`${attributeName}_check_formula`] = `%{${characterName}|${attributeName}_check}`;
+        });
+        setAttrs(setattrs, { silent: true });
+    });
+};
+
+const finishStandardD20Roll = (results, criticalThreshold = 20, computedResults = {}) => {
+    const d20ComputedResults = getD20ComputedResults(results.results.roll, criticalThreshold);
+    Object.keys(computedResults).forEach(key => {
+        d20ComputedResults[key] = computedResults[key];
+    });
+    finishRoll(results.rollId, d20ComputedResults);
+};
+
+const runSkillCheck = (skillName, whisper = false) => () => {
+    const fields = [
+        'character_name',
+        'condition',
+        'multi-action-penalty',
+        'armor_check_penalty',
+        'encumbrance_penalty',
+        'current_character_type',
+        `${skillName}_bonus`
+    ];
+
+    getAttrs(fields, values => {
+        const terms = ['1d20cs20cf1'];
+        if (ARMOR_CHECK_SKILLS.has(skillName)) {
+            terms.push(`${toInt(values.armor_check_penalty)}[Armor Check Penalty]`);
+        }
+        if (ENCUMBRANCE_SKILLS.has(skillName) && toInt(values.current_character_type) !== 4) {
+            terms.push(`${toInt(values.encumbrance_penalty)}[Encumbrance Penalty]`);
+        }
+        terms.push(`${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`);
+        terms.push(`${toInt(values[`${skillName}_bonus`])}[^{skill-bonus}]`);
+        terms.push(`${parseSignedValue(values.condition)}[Condition]`);
+        terms.push('?{Additional Modifiers|0}[^{additional-modifiers}]');
+
+        const rollTemplate = buildStandardD20Template({
+            characterName: values.character_name || 'Character',
+            title: `^{${skillName}}`,
+            terms,
+            whisper,
+            tracker: skillName === 'initiative'
+        });
+        startRoll(rollTemplate, results => finishStandardD20Roll(results));
+    });
+};
+
+const runAttributeCheck = (attributeName, whisper = false) => () => {
+    const fields = [
+        'character_name',
+        'condition',
+        'multi-action-penalty',
+        `${attributeName}_modifier`
+    ];
+
+    getAttrs(fields, values => {
+        const terms = [
+            '1d20cs20cf1',
+            `${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`,
+            `${toInt(values[`${attributeName}_modifier`])}[^{attribute-modifier}]`,
+            `${parseSignedValue(values.condition)}[Condition]`,
+            '?{Additional Modifiers|0}[^{additional-modifiers}]'
+        ];
+        const rollTemplate = buildStandardD20Template({
+            characterName: values.character_name || 'Character',
+            title: `^{${attributeName}}`,
+            terms,
+            whisper
+        });
+        startRoll(rollTemplate, results => finishStandardD20Roll(results));
+    });
+};
+
 const explodeDiceExpression = expression =>
     String(expression || '').replace(/(\d+d\d+)/gi, '$1!');
 
@@ -78,8 +190,10 @@ const syncWeaponActionButtons = rowId => {
     getAttrs(['character_name'], values => {
         const characterName = values.character_name || 'character_name';
         const setattrs = {};
-        setattrs[`repeating_weapons_${rowId}_weapon-attack-action-call`] = buildWeaponActionCall(characterName, rowId, 'weaponattack');
+        const attackActionCall = buildWeaponActionCall(characterName, rowId, 'weaponattack');
+        setattrs[`repeating_weapons_${rowId}_weapon-attack-action-call`] = attackActionCall;
         setattrs[`repeating_weapons_${rowId}_weapon-whisper-attack-action-call`] = buildWeaponActionCall(characterName, rowId, 'weaponwhisperattack');
+        setattrs[`repeating_weapons_${rowId}_attack_formula`] = attackActionCall;
         setattrs[`repeating_weapons_${rowId}_damage_button`] = buildWeaponDamageButtons(rowId);
         setattrs[`repeating_weapons_${rowId}_whisper_damage_button`] = buildWeaponDamageButtons(rowId, true);
         setAttrs(setattrs, { silent: true });
@@ -153,14 +267,15 @@ const runWeaponAttack = whisper => eventInfo => {
         const condition = parseSignedValue(values.condition);
         const whisperPrefix = whisper ? '/w gm ' : '';
         const damageButtons = buildWeaponDamageButtons(rowId, whisper);
-        const rollTemplate = `${whisperPrefix}&{template:roll} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf1 + ${attackBonus}[ATK] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} ${damageButtons}`;
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{customd20=1}} {{name=${characterName}}} {{title=${weaponName}}} {{roll=[[1d20cs>${critPoint}cf1 + ${attackBonus}[ATK] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier Pop-up]]]}} {{target=[[?{Target Defense Score|10}]]}} {{raises=[[0]]}} {{critical-success=[[0]]}} {{critical-failure=[[0]]}} ${damageButtons}`;
 
         startRoll(rollTemplate, results => {
-            const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
+            const d20State = getPrimaryD20State(results.results.roll, critThreshold);
+            const naturalRoll = d20State.naturalRoll;
             const totalRoll = toInt(results.results.roll.result);
             const target = toInt(results.results.target.result);
-            const isCriticalFailure = naturalRoll === 1;
-            const crit = naturalRoll >= critThreshold ? 1 : 0;
+            const isCriticalFailure = !!d20State.criticalFailure;
+            const crit = d20State.criticalSuccess;
             const success = !isCriticalFailure && (crit || totalRoll >= target) ? 1 : 0;
             const raises = success ? Math.max(0, Math.floor((totalRoll - target) / 5)) : 0;
 
@@ -174,9 +289,9 @@ const runWeaponAttack = whisper => eventInfo => {
                 target
             });
 
-            finishRoll(results.rollId, {
-                raises
-            });
+            const computedResults = getD20ComputedResults(results.results.roll, critThreshold);
+            computedResults.raises = raises;
+            finishRoll(results.rollId, computedResults);
         });
     });
 };
@@ -257,6 +372,8 @@ const runWeaponDamage = ({ whisper = false, forceCrit = false } = {}) => eventIn
 
 on('sheet:opened', syncAllWeaponActionButtons);
 on('change:character_name', syncAllWeaponActionButtons);
+on('sheet:opened', syncStandardD20ActionCalls);
+on('change:character_name', syncStandardD20ActionCalls);
 on('change:repeating_weapons:weapon', eventInfo => {
     syncWeaponActionButtons(getRepeatingRowId(eventInfo.sourceAttribute));
 });
@@ -267,6 +384,17 @@ on('clicked:repeating_weapons:weapondamage', runWeaponDamage());
 on('clicked:repeating_weapons:weaponcriticaldamage', runWeaponDamage({ forceCrit: true }));
 on('clicked:repeating_weapons:weaponwhisperdamage', runWeaponDamage({ whisper: true }));
 on('clicked:repeating_weapons:weaponwhispercriticaldamage', runWeaponDamage({ whisper: true, forceCrit: true }));
+
+listOfSklls.forEach(skillName => {
+    on(`clicked:${skillName}_check`, runSkillCheck(skillName));
+    on(`clicked:whisper_${skillName}_check`, runSkillCheck(skillName, true));
+});
+on('clicked:initiative', runSkillCheck('initiative'));
+
+coreAttributes.forEach(attributeName => {
+    on(`clicked:${attributeName}_check`, runAttributeCheck(attributeName));
+    on(`clicked:whisper_${attributeName}_check`, runAttributeCheck(attributeName, true));
+});
 
 // Second Wind
 on('clicked:secondwind', function() {

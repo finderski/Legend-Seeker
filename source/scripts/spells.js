@@ -24,6 +24,24 @@ const getRepeatingSpellRowId = sourceAttribute => {
 const buildSpellActionName = (rowId, actionName) =>
     `repeating_spells_${rowId}_${actionName}`;
 
+const syncSpellActionCall = rowId => {
+    if (!rowId) {
+        return;
+    }
+    getAttrs(['character_name'], values => {
+        const characterName = values.character_name || 'character_name';
+        setAttrs({
+            [`repeating_spells_${rowId}_spell-action-call`]: `%{${characterName}|${buildSpellActionName(rowId, 'spellcast')}}`
+        }, { silent: true });
+    });
+};
+
+const syncAllSpellActionCalls = () => {
+    getSectionIDs('repeating_spells', ids => {
+        ids.forEach(syncSpellActionCall);
+    });
+};
+
 const parseSpellHistory = historyValue => {
     try {
         const parsed = JSON.parse(historyValue || '[]');
@@ -264,13 +282,14 @@ const runSpellCast = whisper => eventInfo => {
         const legendaryPointField = legendaryPointsTotal > 0
             ? '{{legendary-point=?{Spend a Legendary Point?|No,[[0]]|Yes,[[1]]}}}'
             : '{{legendary-point=[[0]]}}';
-        const rollTemplate = `${whisperPrefix}&{template:roll} {{spellcast=roll}} {{name=${characterName}}} {{title=${spellName}}} {{roll=[[1d20cs20cf1 + ${manaTapBonus}[^{mana-tap}] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{school=^{${spellSchool}}}} {{tier=${spellTier}}} {{castingtime=${castingTime}}} {{range=${spellRange}}} {{duration=${spellDuration}}} ${legendaryPointField} {{effect1=${effect1}}} {{effect2=${effect2}}} {{effect3=${effect3}}} {{special=${special}}} {{dc1=[[${dc1}]]}} {{dc2=[[${dc2}]]}} {{dc3=[[${dc3}]]}} ${spellButtons}`;
+        const rollTemplate = `${whisperPrefix}&{template:roll} {{customd20=1}} {{spellcast=roll}} {{name=${characterName}}} {{title=${spellName}}} {{roll=[[1d20cs20cf1 + ${manaTapBonus}[^{mana-tap}] + ${condition}[Condition] + @{multi-action-penalty}[^{multi-action-penalty}] + ?{Additional Modifiers|0}[Modifier]]]}} {{critical-success=[[0]]}} {{critical-failure=[[0]]}} {{school=^{${spellSchool}}}} {{tier=${spellTier}}} {{castingtime=${castingTime}}} {{range=${spellRange}}} {{duration=${spellDuration}}} ${legendaryPointField} {{effect1=${effect1}}} {{effect2=${effect2}}} {{effect3=${effect3}}} {{special=${special}}} {{dc1=[[${dc1}]]}} {{dc2=[[${dc2}]]}} {{dc3=[[${dc3}]]}} ${spellButtons}`;
 
         startRoll(rollTemplate, results => {
-            const naturalRoll = (results.results.roll.dice && results.results.roll.dice[0]) || 0;
+            const d20State = getPrimaryD20State(results.results.roll);
+            const naturalRoll = d20State.naturalRoll;
             const legendaryPoint = parseInt(results.results['legendary-point'] && results.results['legendary-point'].result, 10) || 0;
             const totalRoll = parseInt(results.results.roll.result, 10) || 0;
-            const isCriticalFailure = naturalRoll === 1;
+            const isCriticalFailure = !!d20State.criticalFailure;
             const matchedTierByTotal = [...spellTiers].reverse().find(tier => totalRoll >= tier.dc) || null;
             const selectedTier = isCriticalFailure
                 ? null
@@ -322,7 +341,7 @@ const runSpellCast = whisper => eventInfo => {
                 }, { silent: true });
             }
 
-            finishRoll(results.rollId);
+            finishRoll(results.rollId, getD20ComputedResults(results.results.roll));
         });
     });
 };
@@ -371,3 +390,8 @@ on('clicked:repeating_spells:spelldamage', runSpellDamage({ damageType: 'damage'
 on('clicked:repeating_spells:spellaltdamage', runSpellDamage({ damageType: 'altDamage' }));
 on('clicked:repeating_spells:whisper_spelldamage', runSpellDamage({ whisper: true, damageType: 'damage' }));
 on('clicked:repeating_spells:whisper_spellaltdamage', runSpellDamage({ whisper: true, damageType: 'altDamage' }));
+on('sheet:opened', syncAllSpellActionCalls);
+on('change:character_name', syncAllSpellActionCalls);
+on('change:repeating_spells:spell', eventInfo => {
+    syncSpellActionCall(getRepeatingSpellRowId(eventInfo.sourceAttribute));
+});

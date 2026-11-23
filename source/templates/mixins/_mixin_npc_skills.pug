@@ -16,14 +16,14 @@ mixin npcSkills(skill, step)
             input(class="showSkill", type="hidden", name=`attr_show_${skillName}`)
             .skillName
                 .chatButtons
-                    button(class=["sendToChat", "labelButton", { smaller: skillName === 'lore-dungeoneering' }], type="roll", name=`roll_${skillName}_check`, value=`@{${skillName}_formula}`, data-i18n-title="roll-skill-check")
+                    button(class=["sendToChat", "labelButton", { smaller: skillName === 'lore-dungeoneering' }], type="action", name=`act_${skillName}_check`, data-i18n-title="roll-skill-check")
                         span(class="allcaps", data-i18n=skillName) 
                             | #{capitalizedSkillName}
                     .whisperButton 
-                        button(class="whisperToChat", type="roll", name="roll_whisper_edge", value=`/w gm @{${skillName}_formula}`)
+                        button(class="whisperToChat", type="action", name=`act_whisper_${skillName}_check`)
                             span.iconButton w
                     if armorCheck === 'yes'
                         input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
                     else
                         input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
-        
+

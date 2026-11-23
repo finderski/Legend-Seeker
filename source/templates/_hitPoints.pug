@@ -14,7 +14,7 @@ input(class="showAdjustedSpeed", type='hidden', name='attr_encumbrance_penalty',
     label(class="fieldLabelAbove", data-i18n='adjusted-speed') Adjusted Speed
     input(class="xPointInput", type='text', name='attr_adjusted_speed', readonly="readonly")
 .initiative
-    button(class="textButton", type="roll", name="roll_initiative", value=`@{initiative_formula}`)
+    button(class="textButton", type="action", name="act_initiative")
         label(class="fieldLabelAbove", data-i18n='initiative') Initiative
         input(class="xPointInput", type='text', name='attr_initiative_bonus', placeholder="0")
 input(class="showMLP", type='hidden', name='attr_isLegendaryMonster')
