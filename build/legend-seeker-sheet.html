@@ -300,7 +300,7 @@
                 <input class="xPointInput" type="text" name="attr_adjusted_speed" readonly="readonly"/>
               </div>
               <div class="initiative">
-                <button class="textButton" type="roll" name="roll_initiative" value="@{initiative_formula}">
+                <button class="textButton" type="roll" name="roll_initiative" value="@{initiative_formula} &amp;{tracker}">
                   <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
                   <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
                 </button>
@@ -1332,7 +1332,7 @@
               <input class="xPointInput" type="text" name="attr_adjusted_speed" readonly="readonly"/>
             </div>
             <div class="initiative">
-              <button class="textButton" type="roll" name="roll_initiative" value="@{initiative_formula}">
+              <button class="textButton" type="roll" name="roll_initiative" value="@{initiative_formula} &amp;{tracker}">
                 <label class="fieldLabelAbove" data-i18n="initiative">Initiative</label>
                 <input class="xPointInput" type="text" name="attr_initiative_bonus" placeholder="0"/>
               </button>
@@ -3124,7 +3124,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-alchemy_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-alchemy_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-alchemy}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-alchemy_bonus}[Craft Alchemy} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-alchemy_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-alchemy}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-alchemy_bonus}[Craft Alchemy Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3177,7 +3177,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-armorsmithing_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-armorsmithing_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-armorsmithing}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-armorsmithing_bonus}[Craft Armorsmithing} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-armorsmithing_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-armorsmithing}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-armorsmithing_bonus}[Craft Armorsmithing Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3230,7 +3230,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-art_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-art_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-art}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-art_bonus}[Craft Art} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-art_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-art}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-art_bonus}[Craft Art Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3283,7 +3283,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-bowyer_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-bowyer_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-bowyer}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-bowyer_bonus}[Craft Bowyer} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-bowyer_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-bowyer}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-bowyer_bonus}[Craft Bowyer Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3336,7 +3336,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-carpentry_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-carpentry_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-carpentry}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-carpentry_bonus}[Craft Carpentry} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-carpentry_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-carpentry}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-carpentry_bonus}[Craft Carpentry Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3389,7 +3389,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-leatherworking_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-leatherworking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-leatherworking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-leatherworking_bonus}[Craft Leatherworking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-leatherworking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-leatherworking}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-leatherworking_bonus}[Craft Leatherworking Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3442,7 +3442,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-poisonmaking_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-poisonmaking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-poisonmaking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-poisonmaking_bonus}[Craft Poisonmaking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-poisonmaking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-poisonmaking}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-poisonmaking_bonus}[Craft Poisonmaking Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3495,7 +3495,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-stonemasonry_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-stonemasonry_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-stonemasonry}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-stonemasonry_bonus}[Craft Stonemasonry} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-stonemasonry_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-stonemasonry}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-stonemasonry_bonus}[Craft Stonemasonry Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3548,7 +3548,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-trapmaking_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-trapmaking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-trapmaking}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-trapmaking_bonus}[Craft Trapmaking} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-trapmaking_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-trapmaking}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-trapmaking_bonus}[Craft Trapmaking Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3601,7 +3601,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{craft-weaponsmithing_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_craft-weaponsmithing_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-weaponsmithing}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-weaponsmithing_bonus}[Craft Weaponsmithing} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_craft-weaponsmithing_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{craft-weaponsmithing}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{craft-weaponsmithing_bonus}[Craft Weaponsmithing Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3654,7 +3654,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{deception_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_deception_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{deception}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{deception_bonus}[Deception} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_deception_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{deception}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{deception_bonus}[Deception Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3760,7 +3760,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{gather-information_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_gather-information_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{gather-information}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{gather-information_bonus}[Gather Information} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_gather-information_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{gather-information}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{gather-information_bonus}[Gather Information Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3813,7 +3813,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{initiative_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{initiative_bonus}[Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{initiative_bonus}[Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up] &amp;{tracker}]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3871,7 +3871,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{invoke-arcana_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_invoke-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{invoke-arcana}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{invoke-arcana_bonus}[Invoke Arcana} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_invoke-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{invoke-arcana}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{invoke-arcana_bonus}[Invoke Arcana Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3977,7 +3977,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-arcana_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-arcana}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-arcana_bonus}[Lore Arcana} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-arcana_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-arcana}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-arcana_bonus}[Lore Arcana Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4030,7 +4030,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-architecture_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-architecture_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-architecture}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-architecture_bonus}[Lore Architecture} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-architecture_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-architecture}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-architecture_bonus}[Lore Architecture Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4083,7 +4083,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-dungeoneering_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-dungeoneering_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-dungeoneering}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-dungeoneering_bonus}[Lore Dungeoneering} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-dungeoneering_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-dungeoneering}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-dungeoneering_bonus}[Lore Dungeoneering Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4136,7 +4136,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-geography_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-geography_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-geography}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-geography_bonus}[Lore Geography} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-geography_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-geography}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-geography_bonus}[Lore Geography Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4189,7 +4189,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-history_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-history_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-history}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-history_bonus}[Lore History} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-history_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-history}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-history_bonus}[Lore History Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4242,7 +4242,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-keepers_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-keepers_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-keepers}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-keepers_bonus}[Lore Keepers} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-keepers_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-keepers}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-keepers_bonus}[Lore Keepers Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4295,7 +4295,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-nature_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-nature_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-nature}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-nature_bonus}[Lore Nature} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-nature_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-nature}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-nature_bonus}[Lore Nature Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4348,7 +4348,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-nobility_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-nobility_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-nobility}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-nobility_bonus}[Lore Nobility} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-nobility_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-nobility}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-nobility_bonus}[Lore Nobility Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4401,7 +4401,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-planes_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-planes_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-planes}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-planes_bonus}[Lore Planes} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-planes_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-planes}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-planes_bonus}[Lore Planes Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4454,7 +4454,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-religion_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-religion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-religion}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-religion_bonus}[Lore Religion} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-religion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-religion}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-religion_bonus}[Lore Religion Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4507,7 +4507,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{lore-streetwise_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_lore-streetwise_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-streetwise}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-streetwise_bonus}[Lore Streetwise} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_lore-streetwise_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{lore-streetwise}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{lore-streetwise_bonus}[Lore Streetwise Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4613,7 +4613,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{persuasion_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_persuasion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{persuasion}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{persuasion_bonus}[Persuasion} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_persuasion_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{persuasion}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{persuasion_bonus}[Persuasion Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4723,7 +4723,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{sense-motive_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_sense-motive_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{sense-motive}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{sense-motive_bonus}[Sense Motive} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_sense-motive_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{sense-motive}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{sense-motive_bonus}[Sense Motive Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4833,7 +4833,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{survival_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_survival_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{survival}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{survival_bonus}[Survival} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_survival_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{survival}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{survival_bonus}[Survival Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4993,7 +4993,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{treat-wounds_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_treat-wounds_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{treat-wounds}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{treat-wounds_bonus}[Treat Wounds} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_treat-wounds_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{treat-wounds}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{treat-wounds_bonus}[Treat Wounds Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -5047,7 +5047,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="roll" name="roll_whisper_edge" value="/w gm @{mana-tap_formula}"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_mana-tap_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{mana-tap}}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{mana-tap_bonus}[Mana Tap} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_mana-tap_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{mana-tap}}} {{roll=[[1d20 + @{multi-action-penalty}[Multi-Action Penalty] + @{mana-tap_bonus}[Mana Tap Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
