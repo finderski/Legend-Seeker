@@ -58,6 +58,18 @@
             .armorSpellReduction 
                 label(class="fieldLabelAbove", data-i18n='spell-reduction-abbr-caps', data-i18n-title='spell-reduction') SR
                 input(class="textField", type="text", name="attr_armor_sr", value="", placeholder="1")
+        .weight
+            .qty
+                label(class="fieldLabelAbove", data-i18n='quantity-abbr') Qty
+                input(class="textField", type='number', name='attr_armor-quantity', value='1')
+            .wt
+                label(class="fieldLabelAbove", data-i18n='weight-abbr') Weight
+                input(class="textField", type='number', name='attr_armor-weight', value='0', data-i18n-placeholder='weight')
+            .carried
+                label(class="fieldLabelAbove alignRight", data-i18n='carried') Carried
+                label
+                    input(class="hidden", type='checkbox', name='attr_armor_carried', value='1', checked)
+                    span(class="isCarried")
 .shield
     // h3(class='headerLabel left', data-i18n='shield') Shield
     .shieldGroup
@@ -104,4 +116,15 @@
             .shieldSpellReduction 
                 label(class="fieldLabelAbove", data-i18n='spell-reduction-abbr-caps', data-i18n-title='spell-reduction') SR
                 input(class="textField", type="text", name="attr_shield_sr", value="", placeholder="1")
-            
+        .weight
+            .qty
+                label(class="fieldLabelAbove", data-i18n='quantity-abbr') Qty
+                input(class="textField", type='number', name='attr_shield-quantity', value='1')
+            .wt
+                label(class="fieldLabelAbove", data-i18n='weight-abbr') Weight
+                input(class="textField", type='number', name='attr_shield-weight', value='0', data-i18n-placeholder='weight')
+            .carried
+                label(class="fieldLabelAbove alignRight", data-i18n='carried') Carried
+                label
+                    input(class="hidden", type='checkbox', name='attr_shield_carried', value='1', checked)
+                    span(class="isCarried")

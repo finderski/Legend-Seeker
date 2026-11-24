@@ -77,6 +77,35 @@
             .sectionDivider {
                 margin: 10px 0;
             }
+            .armorGroup,
+            .shieldGroup {
+                .weight {
+                    width: 100%;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    column-gap: 5px;
+                    .qty,
+                    .wt,
+                    .carried {
+                        width: 33%;
+                    }
+                    .textField {
+                        width: 100%;
+                        text-align: center;
+                    }
+                    .carried {
+                        .alignRight {
+                            display: flex;
+                            justify-content: flex-end;
+                        }
+                        label > span.isCarried {
+                            display: flex;
+                            justify-content: flex-end;
+                            padding: 10px 10px 0 0;
+                        }
+                    }
+                }
+            }
             .armor {
                 display: flex;
                 flex-flow: column nowrap;

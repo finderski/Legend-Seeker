@@ -2227,6 +2227,37 @@ label.buttonStyle {
 .ui-dialog .charactersheet .backPage .topContainer .equipment .sectionDivider {
   margin: 10px 0;
 }
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armorGroup .weight,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shieldGroup .weight {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armorGroup .weight .qty,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armorGroup .weight .wt,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armorGroup .weight .carried,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shieldGroup .weight .qty,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shieldGroup .weight .wt,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shieldGroup .weight .carried {
+  width: 33%;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armorGroup .weight .textField,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shieldGroup .weight .textField {
+  width: 100%;
+  text-align: center;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armorGroup .weight .carried .alignRight,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shieldGroup .weight .carried .alignRight {
+  display: flex;
+  justify-content: flex-end;
+}
+.ui-dialog .charactersheet .backPage .topContainer .equipment .armorGroup .weight .carried label > span.isCarried,
+.ui-dialog .charactersheet .backPage .topContainer .equipment .shieldGroup .weight .carried label > span.isCarried {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 0 0;
+}
 .ui-dialog .charactersheet .backPage .topContainer .equipment .armor {
   display: flex;
   flex-flow: column nowrap;

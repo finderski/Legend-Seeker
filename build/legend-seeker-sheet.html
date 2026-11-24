@@ -2837,9 +2837,22 @@
             </div>
           </div>
         </fieldset>
-        <input type="hidden" name="attr_total_equipment_weight" value="0"/>
+        <input type="hidden" name="attr_total_item_weight" value="0"/>
+        <div class="weights">
+          <label class="fieldLabel" data-i18n="total-equipment-weight">Total Equipment Weight</label>
+          <input type="hidden" name="attr_total_equipment_weight" value="0"/><span class="totalWeight" name="attr_total_equipment_weight"></span>
+        </div>
+        <div class="weights">
+          <label class="fieldLabel" data-i18n="total-weapon-weight-carried">Total Weapon Weight Carried</label>
+          <input type="hidden" name="attr_total_weapon_weight" value="0"/><span class="totalWeight" name="attr_total_weapon_weight"></span>
+        </div>
+        <div class="weights">
+          <label class="fieldLabel" data-i18n="total-armor-weight-carried">Total Armor Weight Carried</label>
+          <input type="hidden" name="attr_total_armor_weight" value="0"/><span class="totalWeight" name="attr_total_armor_weight"></span>
+        </div>
         <div class="weights"> 
-          <label class="fieldLabel" data-i18n="total-weight-carried">Total Weight Carried</label><span class="totalWeight" name="attr_total_weight_carried"></span>
+          <label class="fieldLabel" data-i18n="total-weight-carried">Total Weight Carried</label>
+          <input type="hidden" name="attr_total_weight_carried" value="0"/><span class="totalWeight" name="attr_total_weight_carried"></span>
         </div>
         <div class="capacity"> 
           <label class="fieldLabel" data-i18n="carry-capacity">Carry Capacity</label>
@@ -2920,6 +2933,22 @@
                 <input class="textField" type="text" name="attr_armor_sr" value="" placeholder="1"/>
               </div>
             </div>
+            <div class="weight">
+              <div class="qty">
+                <label class="fieldLabelAbove" data-i18n="quantity-abbr">Qty</label>
+                <input class="textField" type="number" name="attr_armor-quantity" value="1"/>
+              </div>
+              <div class="wt">
+                <label class="fieldLabelAbove" data-i18n="weight-abbr">Weight</label>
+                <input class="textField" type="number" name="attr_armor-weight" value="0" data-i18n-placeholder="weight"/>
+              </div>
+              <div class="carried">
+                <label class="fieldLabelAbove alignRight" data-i18n="carried">Carried</label>
+                <label>
+                  <input class="hidden" type="checkbox" name="attr_armor_carried" value="1" checked="checked"/><span class="isCarried"></span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="shield">
@@ -2979,6 +3008,22 @@
               <div class="shieldSpellReduction"> 
                 <label class="fieldLabelAbove" data-i18n="spell-reduction-abbr-caps" data-i18n-title="spell-reduction">SR</label>
                 <input class="textField" type="text" name="attr_shield_sr" value="" placeholder="1"/>
+              </div>
+            </div>
+            <div class="weight">
+              <div class="qty">
+                <label class="fieldLabelAbove" data-i18n="quantity-abbr">Qty</label>
+                <input class="textField" type="number" name="attr_shield-quantity" value="1"/>
+              </div>
+              <div class="wt">
+                <label class="fieldLabelAbove" data-i18n="weight-abbr">Weight</label>
+                <input class="textField" type="number" name="attr_shield-weight" value="0" data-i18n-placeholder="weight"/>
+              </div>
+              <div class="carried">
+                <label class="fieldLabelAbove alignRight" data-i18n="carried">Carried</label>
+                <label>
+                  <input class="hidden" type="checkbox" name="attr_shield_carried" value="1" checked="checked"/><span class="isCarried"></span>
+                </label>
               </div>
             </div>
           </div>
@@ -6377,15 +6422,72 @@ buttonlist.forEach(button => {
     });
 }
 // Calculate Weapon Weight
-on('change:repeating_weapons:weapon_weight change:repeating_weapons:weapon_carried remove:repeating_weapons', function (eventInfo) {
-    repeatingSimpleSumWCheck(
-        'weapons',
-        'weapon_weight',
-        'total_weapon_weight',
-        'weapon_carried',
-        '1'
-    );
-});
+function calculateWeaponWeight() {
+    getSectionIDs('repeating_weapons', function (ids) {
+        if (!ids.length) {
+            setAttrs({ total_weapon_weight: 0 });
+            return;
+        }
+
+        const fields = [];
+        ids.forEach(function (id) {
+            fields.push(`repeating_weapons_${id}_weapon-quantity`);
+            fields.push(`repeating_weapons_${id}_weapon-weight`);
+            fields.push(`repeating_weapons_${id}_weapon_carried`);
+        });
+
+        getAttrs(fields, function (values) {
+            const totalWeaponWeight = ids.reduce(function (total, id) {
+                const quantity = parseInt(values[`repeating_weapons_${id}_weapon-quantity`], 10) || 0;
+                const weight = parseFloat(values[`repeating_weapons_${id}_weapon-weight`]) || 0;
+                const carried = values[`repeating_weapons_${id}_weapon_carried`] === '1';
+                return carried ? total + (quantity * weight) : total;
+            }, 0);
+
+            setAttrs({ total_weapon_weight: totalWeaponWeight });
+        });
+    });
+}
+
+on('change:repeating_weapons:weapon-quantity change:repeating_weapons:weapon-weight change:repeating_weapons:weapon_carried remove:repeating_weapons', calculateWeaponWeight);
+
+// Calculate Armor and Shield Weight
+function calculateArmorWeight() {
+    getAttrs([
+        'armor-quantity',
+        'armor-weight',
+        'armor_carried',
+        'armor_worn',
+        'shield-quantity',
+        'shield-weight',
+        'shield_carried',
+        'shield_worn'
+    ], function (values) {
+        const armorQuantity = parseInt(values['armor-quantity'], 10) || 0;
+        const armorWeight = parseFloat(values['armor-weight']) || 0;
+        const armorWorn = values.armor_worn === '1';
+        const armorCarried = armorWorn || values.armor_carried === '1';
+        const shieldQuantity = parseInt(values['shield-quantity'], 10) || 0;
+        const shieldWeight = parseFloat(values['shield-weight']) || 0;
+        const shieldWorn = values.shield_worn === '1';
+        const shieldCarried = shieldWorn || values.shield_carried === '1';
+        const totalArmorWeight =
+            (armorCarried ? armorQuantity * armorWeight : 0) +
+            (shieldCarried ? shieldQuantity * shieldWeight : 0);
+        const attrsToSet = { total_armor_weight: totalArmorWeight };
+
+        if (armorWorn && values.armor_carried !== '1') {
+            attrsToSet.armor_carried = 1;
+        }
+        if (shieldWorn && values.shield_carried !== '1') {
+            attrsToSet.shield_carried = 1;
+        }
+
+        setAttrs(attrsToSet);
+    });
+}
+
+on('change:armor-quantity change:armor-weight change:armor_carried change:armor_worn change:shield-quantity change:shield-weight change:shield_carried change:shield_worn', calculateArmorWeight);
 
 on("change:repeating_equipment:item_quantity change:repeating_equipment:item_weight", function () {
     getAttrs(["repeating_equipment_item_quantity", "repeating_equipment_item_weight"], function (values) {
@@ -6400,15 +6502,17 @@ on("change:repeating_equipment:item_quantity change:repeating_equipment:item_wei
 });
 
 // Calculate Inventory Weight
-on('change:repeating_equipment:item_total_weight change:repeating_equipment:item_carried remove:repeating_equipment', function (eventInfo) {
+function calculateItemWeight() {
     repeatingSimpleSumWCheck(
         'equipment',
         'item_total_weight',
-        'total_equipment_weight',
+        'total_item_weight',
         'item_carried',
         '1'
     );
-});
+}
+
+on('change:repeating_equipment:item_total_weight change:repeating_equipment:item_carried remove:repeating_equipment', calculateItemWeight);
 
 on('change:copper change:silver change:gold change:platinum', function () {
     getAttrs(['copper', 'silver', 'gold', 'platinum'], function (values) {
@@ -6423,23 +6527,38 @@ on('change:copper change:silver change:gold change:platinum', function () {
     });
 });
 
+// Equipment includes carried inventory and coin weight.
+on('change:total_item_weight change:total_coin_weight', function () {
+    getAttrs(['total_item_weight', 'total_coin_weight'], function (values) {
+        const itemWeight = parseFloat(values.total_item_weight) || 0;
+        const coinWeight = parseFloat(values.total_coin_weight) || 0;
+        setAttrs({ total_equipment_weight: itemWeight + coinWeight });
+    });
+});
+
 //Tally Total Weight Carried
-on('change:total_weapon_weight change:total_equipment_weight change:total_coin_weight', function () {
-    getAttrs(['total_weapon_weight', 'total_equipment_weight', 'total_coin_weight'], function (values) {
-        let weaponWeight = parseFloat(values['total_weapon_weight']) || 0;
-        let equipmentWeight = parseFloat(values['total_equipment_weight']) || 0;
-        let coinWeight = parseFloat(values['total_coin_weight']) || 0;
+on('change:total_weapon_weight change:total_armor_weight change:total_equipment_weight', function () {
+    getAttrs(['total_weapon_weight', 'total_armor_weight', 'total_equipment_weight'], function (values) {
+        const weaponWeight = parseFloat(values.total_weapon_weight) || 0;
+        const armorWeight = parseFloat(values.total_armor_weight) || 0;
+        const equipmentWeight = parseFloat(values.total_equipment_weight) || 0;
         log("total equipment weight", equipmentWeight, "orange");
         log("total weapon weight", weaponWeight, "orange");
-        log("total coin weight", coinWeight, "orange");
+        log("total armor weight", armorWeight, "orange");
 
-        let totalCarriedWeight = weaponWeight + equipmentWeight + coinWeight;
+        const totalCarriedWeight = weaponWeight + armorWeight + equipmentWeight;
 
-        let attrsToSet = {};
+        const attrsToSet = {};
         log('total weight carried', JSON.stringify(attrsToSet['total_weight_carried']),'pink');
         attrsToSet['total_weight_carried'] = totalCarriedWeight;
         setAttrs(attrsToSet);
     });
+});
+
+on('sheet:opened', function () {
+    calculateWeaponWeight();
+    calculateArmorWeight();
+    calculateItemWeight();
 });
 
 // Calculate Encumbrance

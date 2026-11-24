@@ -36,9 +36,22 @@ fieldset(class="repeating_equipment")
             label
                 input(class="hidden", type='checkbox', name='attr_item_carried', value='1', checked)
                 span(class="isCarried")
-input(type="hidden", name="attr_total_equipment_weight", value="0")
+input(type="hidden", name="attr_total_item_weight", value="0")
+.weights
+    label(class="fieldLabel", data-i18n='total-equipment-weight') Total Equipment Weight
+    input(type="hidden", name="attr_total_equipment_weight", value="0")
+    span(class="totalWeight", name="attr_total_equipment_weight")
+.weights
+    label(class="fieldLabel", data-i18n='total-weapon-weight-carried') Total Weapon Weight Carried
+    input(type="hidden", name="attr_total_weapon_weight", value="0")
+    span(class="totalWeight", name="attr_total_weapon_weight")
+.weights
+    label(class="fieldLabel", data-i18n='total-armor-weight-carried') Total Armor Weight Carried
+    input(type="hidden", name="attr_total_armor_weight", value="0")
+    span(class="totalWeight", name="attr_total_armor_weight")
 .weights 
     label(class="fieldLabel", data-i18n='total-weight-carried') Total Weight Carried
+    input(type="hidden", name="attr_total_weight_carried", value="0")
     span(class="totalWeight", name="attr_total_weight_carried")
 .capacity 
     label(class="fieldLabel", data-i18n='carry-capacity') Carry Capacity
