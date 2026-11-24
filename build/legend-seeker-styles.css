@@ -3129,6 +3129,32 @@ label.buttonStyle {
   text-align: center;
   align-self: center;
 }
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight,
+.ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5px;
+}
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .qty,
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .wt,
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .carried,
+.ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .qty,
+.ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .wt,
+.ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .carried {
+  width: 33%;
+}
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .carried .alignRight,
+.ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .carried .alignRight {
+  display: flex;
+  justify-content: flex-end;
+}
+.ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .carried label > span.isCarried,
+.ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .weight .carried label > span.isCarried {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px 0 0;
+}
 .ui-dialog .charactersheet .frontPage .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .notes,
 .ui-dialog .charactersheet .npcView .combat .weapons .repcontainer[data-groupname=repeating_weapons] .repitem .weaponContainer .notes {
   width: 100%;

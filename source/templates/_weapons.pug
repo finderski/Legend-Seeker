@@ -109,5 +109,17 @@ fieldset(class="repeating_weapons")
             input(class="checkboxInput", type='checkbox', name='attr_weapon-double-crit', value='1')
             span(class="styledCheckbox")
             span(class="styledCheckboxText", data-i18n='double-critical') Double Crit
+        .weight 
+            .qty 
+                label(class="fieldLabelAbove", data-i18n='quantity-abbr') Qty
+                input(class="textField", type='number', name='attr_weapon-quantity', value='1')
+            .wt 
+                label(class="fieldLabelAbove", data-i18n='weight-abbr') Weight
+                input(class="textField", type='number', name='attr_weapon-weight', value='0', data-i18n-placeholder='weight')
+            .carried
+                label(class="fieldLabelAbove alignRight", data-i18n='carried') Carried
+                label
+                    input(class="hidden", type='checkbox', name='attr_weapon_carried', value='1', checked)
+                    span(class="isCarried")
         .notes 
             textarea(class="weaponNotes", name='attr_weapon-notes', data-i18n-placeholder='weapon-notes')
