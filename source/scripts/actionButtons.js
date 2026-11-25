@@ -49,6 +49,7 @@ const ENCUMBRANCE_SKILLS = new Set([
     'endurance',
     'initiative',
     'jump',
+    'ride',
     'stealth',
     'swim'
 ]);
@@ -88,7 +89,7 @@ const runSkillCheck = (skillName, whisper = false) => () => {
         'multi-action-penalty',
         'armor_check_penalty',
         'effective_check_penalty',
-        `${skillName}_bonus`
+        ...getSkillCalculationFields(skillName)
     ];
 
     getAttrs(fields, values => {
@@ -98,8 +99,9 @@ const runSkillCheck = (skillName, whisper = false) => () => {
         } else if (ARMOR_CHECK_SKILLS.has(skillName)) {
             terms.push(`${toInt(values.armor_check_penalty)}[Armor Check Penalty]`);
         }
+        const skillBonus = calculateSkillBonus(skillName, values);
         terms.push(`${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`);
-        terms.push(`${toInt(values[`${skillName}_bonus`])}[^{skill-bonus}]`);
+        terms.push(`${skillBonus}[^{skill-bonus}]`);
         terms.push(`${parseSignedValue(values.condition)}[Condition]`);
         terms.push('?{Additional Modifiers|0}[^{additional-modifiers}]');
 
@@ -119,14 +121,20 @@ const runAttributeCheck = (attributeName, whisper = false) => () => {
         'character_name',
         'condition',
         'multi-action-penalty',
+        'capped_dex_mod',
         `${attributeName}_modifier`
     ];
 
     getAttrs(fields, values => {
+        const rawAttributeModifier = toInt(values[`${attributeName}_modifier`]);
+        const parsedDexterityCap = parseInt(values.capped_dex_mod, 10);
+        const attributeModifier = attributeName === 'dexterity'
+            ? Math.min(rawAttributeModifier, isNaN(parsedDexterityCap) ? 1000 : parsedDexterityCap)
+            : rawAttributeModifier;
         const terms = [
             '1d20cs20cf1',
             `${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`,
-            `${toInt(values[`${attributeName}_modifier`])}[^{attribute-modifier}]`,
+            `${attributeModifier}[^{attribute-modifier}]`,
             `${parseSignedValue(values.condition)}[Condition]`,
             '?{Additional Modifiers|0}[^{additional-modifiers}]'
         ];

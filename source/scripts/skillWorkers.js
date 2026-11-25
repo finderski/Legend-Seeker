@@ -3,8 +3,8 @@
 // Watch for updates to: Attribute Modifiers, Half-Level, Trained Status, Skill Focus and Misc. Modifiers
 // Use the variables: listOfSklls, and listOfAttributes
 /*------------------End Skill Bonsuses------------------*/
-function recalcSkill(skill) {
-    const fields = [
+function getSkillCalculationFields(skill) {
+    return [
         "half-level",
         "capped_dex_mod",
         `${skill}_attribute`,
@@ -13,32 +13,39 @@ function recalcSkill(skill) {
         `${skill}_misc`,
         `${skill}_ability`,
         "current_character_type",
-        "size_penalty"
+        "size_penalty",
+        ...listOfAttributes
     ];
+}
 
-    const allFields = [...fields, ...listOfAttributes];
-    // log(`list of fields to retrieve`, allFields, r20color);
+function getSkillLinkedAttribute(value) {
+    return String(value || '')
+        .split("_")[0]
+        .replace("@", "")
+        .replace("{", "")
+        .replace("}", "");
+}
 
-    getAttrs(allFields, function(values) {
-        //log(`Values retrieved for skill ${skill}`, values, r20color);
-        //console.log(`Values retrieved for skill ${skill}:`, values);
-        const attribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", ""); // Extract the attribute name from the skill's linked attribute field
-        //log(`Attribute for Skill ${skill}`, attribute, derivedStatsColor);
-        //log("value of attribute modifier", values[`${attribute}_modifier`], derivedStatsColor);
-        const halfLevel = parseInt(values["half-level"], 10) || 0;
-        const trained = parseInt(values[`${skill}_trained`], 10) || 0;
-        const focus = parseInt(values[`${skill}_focus`], 10) || 0;
-        const misc = parseInt(values[`${skill}_misc`], 10) || 0;
-        const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
-        const calcAbilityMod = attribute === "dexterity" ? Math.min(abilityMod, parseInt(values["capped_dex_mod"], 10) || 0) : abilityMod;
-        const sizePenalty = parseInt(values["size_penalty"], 10) || 0;
-        const currentCharacterType = parseInt(values["current_character_type"], 10) || 1;
-        let skillBonusTotal = 0;
-        if (currentCharacterType === 1) {
-            skillBonusTotal = halfLevel + trained + focus + misc + calcAbilityMod;
-        } else {
-            skillBonusTotal = skill === 'stealth' ? halfLevel + trained + focus + misc + calcAbilityMod + sizePenalty : halfLevel + trained + focus + misc + calcAbilityMod;
-        }
+function calculateSkillBonus(skill, values) {
+    const attribute = getSkillLinkedAttribute(values[`${skill}_ability`]);
+    const halfLevel = parseInt(values["half-level"], 10) || 0;
+    const trained = parseInt(values[`${skill}_trained`], 10) || 0;
+    const focus = parseInt(values[`${skill}_focus`], 10) || 0;
+    const misc = parseInt(values[`${skill}_misc`], 10) || 0;
+    const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
+    const cappedDexModifier = parseInt(values["capped_dex_mod"], 10);
+    const calculatedAbilityMod = attribute === "dexterity"
+        ? Math.min(abilityMod, isNaN(cappedDexModifier) ? 1000 : cappedDexModifier)
+        : abilityMod;
+    const sizePenalty = parseInt(values["size_penalty"], 10) || 0;
+    const currentCharacterType = parseInt(values["current_character_type"], 10) || 1;
+    const npcStealthPenalty = currentCharacterType === 4 && skill === 'stealth' ? sizePenalty : 0;
+    return halfLevel + trained + focus + misc + calculatedAbilityMod + npcStealthPenalty;
+}
+
+function recalcSkill(skill) {
+    getAttrs(getSkillCalculationFields(skill), function(values) {
+        const skillBonusTotal = calculateSkillBonus(skill, values);
         setAttrs({
             [`${skill}_bonus`]: skillBonusTotal
         });
@@ -46,8 +53,8 @@ function recalcSkill(skill) {
 }
 
 //Calculate Half-Level and Re-calculate Skills when Level changes
-on('change:level change:minion_level change:monster_level change:capped_dex_mod', function(eventInfo) {
-    getAttrs(['level', 'minion_level', 'monster_level', 'capped_dex_mod', 'half-level'], function(values) {
+on('change:level change:minion_level change:monster_level', function(eventInfo) {
+    getAttrs(['level', 'minion_level', 'monster_level', 'half-level'], function(values) {
         const seekerLevel = parseInt(values.level, 10) || 0;
         const minionLevel = parseInt(values.minion_level, 10) || 0;
         const monsterLevel = parseInt(values.monster_level, 10) || 0;
@@ -55,13 +62,7 @@ on('change:level change:minion_level change:monster_level change:capped_dex_mod'
         const halfLevelValue = Math.floor(totalLevels / 2);
         const previousHalfLevelValue = parseInt(values['half-level']) || 0;
 
-        if (eventInfo.sourceAttribute === "capped_dex_mod") {
-            log("Dexterity Modifier Updated", `New Half-Level Value: ${halfLevelValue}, Previous Half-Level Value: ${previousHalfLevelValue}`, derivedStatsColor);
-            listOfSklls.forEach(async (skill) => {
-                recalcSkill(skill);
-            });
-        }
-        else if (halfLevelValue === previousHalfLevelValue) {
+        if (halfLevelValue === previousHalfLevelValue) {
             log("Level Updated", "No Change in Half-Level Value.", derivedStatsColor);
         }
         else { //Half-Level Changed updated Half-level, then realculate all skills and weapons
@@ -90,7 +91,7 @@ listOfAttributes.forEach(attribute => {
         const attributeName = attribute.replace("_modifier", "");
         listOfSklls.forEach(skill => {
             getAttrs([`${skill}_ability`], function(values) {
-                const skillAttribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", "");
+                const skillAttribute = getSkillLinkedAttribute(values[`${skill}_ability`]);
                 if (skillAttribute === attributeName) {
                     recalcSkill(skill);
                 }

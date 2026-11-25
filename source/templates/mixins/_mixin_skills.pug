@@ -34,7 +34,7 @@ mixin skills(skill)
                         button(class="whisperToChat", type="action", name=`act_whisper_${skillName}_check`)
                             span.iconButton w
                     if armorCheck === 'yes'
-                        if ["acrobatics", "climb", "endurance", "jump", "stealth", "swim"].includes(skillName)
+                        if ["acrobatics", "climb", "endurance", "jump", "ride", "stealth", "swim"].includes(skillName)
                             input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}`)
                         else if ["initiative"].includes(skillName)
                             input(type='hidden', name=`attr_${skillName}_formula`, value=`&{template:roll} {{name=@{character_name}}} {{title=^{${skillName}}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{${skillName}_bonus}[${capitalizedSkillName}} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up] &{tracker}]]}}`)
@@ -54,7 +54,7 @@ mixin skills(skill)
                 // If statement used to be here...
                 input(class="showAttMod showWatermark", type='hidden', name=`attr_${skillName}_ability`, value=`@{${attributeName}}`)
                 span(class="attributeInput strength readOnly", type="text", name="attr_strength_modifier")
-                span(class="attributeInput dexterity readOnly", type="text", name="attr_dexterity_modifier")
+                span(class="attributeInput dexterity readOnly", type="text", name="attr_effective_dexterity_modifier")
                 span(class="attributeInput constitution readOnly", type="text", name="attr_constitution_modifier")
                 span(class="attributeInput intelligence readOnly", type="text", name="attr_intelligence_modifier")
                 span(class="attributeInput wisdom readOnly", type="text", name="attr_wisdom_modifier")

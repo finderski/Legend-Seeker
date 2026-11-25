@@ -234,20 +234,29 @@ on('change:armor_warden change:improved_armor_warden', function(eventInfo) {
     });
 });
 
-on('change:armor_worn change:armor_dex_cap change:encumbrance_max_dex', function(eventInfo) {
+function calculateCappedDexModifier(callback) {
+    const eventInfo = typeof callback === 'object' ? callback : {};
     log("Armor Watch Detected Change", eventInfo, r20color);
-    getAttrs(['armor_worn', 'armor_dex_cap', 'encumbrance_max_dex'], function(v) {
+    getAttrs(['armor_worn', 'armor_dex_cap', 'encumbrance_max_dex', 'dexterity_modifier'], function(v) {
         const armorWorn = parseInt(v.armor_worn) || 0;
         const armorDexCap = parseInt(v.armor_dex_cap);
         const armorCappedDexMod = !armorWorn || isNaN(armorDexCap) ? 1000 : armorDexCap;
         const encumbranceMaxDex = parseInt(v.encumbrance_max_dex, 10) || 1000;
         const cappedDexMod = Math.min(armorCappedDexMod, encumbranceMaxDex);
+        const dexterityModifier = parseInt(v.dexterity_modifier, 10) || 0;
         const setattrs = {};
         setattrs['capped_dex_mod'] = cappedDexMod;
+        setattrs['effective_dexterity_modifier'] = Math.min(dexterityModifier, cappedDexMod);
         setattrs['dex_is_capped'] = !armorWorn ? 0 : isNaN(armorDexCap) ? 0 : 1;
-        setAttrs(setattrs);
+        setAttrs(setattrs, {}, function () {
+            listOfSklls.forEach(skill => recalcSkill(skill));
+            if (typeof callback === 'function') callback(setattrs);
+        });
     });
-});
+}
+
+on('change:armor_worn change:armor_dex_cap change:encumbrance_max_dex change:dexterity_modifier', calculateCappedDexModifier);
+on('sheet:opened', calculateCappedDexModifier);
 
 on('change:armor_class change:armor_proficient_multiplier change:armor_worn change:shield_class change:shield_proficient_multiplier change:shield_worn', function() {
     getAttrs(['armor_class', 'armor_proficient_multiplier', 'armor_worn', 'shield_class', 'shield_proficient_multiplier', 'shield_worn'], function(v) {

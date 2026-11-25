@@ -128,6 +128,7 @@
               </div>
               <input type="hidden" name="attr_capped_dex_mod" value="1000"/>
               <input type="hidden" name="attr_encumbrance_max_dex" value="1000"/>
+              <input type="hidden" name="attr_effective_dexterity_modifier" value="0"/>
               <!--
               -
                   const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
@@ -157,7 +158,7 @@
                       <button class="whisperToChat" type="action" name="act_whisper_dexterity_check"><span class="iconButton">w</span></button>
                     </div>
                   </div>
-                  <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+                  <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{effective_dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
@@ -1151,6 +1152,7 @@
           </div>
           <input type="hidden" name="attr_capped_dex_mod" value="1000"/>
           <input type="hidden" name="attr_encumbrance_max_dex" value="1000"/>
+          <input type="hidden" name="attr_effective_dexterity_modifier" value="0"/>
           <!--
           -
               const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
@@ -1183,7 +1185,7 @@
                   <button class="whisperToChat" type="action" name="act_whisper_dexterity_check"><span class="iconButton">w</span></button>
                 </div>
               </div>
-              <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+              <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{effective_dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
             </div>
             <div class="score-field">
               <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
@@ -2294,7 +2296,7 @@
             <div class="whisperButton"> 
               <button class="whisperToChat" type="action" name="act_whisper_ride_check"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_ride_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{ride}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{ride_bonus}[Ride} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_ride_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{ride}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{ride_bonus}[Ride} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -3131,7 +3133,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_acrobatics_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_acrobatics_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
           <div class="cappedMod"> 
@@ -3188,7 +3190,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_climb_ability" value="@{strength}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_climb_ability" value="@{strength}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3241,7 +3243,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-alchemy_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-alchemy_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3294,7 +3296,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-armorsmithing_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-armorsmithing_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3347,7 +3349,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-art_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-art_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3400,7 +3402,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-bowyer_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-bowyer_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3453,7 +3455,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-carpentry_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-carpentry_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3506,7 +3508,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-leatherworking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-leatherworking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3559,7 +3561,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-poisonmaking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-poisonmaking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3612,7 +3614,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-stonemasonry_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-stonemasonry_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3665,7 +3667,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-trapmaking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-trapmaking_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3718,7 +3720,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-weaponsmithing_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_craft-weaponsmithing_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3771,7 +3773,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_deception_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_deception_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3824,7 +3826,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_endurance_ability" value="@{constitution}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_endurance_ability" value="@{constitution}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3877,7 +3879,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_gather-information_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_gather-information_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -3930,7 +3932,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_initiative_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_initiative_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
           <div class="cappedMod"> 
@@ -3988,7 +3990,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_invoke-arcana_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_invoke-arcana_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4041,7 +4043,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_jump_ability" value="@{strength}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_jump_ability" value="@{strength}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4094,7 +4096,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-arcana_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-arcana_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4147,7 +4149,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-architecture_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-architecture_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4200,7 +4202,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-dungeoneering_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-dungeoneering_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4253,7 +4255,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-geography_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-geography_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4306,7 +4308,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-history_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-history_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4359,7 +4361,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-keepers_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-keepers_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4412,7 +4414,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-nature_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-nature_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4465,7 +4467,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-nobility_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-nobility_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4518,7 +4520,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-planes_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-planes_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4571,7 +4573,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-religion_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-religion_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4624,7 +4626,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-streetwise_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_lore-streetwise_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4677,7 +4679,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_notice_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_notice_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4730,7 +4732,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_persuasion_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_persuasion_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4771,7 +4773,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="action" name="act_whisper_ride_check"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_ride_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{ride}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{ride_bonus}[Ride} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_ride_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{ride}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{ride_bonus}[Ride} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4783,7 +4785,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_ride_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_ride_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
           <div class="cappedMod"> 
@@ -4840,7 +4842,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_sense-motive_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_sense-motive_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -4893,7 +4895,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_stealth_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_stealth_ability" value="@{dexterity}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <input class="cappedDexMod" type="hidden" name="attr_dex_is_capped" value="0"/>
           <div class="cappedMod"> 
@@ -4950,7 +4952,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_survival_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_survival_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -5003,7 +5005,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_swim_ability" value="@{strength}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_swim_ability" value="@{strength}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -5057,7 +5059,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_tinkering_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_tinkering_ability" value="@{intelligence}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -5110,7 +5112,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_treat-wounds_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_treat-wounds_ability" value="@{wisdom}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
           </div>
           <div class="addition"></div>
           <div class="trained">
@@ -5164,7 +5166,7 @@
           <div class="addition"></div>
           <div class="abilityMod"> 
             <!-- If statement used to be here...-->
-            <input class="showAttMod showWatermark" type="hidden" name="attr_mana-tap_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            <input class="showAttMod showWatermark" type="hidden" name="attr_mana-tap_ability" value="@{charisma}"/><span class="attributeInput strength readOnly" type="text" name="attr_strength_modifier"></span><span class="attributeInput dexterity readOnly" type="text" name="attr_effective_dexterity_modifier"></span><span class="attributeInput constitution readOnly" type="text" name="attr_constitution_modifier"></span><span class="attributeInput intelligence readOnly" type="text" name="attr_intelligence_modifier"></span><span class="attributeInput wisdom readOnly" type="text" name="attr_wisdom_modifier"></span><span class="attributeInput charisma readOnly" type="text" name="attr_charisma_modifier"></span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
             <div class="config"> 
               <label class="cog">
                 <input class="hiddenInput" type="checkbox" name="attr_mana-tap_config_toggle" value="1"/><span class="configIcon">y</span>
@@ -6177,20 +6179,29 @@ on('change:armor_warden change:improved_armor_warden', function(eventInfo) {
     });
 });
 
-on('change:armor_worn change:armor_dex_cap change:encumbrance_max_dex', function(eventInfo) {
+function calculateCappedDexModifier(callback) {
+    const eventInfo = typeof callback === 'object' ? callback : {};
     log("Armor Watch Detected Change", eventInfo, r20color);
-    getAttrs(['armor_worn', 'armor_dex_cap', 'encumbrance_max_dex'], function(v) {
+    getAttrs(['armor_worn', 'armor_dex_cap', 'encumbrance_max_dex', 'dexterity_modifier'], function(v) {
         const armorWorn = parseInt(v.armor_worn) || 0;
         const armorDexCap = parseInt(v.armor_dex_cap);
         const armorCappedDexMod = !armorWorn || isNaN(armorDexCap) ? 1000 : armorDexCap;
         const encumbranceMaxDex = parseInt(v.encumbrance_max_dex, 10) || 1000;
         const cappedDexMod = Math.min(armorCappedDexMod, encumbranceMaxDex);
+        const dexterityModifier = parseInt(v.dexterity_modifier, 10) || 0;
         const setattrs = {};
         setattrs['capped_dex_mod'] = cappedDexMod;
+        setattrs['effective_dexterity_modifier'] = Math.min(dexterityModifier, cappedDexMod);
         setattrs['dex_is_capped'] = !armorWorn ? 0 : isNaN(armorDexCap) ? 0 : 1;
-        setAttrs(setattrs);
+        setAttrs(setattrs, {}, function () {
+            listOfSklls.forEach(skill => recalcSkill(skill));
+            if (typeof callback === 'function') callback(setattrs);
+        });
     });
-});
+}
+
+on('change:armor_worn change:armor_dex_cap change:encumbrance_max_dex change:dexterity_modifier', calculateCappedDexModifier);
+on('sheet:opened', calculateCappedDexModifier);
 
 on('change:armor_class change:armor_proficient_multiplier change:armor_worn change:shield_class change:shield_proficient_multiplier change:shield_worn', function() {
     getAttrs(['armor_class', 'armor_proficient_multiplier', 'armor_worn', 'shield_class', 'shield_proficient_multiplier', 'shield_worn'], function(v) {
@@ -6732,8 +6743,8 @@ on('change:total_weight_carried change:strength change:strength_adjusted change:
 // Watch for updates to: Attribute Modifiers, Half-Level, Trained Status, Skill Focus and Misc. Modifiers
 // Use the variables: listOfSklls, and listOfAttributes
 /*------------------End Skill Bonsuses------------------*/
-function recalcSkill(skill) {
-    const fields = [
+function getSkillCalculationFields(skill) {
+    return [
         "half-level",
         "capped_dex_mod",
         `${skill}_attribute`,
@@ -6742,32 +6753,39 @@ function recalcSkill(skill) {
         `${skill}_misc`,
         `${skill}_ability`,
         "current_character_type",
-        "size_penalty"
+        "size_penalty",
+        ...listOfAttributes
     ];
+}
 
-    const allFields = [...fields, ...listOfAttributes];
-    // log(`list of fields to retrieve`, allFields, r20color);
+function getSkillLinkedAttribute(value) {
+    return String(value || '')
+        .split("_")[0]
+        .replace("@", "")
+        .replace("{", "")
+        .replace("}", "");
+}
 
-    getAttrs(allFields, function(values) {
-        //log(`Values retrieved for skill ${skill}`, values, r20color);
-        //console.log(`Values retrieved for skill ${skill}:`, values);
-        const attribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", ""); // Extract the attribute name from the skill's linked attribute field
-        //log(`Attribute for Skill ${skill}`, attribute, derivedStatsColor);
-        //log("value of attribute modifier", values[`${attribute}_modifier`], derivedStatsColor);
-        const halfLevel = parseInt(values["half-level"], 10) || 0;
-        const trained = parseInt(values[`${skill}_trained`], 10) || 0;
-        const focus = parseInt(values[`${skill}_focus`], 10) || 0;
-        const misc = parseInt(values[`${skill}_misc`], 10) || 0;
-        const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
-        const calcAbilityMod = attribute === "dexterity" ? Math.min(abilityMod, parseInt(values["capped_dex_mod"], 10) || 0) : abilityMod;
-        const sizePenalty = parseInt(values["size_penalty"], 10) || 0;
-        const currentCharacterType = parseInt(values["current_character_type"], 10) || 1;
-        let skillBonusTotal = 0;
-        if (currentCharacterType === 1) {
-            skillBonusTotal = halfLevel + trained + focus + misc + calcAbilityMod;
-        } else {
-            skillBonusTotal = skill === 'stealth' ? halfLevel + trained + focus + misc + calcAbilityMod + sizePenalty : halfLevel + trained + focus + misc + calcAbilityMod;
-        }
+function calculateSkillBonus(skill, values) {
+    const attribute = getSkillLinkedAttribute(values[`${skill}_ability`]);
+    const halfLevel = parseInt(values["half-level"], 10) || 0;
+    const trained = parseInt(values[`${skill}_trained`], 10) || 0;
+    const focus = parseInt(values[`${skill}_focus`], 10) || 0;
+    const misc = parseInt(values[`${skill}_misc`], 10) || 0;
+    const abilityMod = parseInt(values[`${attribute}_modifier`], 10) || 0;
+    const cappedDexModifier = parseInt(values["capped_dex_mod"], 10);
+    const calculatedAbilityMod = attribute === "dexterity"
+        ? Math.min(abilityMod, isNaN(cappedDexModifier) ? 1000 : cappedDexModifier)
+        : abilityMod;
+    const sizePenalty = parseInt(values["size_penalty"], 10) || 0;
+    const currentCharacterType = parseInt(values["current_character_type"], 10) || 1;
+    const npcStealthPenalty = currentCharacterType === 4 && skill === 'stealth' ? sizePenalty : 0;
+    return halfLevel + trained + focus + misc + calculatedAbilityMod + npcStealthPenalty;
+}
+
+function recalcSkill(skill) {
+    getAttrs(getSkillCalculationFields(skill), function(values) {
+        const skillBonusTotal = calculateSkillBonus(skill, values);
         setAttrs({
             [`${skill}_bonus`]: skillBonusTotal
         });
@@ -6775,8 +6793,8 @@ function recalcSkill(skill) {
 }
 
 //Calculate Half-Level and Re-calculate Skills when Level changes
-on('change:level change:minion_level change:monster_level change:capped_dex_mod', function(eventInfo) {
-    getAttrs(['level', 'minion_level', 'monster_level', 'capped_dex_mod', 'half-level'], function(values) {
+on('change:level change:minion_level change:monster_level', function(eventInfo) {
+    getAttrs(['level', 'minion_level', 'monster_level', 'half-level'], function(values) {
         const seekerLevel = parseInt(values.level, 10) || 0;
         const minionLevel = parseInt(values.minion_level, 10) || 0;
         const monsterLevel = parseInt(values.monster_level, 10) || 0;
@@ -6784,13 +6802,7 @@ on('change:level change:minion_level change:monster_level change:capped_dex_mod'
         const halfLevelValue = Math.floor(totalLevels / 2);
         const previousHalfLevelValue = parseInt(values['half-level']) || 0;
 
-        if (eventInfo.sourceAttribute === "capped_dex_mod") {
-            log("Dexterity Modifier Updated", `New Half-Level Value: ${halfLevelValue}, Previous Half-Level Value: ${previousHalfLevelValue}`, derivedStatsColor);
-            listOfSklls.forEach(async (skill) => {
-                recalcSkill(skill);
-            });
-        }
-        else if (halfLevelValue === previousHalfLevelValue) {
+        if (halfLevelValue === previousHalfLevelValue) {
             log("Level Updated", "No Change in Half-Level Value.", derivedStatsColor);
         }
         else { //Half-Level Changed updated Half-level, then realculate all skills and weapons
@@ -6819,7 +6831,7 @@ listOfAttributes.forEach(attribute => {
         const attributeName = attribute.replace("_modifier", "");
         listOfSklls.forEach(skill => {
             getAttrs([`${skill}_ability`], function(values) {
-                const skillAttribute = values[`${skill}_ability`].split("_")[0].replace("@", "").replace("{", "").replace("}", "");
+                const skillAttribute = getSkillLinkedAttribute(values[`${skill}_ability`]);
                 if (skillAttribute === attributeName) {
                     recalcSkill(skill);
                 }
@@ -6831,7 +6843,8 @@ listOfAttributes.forEach(attribute => {
 // when the size penalty changes, re-calculate stealth
 on('change:size_penalty', function() {
     recalcSkill('stealth');
-});// Sheet Workers for Weapons
+});
+  // Sheet Workers for Weapons
 //--------------------------
 //rereating_weapons_weapon = Weapon Name
 //repeating_weapons_weapon-atk = Total ATK (Base Attack Bonus + Attack Bonus from Str/Dex + Misc Modifiers)
@@ -7498,6 +7511,7 @@ const ENCUMBRANCE_SKILLS = new Set([
     'endurance',
     'initiative',
     'jump',
+    'ride',
     'stealth',
     'swim'
 ]);
@@ -7537,7 +7551,7 @@ const runSkillCheck = (skillName, whisper = false) => () => {
         'multi-action-penalty',
         'armor_check_penalty',
         'effective_check_penalty',
-        `${skillName}_bonus`
+        ...getSkillCalculationFields(skillName)
     ];
 
     getAttrs(fields, values => {
@@ -7547,8 +7561,9 @@ const runSkillCheck = (skillName, whisper = false) => () => {
         } else if (ARMOR_CHECK_SKILLS.has(skillName)) {
             terms.push(`${toInt(values.armor_check_penalty)}[Armor Check Penalty]`);
         }
+        const skillBonus = calculateSkillBonus(skillName, values);
         terms.push(`${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`);
-        terms.push(`${toInt(values[`${skillName}_bonus`])}[^{skill-bonus}]`);
+        terms.push(`${skillBonus}[^{skill-bonus}]`);
         terms.push(`${parseSignedValue(values.condition)}[Condition]`);
         terms.push('?{Additional Modifiers|0}[^{additional-modifiers}]');
 
@@ -7568,14 +7583,20 @@ const runAttributeCheck = (attributeName, whisper = false) => () => {
         'character_name',
         'condition',
         'multi-action-penalty',
+        'capped_dex_mod',
         `${attributeName}_modifier`
     ];
 
     getAttrs(fields, values => {
+        const rawAttributeModifier = toInt(values[`${attributeName}_modifier`]);
+        const parsedDexterityCap = parseInt(values.capped_dex_mod, 10);
+        const attributeModifier = attributeName === 'dexterity'
+            ? Math.min(rawAttributeModifier, isNaN(parsedDexterityCap) ? 1000 : parsedDexterityCap)
+            : rawAttributeModifier;
         const terms = [
             '1d20cs20cf1',
             `${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`,
-            `${toInt(values[`${attributeName}_modifier`])}[^{attribute-modifier}]`,
+            `${attributeModifier}[^{attribute-modifier}]`,
             `${parseSignedValue(values.condition)}[Condition]`,
             '?{Additional Modifiers|0}[^{additional-modifiers}]'
         ];
