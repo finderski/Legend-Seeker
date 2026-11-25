@@ -14,9 +14,6 @@
         label(class="headerLabel", data-i18n='ability-mod') Ability Modifier
     .saveMisc
         label(class="headerLabel", data-i18n='miscellaneous-abbr') Misc
-//
-    -
-        const saveList = [['REF', 'reflex', 'dexterity'], ['FORT', 'fortitude', 'constitution'], ['WILL', 'willpower', 'wisdom']];
-        const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
+// saveList is defined in _sheet.pug and passed to this template
 each save in saveList
     +savingthrow(save)

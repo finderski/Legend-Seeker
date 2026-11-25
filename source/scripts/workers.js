@@ -314,7 +314,7 @@ on('change:armor_sr change:shield_sr change:armor_worn change:shield_worn change
 });
 
 // Watch for Defense Score Changes
-const saveList = ['fort', 'ref', 'will'];
+const saveList = ['ref', 'fort', 'will'];
 const fortFields = ['level', 'condition',  'armor_fort_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 

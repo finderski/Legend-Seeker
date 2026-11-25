@@ -158,7 +158,7 @@
                       <button class="whisperToChat" type="action" name="act_whisper_dexterity_check"><span class="iconButton">w</span></button>
                     </div>
                   </div>
-                  <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{effective_dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+                  <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[^{multi-action-penalty}] + @{effective_dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
                 </div>
                 <div class="score-field">
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
@@ -280,7 +280,8 @@
                 <div class="damageThreshold readOnly">
                   <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
                   <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
-                  <input class="showMonsterousMod" type="hidden" name="attr_damage_threshold_mod" value="0"/><span class="monsterousMod" name="attr_damage_threshold_mod"></span>
+                  <input class="showMonsterousMod" type="hidden" name="attr_damage_threshold_mod" value="0"/>
+                  <!-- span(class="monsterousMod", name="attr_damage_threshold_mod")-->
                 </div>
               </div>
               <button class="labelButton secondWind" type="action" name="act_secondwind" data-i18n="second-wind">Second Wind</button>
@@ -506,52 +507,7 @@
                   <label class="headerLabel" data-i18n="miscellaneous-abbr">Misc</label>
                 </div>
               </div>
-              <!--
-              -
-                  const saveList = [['REF', 'reflex', 'dexterity'], ['FORT', 'fortitude', 'constitution'], ['WILL', 'willpower', 'wisdom']];
-                  const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
-              -->
-              <div class="saveRow">
-                <div class="saveButton">
-                  <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
-                </div>
-                <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
-                <div class="saveTotal">
-                  <input class="attributeInput readOnly" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
-                </div>
-                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
-                <div class="saveLvlOrArmor">
-                  <input class="attributeInput readOnly" type="text" name="attr_fort_level_or_armor" placeholder="0" readonly="readonly"/>
-                </div>
-                <div class="saveClassBonus">
-                  <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
-                </div>
-                <div class="saveAbilityMod">
-                  <input class="showWatermark" type="hidden" name="attr_fort_ability_mod" value="constitution"/>
-                  <input class="attributeInput" type="text" name="attr_fort_ability_modifier" readonly="readonly"/><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
-                </div>
-                <div class="config"> 
-                  <label class="cog">
-                    <input class="hiddenInput" type="checkbox" name="attr_fort_save_toggle"/><span class="configIcon">y</span>
-                  </label>
-                </div>
-                <div class="saveMisc">
-                  <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
-                </div>
-                <input class="hideSection" type="hidden" name="attr_fort_save_toggle" value="0"/>
-                <div class="abilityConfig"> 
-                  <div class="shim-left"></div>
-                  <select class="ls-Dropdown" name="attr_fort_ability_mod">
-                    <option value="strength" data-i18n="strength-abbr">STR</option>
-                    <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
-                    <option value="constitution" data-i18n="constitution-abbr" selected="selected">CON</option>
-                    <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
-                    <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
-                    <option value="charisma" data-i18n="charisma-abbr">CHA</option>
-                  </select>
-                  <div class="shim-right"></div>
-                </div>
-              </div>
+              <!-- saveList is defined in _sheet.pug and passed to this template-->
               <div class="saveRow">
                 <div class="saveButton">
                   <button class="labelButton nonClickable" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
@@ -587,6 +543,47 @@
                     <option value="strength" data-i18n="strength-abbr">STR</option>
                     <option value="dexterity" data-i18n="dexterity-abbr" selected="selected">DEX</option>
                     <option value="constitution" data-i18n="constitution-abbr">CON</option>
+                    <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                    <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
+                    <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+                  </select>
+                  <div class="shim-right"></div>
+                </div>
+              </div>
+              <div class="saveRow">
+                <div class="saveButton">
+                  <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
+                </div>
+                <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+                <div class="saveTotal">
+                  <input class="attributeInput readOnly" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
+                </div>
+                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+                <div class="saveLvlOrArmor">
+                  <input class="attributeInput readOnly" type="text" name="attr_fort_level_or_armor" placeholder="0" readonly="readonly"/>
+                </div>
+                <div class="saveClassBonus">
+                  <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
+                </div>
+                <div class="saveAbilityMod">
+                  <input class="showWatermark" type="hidden" name="attr_fort_ability_mod" value="constitution"/>
+                  <input class="attributeInput" type="text" name="attr_fort_ability_modifier" readonly="readonly"/><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+                </div>
+                <div class="config"> 
+                  <label class="cog">
+                    <input class="hiddenInput" type="checkbox" name="attr_fort_save_toggle"/><span class="configIcon">y</span>
+                  </label>
+                </div>
+                <div class="saveMisc">
+                  <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
+                </div>
+                <input class="hideSection" type="hidden" name="attr_fort_save_toggle" value="0"/>
+                <div class="abilityConfig"> 
+                  <div class="shim-left"></div>
+                  <select class="ls-Dropdown" name="attr_fort_ability_mod">
+                    <option value="strength" data-i18n="strength-abbr">STR</option>
+                    <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
+                    <option value="constitution" data-i18n="constitution-abbr" selected="selected">CON</option>
                     <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
                     <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
                     <option value="charisma" data-i18n="charisma-abbr">CHA</option>
@@ -1185,7 +1182,7 @@
                   <button class="whisperToChat" type="action" name="act_whisper_dexterity_check"><span class="iconButton">w</span></button>
                 </div>
               </div>
-              <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{multi-action-penalty}[^{multi-action-penalty}] + @{effective_dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
+              <input type="hidden" name="attr_dexterity_check_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{dexterity}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[^{multi-action-penalty}] + @{effective_dexterity_modifier}[dexterity modifier]+@{condition} + ?{Additional Modifiers|0}[additional modifiers]]]}}"/>
             </div>
             <div class="score-field">
               <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
@@ -1340,7 +1337,8 @@
               <div class="damageThreshold readOnly">
                 <label class="fieldLabelAbove" data-i18n="damage-threshold">Damage Threshold</label>
                 <input class="xPointInput" type="text" name="attr_stamina_damageThreshold" placeholder="0" readonly="readonly"/>
-                <input class="showMonsterousMod" type="hidden" name="attr_damage_threshold_mod" value="0"/><span class="monsterousMod" name="attr_damage_threshold_mod"></span>
+                <input class="showMonsterousMod" type="hidden" name="attr_damage_threshold_mod" value="0"/>
+                <!-- span(class="monsterousMod", name="attr_damage_threshold_mod")-->
               </div>
             </div>
             <button class="labelButton secondWind" type="action" name="act_secondwind" data-i18n="second-wind">Second Wind</button>
@@ -1567,52 +1565,7 @@
               <label class="headerLabel" data-i18n="miscellaneous-abbr">Misc</label>
             </div>
           </div>
-          <!--
-          -
-              const saveList = [['REF', 'reflex', 'dexterity'], ['FORT', 'fortitude', 'constitution'], ['WILL', 'willpower', 'wisdom']];
-              const fullAbilityList = ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'];
-          -->
-          <div class="saveRow">
-            <div class="saveButton">
-              <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
-            </div>
-            <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
-            <div class="saveTotal">
-              <input class="attributeInput readOnly" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
-            </div>
-            <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
-            <div class="saveLvlOrArmor">
-              <input class="attributeInput readOnly" type="text" name="attr_fort_level_or_armor" placeholder="0" readonly="readonly"/>
-            </div>
-            <div class="saveClassBonus">
-              <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
-            </div>
-            <div class="saveAbilityMod">
-              <input class="showWatermark" type="hidden" name="attr_fort_ability_mod" value="constitution"/>
-              <input class="attributeInput" type="text" name="attr_fort_ability_modifier" readonly="readonly"/><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
-            </div>
-            <div class="config"> 
-              <label class="cog">
-                <input class="hiddenInput" type="checkbox" name="attr_fort_save_toggle"/><span class="configIcon">y</span>
-              </label>
-            </div>
-            <div class="saveMisc">
-              <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
-            </div>
-            <input class="hideSection" type="hidden" name="attr_fort_save_toggle" value="0"/>
-            <div class="abilityConfig"> 
-              <div class="shim-left"></div>
-              <select class="ls-Dropdown" name="attr_fort_ability_mod">
-                <option value="strength" data-i18n="strength-abbr">STR</option>
-                <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
-                <option value="constitution" data-i18n="constitution-abbr" selected="selected">CON</option>
-                <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
-                <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
-                <option value="charisma" data-i18n="charisma-abbr">CHA</option>
-              </select>
-              <div class="shim-right"></div>
-            </div>
-          </div>
+          <!-- saveList is defined in _sheet.pug and passed to this template-->
           <div class="saveRow">
             <div class="saveButton">
               <button class="labelButton nonClickable" type="roll" name="roll_REF_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{REF-check}}} {{Roll=[[1d20 + @{REF_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="reflex-abbr">REF</span></button>
@@ -1648,6 +1601,47 @@
                 <option value="strength" data-i18n="strength-abbr">STR</option>
                 <option value="dexterity" data-i18n="dexterity-abbr" selected="selected">DEX</option>
                 <option value="constitution" data-i18n="constitution-abbr">CON</option>
+                <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
+                <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
+                <option value="charisma" data-i18n="charisma-abbr">CHA</option>
+              </select>
+              <div class="shim-right"></div>
+            </div>
+          </div>
+          <div class="saveRow">
+            <div class="saveButton">
+              <button class="labelButton nonClickable" type="roll" name="roll_FORT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FORT-check}}} {{Roll=[[1d20 + @{FORT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="fortitude-abbr">FORT</span></button>
+            </div>
+            <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+            <div class="saveTotal">
+              <input class="attributeInput readOnly" type="text" name="attr_fort_total" readonly="readonly" placeholder="10"/>
+            </div>
+            <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+            <div class="saveLvlOrArmor">
+              <input class="attributeInput readOnly" type="text" name="attr_fort_level_or_armor" placeholder="0" readonly="readonly"/>
+            </div>
+            <div class="saveClassBonus">
+              <input class="attributeInput" type="text" name="attr_fort_class_bonus" placeholder="0"/>
+            </div>
+            <div class="saveAbilityMod">
+              <input class="showWatermark" type="hidden" name="attr_fort_ability_mod" value="constitution"/>
+              <input class="attributeInput" type="text" name="attr_fort_ability_modifier" readonly="readonly"/><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            </div>
+            <div class="config"> 
+              <label class="cog">
+                <input class="hiddenInput" type="checkbox" name="attr_fort_save_toggle"/><span class="configIcon">y</span>
+              </label>
+            </div>
+            <div class="saveMisc">
+              <input class="attributeInput" type="text" name="attr_fort_misc_save_mod" placeholder="0"/>
+            </div>
+            <input class="hideSection" type="hidden" name="attr_fort_save_toggle" value="0"/>
+            <div class="abilityConfig"> 
+              <div class="shim-left"></div>
+              <select class="ls-Dropdown" name="attr_fort_ability_mod">
+                <option value="strength" data-i18n="strength-abbr">STR</option>
+                <option value="dexterity" data-i18n="dexterity-abbr">DEX</option>
+                <option value="constitution" data-i18n="constitution-abbr" selected="selected">CON</option>
                 <option value="intelligence" data-i18n="intelligence-abbr">INT</option>
                 <option value="wisdom" data-i18n="wisdom-abbr">WIS</option>
                 <option value="charisma" data-i18n="charisma-abbr">CHA</option>
@@ -2883,7 +2877,7 @@
         </div>
         <div class="capacity"> 
           <label class="fieldLabel" data-i18n="carry-capacity">Carry Capacity</label>
-          <input type="hidden" name="attr_carry_capacity" value="0"/>
+          <input type="hidden" name="attr_carry_capacity" value="0/0/0"/>
           <input type="hidden" name="attr_encumbrance_penalty" value="0"/>
           <input type="hidden" name="attr_encumbrance_load" value="light"/><span class="carryCapacity" name="attr_carry_capacity"></span>
         </div>
@@ -6259,7 +6253,7 @@ on('change:armor_sr change:shield_sr change:armor_worn change:shield_worn change
 });
 
 // Watch for Defense Score Changes
-const saveList = ['fort', 'ref', 'will'];
+const saveList = ['ref', 'fort', 'will'];
 const fortFields = ['level', 'condition',  'armor_fort_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
@@ -6454,6 +6448,15 @@ function getHeavyLoadCapacity(strength) {
     return HEAVY_LOAD_BASES[baseIndex] * Math.pow(4, decade);
 }
 
+function getCarryCapacityDisplay(lightLoadMaximum, mediumLoadMaximum, heavyLoadMaximum) {
+    if (heavyLoadMaximum <= 0) {
+        return '0/0/0';
+    }
+
+    const formattedHeavyMaximum = parseFloat(heavyLoadMaximum.toFixed(2));
+    return `${lightLoadMaximum + 1}/${mediumLoadMaximum + 1}/${formattedHeavyMaximum}`;
+}
+
 function calculateEffectiveCheckPenalty(callback) {
     getAttrs(['armor_check_penalty', 'encumbrance_penalty'], function (values) {
         const armorPenalty = parseInt(values.armor_check_penalty, 10) || 0;
@@ -6497,6 +6500,11 @@ function calculateEncumbrance(callback) {
         const heavyLoadMaximum = getHeavyLoadCapacity(capacityStrength) * sizeMultiplier;
         const lightLoadMaximum = Math.floor(heavyLoadMaximum / 3);
         const mediumLoadMaximum = Math.floor((heavyLoadMaximum * 2) / 3);
+        const carryCapacityDisplay = getCarryCapacityDisplay(
+            lightLoadMaximum,
+            mediumLoadMaximum,
+            heavyLoadMaximum
+        );
         const loadCategory = totalWeight <= lightLoadMaximum
             ? 'light'
             : totalWeight <= mediumLoadMaximum
@@ -6513,14 +6521,16 @@ function calculateEncumbrance(callback) {
             : loadCategory === 'medium'
                 ? 3
                 : 1;
-        const adjustedSpeed = effectsEnabled && loadCategory === 'heavy'
+        const adjustedSpeed = effectsEnabled && loadCategory === 'medium'
             ? Math.floor(characterSpeed * 0.75)
-            : characterSpeed;
+            : effectsEnabled && loadCategory === 'heavy'
+                ? Math.min(characterSpeed, Math.max(1, Math.floor(characterSpeed * 0.25)))
+                : characterSpeed;
         const overCapacity = effectsEnabled && totalWeight > heavyLoadMaximum ? 1 : 0;
         const armorCheckPenalty = parseInt(values.armor_check_penalty, 10) || 0;
         const effectiveCheckPenalty = Math.min(0, armorCheckPenalty, encumbrancePenalty);
         const attrsToSet = {
-            carry_capacity: parseFloat(heavyLoadMaximum.toFixed(2)),
+            carry_capacity: carryCapacityDisplay,
             encumbrance_load: loadCategory,
             encumbrance_penalty: encumbrancePenalty,
             effective_check_penalty: effectiveCheckPenalty,
@@ -7584,6 +7594,7 @@ const runAttributeCheck = (attributeName, whisper = false) => () => {
         'condition',
         'multi-action-penalty',
         'capped_dex_mod',
+        'effective_check_penalty',
         `${attributeName}_modifier`
     ];
 
@@ -7593,13 +7604,16 @@ const runAttributeCheck = (attributeName, whisper = false) => () => {
         const attributeModifier = attributeName === 'dexterity'
             ? Math.min(rawAttributeModifier, isNaN(parsedDexterityCap) ? 1000 : parsedDexterityCap)
             : rawAttributeModifier;
-        const terms = [
-            '1d20cs20cf1',
+        const terms = ['1d20cs20cf1'];
+        if (attributeName === 'dexterity') {
+            terms.push(`${toInt(values.effective_check_penalty)}[Armor/Encumbrance Check Penalty]`);
+        }
+        terms.push(
             `${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`,
             `${attributeModifier}[^{attribute-modifier}]`,
             `${parseSignedValue(values.condition)}[Condition]`,
             '?{Additional Modifiers|0}[^{additional-modifiers}]'
-        ];
+        );
         const rollTemplate = buildStandardD20Template({
             characterName: values.character_name || 'Character',
             title: `^{${attributeName}}`,

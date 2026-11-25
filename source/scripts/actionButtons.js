@@ -122,6 +122,7 @@ const runAttributeCheck = (attributeName, whisper = false) => () => {
         'condition',
         'multi-action-penalty',
         'capped_dex_mod',
+        'effective_check_penalty',
         `${attributeName}_modifier`
     ];
 
@@ -131,13 +132,16 @@ const runAttributeCheck = (attributeName, whisper = false) => () => {
         const attributeModifier = attributeName === 'dexterity'
             ? Math.min(rawAttributeModifier, isNaN(parsedDexterityCap) ? 1000 : parsedDexterityCap)
             : rawAttributeModifier;
-        const terms = [
-            '1d20cs20cf1',
+        const terms = ['1d20cs20cf1'];
+        if (attributeName === 'dexterity') {
+            terms.push(`${toInt(values.effective_check_penalty)}[Armor/Encumbrance Check Penalty]`);
+        }
+        terms.push(
             `${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`,
             `${attributeModifier}[^{attribute-modifier}]`,
             `${parseSignedValue(values.condition)}[Condition]`,
             '?{Additional Modifiers|0}[^{additional-modifiers}]'
-        ];
+        );
         const rollTemplate = buildStandardD20Template({
             characterName: values.character_name || 'Character',
             title: `^{${attributeName}}`,

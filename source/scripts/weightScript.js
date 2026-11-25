@@ -11,6 +11,15 @@ function getHeavyLoadCapacity(strength) {
     return HEAVY_LOAD_BASES[baseIndex] * Math.pow(4, decade);
 }
 
+function getCarryCapacityDisplay(lightLoadMaximum, mediumLoadMaximum, heavyLoadMaximum) {
+    if (heavyLoadMaximum <= 0) {
+        return '0/0/0';
+    }
+
+    const formattedHeavyMaximum = parseFloat(heavyLoadMaximum.toFixed(2));
+    return `${lightLoadMaximum + 1}/${mediumLoadMaximum + 1}/${formattedHeavyMaximum}`;
+}
+
 function calculateEffectiveCheckPenalty(callback) {
     getAttrs(['armor_check_penalty', 'encumbrance_penalty'], function (values) {
         const armorPenalty = parseInt(values.armor_check_penalty, 10) || 0;
@@ -54,6 +63,11 @@ function calculateEncumbrance(callback) {
         const heavyLoadMaximum = getHeavyLoadCapacity(capacityStrength) * sizeMultiplier;
         const lightLoadMaximum = Math.floor(heavyLoadMaximum / 3);
         const mediumLoadMaximum = Math.floor((heavyLoadMaximum * 2) / 3);
+        const carryCapacityDisplay = getCarryCapacityDisplay(
+            lightLoadMaximum,
+            mediumLoadMaximum,
+            heavyLoadMaximum
+        );
         const loadCategory = totalWeight <= lightLoadMaximum
             ? 'light'
             : totalWeight <= mediumLoadMaximum
@@ -70,14 +84,16 @@ function calculateEncumbrance(callback) {
             : loadCategory === 'medium'
                 ? 3
                 : 1;
-        const adjustedSpeed = effectsEnabled && loadCategory === 'heavy'
+        const adjustedSpeed = effectsEnabled && loadCategory === 'medium'
             ? Math.floor(characterSpeed * 0.75)
-            : characterSpeed;
+            : effectsEnabled && loadCategory === 'heavy'
+                ? Math.min(characterSpeed, Math.max(1, Math.floor(characterSpeed * 0.25)))
+                : characterSpeed;
         const overCapacity = effectsEnabled && totalWeight > heavyLoadMaximum ? 1 : 0;
         const armorCheckPenalty = parseInt(values.armor_check_penalty, 10) || 0;
         const effectiveCheckPenalty = Math.min(0, armorCheckPenalty, encumbrancePenalty);
         const attrsToSet = {
-            carry_capacity: parseFloat(heavyLoadMaximum.toFixed(2)),
+            carry_capacity: carryCapacityDisplay,
             encumbrance_load: loadCategory,
             encumbrance_penalty: encumbrancePenalty,
             effective_check_penalty: effectiveCheckPenalty,
