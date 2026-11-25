@@ -1,7 +1,7 @@
 
 <div class="maindiv">
   <!-- Hidden inputs for character sheet functionality-->
-  <input type="hidden" name="attr_sheetversion" value="0.2.3"/>
+  <input type="hidden" name="attr_sheetversion" value="0.3.0"/>
   <input type="hidden" name="attr_shield_dr" value="0"/>
   <!-- size_penalty is the stealth modifier based on the size of the character/monster.-->
   <input type="hidden" name="attr_size_penalty" value="0"/>
@@ -127,6 +127,7 @@
                 </div>
               </div>
               <input type="hidden" name="attr_capped_dex_mod" value="1000"/>
+              <input type="hidden" name="attr_encumbrance_max_dex" value="1000"/>
               <!--
               -
                   const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
@@ -162,6 +163,7 @@
                   <input class="attributeInput" type="text" name="attr_dexterity" placeholder="3"/>
                 </div>
                 <input class="isEncumbered" type="hidden" name="attr_encumbrance_penalty" value="0"/>
+                <input class="overCapacity" type="hidden" name="attr_over_carry_capacity" value="0"/>
                 <div class="encumbered"> 
                   <div class="shieldIcon"><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png" data-i18n-alt="encumbered"/></div>
                 </div>
@@ -301,6 +303,7 @@
               </div>
               <div class="adjustedSpeed"> 
                 <input class="isEncumbered" type="hidden" name="attr_encumbrance_penalty" value="0"/>
+                <input class="overCapacity" type="hidden" name="attr_over_carry_capacity" value="0"/>
                 <div class="encumbered"> 
                   <div class="shieldIcon"><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png" data-i18n-alt="encumbered"/></div>
                 </div>
@@ -1147,6 +1150,7 @@
             </div>
           </div>
           <input type="hidden" name="attr_capped_dex_mod" value="1000"/>
+          <input type="hidden" name="attr_encumbrance_max_dex" value="1000"/>
           <!--
           -
               const attributeList = [['STR', 'strength'], ['DEX', 'dexterity'], ['CON', 'constitution'],['INT', 'intelligence'],  ['WIS', 'wisdom'], ['CHA', 'charisma']];
@@ -1188,6 +1192,7 @@
               <input class="attributeInput readOnly" type="text" name="attr_dexterity_adjusted" placeholder="0" readonly="readonly"/>
             </div>
             <input class="isEncumbered" type="hidden" name="attr_encumbrance_penalty" value="0"/>
+            <input class="overCapacity" type="hidden" name="attr_over_carry_capacity" value="0"/>
             <div class="encumbered"> 
               <div class="shieldIcon"><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png" data-i18n-alt="encumbered"/></div>
             </div>
@@ -1357,6 +1362,7 @@
             </div>
             <div class="adjustedSpeed"> 
               <input class="isEncumbered" type="hidden" name="attr_encumbrance_penalty" value="0"/>
+              <input class="overCapacity" type="hidden" name="attr_over_carry_capacity" value="0"/>
               <div class="encumbered"> 
                 <div class="shieldIcon"><img src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png" data-i18n-alt="encumbered"/></div>
               </div>
@@ -1770,7 +1776,10 @@
     <hr class="sectionDivider"/>
     <!-- Pick List on main page for NPCs/Monsters-->
     <div class="npcSkills"> 
-      <h3 class="headerLabel" data-i18n="skills">Skills</h3>
+      <h3 class="headerLabel"><span data-i18n="skills">Skills</span>
+        <input class="isEncumbered" type="hidden" name="attr_encumbrance_penalty" value="0"/>
+        <input class="overCapacity" type="hidden" name="attr_over_carry_capacity" value="0"/><img class="encumbranceIcon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png" data-i18n-alt="encumbered"/>
+      </h3>
       <div class="config"> 
         <label class="cog">
           <input class="hiddenInput" type="checkbox" name="attr_npc_skill_config_toggle" value="1"/><span class="configIcon">y</span>
@@ -1944,7 +1953,7 @@
             <div class="whisperButton"> 
               <button class="whisperToChat" type="action" name="act_whisper_acrobatics_check"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{acrobatics}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{acrobatics_bonus}[Acrobatics} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{acrobatics}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{acrobatics_bonus}[Acrobatics} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -1955,7 +1964,7 @@
             <div class="whisperButton"> 
               <button class="whisperToChat" type="action" name="act_whisper_climb_check"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_climb_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{climb}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{climb_bonus}[Climb} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_climb_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{climb}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{climb_bonus}[Climb} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -2087,7 +2096,7 @@
             <div class="whisperButton"> 
               <button class="whisperToChat" type="action" name="act_whisper_endurance_check"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_endurance_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{endurance}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{endurance_bonus}[Endurance} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_endurance_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{endurance}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{endurance_bonus}[Endurance} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -2109,7 +2118,7 @@
             <div class="whisperButton"> 
               <button class="whisperToChat" type="action" name="act_whisper_initiative_check"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{initiative_bonus}[Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{initiative_bonus}[Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -2131,7 +2140,7 @@
             <div class="whisperButton"> 
               <button class="whisperToChat" type="action" name="act_whisper_jump_check"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_jump_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{jump}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{jump_bonus}[Jump} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_jump_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{jump}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{jump_bonus}[Jump} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -2307,7 +2316,7 @@
             <div class="whisperButton"> 
               <button class="whisperToChat" type="action" name="act_whisper_stealth_check"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{stealth_bonus}[Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{stealth_bonus}[Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -2329,7 +2338,7 @@
             <div class="whisperButton"> 
               <button class="whisperToChat" type="action" name="act_whisper_swim_check"><span class="iconButton">w</span></button>
             </div>
-            <input type="hidden" name="attr_swim_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{swim}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{swim_bonus}[Swim} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+            <input type="hidden" name="attr_swim_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{swim}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{swim_bonus}[Swim} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
           </div>
         </div>
         <!-- ['skill name', 'attribute', 'na|some|trained', 'yes|no']-->
@@ -2873,13 +2882,15 @@
         <div class="capacity"> 
           <label class="fieldLabel" data-i18n="carry-capacity">Carry Capacity</label>
           <input type="hidden" name="attr_carry_capacity" value="0"/>
-          <input type="hidden" name="attr_encumbrance_penalty" value="0"/><span class="carryCapacity" name="attr_carry_capacity"></span>
+          <input type="hidden" name="attr_encumbrance_penalty" value="0"/>
+          <input type="hidden" name="attr_encumbrance_load" value="light"/><span class="carryCapacity" name="attr_carry_capacity"></span>
         </div>
         <hr class="sectionDivider"/>
         <!-- stying found in _equipmentAndSkills.scss-->
         <div class="armor">
           <h3 class="headerLabel center" data-i18n="armor-and-shield">Armor and Shield</h3>
           <input type="hidden" name="attr_armor_check_penalty" value="0"/>
+          <input type="hidden" name="attr_effective_check_penalty" value="0"/>
           <div class="armorWarden">
             <label>
               <input class="checkboxInput" type="checkbox" name="attr_armor_warden" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="armor-warden">Armor Warden</span>
@@ -3068,7 +3079,8 @@
       <div class="skills"> 
         <!-- stying found in _equipmentAndSkills.scss-->
         <h2 class="headerLabel"><span data-i18n="skills">Skills</span>
-          <input class="isEncumbered" type="hidden" name="attr_encumbrance_penalty" value="0"/><img class="encumbranceIcon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png" data-i18n-alt="encumbered"/>
+          <input class="isEncumbered" type="hidden" name="attr_encumbrance_penalty" value="0"/>
+          <input class="overCapacity" type="hidden" name="attr_over_carry_capacity" value="0"/><img class="encumbranceIcon" src="https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png" data-i18n-alt="encumbered"/>
         </h2>
         <input class="npcSkills" type="hidden" name="attr_current_character_type" value="1"/>
         <div class="skill">
@@ -3107,7 +3119,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="action" name="act_whisper_acrobatics_check"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{acrobatics}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{acrobatics_bonus}[Acrobatics} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_acrobatics_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{acrobatics}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{acrobatics_bonus}[Acrobatics} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3164,7 +3176,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="action" name="act_whisper_climb_check"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_climb_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{climb}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{climb_bonus}[Climb} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_climb_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{climb}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{climb_bonus}[Climb} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3800,7 +3812,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="action" name="act_whisper_endurance_check"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_endurance_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{endurance}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{endurance_bonus}[Endurance} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_endurance_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{endurance}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{endurance_bonus}[Endurance} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -3906,7 +3918,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="action" name="act_whisper_initiative_check"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{initiative_bonus}[Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up] &amp;{tracker}]]}}"/>
+              <input type="hidden" name="attr_initiative_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{initiative}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{initiative_bonus}[Initiative} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up] &amp;{tracker}]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4017,7 +4029,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="action" name="act_whisper_jump_check"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_jump_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{jump}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{jump_bonus}[Jump} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_jump_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{jump}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{jump_bonus}[Jump} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4869,7 +4881,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="action" name="act_whisper_stealth_check"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{stealth_bonus}[Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_stealth_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{stealth}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{stealth_bonus}[Stealth} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -4979,7 +4991,7 @@
               <div class="whisperButton"> 
                 <button class="whisperToChat" type="action" name="act_whisper_swim_check"><span class="iconButton">w</span></button>
               </div>
-              <input type="hidden" name="attr_swim_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{swim}}} {{roll=[[1d20 + @{armor_check_penalty}[Armor Check Penalty] + @{encumbrance_penalty}[Encumbrance Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{swim_bonus}[Swim} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
+              <input type="hidden" name="attr_swim_formula" value="&amp;{template:roll} {{name=@{character_name}}} {{title=^{swim}}} {{roll=[[1d20 + @{effective_check_penalty}[Armor/Encumbrance Check Penalty] + @{multi-action-penalty}[Multi-Action Penalty] + @{swim_bonus}[Swim} Bonus]+@{condition}+?{Additional Modifiers|0}[modifier-pop-up]]]}}"/>
             </div>
           </div>
           <div class="skillDetails"></div>
@@ -5280,9 +5292,12 @@
       <label class="settingLabel">
         <input class="checkboxInput" type="checkbox" name="attr_ignore-encumbrance" value="1"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="ignore-encumbrance">Ignore Encumbrance</span>
       </label>
+      <label class="settingLabel">
+        <input class="checkboxInput" type="checkbox" name="attr_apply-npc-encumbrance" value="1" checked="checked"/><span class="styledCheckbox"></span><span class="styledCheckboxText" data-i18n="apply-npc-encumbrance">Apply Encumbrance to NPCs/Monsters</span>
+      </label>
     </div>
     <div class="footer"> 
-      <p class="credit" data-i18n="armor-credit"> </p>
+      <p class="credit" data-i18n="armor-credit"></p>
     </div>
   </div>
 </div>
@@ -5804,7 +5819,7 @@ sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.2.3';
+        const currentVersion = '0.3.0';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
@@ -5892,6 +5907,15 @@ on('sheet:opened', function() {
             setAttrs(setattrs);
             log("version 0.2.3 update complete", "Sheet version updated to 0.2.3 and Stealth Skill Calculation should now be fixed", r20color);
         }
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.3.0', "Recalculate Encumbrance State", r20color);
+            recalculateAllWeightTotals(function () {
+                calculateEncumbrance(function () {
+                    setAttrs({ sheetversion: currentVersion });
+                    log("version 0.3.0 update complete", "Sheet version updated to 0.3.0 and encumbrance state recalculated", r20color);
+                });
+            });
+        }
         else {
             log('Sheet version is up to date', "No updates needed", r20color);
         }
@@ -5916,7 +5940,8 @@ on('sheet:opened', function() {
         });
     });
     */
-});// Better Logging Functionality
+});
+  // Better Logging Functionality
 const log = (
     title,
     text,
@@ -6152,13 +6177,15 @@ on('change:armor_warden change:improved_armor_warden', function(eventInfo) {
     });
 });
 
-on('change:armor_worn change:armor_dex_cap', function(eventInfo) {
+on('change:armor_worn change:armor_dex_cap change:encumbrance_max_dex', function(eventInfo) {
     log("Armor Watch Detected Change", eventInfo, r20color);
-    getAttrs(['armor_worn', 'armor_dex_cap'], function(v) {
+    getAttrs(['armor_worn', 'armor_dex_cap', 'encumbrance_max_dex'], function(v) {
         const armorWorn = parseInt(v.armor_worn) || 0;
         const armorDexCap = parseInt(v.armor_dex_cap);
-        let cappedDexMod = !armorWorn || isNaN(armorDexCap) ? '1000' : armorDexCap;
-        setattrs = {};
+        const armorCappedDexMod = !armorWorn || isNaN(armorDexCap) ? 1000 : armorDexCap;
+        const encumbranceMaxDex = parseInt(v.encumbrance_max_dex, 10) || 1000;
+        const cappedDexMod = Math.min(armorCappedDexMod, encumbranceMaxDex);
+        const setattrs = {};
         setattrs['capped_dex_mod'] = cappedDexMod;
         setattrs['dex_is_capped'] = !armorWorn ? 0 : isNaN(armorDexCap) ? 0 : 1;
         setAttrs(setattrs);
@@ -6403,45 +6430,111 @@ buttonlist.forEach(button => {
         
         setAttrs(setattr);
     });
-});function calculateEncumbrance() {
-    getAttrs(['total_weight_carried', 'strength', 'strength_adjusted', 'current_character_type', 'monster_size', 'speed','ignore-encumbrance'], function (values) {
-        const totalWeight = parseFloat(values['total_weight_carried']) || 0;
-        const characterStrength = parseFloat(values['strength']) || 0;
-        const characterStrengthAdjusted = parseFloat(values['strength_adjusted']) || 0;
-        const characterType = parseInt(values['current_character_type'], 10) || 1;
-        const monsterSize = values['monster_size'].toLowerCase() || 'medium';
-        const characterSpeed = parseFloat(values['speed']) || 0;
-        const ignoreEncumbrance = parseInt(values['ignore-encumbrance'], 10) || 0;
+});const HEAVY_LOAD_BASES = [100, 115, 130, 150, 175, 200, 230, 260, 300, 350];
 
-        // Heavy Load: > (characterStrength/2)^2
-        let loadCalc = Math.pow(characterStrength / 2, 2);
-        const monsterLoadCalc = Math.pow(characterStrengthAdjusted / 2, 2);
-        log("Initial Encumbrance Calculation", `Strength: ${characterStrength}, Adjusted Strength: ${characterStrengthAdjusted}, Half Strength: ${characterStrength / 2}, Squared: ${loadCalc}, Half Adjusted: ${characterStrengthAdjusted / 2}, Squared: ${monsterLoadCalc}`, derivedStatsColor);
-        loadCalc = characterType === 4 ? monsterLoadCalc * (sizeModifiers[`${monsterSize}`]?.carryingCapacityMultiplier || 0) : loadCalc;
-        log("Adjusted Encumbrance Calculation", `Character Type: ${characterType}, Monster Size: ${monsterSize}, Multiplier: ${sizeModifiers[`${monsterSize}`]?.carryingCapacityMultiplier || 0},   Load Calc: ${loadCalc}`, derivedStatsColor);
-        const encumbrancePenalty = totalWeight >= loadCalc ? -10 : 0;
-        log("Encumbrance Calculation", `Total Weight: ${totalWeight}, Load Calc: ${loadCalc}, Encumbrance Penalty: ${encumbrancePenalty}`, derivedStatsColor);
-        const adjustedSpeed = encumbrancePenalty === -10 ? Math.floor(characterSpeed*0.75) : characterSpeed;
-        const carryCapacity = loadCalc - 0.1; // Subtracting 0.1 to ensure that the character is not considered encumbered when at the exact threshold
-        let attrsToSet = {};
-        if (ignoreEncumbrance) {
-            log("Encumbrance Calculation", "Encumbrance is ignored due to settings.", derivedStatsColor);
-            attrsToSet['encumbrance_penalty'] = 0;
-            attrsToSet['adjusted_speed'] = characterSpeed;
-        }
-        else {
-            attrsToSet['encumbrance_penalty'] = encumbrancePenalty;
-            attrsToSet['adjusted_speed'] = adjustedSpeed;
-        }
-        attrsToSet['carry_capacity'] = carryCapacity.toFixed(1);
-        setAttrs(attrsToSet);
+function getHeavyLoadCapacity(strength) {
+    const normalizedStrength = Math.max(0, Math.floor(parseFloat(strength) || 0));
+    if (normalizedStrength < 10) {
+        return normalizedStrength * 10;
+    }
+
+    const baseIndex = (normalizedStrength - 10) % 10;
+    const decade = Math.floor((normalizedStrength - 10) / 10);
+    return HEAVY_LOAD_BASES[baseIndex] * Math.pow(4, decade);
+}
+
+function calculateEffectiveCheckPenalty(callback) {
+    getAttrs(['armor_check_penalty', 'encumbrance_penalty'], function (values) {
+        const armorPenalty = parseInt(values.armor_check_penalty, 10) || 0;
+        const encumbrancePenalty = parseInt(values.encumbrance_penalty, 10) || 0;
+        const effectivePenalty = Math.min(0, armorPenalty, encumbrancePenalty);
+        setAttrs({ effective_check_penalty: effectivePenalty }, {}, function () {
+            if (typeof callback === 'function') callback(effectivePenalty);
+        });
+    });
+}
+
+on('change:armor_check_penalty change:encumbrance_penalty', calculateEffectiveCheckPenalty);
+
+function calculateEncumbrance(callback) {
+    getAttrs([
+        'total_weight_carried',
+        'strength',
+        'strength_adjusted',
+        'current_character_type',
+        'monster_size',
+        'speed',
+        'armor_check_penalty',
+        'ignore-encumbrance',
+        'apply-npc-encumbrance'
+    ], function (values) {
+        const totalWeight = parseFloat(values.total_weight_carried) || 0;
+        const characterStrength = parseFloat(values.strength) || 0;
+        const adjustedStrengthValue = parseFloat(values.strength_adjusted);
+        const characterType = parseInt(values.current_character_type, 10) || 1;
+        const monsterSize = (values.monster_size || 'medium').toLowerCase();
+        const characterSpeed = parseFloat(values.speed) || 0;
+        const ignoreEncumbrance = parseInt(values['ignore-encumbrance'], 10) === 1;
+        const applyNpcEncumbrance = values['apply-npc-encumbrance'] !== '0';
+        const isNpc = characterType === 4;
+        const capacityStrength = isNpc && !isNaN(adjustedStrengthValue)
+            ? adjustedStrengthValue
+            : characterStrength;
+        const sizeMultiplier = isNpc
+            ? (sizeModifiers[monsterSize]?.carryingCapacityMultiplier || 1)
+            : 1;
+        const heavyLoadMaximum = getHeavyLoadCapacity(capacityStrength) * sizeMultiplier;
+        const lightLoadMaximum = Math.floor(heavyLoadMaximum / 3);
+        const mediumLoadMaximum = Math.floor((heavyLoadMaximum * 2) / 3);
+        const loadCategory = totalWeight <= lightLoadMaximum
+            ? 'light'
+            : totalWeight <= mediumLoadMaximum
+                ? 'medium'
+                : 'heavy';
+        const effectsEnabled = !ignoreEncumbrance && (!isNpc || applyNpcEncumbrance);
+        const encumbrancePenalty = !effectsEnabled || loadCategory === 'light'
+            ? 0
+            : loadCategory === 'medium'
+                ? -2
+                : -4;
+        const encumbranceMaxDex = !effectsEnabled || loadCategory === 'light'
+            ? 1000
+            : loadCategory === 'medium'
+                ? 3
+                : 1;
+        const adjustedSpeed = effectsEnabled && loadCategory === 'heavy'
+            ? Math.floor(characterSpeed * 0.75)
+            : characterSpeed;
+        const overCapacity = effectsEnabled && totalWeight > heavyLoadMaximum ? 1 : 0;
+        const armorCheckPenalty = parseInt(values.armor_check_penalty, 10) || 0;
+        const effectiveCheckPenalty = Math.min(0, armorCheckPenalty, encumbrancePenalty);
+        const attrsToSet = {
+            carry_capacity: parseFloat(heavyLoadMaximum.toFixed(2)),
+            encumbrance_load: loadCategory,
+            encumbrance_penalty: encumbrancePenalty,
+            effective_check_penalty: effectiveCheckPenalty,
+            encumbrance_max_dex: encumbranceMaxDex,
+            adjusted_speed: adjustedSpeed,
+            over_carry_capacity: overCapacity
+        };
+
+        log(
+            "Encumbrance Calculation",
+            `Weight: ${totalWeight}, Strength: ${capacityStrength}, Size Multiplier: ${sizeMultiplier}, Light Max: ${lightLoadMaximum}, Medium Max: ${mediumLoadMaximum}, Heavy Max: ${heavyLoadMaximum}, Load: ${loadCategory}, Penalty: ${encumbrancePenalty}, Over Capacity: ${overCapacity}`,
+            derivedStatsColor
+        );
+        setAttrs(attrsToSet, {}, function () {
+            if (typeof callback === 'function') callback(attrsToSet);
+        });
     });
 }
 // Calculate Weapon Weight
-function calculateWeaponWeight() {
+function calculateWeaponWeight(callback) {
     getSectionIDs('repeating_weapons', function (ids) {
         if (!ids.length) {
-            setAttrs({ total_weapon_weight: 0 });
+            setAttrs({ total_weapon_weight: 0 }, {}, function () {
+                if (typeof callback === 'function') callback(0);
+            });
             return;
         }
 
@@ -6460,7 +6553,9 @@ function calculateWeaponWeight() {
                 return carried ? total + (quantity * weight) : total;
             }, 0);
 
-            setAttrs({ total_weapon_weight: totalWeaponWeight });
+            setAttrs({ total_weapon_weight: totalWeaponWeight }, {}, function () {
+                if (typeof callback === 'function') callback(totalWeaponWeight);
+            });
         });
     });
 }
@@ -6468,7 +6563,7 @@ function calculateWeaponWeight() {
 on('change:repeating_weapons:weapon-quantity change:repeating_weapons:weapon-weight change:repeating_weapons:weapon_carried remove:repeating_weapons', calculateWeaponWeight);
 
 // Calculate Armor and Shield Weight
-function calculateArmorWeight() {
+function calculateArmorWeight(callback) {
     getAttrs([
         'armor-quantity',
         'armor-weight',
@@ -6499,7 +6594,9 @@ function calculateArmorWeight() {
             attrsToSet.shield_carried = 1;
         }
 
-        setAttrs(attrsToSet);
+        setAttrs(attrsToSet, {}, function () {
+            if (typeof callback === 'function') callback(totalArmorWeight);
+        });
     });
 }
 
@@ -6518,19 +6615,40 @@ on("change:repeating_equipment:item_quantity change:repeating_equipment:item_wei
 });
 
 // Calculate Inventory Weight
-function calculateItemWeight() {
-    repeatingSimpleSumWCheck(
-        'equipment',
-        'item_total_weight',
-        'total_item_weight',
-        'item_carried',
-        '1'
-    );
+function calculateItemWeight(callback) {
+    getSectionIDs('repeating_equipment', function (ids) {
+        if (!ids.length) {
+            setAttrs({ total_item_weight: 0 }, {}, function () {
+                if (typeof callback === 'function') callback(0);
+            });
+            return;
+        }
+
+        const fields = [];
+        ids.forEach(function (id) {
+            fields.push(`repeating_equipment_${id}_item_quantity`);
+            fields.push(`repeating_equipment_${id}_item_weight`);
+            fields.push(`repeating_equipment_${id}_item_carried`);
+        });
+
+        getAttrs(fields, function (values) {
+            const totalItemWeight = ids.reduce(function (total, id) {
+                const quantity = parseInt(values[`repeating_equipment_${id}_item_quantity`], 10) || 0;
+                const weight = parseFloat(values[`repeating_equipment_${id}_item_weight`]) || 0;
+                const carried = values[`repeating_equipment_${id}_item_carried`] === '1';
+                return carried ? total + (quantity * weight) : total;
+            }, 0);
+
+            setAttrs({ total_item_weight: totalItemWeight }, {}, function () {
+                if (typeof callback === 'function') callback(totalItemWeight);
+            });
+        });
+    });
 }
 
-on('change:repeating_equipment:item_total_weight change:repeating_equipment:item_carried remove:repeating_equipment', calculateItemWeight);
+on('change:repeating_equipment:item_quantity change:repeating_equipment:item_weight change:repeating_equipment:item_carried remove:repeating_equipment', calculateItemWeight);
 
-on('change:copper change:silver change:gold change:platinum', function () {
+function calculateCoinWeight(callback) {
     getAttrs(['copper', 'silver', 'gold', 'platinum'], function (values) {
         const copper = parseFloat(values['copper']) || 0;
         const silver = parseFloat(values['silver']) || 0;
@@ -6539,9 +6657,13 @@ on('change:copper change:silver change:gold change:platinum', function () {
         const totalCoins = copper + silver + gold + platinum;
         const totalCoinWeight = Math.floor(totalCoins / 25) / 2; // Assuming 50 coins weigh 1 lb, and we want to round down to the nearest half pound
 
-        setAttrs({ total_coin_weight: totalCoinWeight });
+        setAttrs({ total_coin_weight: totalCoinWeight }, {}, function () {
+            if (typeof callback === 'function') callback(totalCoinWeight);
+        });
     });
-});
+}
+
+on('change:copper change:silver change:gold change:platinum', calculateCoinWeight);
 
 // Equipment includes carried inventory and coin weight.
 on('change:total_item_weight change:total_coin_weight', function () {
@@ -6571,14 +6693,38 @@ on('change:total_weapon_weight change:total_armor_weight change:total_equipment_
     });
 });
 
+function recalculateAllWeightTotals(callback) {
+    const totals = {};
+    let pendingCalculations = 4;
+    const finishCalculation = function (key, total) {
+        totals[key] = total;
+        pendingCalculations -= 1;
+        if (pendingCalculations > 0) return;
+
+        const totalEquipmentWeight = totals.item + totals.coin;
+        const totalCarriedWeight = totalEquipmentWeight + totals.weapon + totals.armor;
+        setAttrs({
+            total_equipment_weight: totalEquipmentWeight,
+            total_weight_carried: totalCarriedWeight
+        }, {}, function () {
+            if (typeof callback === 'function') callback(totalCarriedWeight);
+        });
+    };
+
+    calculateWeaponWeight(total => finishCalculation('weapon', total));
+    calculateArmorWeight(total => finishCalculation('armor', total));
+    calculateItemWeight(total => finishCalculation('item', total));
+    calculateCoinWeight(total => finishCalculation('coin', total));
+}
+
 on('sheet:opened', function () {
-    calculateWeaponWeight();
-    calculateArmorWeight();
-    calculateItemWeight();
+    recalculateAllWeightTotals(function () {
+        calculateEncumbrance();
+    });
 });
 
 // Calculate Encumbrance
-on('change:total_weight_carried change:strength change:strength_adjusted change:current_character_type change:monster_size', function () {
+on('change:total_weight_carried change:strength change:strength_adjusted change:current_character_type change:monster_size change:speed change:ignore-encumbrance change:apply-npc-encumbrance', function () {
     calculateEncumbrance();
 });
   
@@ -7390,18 +7536,16 @@ const runSkillCheck = (skillName, whisper = false) => () => {
         'condition',
         'multi-action-penalty',
         'armor_check_penalty',
-        'encumbrance_penalty',
-        'current_character_type',
+        'effective_check_penalty',
         `${skillName}_bonus`
     ];
 
     getAttrs(fields, values => {
         const terms = ['1d20cs20cf1'];
-        if (ARMOR_CHECK_SKILLS.has(skillName)) {
+        if (ENCUMBRANCE_SKILLS.has(skillName)) {
+            terms.push(`${toInt(values.effective_check_penalty)}[Armor/Encumbrance Check Penalty]`);
+        } else if (ARMOR_CHECK_SKILLS.has(skillName)) {
             terms.push(`${toInt(values.armor_check_penalty)}[Armor Check Penalty]`);
-        }
-        if (ENCUMBRANCE_SKILLS.has(skillName) && toInt(values.current_character_type) !== 4) {
-            terms.push(`${toInt(values.encumbrance_penalty)}[Encumbrance Penalty]`);
         }
         terms.push(`${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`);
         terms.push(`${toInt(values[`${skillName}_bonus`])}[^{skill-bonus}]`);

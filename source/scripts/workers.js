@@ -234,13 +234,15 @@ on('change:armor_warden change:improved_armor_warden', function(eventInfo) {
     });
 });
 
-on('change:armor_worn change:armor_dex_cap', function(eventInfo) {
+on('change:armor_worn change:armor_dex_cap change:encumbrance_max_dex', function(eventInfo) {
     log("Armor Watch Detected Change", eventInfo, r20color);
-    getAttrs(['armor_worn', 'armor_dex_cap'], function(v) {
+    getAttrs(['armor_worn', 'armor_dex_cap', 'encumbrance_max_dex'], function(v) {
         const armorWorn = parseInt(v.armor_worn) || 0;
         const armorDexCap = parseInt(v.armor_dex_cap);
-        let cappedDexMod = !armorWorn || isNaN(armorDexCap) ? '1000' : armorDexCap;
-        setattrs = {};
+        const armorCappedDexMod = !armorWorn || isNaN(armorDexCap) ? 1000 : armorDexCap;
+        const encumbranceMaxDex = parseInt(v.encumbrance_max_dex, 10) || 1000;
+        const cappedDexMod = Math.min(armorCappedDexMod, encumbranceMaxDex);
+        const setattrs = {};
         setattrs['capped_dex_mod'] = cappedDexMod;
         setattrs['dex_is_capped'] = !armorWorn ? 0 : isNaN(armorDexCap) ? 0 : 1;
         setAttrs(setattrs);

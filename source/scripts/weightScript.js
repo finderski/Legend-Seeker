@@ -1,42 +1,108 @@
-function calculateEncumbrance() {
-    getAttrs(['total_weight_carried', 'strength', 'strength_adjusted', 'current_character_type', 'monster_size', 'speed','ignore-encumbrance'], function (values) {
-        const totalWeight = parseFloat(values['total_weight_carried']) || 0;
-        const characterStrength = parseFloat(values['strength']) || 0;
-        const characterStrengthAdjusted = parseFloat(values['strength_adjusted']) || 0;
-        const characterType = parseInt(values['current_character_type'], 10) || 1;
-        const monsterSize = values['monster_size'].toLowerCase() || 'medium';
-        const characterSpeed = parseFloat(values['speed']) || 0;
-        const ignoreEncumbrance = parseInt(values['ignore-encumbrance'], 10) || 0;
+const HEAVY_LOAD_BASES = [100, 115, 130, 150, 175, 200, 230, 260, 300, 350];
 
-        // Heavy Load: > (characterStrength/2)^2
-        let loadCalc = Math.pow(characterStrength / 2, 2);
-        const monsterLoadCalc = Math.pow(characterStrengthAdjusted / 2, 2);
-        log("Initial Encumbrance Calculation", `Strength: ${characterStrength}, Adjusted Strength: ${characterStrengthAdjusted}, Half Strength: ${characterStrength / 2}, Squared: ${loadCalc}, Half Adjusted: ${characterStrengthAdjusted / 2}, Squared: ${monsterLoadCalc}`, derivedStatsColor);
-        loadCalc = characterType === 4 ? monsterLoadCalc * (sizeModifiers[`${monsterSize}`]?.carryingCapacityMultiplier || 0) : loadCalc;
-        log("Adjusted Encumbrance Calculation", `Character Type: ${characterType}, Monster Size: ${monsterSize}, Multiplier: ${sizeModifiers[`${monsterSize}`]?.carryingCapacityMultiplier || 0},   Load Calc: ${loadCalc}`, derivedStatsColor);
-        const encumbrancePenalty = totalWeight >= loadCalc ? -10 : 0;
-        log("Encumbrance Calculation", `Total Weight: ${totalWeight}, Load Calc: ${loadCalc}, Encumbrance Penalty: ${encumbrancePenalty}`, derivedStatsColor);
-        const adjustedSpeed = encumbrancePenalty === -10 ? Math.floor(characterSpeed*0.75) : characterSpeed;
-        const carryCapacity = loadCalc - 0.1; // Subtracting 0.1 to ensure that the character is not considered encumbered when at the exact threshold
-        let attrsToSet = {};
-        if (ignoreEncumbrance) {
-            log("Encumbrance Calculation", "Encumbrance is ignored due to settings.", derivedStatsColor);
-            attrsToSet['encumbrance_penalty'] = 0;
-            attrsToSet['adjusted_speed'] = characterSpeed;
-        }
-        else {
-            attrsToSet['encumbrance_penalty'] = encumbrancePenalty;
-            attrsToSet['adjusted_speed'] = adjustedSpeed;
-        }
-        attrsToSet['carry_capacity'] = carryCapacity.toFixed(1);
-        setAttrs(attrsToSet);
+function getHeavyLoadCapacity(strength) {
+    const normalizedStrength = Math.max(0, Math.floor(parseFloat(strength) || 0));
+    if (normalizedStrength < 10) {
+        return normalizedStrength * 10;
+    }
+
+    const baseIndex = (normalizedStrength - 10) % 10;
+    const decade = Math.floor((normalizedStrength - 10) / 10);
+    return HEAVY_LOAD_BASES[baseIndex] * Math.pow(4, decade);
+}
+
+function calculateEffectiveCheckPenalty(callback) {
+    getAttrs(['armor_check_penalty', 'encumbrance_penalty'], function (values) {
+        const armorPenalty = parseInt(values.armor_check_penalty, 10) || 0;
+        const encumbrancePenalty = parseInt(values.encumbrance_penalty, 10) || 0;
+        const effectivePenalty = Math.min(0, armorPenalty, encumbrancePenalty);
+        setAttrs({ effective_check_penalty: effectivePenalty }, {}, function () {
+            if (typeof callback === 'function') callback(effectivePenalty);
+        });
+    });
+}
+
+on('change:armor_check_penalty change:encumbrance_penalty', calculateEffectiveCheckPenalty);
+
+function calculateEncumbrance(callback) {
+    getAttrs([
+        'total_weight_carried',
+        'strength',
+        'strength_adjusted',
+        'current_character_type',
+        'monster_size',
+        'speed',
+        'armor_check_penalty',
+        'ignore-encumbrance',
+        'apply-npc-encumbrance'
+    ], function (values) {
+        const totalWeight = parseFloat(values.total_weight_carried) || 0;
+        const characterStrength = parseFloat(values.strength) || 0;
+        const adjustedStrengthValue = parseFloat(values.strength_adjusted);
+        const characterType = parseInt(values.current_character_type, 10) || 1;
+        const monsterSize = (values.monster_size || 'medium').toLowerCase();
+        const characterSpeed = parseFloat(values.speed) || 0;
+        const ignoreEncumbrance = parseInt(values['ignore-encumbrance'], 10) === 1;
+        const applyNpcEncumbrance = values['apply-npc-encumbrance'] !== '0';
+        const isNpc = characterType === 4;
+        const capacityStrength = isNpc && !isNaN(adjustedStrengthValue)
+            ? adjustedStrengthValue
+            : characterStrength;
+        const sizeMultiplier = isNpc
+            ? (sizeModifiers[monsterSize]?.carryingCapacityMultiplier || 1)
+            : 1;
+        const heavyLoadMaximum = getHeavyLoadCapacity(capacityStrength) * sizeMultiplier;
+        const lightLoadMaximum = Math.floor(heavyLoadMaximum / 3);
+        const mediumLoadMaximum = Math.floor((heavyLoadMaximum * 2) / 3);
+        const loadCategory = totalWeight <= lightLoadMaximum
+            ? 'light'
+            : totalWeight <= mediumLoadMaximum
+                ? 'medium'
+                : 'heavy';
+        const effectsEnabled = !ignoreEncumbrance && (!isNpc || applyNpcEncumbrance);
+        const encumbrancePenalty = !effectsEnabled || loadCategory === 'light'
+            ? 0
+            : loadCategory === 'medium'
+                ? -2
+                : -4;
+        const encumbranceMaxDex = !effectsEnabled || loadCategory === 'light'
+            ? 1000
+            : loadCategory === 'medium'
+                ? 3
+                : 1;
+        const adjustedSpeed = effectsEnabled && loadCategory === 'heavy'
+            ? Math.floor(characterSpeed * 0.75)
+            : characterSpeed;
+        const overCapacity = effectsEnabled && totalWeight > heavyLoadMaximum ? 1 : 0;
+        const armorCheckPenalty = parseInt(values.armor_check_penalty, 10) || 0;
+        const effectiveCheckPenalty = Math.min(0, armorCheckPenalty, encumbrancePenalty);
+        const attrsToSet = {
+            carry_capacity: parseFloat(heavyLoadMaximum.toFixed(2)),
+            encumbrance_load: loadCategory,
+            encumbrance_penalty: encumbrancePenalty,
+            effective_check_penalty: effectiveCheckPenalty,
+            encumbrance_max_dex: encumbranceMaxDex,
+            adjusted_speed: adjustedSpeed,
+            over_carry_capacity: overCapacity
+        };
+
+        log(
+            "Encumbrance Calculation",
+            `Weight: ${totalWeight}, Strength: ${capacityStrength}, Size Multiplier: ${sizeMultiplier}, Light Max: ${lightLoadMaximum}, Medium Max: ${mediumLoadMaximum}, Heavy Max: ${heavyLoadMaximum}, Load: ${loadCategory}, Penalty: ${encumbrancePenalty}, Over Capacity: ${overCapacity}`,
+            derivedStatsColor
+        );
+        setAttrs(attrsToSet, {}, function () {
+            if (typeof callback === 'function') callback(attrsToSet);
+        });
     });
 }
 // Calculate Weapon Weight
-function calculateWeaponWeight() {
+function calculateWeaponWeight(callback) {
     getSectionIDs('repeating_weapons', function (ids) {
         if (!ids.length) {
-            setAttrs({ total_weapon_weight: 0 });
+            setAttrs({ total_weapon_weight: 0 }, {}, function () {
+                if (typeof callback === 'function') callback(0);
+            });
             return;
         }
 
@@ -55,7 +121,9 @@ function calculateWeaponWeight() {
                 return carried ? total + (quantity * weight) : total;
             }, 0);
 
-            setAttrs({ total_weapon_weight: totalWeaponWeight });
+            setAttrs({ total_weapon_weight: totalWeaponWeight }, {}, function () {
+                if (typeof callback === 'function') callback(totalWeaponWeight);
+            });
         });
     });
 }
@@ -63,7 +131,7 @@ function calculateWeaponWeight() {
 on('change:repeating_weapons:weapon-quantity change:repeating_weapons:weapon-weight change:repeating_weapons:weapon_carried remove:repeating_weapons', calculateWeaponWeight);
 
 // Calculate Armor and Shield Weight
-function calculateArmorWeight() {
+function calculateArmorWeight(callback) {
     getAttrs([
         'armor-quantity',
         'armor-weight',
@@ -94,7 +162,9 @@ function calculateArmorWeight() {
             attrsToSet.shield_carried = 1;
         }
 
-        setAttrs(attrsToSet);
+        setAttrs(attrsToSet, {}, function () {
+            if (typeof callback === 'function') callback(totalArmorWeight);
+        });
     });
 }
 
@@ -113,19 +183,40 @@ on("change:repeating_equipment:item_quantity change:repeating_equipment:item_wei
 });
 
 // Calculate Inventory Weight
-function calculateItemWeight() {
-    repeatingSimpleSumWCheck(
-        'equipment',
-        'item_total_weight',
-        'total_item_weight',
-        'item_carried',
-        '1'
-    );
+function calculateItemWeight(callback) {
+    getSectionIDs('repeating_equipment', function (ids) {
+        if (!ids.length) {
+            setAttrs({ total_item_weight: 0 }, {}, function () {
+                if (typeof callback === 'function') callback(0);
+            });
+            return;
+        }
+
+        const fields = [];
+        ids.forEach(function (id) {
+            fields.push(`repeating_equipment_${id}_item_quantity`);
+            fields.push(`repeating_equipment_${id}_item_weight`);
+            fields.push(`repeating_equipment_${id}_item_carried`);
+        });
+
+        getAttrs(fields, function (values) {
+            const totalItemWeight = ids.reduce(function (total, id) {
+                const quantity = parseInt(values[`repeating_equipment_${id}_item_quantity`], 10) || 0;
+                const weight = parseFloat(values[`repeating_equipment_${id}_item_weight`]) || 0;
+                const carried = values[`repeating_equipment_${id}_item_carried`] === '1';
+                return carried ? total + (quantity * weight) : total;
+            }, 0);
+
+            setAttrs({ total_item_weight: totalItemWeight }, {}, function () {
+                if (typeof callback === 'function') callback(totalItemWeight);
+            });
+        });
+    });
 }
 
-on('change:repeating_equipment:item_total_weight change:repeating_equipment:item_carried remove:repeating_equipment', calculateItemWeight);
+on('change:repeating_equipment:item_quantity change:repeating_equipment:item_weight change:repeating_equipment:item_carried remove:repeating_equipment', calculateItemWeight);
 
-on('change:copper change:silver change:gold change:platinum', function () {
+function calculateCoinWeight(callback) {
     getAttrs(['copper', 'silver', 'gold', 'platinum'], function (values) {
         const copper = parseFloat(values['copper']) || 0;
         const silver = parseFloat(values['silver']) || 0;
@@ -134,9 +225,13 @@ on('change:copper change:silver change:gold change:platinum', function () {
         const totalCoins = copper + silver + gold + platinum;
         const totalCoinWeight = Math.floor(totalCoins / 25) / 2; // Assuming 50 coins weigh 1 lb, and we want to round down to the nearest half pound
 
-        setAttrs({ total_coin_weight: totalCoinWeight });
+        setAttrs({ total_coin_weight: totalCoinWeight }, {}, function () {
+            if (typeof callback === 'function') callback(totalCoinWeight);
+        });
     });
-});
+}
+
+on('change:copper change:silver change:gold change:platinum', calculateCoinWeight);
 
 // Equipment includes carried inventory and coin weight.
 on('change:total_item_weight change:total_coin_weight', function () {
@@ -166,13 +261,37 @@ on('change:total_weapon_weight change:total_armor_weight change:total_equipment_
     });
 });
 
+function recalculateAllWeightTotals(callback) {
+    const totals = {};
+    let pendingCalculations = 4;
+    const finishCalculation = function (key, total) {
+        totals[key] = total;
+        pendingCalculations -= 1;
+        if (pendingCalculations > 0) return;
+
+        const totalEquipmentWeight = totals.item + totals.coin;
+        const totalCarriedWeight = totalEquipmentWeight + totals.weapon + totals.armor;
+        setAttrs({
+            total_equipment_weight: totalEquipmentWeight,
+            total_weight_carried: totalCarriedWeight
+        }, {}, function () {
+            if (typeof callback === 'function') callback(totalCarriedWeight);
+        });
+    };
+
+    calculateWeaponWeight(total => finishCalculation('weapon', total));
+    calculateArmorWeight(total => finishCalculation('armor', total));
+    calculateItemWeight(total => finishCalculation('item', total));
+    calculateCoinWeight(total => finishCalculation('coin', total));
+}
+
 on('sheet:opened', function () {
-    calculateWeaponWeight();
-    calculateArmorWeight();
-    calculateItemWeight();
+    recalculateAllWeightTotals(function () {
+        calculateEncumbrance();
+    });
 });
 
 // Calculate Encumbrance
-on('change:total_weight_carried change:strength change:strength_adjusted change:current_character_type change:monster_size', function () {
+on('change:total_weight_carried change:strength change:strength_adjusted change:current_character_type change:monster_size change:speed change:ignore-encumbrance change:apply-npc-encumbrance', function () {
     calculateEncumbrance();
 });

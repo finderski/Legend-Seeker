@@ -48,7 +48,7 @@ sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.2.3';
+        const currentVersion = '0.3.0';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
@@ -135,6 +135,15 @@ on('sheet:opened', function() {
             setattrs['sheetversion'] = currentVersion;
             setAttrs(setattrs);
             log("version 0.2.3 update complete", "Sheet version updated to 0.2.3 and Stealth Skill Calculation should now be fixed", r20color);
+        }
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.3.0', "Recalculate Encumbrance State", r20color);
+            recalculateAllWeightTotals(function () {
+                calculateEncumbrance(function () {
+                    setAttrs({ sheetversion: currentVersion });
+                    log("version 0.3.0 update complete", "Sheet version updated to 0.3.0 and encumbrance state recalculated", r20color);
+                });
+            });
         }
         else {
             log('Sheet version is up to date', "No updates needed", r20color);

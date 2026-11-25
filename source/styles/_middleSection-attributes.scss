@@ -105,11 +105,14 @@
                     }
                 }
             }
-            .isEncumbered[value="-2"] + .encumbered {
+            .isEncumbered[value="-2"] ~ .encumbered {
                 opacity: .5;
             }
-            .isEncumbered[value="-4"] + .encumbered {
+            .isEncumbered[value="-4"] ~ .encumbered {
                 opacity: 1;
+            }
+            .overCapacity[value="1"] + .encumbered {
+                animation: encumbrance-over-capacity-pulse 1s ease-in-out infinite;
             }
         }
         .defensiveSaves {

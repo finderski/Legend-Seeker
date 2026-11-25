@@ -87,18 +87,16 @@ const runSkillCheck = (skillName, whisper = false) => () => {
         'condition',
         'multi-action-penalty',
         'armor_check_penalty',
-        'encumbrance_penalty',
-        'current_character_type',
+        'effective_check_penalty',
         `${skillName}_bonus`
     ];
 
     getAttrs(fields, values => {
         const terms = ['1d20cs20cf1'];
-        if (ARMOR_CHECK_SKILLS.has(skillName)) {
+        if (ENCUMBRANCE_SKILLS.has(skillName)) {
+            terms.push(`${toInt(values.effective_check_penalty)}[Armor/Encumbrance Check Penalty]`);
+        } else if (ARMOR_CHECK_SKILLS.has(skillName)) {
             terms.push(`${toInt(values.armor_check_penalty)}[Armor Check Penalty]`);
-        }
-        if (ENCUMBRANCE_SKILLS.has(skillName) && toInt(values.current_character_type) !== 4) {
-            terms.push(`${toInt(values.encumbrance_penalty)}[Encumbrance Penalty]`);
         }
         terms.push(`${toInt(values['multi-action-penalty'])}[^{multi-action-penalty}]`);
         terms.push(`${toInt(values[`${skillName}_bonus`])}[^{skill-bonus}]`);

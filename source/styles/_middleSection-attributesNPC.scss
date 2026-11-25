@@ -36,6 +36,31 @@
                 margin-left: -18px;
                 /*left: 36.5%;*/
             }
+            .encumbered {
+                position: relative;
+                height: 0;
+                width: 0;
+                z-index: 2;
+                opacity: 0;
+                .shieldIcon {
+                    position: absolute;
+                    width: 17px;
+                    height: 17px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .isEncumbered[value="-2"] ~ .encumbered {
+                opacity: .5;
+            }
+            .isEncumbered[value="-4"] ~ .encumbered {
+                opacity: 1;
+            }
+            .overCapacity[value="1"] + .encumbered {
+                animation: encumbrance-over-capacity-pulse 1s ease-in-out infinite;
+            }
         }
         .attribute-row .attributeInput,
         .attribute-row .labelButton,

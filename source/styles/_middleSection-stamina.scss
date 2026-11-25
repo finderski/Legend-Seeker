@@ -189,7 +189,7 @@
         }
         .hitPoints {
             .adjustedSpeed,
-            .showAdjustedSpeed[value="-10"] + .speed,
+            .showAdjustedSpeed[value="-4"] + .speed,
             .legendaryPoints.mlp {
                 display: none;
             }
@@ -204,16 +204,18 @@
                     z-index: 2;
                     opacity: 0;
                 }
-                .isEncumbered[value="-2"] + .encumbered {
+                .isEncumbered[value="-2"] ~ .encumbered {
                     opacity: 0.5;
                 }
-                .isEncumbered[value="-10"] ~ .encumbered,
                 .isEncumbered[value="-4"] ~ .encumbered {
                     opacity: 1;
                 }
+                .overCapacity[value="1"] + .encumbered {
+                    animation: encumbrance-over-capacity-pulse 1s ease-in-out infinite;
+                }
             }
             .speed,
-            .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed,
+            .showAdjustedSpeed[value="-4"] ~ .adjustedSpeed,
             .initiative,
             .hpb,
             .showMLP[value="1"] + .babAndLP > .legendaryPoints.mlp,

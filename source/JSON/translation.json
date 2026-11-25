@@ -298,6 +298,7 @@
   "carry-capacity": "Carry Capacity",
   "adjusted-speed": "Adjusted Speed",
   "ignore-encumbrance": "Ignore Encumbrance",
+  "apply-npc-encumbrance": "Apply Encumbrance to NPCs/Monsters",
   "monster-legendary-points-abbr-caps": "MLP",
   "monster-legendary-points": "Monster Legendary Points",
   "spends-legendary-points": "spends a Legendary Point and rolls...",

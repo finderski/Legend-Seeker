@@ -1,6 +1,10 @@
 // Pick List on main page for NPCs/Monsters
 .npcSkills 
-    h3.headerLabel(data-i18n='skills') Skills
+    h3.headerLabel
+        span(data-i18n='skills') Skills
+        input(class="isEncumbered", type="hidden", name="attr_encumbrance_penalty", value="0")
+        input(class="overCapacity", type="hidden", name="attr_over_carry_capacity", value="0")
+        img(class="encumbranceIcon", src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png', data-i18n-alt="encumbered")
     .config 
         label.cog
             input(class='hiddenInput', type='checkbox', name='attr_npc_skill_config_toggle' value="1")
