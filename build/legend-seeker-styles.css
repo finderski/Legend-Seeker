@@ -3707,6 +3707,85 @@ body.sheet-darkmode .ui-dialog .shifted {
   background-color: transparent;
 }
 
+.ui-dialog .charactersheet button[type=roll],
+.ui-dialog .charactersheet button[type=action] {
+  appearance: none;
+  -webkit-appearance: none;
+  line-height: 1;
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet button[type=roll]::-moz-focus-inner,
+.ui-dialog .charactersheet button[type=action]::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet button.labelButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+.ui-dialog .charactersheet button.labelButton > span {
+  line-height: 1;
+}
+.ui-dialog .charactersheet button.labelButton {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .attribute-field button.labelButton {
+  align-items: baseline;
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet button .fieldLabelAbove {
+  margin: 0;
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet .initiative > button.textButton {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  color: inherit;
+  background: transparent;
+}
+.ui-dialog .charactersheet .initiative > button.textButton > .xPointInput {
+  display: block;
+  width: 100%;
+  padding: 3px;
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+  font-family: "Cormorant Unicase", serif;
+  font-size: 1.4em;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+.ui-dialog .charactersheet .initiative > button.textButton {
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  font-synthesis: unset !important;
+}
+
+.ui-dialog .charactersheet input[type=number]::-webkit-inner-spin-button,
+.ui-dialog .charactersheet input[type=number]::-webkit-outer-spin-button {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  font-synthesis: unset !important;
+}
+
 /*
 @use './styles/colors';
 */

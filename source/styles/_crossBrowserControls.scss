@@ -1,0 +1,88 @@
+@use './mixins/sheet-scope' as *;
+
+// Normalize only the custom controls used by the sheet. Browser-native form
+// control metrics differ enough to shift text and input sizing in Firefox.
+button[type='roll'],
+button[type='action'] {
+    @include sheet-scope {
+        appearance: none;
+        -webkit-appearance: none;
+        line-height: 1;
+    }
+}
+
+button[type='roll']::-moz-focus-inner,
+button[type='action']::-moz-focus-inner {
+    @include sheet-scope {
+        border: 0;
+        padding: 0;
+    }
+}
+
+button.labelButton {
+    @include sheet-scope {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+
+        > span {
+            line-height: 1;
+        }
+    }
+}
+
+.attribute-field button.labelButton {
+    @include sheet-scope {
+        align-items: baseline;
+    }
+}
+
+button .fieldLabelAbove {
+    @include sheet-scope {
+        margin: 0;
+    }
+}
+
+.initiative > button.textButton {
+    @include sheet-scope {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        color: inherit;
+        background: transparent;
+
+        > .xPointInput {
+            display: block;
+            width: 100%;
+            padding: 3px;
+            border-bottom: 1px solid var(--ink);
+            color: var(--ink);
+            font-family: 'Cormorant Unicase', serif;
+            font-size: 1.4em;
+            font-weight: 600;
+            line-height: 1.2;
+            text-align: center;
+        }
+    }
+}
+
+input[type='number'] {
+    @include sheet-scope {
+        appearance: textfield;
+        -moz-appearance: textfield;
+    }
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    @include sheet-scope {
+        appearance: none;
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
