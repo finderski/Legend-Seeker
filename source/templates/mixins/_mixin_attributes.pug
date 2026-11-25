@@ -32,6 +32,11 @@ mixin attribute(attr, sheetType = "character")
         if sheetType === "npc"
             .adjusted-field
                 input(class="attributeInput readOnly", type="text", name=`${fieldName}_adjusted`, placeholder="0", readonly)
+        if longName === "dexterity"
+            input(class="isEncumbered", type="hidden", name="attr_encumbrance_penalty", value="0")
+            .encumbered 
+                .shieldIcon
+                    img(src='https://raw.githubusercontent.com/finderski/Legend-Seeker/main/images/weight.png', data-i18n-alt="encumbered")
         .modifier-field
             input(class="attributeInput readOnly", type="text", name=`${fieldName}_modifier`, placeholder="0", readonly)
         if longName === "dexterity"

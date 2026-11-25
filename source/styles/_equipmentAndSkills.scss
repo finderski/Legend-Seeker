@@ -339,13 +339,18 @@
             h2.headerLabel {
                 font-family: var(--title);
                 .encumbranceIcon {
-                    display: none;
-                }
-                .isEncumbered[value="-10"] + .encumbranceIcon {
                     display: inline-block;
                     width: 20px;
                     height: 20px;
                     margin-left: 5px;
+                    opacity: 0;
+                }
+                .isEncumbered[value="-2"] + .encumbranceIcon {
+                    opacity: 0.5;
+                }
+                .isEncumbered[value="-10"] ~ .encumbranceIcon,
+                .isEncumbered[value="-4"] ~ .encumbranceIcon{
+                    opacity: 1;
                 }
             }
             .skill {
