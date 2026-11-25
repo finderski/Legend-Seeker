@@ -193,6 +193,25 @@
             .legendaryPoints.mlp {
                 display: none;
             }
+            .adjustedSpeed {
+                position: relative;
+                .encumbered {
+                    position: absolute;
+                    width: 17px;
+                    height: 17px;
+                    top: 8px;;
+                    left: -2px;
+                    z-index: 2;
+                    opacity: 0;
+                }
+                .isEncumbered[value="-2"] + .encumbered {
+                    opacity: 0.5;
+                }
+                .isEncumbered[value="-10"] ~ .encumbered,
+                .isEncumbered[value="-4"] ~ .encumbered {
+                    opacity: 1;
+                }
+            }
             .speed,
             .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed,
             .initiative,

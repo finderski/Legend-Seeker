@@ -1288,6 +1288,30 @@ label.buttonStyle {
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .legendaryPoints.mlp {
   display: none;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .adjustedSpeed,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .adjustedSpeed {
+  position: relative;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .adjustedSpeed .encumbered,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .adjustedSpeed .encumbered {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  top: 8px;
+  left: -2px;
+  z-index: 2;
+  opacity: 0;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .adjustedSpeed .isEncumbered[value="-2"] + .encumbered,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .adjustedSpeed .isEncumbered[value="-2"] + .encumbered {
+  opacity: 0.5;
+}
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .adjustedSpeed .isEncumbered[value="-10"] ~ .encumbered,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .adjustedSpeed .isEncumbered[value="-4"] ~ .encumbered,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .adjustedSpeed .isEncumbered[value="-10"] ~ .encumbered,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .staminaHpCorruption .hitPoints .adjustedSpeed .isEncumbered[value="-4"] ~ .encumbered {
+  opacity: 1;
+}
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .speed,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .showAdjustedSpeed[value="-10"] ~ .adjustedSpeed,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .hitPoints .initiative,
