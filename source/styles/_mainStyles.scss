@@ -31,18 +31,6 @@
     --numbers: 'Cormorant Unicase';
 }
 
-@keyframes encumbrance-over-capacity-pulse {
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: .45;
-    }
-}
-
 .ui-dialog,
 .ui-dialog .characterviewer,
 .ui-dialog .charactersheet .maindiv,

@@ -29,6 +29,18 @@
 @use './styles/darkmode';
 @use './styles/crossBrowserControls';
 
+@keyframes encumbrance-over-capacity-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: .45;
+    }
+}
+
 /*
 @use './styles/colors';
 */

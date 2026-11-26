@@ -15,6 +15,8 @@
 // damageFields - contains all fields that are part of the damage calculation for a weapon
 // atkFields - contains all fields that are part of the attack calculation for a weapon
 
+const weaponAttackModifierFields = [...listOfAttributes, 'effective_dexterity_modifier'];
+
 function updateWeapons(fields, section, id) {
     // NOTE: fields should be passed in with repeating_weapons prefixed (e.g. repeating_weapons_weapon-damage-dice) and without the 
     // row ID (e.g. -abc123).
@@ -83,6 +85,10 @@ function updateWeapons(fields, section, id) {
         //set up Attribute Modifiers
         const strengthMod = parseInt(values['strength_modifier']) || 0;
         const dexterityMod = parseInt(values['dexterity_modifier']) || 0;
+        const parsedEffectiveDexterityMod = parseInt(values['effective_dexterity_modifier'], 10);
+        const effectiveDexterityMod = isNaN(parsedEffectiveDexterityMod)
+            ? dexterityMod
+            : parsedEffectiveDexterityMod;
         const constitutionMod = parseInt(values['constitution_modifier']) || 0;
         const intelligenceMod = parseInt(values['intelligence_modifier']) || 0;
         const wisdomMod = parseInt(values['wisdom_modifier']) || 0;
@@ -100,7 +106,7 @@ function updateWeapons(fields, section, id) {
         log("Damage Attribute Modier Value", `${damageAttributeMod}, type: ` + typeof(damageAttributeMod), deltaColor);
         const atkBonus = values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'none' ? 0 :
                                     values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'strength_modifier' ? strengthMod :
-                                    values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'dexterity_modifier' ? dexterityMod :
+                                    values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'dexterity_modifier' ? effectiveDexterityMod :
                                     values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'constitution_modifier' ? constitutionMod :
                                     values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'intelligence_modifier' ? intelligenceMod :
                                     values[`repeating_weapons_${id}_weapon-atk-bonus`] === 'wisdom_modifier' ? wisdomMod :
@@ -141,7 +147,7 @@ on('change:repeating_weapons:weapon', function(eventInfo) {
     log('Repeating Weapons Change Triggered by: ' + eventInfo.sourceAttribute, r20color);
     const fields = ['half-level', 'base_attack_bonus'];
     //assume new weapon, so need to set up the damage and atk sections
-    fields.push(...damageFields, ...atkFields, ...listOfAttributes);
+    fields.push(...damageFields, ...atkFields, ...weaponAttackModifierFields);
     const id = eventInfo.sourceAttribute.split('_')[2];
     const section = 'all';
     log("New Weapon Added. Updating all fields for new weapon with id: " + id, r20color);
@@ -185,7 +191,7 @@ on('change:base_attack_bonus change:repeating_weapons:weapon-atk-bonus change:re
     // if hpb, then all weapons need to be updated, otherwise just the current weapon needs to be updated
     if (eventInfo.sourceAttribute === 'base_attack_bonus') {
         // Heroic Proficiency Trigger - must update ALL weapons
-        const fields = ['base_attack_bonus', 'double-crit-eligible', ...atkFields, ...listOfAttributes];
+        const fields = ['base_attack_bonus', 'double-crit-eligible', ...atkFields, ...weaponAttackModifierFields];
         const section = 'atk';
         //const id = 'all';
         log("Base Attack Bonus Changed. Updating attack for all weapons.", r20color);
@@ -199,7 +205,7 @@ on('change:base_attack_bonus change:repeating_weapons:weapon-atk-bonus change:re
     else {
         // Grab only the values for the current weapon
         const fields = atkFields.map(field => field.replace('repeating_weapons', `repeating_weapons_${eventInfo.sourceAttribute.split('_')[2]}`));
-        fields.push(...listOfAttributes);
+        fields.push(...weaponAttackModifierFields);
         const section = 'atk';
         const id = eventInfo.sourceAttribute.split('_')[2];
         log("Attack Field Changed. Updating attack for weapon with id: " + id, r20color);
@@ -213,7 +219,19 @@ on(`change:${listOfAttributes.join(' change:')}`, function(eventInfo) {
     getSectionIDs('repeating_weapons', function(ids) {
         ids.forEach(function(id) {
             updateWeapons([...damageFields, ...listOfAttributes], 'dmg', id);
-            updateWeapons([...atkFields, ...listOfAttributes, 'base_attack_bonus'], 'atk', id);
+            updateWeapons([...atkFields, ...weaponAttackModifierFields, 'base_attack_bonus'], 'atk', id);
         });
     });
 });
+
+function recalculateAllWeaponAttacks() {
+    const fields = ['base_attack_bonus', 'double-crit-eligible', ...atkFields, ...weaponAttackModifierFields];
+    getSectionIDs('repeating_weapons', function(ids) {
+        ids.forEach(function(id) {
+            updateWeapons(fields, 'atk', id);
+        });
+    });
+}
+
+on('change:effective_dexterity_modifier', recalculateAllWeaponAttacks);
+on('sheet:opened', recalculateAllWeaponAttacks);
