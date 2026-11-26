@@ -1,7 +1,7 @@
 
 <div class="maindiv">
   <!-- Hidden inputs for character sheet functionality-->
-  <input type="hidden" name="attr_sheetversion" value="0.3.0"/>
+  <input type="hidden" name="attr_sheetversion" value="0.3.1"/>
   <input type="hidden" name="attr_shield_dr" value="0"/>
   <!-- size_penalty is the stealth modifier based on the size of the character/monster.-->
   <input type="hidden" name="attr_size_penalty" value="0"/>
@@ -545,6 +545,29 @@
                     <option value="charisma" data-i18n="charisma-abbr">CHA</option>
                   </select>
                   <div class="shim-right"></div>
+                </div>
+              </div>
+              <div class="saveRow">
+                <div class="saveButton">
+                  <button class="labelButton nonClickable flatFooted" type="roll" name="roll_FLAT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FLAT-check}}} {{Roll=[[1d20 + @{FLAT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="flat-footed-abbr">FLAT</span></button>
+                </div>
+                <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+                <div class="saveTotal">
+                  <input class="attributeInput readOnly" type="text" name="attr_flat_total" readonly="readonly" placeholder="10"/>
+                </div>
+                <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+                <div class="saveLvlOrArmor">
+                  <input class="attributeInput readOnly" type="text" name="attr_flat_level_or_armor" placeholder="0" readonly="readonly"/>
+                </div>
+                <div class="saveClassBonus">
+                  <input class="attributeInput" type="text" name="attr_flat_class_bonus" placeholder="0"/>
+                </div>
+                <div class="saveAbilityMod">
+                  <input class="showWatermark" type="hidden" name="attr_flat_ability_mod" value="dexterity"/>
+                  <input class="attributeInput" type="text" name="attr_flat_ability_modifier" readonly="readonly"/><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+                </div>
+                <div class="saveMisc">
+                  <input class="attributeInput" type="text" name="attr_flat_misc_save_mod" placeholder="0"/>
                 </div>
               </div>
               <div class="saveRow">
@@ -1600,6 +1623,29 @@
                 <option value="charisma" data-i18n="charisma-abbr">CHA</option>
               </select>
               <div class="shim-right"></div>
+            </div>
+          </div>
+          <div class="saveRow">
+            <div class="saveButton">
+              <button class="labelButton nonClickable flatFooted" type="roll" name="roll_FLAT_check" value="&amp;{template:default} {{name=@{character_name}}} {{title=^{FLAT-check}}} {{Roll=[[1d20 + @{FLAT_modifier}[Attribute Modifier]]]}}"><span class="allcaps" data-i18n="flat-footed-abbr">FLAT</span></button>
+            </div>
+            <input class="modifiedByCondition" type="hidden" value="0" name="attr_modified_by_condition"/>
+            <div class="saveTotal">
+              <input class="attributeInput readOnly" type="text" name="attr_flat_total" readonly="readonly" placeholder="10"/>
+            </div>
+            <div class="saveCalc"><span class="calcFormula">= 10 + </span></div>
+            <div class="saveLvlOrArmor">
+              <input class="attributeInput readOnly" type="text" name="attr_flat_level_or_armor" placeholder="0" readonly="readonly"/>
+            </div>
+            <div class="saveClassBonus">
+              <input class="attributeInput" type="text" name="attr_flat_class_bonus" placeholder="0"/>
+            </div>
+            <div class="saveAbilityMod">
+              <input class="showWatermark" type="hidden" name="attr_flat_ability_mod" value="dexterity"/>
+              <input class="attributeInput" type="text" name="attr_flat_ability_modifier" readonly="readonly"/><span class="abilityWatermark dexterity" data-i18n="dexterity-abbr">DEX</span><span class="abilityWatermark strength" data-i18n="strength-abbr">STR</span><span class="abilityWatermark constitution" data-i18n="constitution-abbr">CON</span><span class="abilityWatermark intelligence" data-i18n="intelligence-abbr">INT</span><span class="abilityWatermark wisdom" data-i18n="wisdom-abbr">WIS</span><span class="abilityWatermark charisma" data-i18n="charisma-abbr">CHA</span>
+            </div>
+            <div class="saveMisc">
+              <input class="attributeInput" type="text" name="attr_flat_misc_save_mod" placeholder="0"/>
             </div>
           </div>
           <div class="saveRow">
@@ -5804,12 +5850,80 @@ function compareVersions(a, b) {
     return 0;
 }
 
+function fauxChange(field, fauxvalue) {
+  //repeating  fields should be passed in the format: repeating_<section>:attributes
+  //example: repeating_skills:skillnamerank
+  log('FauxChange Reached: Field', field, r20color);
+  log('Setting faux value(s) for', field, 'orangered');
+  if (field.indexOf(':') > -1) {
+    log('fauxChange', 'repeating section', '#CCCCFF');
+    //console.log("Need to update values in a repeating section");
+    let getfields = field.split(':');
+    let repeatingSection = getfields[0];
+    let repeatingField = getfields[1];
+    let sattrs = {};
+    getSectionIDs(repeatingSection, function (idArray) {
+      if (idArray.length > 0) {
+        log('IDs in Repeating Section', idArray, 'orangeread');
+        let oldValues = [];
+        let fieldArray = [];
+        for (let a = 0; a < idArray.length; a++) {
+          fieldArray[fieldArray.length] =
+            repeatingSection + '_' + idArray[a] + '_' + repeatingField;
+          log('Added field', fieldArray[a], 'orangered');
+        }
+        getAttrs(fieldArray, function (v) {
+          for (let b = 0; b < idArray.length; b++) {
+            oldValues[oldValues.length] = v[fieldArray[b]];
+            log(`Setting Faux Value (${fieldArray[b]})`, fauxvalue, r20color);
+            sattrs[fieldArray[b]] = fauxvalue;
+          }
+          log('Step', '!!! Setting Fake Value !!!', 'orangered');
+          setAttrs(sattrs, null, () => {
+            for (let c = 0; c < idArray.length; c++) {
+              log(
+                'Added Field',
+                fieldArray[c] + ' = ' + oldValues[c],
+                'orangered'
+              );
+              log(
+                `Setting Previous Value (${fieldArray[c]})`,
+                oldValues[c],
+                r20color
+              );
+              sattrs[fieldArray[c]] = oldValues[c];
+            }
+            log('Step', '!!! Setting Real Values !!!', 'orangered');
+            setAttrs(sattrs);
+          });
+        });
+      }
+    });
+  } else {
+    //console.log("Updating values in a Non-Repeating Section");
+    log('fauxChange', 'Not Repeating Section', '#CCCCFF');
+    getAttrs([field], function (v) {
+      let prevValue = v[field];
+      let sattrs = {};
+      //console.log(`++++ Setting ${field} to ${fauxvalue} ++++`);
+      //console.log("Setting " + field + " to " + fauxvalue);
+      sattrs[field] = fauxvalue;
+      log(`Setting Faux Value (${field})`, fauxvalue, r20color);
+      setAttrs(sattrs, null, () => {
+        sattrs[field] = prevValue;
+        log(`Setting Previous Value (${field})`, prevValue, r20color);
+        setAttrs(sattrs);
+      });
+    });
+  }
+}
+
 const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn','base_attack_bonus','current_character_type'];
 sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.3.0';
+        const currentVersion = '0.3.1';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
@@ -5903,6 +6017,16 @@ on('sheet:opened', function() {
                 calculateEncumbrance(function () {
                     setAttrs({ sheetversion: currentVersion });
                     log("version 0.3.0 update complete", "Sheet version updated to 0.3.0 and encumbrance state recalculated", r20color);
+                });
+            });
+        }
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.3.1', "Make sure Flat-Footed Save is Calculated", r20color);
+            getAttrs(['level'], function(character) {
+                const currentLevel = parseInt(character.level) || 0;
+                fauxChange('level', currentLevel + 1, function() {
+                    setAttrs({ sheetversion: currentVersion });
+                    log("version 0.3.1 update complete", "Sheet version updated to 0.3.1 and Flat-Footed Save calculation should now be fixed", r20color);
                 });
             });
         }
@@ -6247,24 +6371,29 @@ on('change:armor_sr change:shield_sr change:armor_worn change:shield_worn change
 });
 
 // Watch for Defense Score Changes
-const saveList = ['ref', 'fort', 'will'];
+const saveList = ['ref', 'flat', 'fort', 'will'];
 const fortFields = ['level', 'condition',  'armor_fort_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
 const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', 'monsterous_mod', ...listOfAttributes];
 const refWatch = `change:${refFields.join(' change:')}`;
 
+const flatFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'flat_class_bonus', 'flat_ability_modifier', 'flat_misc_save_mod', 'flat_ability_mod', 'capped_dex_mod', 'monsterous_mod', ...listOfAttributes];
+const flatWatch = `change:${flatFields.join(' change:')}`;
+
 const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const willWatch = `change:${willFields.join(' change:')}`;
 
 const watchMap = {
   fort: fortWatch,
+  flat: flatWatch,
   ref: refWatch,
   will: willWatch
 };
 
 const fieldsMap = {
   fort: fortFields,
+  flat: flatFields,
   ref: refFields,
   will: willFields
 };
@@ -6294,7 +6423,7 @@ saveList.forEach(save => {
             const abilityModSelected = v[`${save}_ability_mod`] || ''; // What the dropdown for ability mod is set to
             const strengthMod = parseInt(v.strength_modifier) || 0;
             const dexterityMod = parseInt(v.dexterity_modifier) || 0;
-            const cappedDexMod = parseInt(v.capped_dex_mod) || 0;
+            const cappedDexMod = v.capped_dex_mod ?? 'none';
             const constitutionMod = parseInt(v.constitution_modifier) || 0;
             const intelligenceMod = parseInt(v.intelligence_modifier) || 0;
             const wisdomMod = parseInt(v.wisdom_modifier) || 0;
@@ -6311,6 +6440,17 @@ saveList.forEach(save => {
             setAttrsObj[`${save}_class_bonus`] = classBonus; // ensure class bonus is included in updates even if it didn't trigger the change
             let levelOrArmorBonus, abilityModValue;
             //determine which attribute modifier to use....
+            log(
+                `${save.toUpperCase()} Defense Debug`,
+                JSON.stringify({
+                    selected: abilityModSelected,
+                    dexterity: dexterityMod,
+                    cappedDex: v.capped_dex_mod,
+                    currentAbility: v[`${save}_ability_modifier`],
+                    triggeredBy: eventInfo.sourceAttribute
+                }),
+                "cyan"
+            );
             switch (abilityModSelected) {
                 case 'strength':
                     abilityModValue = strengthMod;
@@ -6330,7 +6470,10 @@ saveList.forEach(save => {
                 case 'charisma':
                     abilityModValue = charismaMod;
                     break;
+                default:
+                    abilityModValue = 0;
             }
+            abilityModValue = save === 'flat' ? Math.min(abilityModValue, 0) : abilityModValue; // flat save can never have a positive ability mod
             setAttrsObj[`${save}_ability_modifier`] = abilityModValue; // ensure ability mod is included in updates even if it didn't trigger the change
             if (armorWorn === 1 || shieldWorn === 1) {
                 //levelOrArmorBonus = save === 'fort' ? level + (((armorFortDefense * armorProficientMultiplier) * armorWorn) + ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn)) : save === 'ref' ? Math.max(level, ((armorLevel * armorWorn) + (shieldLevel * shieldWorn))) : level + (((armorWillDefense * armorProficientMultiplier) * armorWorn) + ((shieldWillDefense * shieldProficientMultiplier) * shieldWorn));
@@ -6340,7 +6483,7 @@ saveList.forEach(save => {
                         ((armorFortDefense * armorProficientMultiplier) * armorWorn) +
                         ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn);
 
-                } else if (save === 'ref') {
+                } else if (save === 'ref' || save === 'flat') {
                     if (armorWarden === 1 && improvedArmorWarden === 0) {
                         //Is Armor Warden, so take the higher of Level or Armor Bonus
                         log("Armor Warden Detected", "Calculating Level or Armor Bonus for Reflex Save", "lime");
@@ -6370,10 +6513,15 @@ saveList.forEach(save => {
             }
             setAttrsObj[`${save}_level_or_armor`] = levelOrArmorBonus; // ensure level or armor bonus is included in updates even if it didn't trigger the change
             let saveTotal = 10 + conditionMod + levelOrArmorBonus + classBonus + abilityModValue + miscSaveMod;
-            saveTotal = save === 'ref' ? saveTotal + monsterMod : saveTotal; // add monster mod to reflex save only
+            saveTotal = save === 'ref' || save === 'flat' ? saveTotal + monsterMod : saveTotal; // add monster mod to reflex save only
             setAttrsObj[`${save}_total`] = saveTotal; // ensure save total is included in updates even if it didn't trigger the change
             setAttrsObj["modified_by_condition"] = Math.abs(conditionMod) > 0 ? 1 : 0;
             //setAttrs(setAttrsObj,{silent: true});
+            log(
+                `${save.toUpperCase()} Defense Update`,
+                JSON.stringify(setAttrsObj),
+                "cyan"
+            );
             setAttrs(setAttrsObj);
         });
     });

@@ -6,8 +6,12 @@ mixin savingthrow(save)
     
     .saveRow
         .saveButton
-            button(class="labelButton nonClickable", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
-                span(class="allcaps", data-i18n=`${longName}-abbr`) #{shortName}
+            if shortName === 'FLAT'
+                button(class="labelButton nonClickable flatFooted", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
+                    span(class="allcaps", data-i18n=`${longName}-abbr`) #{shortName}
+            else
+                button(class="labelButton nonClickable", type="roll", name=`roll_${shortName}_check`, value=`&{template:default} {{name=@{character_name}}} {{title=^{${shortName}-check}}} {{Roll=[[1d20 + @{${shortName}_modifier}[Attribute Modifier]]]}}`)
+                    span(class="allcaps", data-i18n=`${longName}-abbr`) #{shortName}
         input(class="modifiedByCondition" type='hidden' value='0' name='attr_modified_by_condition')
         .saveTotal
             input(class="attributeInput readOnly", type="text", name=`attr_${fieldShortName}_total` readonly placeholder="10")
@@ -28,19 +32,21 @@ mixin savingthrow(save)
             each ability in fullAbilityList
                 if ability !== attributeName
                     span(class=`abilityWatermark ${ability}`, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
-        .config 
-            label.cog
-                input(class='hiddenInput', type='checkbox', name=`attr_${fieldShortName}_save_toggle`)
-                span.configIcon y
+        if shortName !== 'FLAT'
+            .config 
+                label.cog
+                    input(class='hiddenInput', type='checkbox', name=`attr_${fieldShortName}_save_toggle`)
+                    span.configIcon y
         .saveMisc
             input(class="attributeInput", type="text", name=`attr_${fieldShortName}_misc_save_mod`, placeholder="0")
-        input(class='hideSection', type='hidden', name=`attr_${fieldShortName}_save_toggle`, value='0')
-        .abilityConfig 
-            .shim-left
-            select(class="ls-Dropdown", name=`attr_${fieldShortName}_ability_mod`)
-                each ability in fullAbilityList
-                    if ability === attributeName
-                        option(value=ability, data-i18n=`${ability}-abbr` selected) #{ability.slice(0,3).toUpperCase()}
-                    else
-                        option(value=ability, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
-            .shim-right
+        if shortName !== 'FLAT'
+            input(class='hideSection', type='hidden', name=`attr_${fieldShortName}_save_toggle`, value='0')
+            .abilityConfig 
+                .shim-left
+                select(class="ls-Dropdown", name=`attr_${fieldShortName}_ability_mod`)
+                    each ability in fullAbilityList
+                        if ability === attributeName
+                            option(value=ability, data-i18n=`${ability}-abbr` selected) #{ability.slice(0,3).toUpperCase()}
+                        else
+                            option(value=ability, data-i18n=`${ability}-abbr`) #{ability.slice(0,3).toUpperCase()}
+                .shim-right

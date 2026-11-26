@@ -1836,6 +1836,11 @@ label.buttonStyle {
   width: 20%;
   text-align: center;
 }
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveButton button.flatFooted,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveButton button.flatFooted {
+  width: 70%;
+  margin-left: auto;
+}
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .modifiedByCondition[value="1"] + .saveTotal > .attributeInput {
   background-color: var(--dragon-wing);
@@ -1929,12 +1934,14 @@ label.buttonStyle {
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=intelligence] ~ .abilityWatermark.intelligence,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=wisdom] ~ .abilityWatermark.wisdom,
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma,
+.ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=na] ~ .abilityWatermark.na,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=strength] ~ .abilityWatermark.strength,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=dexterity] ~ .abilityWatermark.dexterity,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=constitution] ~ .abilityWatermark.constitution,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=intelligence] ~ .abilityWatermark.intelligence,
 .ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=wisdom] ~ .abilityWatermark.wisdom,
-.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma {
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=charisma] ~ .abilityWatermark.charisma,
+.ui-dialog .charactersheet .npcView .middleSection .attributesEtc .defensiveSaves .saveRow .saveAbilityMod .showWatermark[value=na] ~ .abilityWatermark.na {
   display: inline;
 }
 .ui-dialog .charactersheet .frontPage .middleSection .twoByOne .firstCol .threeBythree .defensiveSaves .saveRow .abilityConfig,

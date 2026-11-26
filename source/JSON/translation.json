@@ -307,5 +307,8 @@
   "legendary-abilities": "Legendary Abilities",
   "legendary-ability-name": "Legendary Ability Name",
   "point-cost": "Point Cost",
-  "legendary-ability-details": "Legendary Ability Details..."
+  "legendary-ability-details": "Legendary Ability Details...",
+  "flat-footed-abbr": "FLAT",
+  "flat-footed": "Flat-Footed",
+  "na-abbr": "N/A"
 }

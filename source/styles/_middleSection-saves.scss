@@ -18,6 +18,10 @@
                 column-gap: 5px;
                 width: 20%;
                 text-align: center;
+                button.flatFooted {
+                    width: 70%;
+                    margin-left: auto;
+                }
             }
             .modifiedByCondition[value='1'] + .saveTotal > .attributeInput {
                 background-color: var(--dragon-wing);
@@ -95,7 +99,8 @@
                 .showWatermark[value="constitution"] ~ .abilityWatermark.constitution,
                 .showWatermark[value="intelligence"] ~ .abilityWatermark.intelligence,
                 .showWatermark[value="wisdom"] ~ .abilityWatermark.wisdom,
-                .showWatermark[value="charisma"] ~ .abilityWatermark.charisma {
+                .showWatermark[value="charisma"] ~ .abilityWatermark.charisma,
+                .showWatermark[value="na"] ~ .abilityWatermark.na {
                     display: inline;
                 }
             }

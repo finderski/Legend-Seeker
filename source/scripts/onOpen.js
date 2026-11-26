@@ -43,12 +43,80 @@ function compareVersions(a, b) {
     return 0;
 }
 
+function fauxChange(field, fauxvalue) {
+  //repeating  fields should be passed in the format: repeating_<section>:attributes
+  //example: repeating_skills:skillnamerank
+  log('FauxChange Reached: Field', field, r20color);
+  log('Setting faux value(s) for', field, 'orangered');
+  if (field.indexOf(':') > -1) {
+    log('fauxChange', 'repeating section', '#CCCCFF');
+    //console.log("Need to update values in a repeating section");
+    let getfields = field.split(':');
+    let repeatingSection = getfields[0];
+    let repeatingField = getfields[1];
+    let sattrs = {};
+    getSectionIDs(repeatingSection, function (idArray) {
+      if (idArray.length > 0) {
+        log('IDs in Repeating Section', idArray, 'orangeread');
+        let oldValues = [];
+        let fieldArray = [];
+        for (let a = 0; a < idArray.length; a++) {
+          fieldArray[fieldArray.length] =
+            repeatingSection + '_' + idArray[a] + '_' + repeatingField;
+          log('Added field', fieldArray[a], 'orangered');
+        }
+        getAttrs(fieldArray, function (v) {
+          for (let b = 0; b < idArray.length; b++) {
+            oldValues[oldValues.length] = v[fieldArray[b]];
+            log(`Setting Faux Value (${fieldArray[b]})`, fauxvalue, r20color);
+            sattrs[fieldArray[b]] = fauxvalue;
+          }
+          log('Step', '!!! Setting Fake Value !!!', 'orangered');
+          setAttrs(sattrs, null, () => {
+            for (let c = 0; c < idArray.length; c++) {
+              log(
+                'Added Field',
+                fieldArray[c] + ' = ' + oldValues[c],
+                'orangered'
+              );
+              log(
+                `Setting Previous Value (${fieldArray[c]})`,
+                oldValues[c],
+                r20color
+              );
+              sattrs[fieldArray[c]] = oldValues[c];
+            }
+            log('Step', '!!! Setting Real Values !!!', 'orangered');
+            setAttrs(sattrs);
+          });
+        });
+      }
+    });
+  } else {
+    //console.log("Updating values in a Non-Repeating Section");
+    log('fauxChange', 'Not Repeating Section', '#CCCCFF');
+    getAttrs([field], function (v) {
+      let prevValue = v[field];
+      let sattrs = {};
+      //console.log(`++++ Setting ${field} to ${fauxvalue} ++++`);
+      //console.log("Setting " + field + " to " + fauxvalue);
+      sattrs[field] = fauxvalue;
+      log(`Setting Faux Value (${field})`, fauxvalue, r20color);
+      setAttrs(sattrs, null, () => {
+        sattrs[field] = prevValue;
+        log(`Setting Previous Value (${field})`, prevValue, r20color);
+        setAttrs(sattrs);
+      });
+    });
+  }
+}
+
 const sheetVersionFields = ['sheetversion','shield_dr','armor_dr','level','armor_worn','base_attack_bonus','current_character_type'];
 sheetVersionFields.push(...listOfAttributes);
 
 on('sheet:opened', function() {
     getAttrs(sheetVersionFields, function(values) {
-        const currentVersion = '0.3.0';
+        const currentVersion = '0.3.1';
         const sheetVersion = values.sheetversion || '0.0.0';
         const shield_dr = parseInt(values.shield_dr) || 0;
         const armor_dr = parseInt(values.armor_dr) || 0;
@@ -142,6 +210,16 @@ on('sheet:opened', function() {
                 calculateEncumbrance(function () {
                     setAttrs({ sheetversion: currentVersion });
                     log("version 0.3.0 update complete", "Sheet version updated to 0.3.0 and encumbrance state recalculated", r20color);
+                });
+            });
+        }
+        if(compareVersions(sheetVersion, currentVersion) < 0) {
+            log('updates for version 0.3.1', "Make sure Flat-Footed Save is Calculated", r20color);
+            getAttrs(['level'], function(character) {
+                const currentLevel = parseInt(character.level) || 0;
+                fauxChange('level', currentLevel + 1, function() {
+                    setAttrs({ sheetversion: currentVersion });
+                    log("version 0.3.1 update complete", "Sheet version updated to 0.3.1 and Flat-Footed Save calculation should now be fixed", r20color);
                 });
             });
         }

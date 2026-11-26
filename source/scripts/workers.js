@@ -314,24 +314,29 @@ on('change:armor_sr change:shield_sr change:armor_worn change:shield_worn change
 });
 
 // Watch for Defense Score Changes
-const saveList = ['ref', 'fort', 'will'];
+const saveList = ['ref', 'flat', 'fort', 'will'];
 const fortFields = ['level', 'condition',  'armor_fort_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_fort_defense', 'shield_worn', 'fort_class_bonus', 'fort_ability_modifier', 'fort_misc_save_mod', 'fort_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const fortWatch = `change:${fortFields.join(' change:')}`;
 
 const refFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'ref_class_bonus', 'ref_ability_modifier', 'ref_misc_save_mod', 'ref_ability_mod', 'capped_dex_mod', 'monsterous_mod', ...listOfAttributes];
 const refWatch = `change:${refFields.join(' change:')}`;
 
+const flatFields = ['level', 'condition',  'armor_level', 'armor_worn', 'armor_warden', 'improved_armor_warden', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_level', 'shield_worn', 'flat_class_bonus', 'flat_ability_modifier', 'flat_misc_save_mod', 'flat_ability_mod', 'capped_dex_mod', 'monsterous_mod', ...listOfAttributes];
+const flatWatch = `change:${flatFields.join(' change:')}`;
+
 const willFields = ['level', 'condition',  'armor_will_defense', 'armor_worn', 'armor_proficient_multiplier', 'shield_proficient_multiplier', 'shield_will_defense', 'shield_worn', 'will_class_bonus', 'will_ability_modifier', 'will_misc_save_mod', 'will_ability_mod', 'capped_dex_mod', ...listOfAttributes];
 const willWatch = `change:${willFields.join(' change:')}`;
 
 const watchMap = {
   fort: fortWatch,
+  flat: flatWatch,
   ref: refWatch,
   will: willWatch
 };
 
 const fieldsMap = {
   fort: fortFields,
+  flat: flatFields,
   ref: refFields,
   will: willFields
 };
@@ -361,7 +366,7 @@ saveList.forEach(save => {
             const abilityModSelected = v[`${save}_ability_mod`] || ''; // What the dropdown for ability mod is set to
             const strengthMod = parseInt(v.strength_modifier) || 0;
             const dexterityMod = parseInt(v.dexterity_modifier) || 0;
-            const cappedDexMod = parseInt(v.capped_dex_mod) || 0;
+            const cappedDexMod = v.capped_dex_mod ?? 'none';
             const constitutionMod = parseInt(v.constitution_modifier) || 0;
             const intelligenceMod = parseInt(v.intelligence_modifier) || 0;
             const wisdomMod = parseInt(v.wisdom_modifier) || 0;
@@ -378,6 +383,17 @@ saveList.forEach(save => {
             setAttrsObj[`${save}_class_bonus`] = classBonus; // ensure class bonus is included in updates even if it didn't trigger the change
             let levelOrArmorBonus, abilityModValue;
             //determine which attribute modifier to use....
+            log(
+                `${save.toUpperCase()} Defense Debug`,
+                JSON.stringify({
+                    selected: abilityModSelected,
+                    dexterity: dexterityMod,
+                    cappedDex: v.capped_dex_mod,
+                    currentAbility: v[`${save}_ability_modifier`],
+                    triggeredBy: eventInfo.sourceAttribute
+                }),
+                "cyan"
+            );
             switch (abilityModSelected) {
                 case 'strength':
                     abilityModValue = strengthMod;
@@ -397,7 +413,10 @@ saveList.forEach(save => {
                 case 'charisma':
                     abilityModValue = charismaMod;
                     break;
+                default:
+                    abilityModValue = 0;
             }
+            abilityModValue = save === 'flat' ? Math.min(abilityModValue, 0) : abilityModValue; // flat save can never have a positive ability mod
             setAttrsObj[`${save}_ability_modifier`] = abilityModValue; // ensure ability mod is included in updates even if it didn't trigger the change
             if (armorWorn === 1 || shieldWorn === 1) {
                 //levelOrArmorBonus = save === 'fort' ? level + (((armorFortDefense * armorProficientMultiplier) * armorWorn) + ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn)) : save === 'ref' ? Math.max(level, ((armorLevel * armorWorn) + (shieldLevel * shieldWorn))) : level + (((armorWillDefense * armorProficientMultiplier) * armorWorn) + ((shieldWillDefense * shieldProficientMultiplier) * shieldWorn));
@@ -407,7 +426,7 @@ saveList.forEach(save => {
                         ((armorFortDefense * armorProficientMultiplier) * armorWorn) +
                         ((shieldFortDefense * shieldProficientMultiplier) * shieldWorn);
 
-                } else if (save === 'ref') {
+                } else if (save === 'ref' || save === 'flat') {
                     if (armorWarden === 1 && improvedArmorWarden === 0) {
                         //Is Armor Warden, so take the higher of Level or Armor Bonus
                         log("Armor Warden Detected", "Calculating Level or Armor Bonus for Reflex Save", "lime");
@@ -437,10 +456,15 @@ saveList.forEach(save => {
             }
             setAttrsObj[`${save}_level_or_armor`] = levelOrArmorBonus; // ensure level or armor bonus is included in updates even if it didn't trigger the change
             let saveTotal = 10 + conditionMod + levelOrArmorBonus + classBonus + abilityModValue + miscSaveMod;
-            saveTotal = save === 'ref' ? saveTotal + monsterMod : saveTotal; // add monster mod to reflex save only
+            saveTotal = save === 'ref' || save === 'flat' ? saveTotal + monsterMod : saveTotal; // add monster mod to reflex save only
             setAttrsObj[`${save}_total`] = saveTotal; // ensure save total is included in updates even if it didn't trigger the change
             setAttrsObj["modified_by_condition"] = Math.abs(conditionMod) > 0 ? 1 : 0;
             //setAttrs(setAttrsObj,{silent: true});
+            log(
+                `${save.toUpperCase()} Defense Update`,
+                JSON.stringify(setAttrsObj),
+                "cyan"
+            );
             setAttrs(setAttrsObj);
         });
     });
